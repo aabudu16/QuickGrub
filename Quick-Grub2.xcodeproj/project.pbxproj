@@ -14,6 +14,7 @@
 		858A984B2384319C0051AF45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A98492384319C0051AF45 /* LaunchScreen.storyboard */; };
 		858A98562384319D0051AF45 /* Quick_Grub2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */; };
 		858A9862238433A10051AF45 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* UILabel-Extension.swift */; };
+		858A9864238434F30051AF45 /* CustomLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9863238434F30051AF45 /* CustomLayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_Grub2Tests.swift; sourceTree = "<group>"; };
 		858A98572384319D0051AF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		858A9861238433A10051AF45 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
+		858A9863238434F30051AF45 /* CustomLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				858A983E2384319A0051AF45 /* AppDelegate.swift */,
 				858A98402384319A0051AF45 /* SceneDelegate.swift */,
 				858A9861238433A10051AF45 /* UILabel-Extension.swift */,
+				858A9863238434F30051AF45 /* CustomLayer.swift */,
 				858A98472384319C0051AF45 /* Assets.xcassets */,
 				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
 				858A984C2384319C0051AF45 /* Info.plist */,
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858A9864238434F30051AF45 /* CustomLayer.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */,
 				858A9862238433A10051AF45 /* UILabel-Extension.swift in Sources */,
