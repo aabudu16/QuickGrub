@@ -1,0 +1,20 @@
+PODS:
+  - SHSearchBar (1.5.0)
+  - TextFieldEffects (1.6.0)
+
+DEPENDENCIES:
+  - SHSearchBar
+  - TextFieldEffects
+
+SPEC REPOS:
+  trunk:
+    - SHSearchBar
+    - TextFieldEffects
+
+SPEC CHECKSUMS:
+  SHSearchBar: cbec42d44f7ecfc823e492430a1a981cf784f46c
+  TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
+
+PODFILE CHECKSUM: 7f33d1e01785ae1e3a4ac5a4420e988d883437f4
+
+COCOAPODS: 1.8.4
