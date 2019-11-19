@@ -16,6 +16,7 @@
 		858A9862238433A10051AF45 /* UILabel-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* UILabel-Extension.swift */; };
 		858A9864238434F30051AF45 /* CustomLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9863238434F30051AF45 /* CustomLayer.swift */; };
 		858A9866238435370051AF45 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9865238435370051AF45 /* UIColor-Extension.swift */; };
+		858A9868238435AA0051AF45 /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9867238435AA0051AF45 /* UIButton-Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +43,7 @@
 		858A9861238433A10051AF45 /* UILabel-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel-Extension.swift"; sourceTree = "<group>"; };
 		858A9863238434F30051AF45 /* CustomLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLayer.swift; sourceTree = "<group>"; };
 		858A9865238435370051AF45 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
+		858A9867238435AA0051AF45 /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				858A9861238433A10051AF45 /* UILabel-Extension.swift */,
 				858A9863238434F30051AF45 /* CustomLayer.swift */,
 				858A9865238435370051AF45 /* UIColor-Extension.swift */,
+				858A9867238435AA0051AF45 /* UIButton-Extension.swift */,
 				858A98472384319C0051AF45 /* Assets.xcassets */,
 				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
 				858A984C2384319C0051AF45 /* Info.plist */,
@@ -214,6 +217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				858A9864238434F30051AF45 /* CustomLayer.swift in Sources */,
+				858A9868238435AA0051AF45 /* UIButton-Extension.swift in Sources */,
 				858A9866238435370051AF45 /* UIColor-Extension.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */,
