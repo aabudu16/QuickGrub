@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import TextFieldEffects
 
+//MARK: UILabel extension
 extension UILabel{
     public convenience init(textAlignment:NSTextAlignment, text:String){
         self.init()
@@ -20,14 +21,28 @@ extension UILabel{
 }
 }
 
+//MARK: UIButton extension
 extension UIButton{
-    public convenience init(alpha:CGFloat, contentMode: UIView.ContentMode){
+    convenience init(alpha:CGFloat, contentMode: UIView.ContentMode){
         self.init()
         self.alpha = alpha
         self.contentMode = contentMode
     }
+    convenience init(image:UIImage, color: CGColor){
+        self.init()
+        self.contentMode = .scaleAspectFit
+        self.layer.masksToBounds = true
+        self.layer.cornerRadius = 25
+        self.backgroundColor = .white
+        self.setBackgroundImage(image, for: .normal)
+        self.layer.borderColor = color
+        
+    }
 }
 
+
+
+//MARK: UITextField extension
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: amount, height: self.frame.size.height))
@@ -41,6 +56,7 @@ extension UITextField {
     }
 }
 
+//MARK: HoshiTextField extension
 extension HoshiTextField {
     public convenience init(keyboardType:  UIKeyboardType , placeholder: String, borderActiveColor: UIColor){
         self.init()
@@ -50,13 +66,13 @@ extension HoshiTextField {
         self.borderActiveColor = borderActiveColor
     }
 }
-
+//MARK: UIColor extension
 extension UIColor {
     static func generateColorValue(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
     }
 }
-
+//MARK: layer extension
 struct CustomLayer{
    static let shared = CustomLayer()
    func createCustomlayer(layer:CALayer){

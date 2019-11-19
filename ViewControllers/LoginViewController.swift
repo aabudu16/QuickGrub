@@ -202,15 +202,15 @@ class LoginViewController: UIViewController {
     
     @objc func handleLoginPressed(){
         
-        guard let email = emailTextField.text else{return}
-        guard let password = passwordTextField.text else {return}
+        guard  emailTextField.hasText else{return}
+        guard  passwordTextField.hasText else {return}
         setLoginButton(enable: false)
         loginButton.setTitle("", for: .normal)
         loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         activityIndcator.startAnimating()
         transparentView.isHidden = false
         let welcomeVC = WelcomeViewController()
-       // self.navigationController?.pushViewController(welcomeVC, animated: true)
+        self.navigationController?.pushViewController(welcomeVC, animated: true)
 
     }
     
@@ -425,7 +425,7 @@ class LoginViewController: UIViewController {
         NSLayoutConstraint.activate(
             [loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30),
              loginButton.widthAnchor.constraint(equalTo: passwordTextField.widthAnchor, multiplier: 0.80),
-             loginButton.heightAnchor.constraint(equalTo: passwordTextField.heightAnchor, multiplier: 0.80),
+             loginButton.heightAnchor.constraint(equalTo: passwordTextField.heightAnchor, multiplier: 0.95),
              loginButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)])
     }
     
@@ -481,8 +481,8 @@ class LoginViewController: UIViewController {
         registerButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [registerButton.topAnchor.constraint(equalTo: signupPasswordTextField.bottomAnchor, constant: 10),
-             registerButton.widthAnchor.constraint(equalTo: signupPasswordTextField.widthAnchor, multiplier: 0.80),
-             registerButton.heightAnchor.constraint(equalTo: signupPasswordTextField.heightAnchor, multiplier: 0.80),
+             registerButton.widthAnchor.constraint(equalTo: loginButton.widthAnchor),
+             registerButton.heightAnchor.constraint(equalTo: loginButton.heightAnchor),
              registerButton.centerXAnchor.constraint(equalTo: containerView.centerXAnchor)])
     }
     
