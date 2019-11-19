@@ -19,6 +19,7 @@
 		858A9868238435AA0051AF45 /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9867238435AA0051AF45 /* UIButton-Extension.swift */; };
 		858A986B238437C80051AF45 /* UITextField - Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986A238437C80051AF45 /* UITextField - Padding.swift */; };
 		858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986C23843B680051AF45 /* WelcomeViewController.swift */; };
+		858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986E23843BA80051AF45 /* CategoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		858A9867238435AA0051AF45 /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 		858A986A238437C80051AF45 /* UITextField - Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField - Padding.swift"; sourceTree = "<group>"; };
 		858A986C23843B680051AF45 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		858A986E23843BA80051AF45 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
+				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -230,6 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A9864238434F30051AF45 /* CustomLayer.swift in Sources */,
 				858A986B238437C80051AF45 /* UITextField - Padding.swift in Sources */,
