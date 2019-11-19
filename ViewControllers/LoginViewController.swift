@@ -60,7 +60,7 @@ class LoginViewController: UIViewController {
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        CustomLayer.shared.createCustomlayer(layer: view.layer)
+        CustomLayer.shared.createCustomlayer(layer: view.layer, cornerRadius: 25)
         view.layer.borderWidth = 0
         return view
     }()
@@ -123,7 +123,7 @@ class LoginViewController: UIViewController {
     
     lazy var loginButton:UIButton = {
         let button = UIButton(alpha: 1, contentMode: .scaleAspectFit)
-        CustomLayer.shared.createCustomlayer(layer: button.layer)
+        CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
         button.setTitle("Enter", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         button.addTarget(self, action: #selector(handleLoginPressed), for: .touchUpInside)
@@ -133,7 +133,7 @@ class LoginViewController: UIViewController {
     
     lazy var registerButton:UIButton = {
         let button = UIButton(alpha: 1, contentMode: .scaleAspectFit)
-        CustomLayer.shared.createCustomlayer(layer: button.layer)
+        CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
         button.isEnabled = false
         button.setTitle("Register", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)

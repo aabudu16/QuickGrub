@@ -154,30 +154,32 @@ class CategoryViewController: UIViewController {
 //MARK: Extension
 extension CategoryViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        if cell?.isSelected == true {
-            cell?.backgroundColor = UIColor.red
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
+        if cell.isSelected == true {
+            cell.selectedView.backgroundColor = .red
+            
             incrementByOne()
-        }
+    }
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        let cell = collectionView.cellForItem(at: indexPath)
-        if cell?.isSelected == false {
-            cell?.backgroundColor = UIColor.white
+       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
+        if cell.isSelected == false {
+            cell.selectedView.backgroundColor = .white
             incrementByOne()
         }
     }
 }
 extension CategoryViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 100
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.categoryCell.rawValue, for: indexPath) as? CategoryCollectionViewCell else {return UICollectionViewCell()}
         cell.backgroundColor = .white
-        CustomLayer.shared.createCustomlayer(layer: cell.layer)
+        CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 10)
         return cell
     }
 }
@@ -192,7 +194,7 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout{
 
 extension CategoryViewController:UISearchBarDelegate{
     func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-       searchBar.showsCancelButton = true
+        searchBar.showsCancelButton = true
         return true
     }
     

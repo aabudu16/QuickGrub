@@ -18,7 +18,7 @@ extension UILabel{
         self.textColor = .black
         self.text = text
         self.textAlignment = textAlignment
-}
+    }
 }
 
 //MARK: UIButton extension
@@ -74,16 +74,18 @@ extension UIColor {
 }
 //MARK: layer extension
 struct CustomLayer{
-   static let shared = CustomLayer()
-   func createCustomlayer(layer:CALayer){
-      layer.cornerRadius = 25
-       layer.borderWidth = 2
-       layer.borderColor = UIColor.black.cgColor
-       layer.masksToBounds = true
-       layer.shadowColor = UIColor.black.cgColor
-       layer.shadowOffset = CGSize(width: 0, height: 5.0)
-       layer.shadowRadius = 20.0
-       layer.shadowOpacity = 0.5
-       layer.masksToBounds = false
-   }
+    static let shared = CustomLayer()
+    func createCustomlayer(layer:CALayer, cornerRadius:CGFloat){
+        layer.cornerRadius = cornerRadius
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.black.cgColor
+        layer.masksToBounds = true
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5.0)
+        layer.shadowRadius = 20.0
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
+    }
 }
+
+
