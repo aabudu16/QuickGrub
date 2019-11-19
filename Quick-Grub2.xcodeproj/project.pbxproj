@@ -18,6 +18,7 @@
 		858A9866238435370051AF45 /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9865238435370051AF45 /* UIColor-Extension.swift */; };
 		858A9868238435AA0051AF45 /* UIButton-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9867238435AA0051AF45 /* UIButton-Extension.swift */; };
 		858A986B238437C80051AF45 /* UITextField - Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986A238437C80051AF45 /* UITextField - Padding.swift */; };
+		858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986C23843B680051AF45 /* WelcomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 		858A9865238435370051AF45 /* UIColor-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor-Extension.swift"; sourceTree = "<group>"; };
 		858A9867238435AA0051AF45 /* UIButton-Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton-Extension.swift"; sourceTree = "<group>"; };
 		858A986A238437C80051AF45 /* UITextField - Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField - Padding.swift"; sourceTree = "<group>"; };
+		858A986C23843B680051AF45 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
+				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A9864238434F30051AF45 /* CustomLayer.swift in Sources */,
 				858A986B238437C80051AF45 /* UITextField - Padding.swift in Sources */,
 				858A9868238435AA0051AF45 /* UIButton-Extension.swift in Sources */,
