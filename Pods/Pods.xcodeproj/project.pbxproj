@@ -71,12 +71,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A337EFBE4EE6B45F205AFA13312EC47 /* SHSearchBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SHSearchBar.framework; path = SHSearchBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A337EFBE4EE6B45F205AFA13312EC47 /* SHSearchBar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SHSearchBar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EF0BF256C7F1C36FE8250E92CC4E529 /* Pods-Quick-Grub2Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Quick-Grub2Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		133CFC4B7A05CBADB0E1B61F4DD626D9 /* TextFieldEffects.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = TextFieldEffects.modulemap; sourceTree = "<group>"; };
 		1B5288011F1B37F0B8E174B3C0B538CC /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		1C968A8C59D9C71BBC76D637FF963DC4 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		1EE85C07C463DFC7B0DC680ADB11D6AE /* SHSearchBar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = SHSearchBar.bundle; path = "SHSearchBar-SHSearchBar.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1EE85C07C463DFC7B0DC680ADB11D6AE /* SHSearchBar.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SHSearchBar.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		25622A0FE5355605C1B33C2C620E267B /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		2ADDB72F3E211BAE6F65558E7288C72F /* SHSearchBar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SHSearchBar.modulemap; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -84,7 +84,7 @@
 		33663EDDA568EA9E86A946C32F4A2E40 /* TextFieldEffects-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "TextFieldEffects-Info.plist"; sourceTree = "<group>"; };
 		388D83773F8D315332754CDF92C9AC58 /* Pods-Quick-Grub2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Quick-Grub2.debug.xcconfig"; sourceTree = "<group>"; };
 		4448C9DDF1D024D794C62A10E519BF44 /* Pods-Quick-Grub2-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Quick-Grub2-frameworks.sh"; sourceTree = "<group>"; };
-		44672A4D15EBB58BB21704EB810E65EE /* Pods_Quick_Grub2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Quick_Grub2Tests.framework; path = "Pods-Quick-Grub2Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		44672A4D15EBB58BB21704EB810E65EE /* Pods_Quick_Grub2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		44B795C95F700E52240074C21AE87AE3 /* Pods-Quick-Grub2.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Quick-Grub2.modulemap"; sourceTree = "<group>"; };
 		478376CA254068245BADC9483D3E7346 /* JiroTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = JiroTextField.swift; path = TextFieldEffects/TextFieldEffects/JiroTextField.swift; sourceTree = "<group>"; };
 		49E68495046B7D97819D27E33B9A65C1 /* HoshiTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HoshiTextField.swift; path = TextFieldEffects/TextFieldEffects/HoshiTextField.swift; sourceTree = "<group>"; };
@@ -97,7 +97,7 @@
 		6A4302AE0E10AD2FEE338C2627372E18 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6AECE7654957583B354E3F9655B58D96 /* SHSearchBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SHSearchBar-Info.plist"; sourceTree = "<group>"; };
 		6AFD34DA13DBF0EB07F1B9CFA014B322 /* Pods-Quick-Grub2Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Quick-Grub2Tests.modulemap"; sourceTree = "<group>"; };
-		6C8962B664C0FCB68D2B2B3A80529956 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_Quick_Grub2.framework; path = "Pods-Quick-Grub2.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C8962B664C0FCB68D2B2B3A80529956 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D2C47CD2017845AD637272C036947DE /* KaedeTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KaedeTextField.swift; path = TextFieldEffects/TextFieldEffects/KaedeTextField.swift; sourceTree = "<group>"; };
 		71B73A1D12B6344341C321B64A2555F2 /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7355FC39BDBEB50489E8D828EF8A4787 /* MinoruTextField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MinoruTextField.swift; path = TextFieldEffects/TextFieldEffects/MinoruTextField.swift; sourceTree = "<group>"; };
@@ -110,10 +110,10 @@
 		8D819E8078B1789E4447C51E32412C67 /* Foundation + Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Foundation + Extensions.swift"; path = "SHSearchBar/Classes/Foundation + Extensions.swift"; sourceTree = "<group>"; };
 		91B2EBE97C2A8A704D3D943018F78C23 /* Pods-Quick-Grub2Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Quick-Grub2Tests-umbrella.h"; sourceTree = "<group>"; };
 		92878955D2914C1C78D71A1E24065F2C /* Localizable.strings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		9506DA724C6F10EF01A979CAA24AB55D /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = TextFieldEffects.framework; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9506DA724C6F10EF01A979CAA24AB55D /* TextFieldEffects.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TextFieldEffects.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A8D978C044D5549D9826BBFFD78E3A /* Pods-Quick-Grub2Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Quick-Grub2Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		9B229319E5C623A77F7AE12B0D95FE09 /* Pods-Quick-Grub2-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Quick-Grub2-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		AA30DE318D59E97C391D92F14840AAF3 /* Pods-Quick-Grub2-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Quick-Grub2-umbrella.h"; sourceTree = "<group>"; };
 		ADF349BFC85CF1BBC1924ABE7315987C /* ResourceBundle-SHSearchBar-SHSearchBar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-SHSearchBar-SHSearchBar-Info.plist"; sourceTree = "<group>"; };
 		B3D74559B17424D234A76C9AE8E483E3 /* Pods-Quick-Grub2Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Quick-Grub2Tests-dummy.m"; sourceTree = "<group>"; };
@@ -206,7 +206,6 @@
 				111CB74FD5B2FA3C194F83E8A22676B3 /* Resources */,
 				DA9078B718ED28FA54895D4303BA48A3 /* Support Files */,
 			);
-			name = SHSearchBar;
 			path = SHSearchBar;
 			sourceTree = "<group>";
 		};
@@ -225,7 +224,6 @@
 				5AAECB6855F46033405C23E0847E9683 /* YoshikoTextField.swift */,
 				5A6ECB2632CE65F57C739DACC212E505 /* Support Files */,
 			);
-			name = TextFieldEffects;
 			path = TextFieldEffects;
 			sourceTree = "<group>";
 		};
@@ -485,6 +483,13 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				de,
+				es,
+				fr,
+				it,
+				ja,
+				ru,
+				"zh-Hans",
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 9494B0913703E0DC5DA712C23A73E1A2 /* Products */;

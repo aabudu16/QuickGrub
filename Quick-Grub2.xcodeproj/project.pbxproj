@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,7 @@
 		858A986B238437C80051AF45 /* UITextField - Padding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986A238437C80051AF45 /* UITextField - Padding.swift */; };
 		858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986C23843B680051AF45 /* WelcomeViewController.swift */; };
 		858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986E23843BA80051AF45 /* CategoryViewController.swift */; };
+		858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */; };
 		C25704EA69820AD99E7D9B27 /* Pods_Quick_Grub2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +57,7 @@
 		858A986A238437C80051AF45 /* UITextField - Padding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField - Padding.swift"; sourceTree = "<group>"; };
 		858A986C23843B680051AF45 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		858A986E23843BA80051AF45 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
 		9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E4CB845CA1560577CCB37F /* Pods-Quick-Grub2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.debug.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +90,6 @@
 				21DF4C55D8A886C8B7DE2A8A /* Pods-Quick-Grub2Tests.debug.xcconfig */,
 				22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -98,6 +99,7 @@
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
 				858A9860238433160051AF45 /* ViewControllers */,
+				858A987223844A890051AF45 /* Custom Class */,
 				858A98542384319D0051AF45 /* Quick-Grub2Tests */,
 				858A983C2384319A0051AF45 /* Products */,
 				120A4BC483A39DE278D1BB98 /* Pods */,
@@ -155,6 +157,14 @@
 				858A9867238435AA0051AF45 /* UIButton-Extension.swift */,
 			);
 			path = "Custom Extensions";
+			sourceTree = "<group>";
+		};
+		858A987223844A890051AF45 /* Custom Class */ = {
+			isa = PBXGroup;
+			children = (
+				858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */,
+			);
+			path = "Custom Class";
 			sourceTree = "<group>";
 		};
 		EEF5C01A2BE199288C4BD9A6 /* Frameworks */ = {
@@ -341,6 +351,7 @@
 				858A9866238435370051AF45 /* UIColor-Extension.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */,
+				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
 				858A9862238433A10051AF45 /* UILabel-Extension.swift in Sources */,
 				858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */,
 			);

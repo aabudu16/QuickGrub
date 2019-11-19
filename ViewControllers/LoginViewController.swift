@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import SHSearchBar
+import TextFieldEffects
 
 class LoginViewController: UIViewController {
 
