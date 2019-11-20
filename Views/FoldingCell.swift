@@ -18,7 +18,8 @@ open class FoldingCell: UITableViewCell {
     
     lazy var containerView:UIView = {
         let container = UIView()
-        container.backgroundColor = .green
+        container.backgroundColor = .brown
+        
         container.isUserInteractionEnabled = true
         return container
     }()
@@ -27,6 +28,8 @@ open class FoldingCell: UITableViewCell {
     lazy var foregroundView:RotatedView! = {
         let foreground = RotatedView()
         foreground.backgroundColor = .blue
+        foreground.layer.cornerRadius = 10
+        foreground.layer.masksToBounds = true
         return foreground
     }()
     
@@ -58,9 +61,10 @@ open class FoldingCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
-     commonInit()
         configureForegroundViewConstraints()
         configureContainerViewConstraints()
+        
+        commonInit()
     }
     
     required public init?(coder: NSCoder) {
@@ -143,7 +147,7 @@ open class FoldingCell: UITableViewCell {
     func createAnimationView() {
         animationView = UIView(frame: containerView.frame)
         animationView?.layer.cornerRadius = foregroundView.layer.cornerRadius
-        animationView?.backgroundColor = .clear
+       // animationView?.backgroundColor = .clear
         animationView?.translatesAutoresizingMaskIntoConstraints = false
         animationView?.alpha = 0
         
@@ -413,11 +417,16 @@ open class FoldingCell: UITableViewCell {
         self.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant: 456)])
+        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant:CGFloat(75 * itemCount))])
         
         containerViewTop = containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 97)
         containerViewTop.isActive = true
     }
+    
+//     func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
+//          let durations = [0.26, 0.2, 0.2]
+//          return durations[itemIndex]
+//      }
 }
 
 // MARK: RotatedView
