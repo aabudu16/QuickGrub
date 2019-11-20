@@ -41,6 +41,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         configureSelectedViewConstraints()
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: Private constraints
     
     private func configureCategoryImageConstraints(){
@@ -63,9 +67,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([selectedView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5), selectedView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5), selectedView.heightAnchor.constraint(equalToConstant: 20), selectedView.widthAnchor.constraint(equalToConstant: 20)])
     }
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+  
     
 }
 
