@@ -130,6 +130,7 @@ extension ResturantResultsViewController:UITableViewDataSource{
         
         cell.layer.borderWidth = 3
         cell.layer.borderColor = UIColor.black.cgColor
+        cell.backgroundColor = .blue
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
         cell.durationsForCollapsedState = durations

@@ -33,13 +33,19 @@ open class FoldingCell: UITableViewCell {
         return foreground
     }()
     
+    lazy var resturantImage: UIImageView = {
+     let image = UIImageView()
+        image.image = UIImage(named: "profileImage")
+        return image
+    }()
+    
     var foregroundViewTop:NSLayoutConstraint!
     
     
     var animationView: UIView?
     
     ///  the number of folding elements. Default 2
-    @IBInspectable open var itemCount: NSInteger = 2
+    @IBInspectable open var itemCount: NSInteger = 4
     
     /// The color of the back cell
     @IBInspectable open var backViewColor: UIColor = UIColor.brown
@@ -63,7 +69,7 @@ open class FoldingCell: UITableViewCell {
         super.init(style:style, reuseIdentifier: reuseIdentifier)
         configureForegroundViewConstraints()
         configureContainerViewConstraints()
-        
+        configureResturantImageConstraint()
         commonInit()
     }
     
@@ -147,7 +153,7 @@ open class FoldingCell: UITableViewCell {
     func createAnimationView() {
         animationView = UIView(frame: containerView.frame)
         animationView?.layer.cornerRadius = foregroundView.layer.cornerRadius
-       // animationView?.backgroundColor = .clear
+        animationView?.backgroundColor = .clear
         animationView?.translatesAutoresizingMaskIntoConstraints = false
         animationView?.alpha = 0
         
@@ -406,7 +412,7 @@ open class FoldingCell: UITableViewCell {
         self.addSubview(foregroundView)
         foregroundView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([ foregroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), foregroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), foregroundView.heightAnchor.constraint(equalToConstant: 75)])
+        NSLayoutConstraint.activate([ foregroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), foregroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), foregroundView.heightAnchor.constraint(equalToConstant:160)])
         
         foregroundViewTop = foregroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8)
         foregroundViewTop.isActive = true
@@ -417,7 +423,7 @@ open class FoldingCell: UITableViewCell {
         self.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant:CGFloat(75 * itemCount))])
+        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant:CGFloat(115 * itemCount))])
         
         containerViewTop = containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 97)
         containerViewTop.isActive = true
@@ -427,6 +433,13 @@ open class FoldingCell: UITableViewCell {
 //          let durations = [0.26, 0.2, 0.2]
 //          return durations[itemIndex]
 //      }
+    
+    private func configureResturantImageConstraint(){
+        self.foregroundView.addSubview(resturantImage)
+        resturantImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([resturantImage.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), resturantImage.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor), resturantImage.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor), resturantImage.topAnchor.constraint(equalTo: foregroundView.topAnchor)])
+    }
 }
 
 // MARK: RotatedView
