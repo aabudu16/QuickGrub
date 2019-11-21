@@ -19,9 +19,7 @@ class LoginViewController: UIViewController {
     private var imageViewTopConstraint = NSLayoutConstraint()
     
     //MARK: UI Objects
-    
-    
-    
+
     lazy var transparentView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.backgroundColor = UIColor.black.withAlphaComponent(0.2)
