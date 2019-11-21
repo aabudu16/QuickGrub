@@ -209,7 +209,7 @@ class LoginViewController: UIViewController {
         loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
         activityIndcator.startAnimating()
         transparentView.isHidden = false
-        let welcomeVC = ResturantResultsViewController()
+        let welcomeVC = WelcomeViewController()
         self.navigationController?.pushViewController(welcomeVC, animated: true)
 
     }

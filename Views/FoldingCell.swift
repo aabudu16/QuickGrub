@@ -18,8 +18,7 @@ open class FoldingCell: UITableViewCell {
     
     lazy var containerView:UIView = {
         let container = UIView()
-        container.backgroundColor = .brown
-        
+        container.backgroundColor = .white
         container.isUserInteractionEnabled = true
         return container
     }()
@@ -48,7 +47,7 @@ open class FoldingCell: UITableViewCell {
     @IBInspectable open var itemCount: NSInteger = 4
     
     /// The color of the back cell
-    @IBInspectable open var backViewColor: UIColor = UIColor.brown
+    @IBInspectable open var backViewColor: UIColor = UIColor.lightGray
     
     var animationItemViews: [RotatedView]?
     

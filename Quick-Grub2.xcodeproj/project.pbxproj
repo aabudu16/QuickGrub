@@ -22,6 +22,7 @@
 		858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */; };
 		858A98792384EF840051AF45 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98782384EF840051AF45 /* FoldingCell.swift */; };
 		858A987B2384FCC40051AF45 /* ResturantResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */; };
+		858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987C2386D8820051AF45 /* FoodImagesViewController.swift */; };
 		C25704EA69820AD99E7D9B27 /* Pods_Quick_Grub2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A98782384EF840051AF45 /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantResultsViewController.swift; sourceTree = "<group>"; };
+		858A987C2386D8820051AF45 /* FoodImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesViewController.swift; sourceTree = "<group>"; };
 		9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E4CB845CA1560577CCB37F /* Pods-Quick-Grub2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.debug.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +146,7 @@
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
 				858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */,
+				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
 			);
@@ -357,6 +360,7 @@
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A987B2384FCC40051AF45 /* ResturantResultsViewController.swift in Sources */,
+				858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */,
 				858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */,
 				858A98792384EF840051AF45 /* FoldingCell.swift in Sources */,
 				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
