@@ -9,14 +9,15 @@
 import UIKit
 
 class FoodImagesViewController: UIViewController {
-    
+    var layout = UICollectionViewFlowLayout.init()
     enum FoodImageIdentifier:String{
         case foodCell
     }
     //MARK: UI Objects
     lazy var collectionView:UICollectionView = {
-        let cv = UICollectionView()
+        let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         cv.register(FoodImagesSellectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
+        cv.backgroundColor = .blue
         return cv
     }()
     //MARK: Lifecycle
@@ -47,12 +48,24 @@ extension FoodImagesViewController: UICollectionViewDelegate{}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        <#code#>
+        return 20
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        <#code#>
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
+        
+        cell.foodImage.image = UIImage(systemName: "photo")
+        
+        return cell
     }
     
-    
 }
+
+extension FoodImagesViewController: UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        let virticalCellCGSize = CGSize(width: 200, height: 200)
+        return virticalCellCGSize
+    }
+}
+
