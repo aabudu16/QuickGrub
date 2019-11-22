@@ -30,7 +30,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     
     lazy var categoryNameLabel:UILabel = {
         let label = UILabel()
-        label.contentMode = .center
+        label.textAlignment = .center
         label.layer.borderWidth = 2
         label.layer.borderColor = UIColor.blue.cgColor
         return label
@@ -38,7 +38,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     
     lazy var FoodTitleLabel:UILabel = {
         let label = UILabel()
-        label.contentMode = .left
+        label.textAlignment = .left
         label.layer.borderWidth = 2
         label.layer.borderColor = UIColor.blue.cgColor
         return label
