@@ -15,33 +15,35 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.layer.masksToBounds = true
-        image.layer.borderWidth = 2
-        image.layer.borderColor = UIColor.blue.cgColor
         return image
     }()
     
     lazy var  starRatings:UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFit
-        image.layer.borderWidth = 2
-        image.layer.borderColor = UIColor.blue.cgColor
         return image
     }()
     
     lazy var categoryNameLabel:UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: "Verdana-Bold", size: 18)
+//        label.layer.borderColor = UIColor.black.cgColor
+//        label.layer.borderWidth = 1
         label.textAlignment = .center
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.blue.cgColor
         return label
     }()
     
     lazy var FoodTitleLabel:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.layer.borderWidth = 2
-        label.layer.borderColor = UIColor.blue.cgColor
         return label
+    }()
+    
+    lazy var foodColorBadge:UIButton = {
+        let view = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        view.layer.cornerRadius = view.layer.frame.height / 2
+        view.backgroundColor = .green
+        return view
     }()
     
     //MARK: Lifecycle
@@ -51,6 +53,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureFoodImageConstraints()
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
+        configureFoodColorBadgeConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -64,7 +67,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         self.addSubview(categoryNameLabel)
         categoryNameLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([categoryNameLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 2), categoryNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), categoryNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10), categoryNameLabel.heightAnchor.constraint(equalToConstant: 35)])
+        NSLayoutConstraint.activate([categoryNameLabel.topAnchor.constraint(equalTo: self.topAnchor,constant: 6), categoryNameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), categoryNameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100), categoryNameLabel.heightAnchor.constraint(equalToConstant: 35)])
     }
     
     private func configureFoodImageConstraints(){
@@ -83,8 +86,13 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     private func configureFoodTitleConstraints(){
         self.addSubview(FoodTitleLabel)
         FoodTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([FoodTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), FoodTitleLabel.trailingAnchor.constraint(equalTo: self.starRatings.leadingAnchor), FoodTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5), FoodTitleLabel.heightAnchor.constraint(equalToConstant: 25)])
-        
     }
+    
+    private func configureFoodColorBadgeConstraints(){
+        self.addSubview(foodColorBadge)
+        foodColorBadge.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  10), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 30), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
+    }
+    
 }

@@ -63,7 +63,22 @@ class FoodImagesViewController: UIViewController {
         
     }
     
+     // MARK: objc function
+    @objc func handleFoodColorBadge(sender:UIButton){
+          showAlert(with: "vegertarian", and: """
+    Vegetarian lifestyles are associated with a reduced
+    risk of many chronic illnesses, including heart disease,
+    many types of cancer, diabetes, high blood pressure,
+    and obesity.
+    """)
+       }
+    
     // MARK: Private function
+    private func showAlert(with title: String, and message: String) {
+          let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+          alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+          present(alertVC, animated: true, completion: nil)
+      }
     
     private func setupCollectionView(){
         collectionView.delegate = self
@@ -108,7 +123,12 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
         cell.foodImage.image = UIImage(systemName: "photo")
-        cell.starRatings.image = UIImage(systemName: "star.fill")
+        cell.starRatings.image = UIImage(named: "fourStars")
+        cell.categoryNameLabel.text = "Catergory name"
+        cell.FoodTitleLabel.text = "Food title"
+        cell.foodColorBadge.backgroundColor = .red
+        cell.foodColorBadge.addTarget(self, action: #selector(handleFoodColorBadge(sender:)), for: .touchUpInside)
+        
         CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 2)
         cell.layer.cornerRadius = 25
         return cell
@@ -119,7 +139,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
 extension FoodImagesViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let virticalCellCGSize = CGSize(width: 300, height: 500)
+        let virticalCellCGSize = CGSize(width: 280, height: 400)
         return virticalCellCGSize
     }
 }
