@@ -149,5 +149,14 @@ extension FoodImagesViewController: UICollectionViewDelegateFlowLayout{
         let virticalCellCGSize = CGSize(width: 280, height: 400)
         return virticalCellCGSize
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        UIEdgeInsets.init(top: -90, left: 60, bottom: 100, right: 100)
+    }
+    // spacing between cells in the VC
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 100
+    }
+    
 }
 
