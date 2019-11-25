@@ -52,6 +52,7 @@ class FoodImagesViewController: UIViewController {
         return label
     }()
     
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,11 +61,15 @@ class FoodImagesViewController: UIViewController {
         configureTransparentViewConstraints()
         configureScrollDownIndicatorConstraints()
         configureScrollLabelConstraints()
-        
     }
     
      // MARK: objc function
-    @objc func handleFoodColorBadge(sender:UIButton){
+    @objc func handleFoodColorBadge(){
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.toValue = 1
+        basicAnimation.duration = 2
+        basicAnimation.fillMode = .forwards
           showAlert(with: "vegertarian", and: """
     Vegetarian lifestyles are associated with a reduced
     risk of many chronic illnesses, including heart disease,
@@ -112,6 +117,7 @@ class FoodImagesViewController: UIViewController {
     
 }
 
+ //MARK: Extensions
 extension FoodImagesViewController: UICollectionViewDelegate{}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
@@ -126,8 +132,9 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         cell.starRatings.image = UIImage(named: "fourStars")
         cell.categoryNameLabel.text = "Catergory name"
         cell.FoodTitleLabel.text = "Food title"
-        cell.foodColorBadge.backgroundColor = .red
-        cell.foodColorBadge.addTarget(self, action: #selector(handleFoodColorBadge(sender:)), for: .touchUpInside)
+       // cell.foodColorBadge.backgroundColor = .red
+        cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
+//        cell.foodColorBadge.addTarget(self, action: #selector(handleFoodColorBadge(sender:)), for: .touchUpInside)
         
         CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 2)
         cell.layer.cornerRadius = 25

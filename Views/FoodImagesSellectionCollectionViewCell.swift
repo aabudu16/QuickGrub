@@ -10,6 +10,7 @@ import UIKit
 
 class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     
+    let shapeLayer = CAShapeLayer()
     //MARK: UI Objects
     lazy var  foodImage:UIImageView = {
         let image = UIImageView()
@@ -27,8 +28,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     lazy var categoryNameLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Verdana-Bold", size: 18)
-//        label.layer.borderColor = UIColor.black.cgColor
-//        label.layer.borderWidth = 1
+        //        label.layer.borderColor = UIColor.black.cgColor
+        //        label.layer.borderWidth = 1
         label.textAlignment = .center
         return label
     }()
@@ -40,8 +41,11 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var foodColorBadge:UIButton = {
-        let view = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        let view = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         view.layer.cornerRadius = view.layer.frame.height / 2
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.alpha = 1
         view.backgroundColor = .green
         return view
     }()
@@ -54,6 +58,9 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
         configureFoodColorBadgeConstraints()
+        
+        
+        createPulse()
     }
     
     required init?(coder: NSCoder) {
@@ -61,7 +68,44 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }
     
     
+    @objc func handleTap(){
+        print("tapped")
+    }
     //MARK: Private constraint functions
+    
+    func createPulse(){
+        let position = foodColorBadge.frame.size.width / 2
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: 16, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        shapeLayer.path = circularPath.cgPath
+        shapeLayer.strokeColor = UIColor.green.cgColor
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineWidth = 25.0
+        shapeLayer.lineCap = .round
+        shapeLayer.position = CGPoint(x: position, y: position)
+        //shapeLayer.strokeEnd = 0
+        foodColorBadge.layer.addSublayer(shapeLayer)
+        animatePulse()
+    }
+    
+    func animatePulse(){
+        let scaleAnimation = CABasicAnimation(keyPath: "transform.scale")
+        scaleAnimation.duration = 2.0
+        scaleAnimation.fromValue = 0
+        scaleAnimation.toValue = 1
+        scaleAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        scaleAnimation.repeatCount = .greatestFiniteMagnitude
+        shapeLayer.add(scaleAnimation, forKey: "scale")
+        
+        let opacityAnimation = CABasicAnimation(keyPath: #keyPath(CALayer.opacity))
+        opacityAnimation.duration = 2.0
+        opacityAnimation.fromValue = 1
+        opacityAnimation.toValue = 0
+        opacityAnimation.timingFunction = CAMediaTimingFunction(name: .easeOut)
+        opacityAnimation.repeatCount = .greatestFiniteMagnitude
+        shapeLayer.add(opacityAnimation, forKey: "opacity")
+    }
+    
+    
     
     private func configureCategoryNameLabelConstraints(){
         self.addSubview(categoryNameLabel)
@@ -92,7 +136,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     private func configureFoodColorBadgeConstraints(){
         self.addSubview(foodColorBadge)
         foodColorBadge.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  10), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 30), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
+        NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  10), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 20), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
     }
     
 }
