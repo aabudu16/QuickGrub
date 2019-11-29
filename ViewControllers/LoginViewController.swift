@@ -9,6 +9,7 @@
 import UIKit
 import SHSearchBar
 import TextFieldEffects
+import Photos
 
 class LoginViewController: UIViewController {
     
@@ -18,8 +19,17 @@ class LoginViewController: UIViewController {
     private var containerViewTopConstraint = NSLayoutConstraint()
     private var imageViewTopConstraint = NSLayoutConstraint()
     
+    var image = UIImage() {
+        didSet {
+            self.logoImageView.image = image
+            logoImageView.layer.borderColor = UIColor.green.cgColor
+        }
+    }
+    
+    var imageURL: URL? = nil
+    
     //MARK: UI Objects
-
+    
     lazy var transparentView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.backgroundColor = UIColor.black.withAlphaComponent(0.2)
@@ -38,9 +48,9 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var loadingLabel:UILabel = {
-           let label = UILabel(textAlignment: .center, text: "Loading Quick Grub")
-           return label
-       }()
+        let label = UILabel(textAlignment: .center, text: "Loading Quick Grub")
+        return label
+    }()
     
     lazy var bottomnView: UIView = {
         let view = UIView()
@@ -64,12 +74,15 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var logoImageView: UIImageView = {
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        guesture.numberOfTapsRequired = 2
         let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "QG")
         iv.layer.cornerRadius = iv.layer.frame.height / 2
         iv.backgroundColor = .white
         iv.clipsToBounds = true
+        iv.addGestureRecognizer(guesture)
         return iv
     }()
     
@@ -81,7 +94,7 @@ class LoginViewController: UIViewController {
     lazy var emailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
-
+        
         tf.delegate = self
         return tf
     }()
@@ -102,7 +115,7 @@ class LoginViewController: UIViewController {
         return tf
     }()
     
-  
+    
     lazy var signupPasswordTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .namePhonePad, placeholder: "Create password", borderActiveColor: .green)
         tf.isSecureTextEntry = true
@@ -189,27 +202,60 @@ class LoginViewController: UIViewController {
     
     //MARK: Objc Selector functions
     
+    @objc private func imageViewDoubleTapped(sender:UITapGestureRecognizer) {
+        print("pressed")
+        //MARK: TODO - action sheet with multiple media options
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined, .denied, .restricted:
+            PHPhotoLibrary.requestAuthorization({[weak self] status in
+                switch status {
+                case .authorized:
+                    self?.presentPhotoPickerController()
+                case .denied:
+                    //MARK: TODO - set up more intuitive UI interaction
+                    print("Denied photo library permissions")
+                default:
+                    //MARK: TODO - set up more intuitive UI interaction
+                    print("No usable status")
+                }
+            })
+        default:
+            presentPhotoPickerController()
+        }
+    }
+    
     
     @objc func handleForgetPasswordButtonPressed(){
-       print("still need code to to handle the forget password ")
+        print("still need code to to handle the forget password ")
     }
     
     @objc func handleRegisterPressed(){
-        print("register button pressed")
+       // dsaf
     }
     
     @objc func handleLoginPressed(){
         
-        guard  emailTextField.hasText else{return}
-        guard  passwordTextField.hasText else {return}
-        setLoginButton(enable: false)
-        loginButton.setTitle("", for: .normal)
-        loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        activityIndcator.startAnimating()
-        transparentView.isHidden = false
-        let welcomeVC = WelcomeViewController()
-        self.navigationController?.pushViewController(welcomeVC, animated: true)
-
+        guard  emailTextField.hasText, passwordTextField.hasText else {
+            return}
+        
+        guard let email = emailTextField.text, let password = passwordTextField.text else {
+            showAlert(with: "Error", and: "Please fill out all fields.")
+            return
+        }
+        
+        guard email.isValidEmail else {
+            showAlert(with: "Error", and: "Please enter a valid email")
+            return
+        }
+        
+        guard password.isValidPassword else {
+            showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+            return
+        }
+        
+        FirebaseAuthService.manager.loginUser(email: email.lowercased(), password: password) { (result) in
+            self.handleLoginResponse(with: result)
+        }
     }
     
     
@@ -242,7 +288,7 @@ class LoginViewController: UIViewController {
         
         self.containerViewButtomConstraint.constant = -100
         self.containerViewTopConstraint.constant = 325
-      
+        
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -258,19 +304,21 @@ class LoginViewController: UIViewController {
                 self.loginLabel.text = "Login"
                 self.logoImageView.image = UIImage(named: "QG")
             }, completion: { (_) in
-                // write code to do something after the card is flipped
+                self.logoImageView.isUserInteractionEnabled = false
+
             })
             
             
         case 1:
             segmentedController.selectedSegmentTintColor = UIColor.green
-            UIView.transition(with: mainCotainerView, duration: 1.2, options: .transitionFlipFromLeft, animations: {
+            UIView.transition(with: mainCotainerView, duration: 1.2, options: .transitionFlipFromRight, animations: {
                 self.setLoginObjectViewsVisible(enable: false)
                 self.setSignupObjectViewsVisible(enable: true)
                 self.loginLabel.text = "Signup"
                 self.logoImageView.image = UIImage(named: "profileImage")
+                self.logoImageView.isUserInteractionEnabled = true
             }, completion: { (_) in
-                // write code to do something after the card is flipped
+
             })
         default:
             break
@@ -283,8 +331,8 @@ class LoginViewController: UIViewController {
         configureBottomViewConstraints()
         configureMainContainerViewConstraints()
         setupContainerView()
+          configureLoginLabel()
         configureLogoImageView()
-        configureLoginLabel()
         configureEmailTextField()
         configurePasswordTextField()
         configureLoginButton()
@@ -298,7 +346,45 @@ class LoginViewController: UIViewController {
         configureForgotButtonButton()
         configureGifAnimationConstraints()
     }
-    // Hide and Unhide views
+    
+    private func presentPhotoPickerController() {
+           DispatchQueue.main.async{
+               let imagePickerViewController = UIImagePickerController()
+               imagePickerViewController.delegate = self
+               imagePickerViewController.sourceType = .photoLibrary
+               imagePickerViewController.allowsEditing = true
+               imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
+               self.present(imagePickerViewController, animated: true, completion: nil)
+           }
+       }
+    
+    private func handleLoginResponse(with result: Result<(), Error>) {
+        switch result {
+            
+        case .success:
+            
+            configureViewWhenUserClicksLogin(enable: true)
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                else {
+                    //MARK: TODO - handle could not swap root view controller
+                    return
+            }
+            
+            configureViewWhenUserClicksLogin(enable: false)
+            UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+                if FirebaseAuthService.manager.currentUser != nil {
+                    window.rootViewController = WelcomeViewController()
+                    
+                } else {
+                    self.showAlert(with: "Error", and: "Account does not exist")
+                }
+            }, completion: nil)
+        case .failure(let error):
+            self.showAlert(with: "Error Creating User", and: error.localizedDescription)
+        }
+    }
+    
     private func setSignupObjectViewsVisible(enable:Bool){
         switch enable{
         case true:
@@ -321,6 +407,12 @@ class LoginViewController: UIViewController {
         }
     }
     
+    private func showAlert(with title: String, and message: String) {
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
     private func setLoginObjectViewsVisible(enable:Bool){
         switch enable{
         case true:
@@ -338,6 +430,22 @@ class LoginViewController: UIViewController {
         }
     }
     // Enable or Disable the login button
+    
+    private func configureViewWhenUserClicksLogin(enable: Bool){
+        switch enable{
+        case true:
+            setLoginButton(enable: true)
+            loginButton.setTitle("Login", for: .normal)
+            activityIndcator.stopAnimating()
+            transparentView.isHidden = true
+        case false:
+            setLoginButton(enable: false)
+            loginButton.setTitle("", for: .normal)
+            loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            activityIndcator.startAnimating()
+            transparentView.isHidden = false
+        }
+    }
     private func setLoginButton(enable:Bool){
         switch enable {
         case true:
@@ -352,7 +460,7 @@ class LoginViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-
+    
     
     //MARK: Constriaints Function
     
@@ -497,10 +605,10 @@ class LoginViewController: UIViewController {
     
     
     private func configureMainContainerViewConstraints(){
-      view.addSubview(mainCotainerView)
+        view.addSubview(mainCotainerView)
         mainCotainerView.translatesAutoresizingMaskIntoConstraints = false
         
-                NSLayoutConstraint.activate(
+        NSLayoutConstraint.activate(
             [mainCotainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  15),
              mainCotainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -15)
                 
@@ -521,7 +629,7 @@ class LoginViewController: UIViewController {
         
         transparentView.translatesAutoresizingMaskIntoConstraints = false
         gifActivityIndicator.translatesAutoresizingMaskIntoConstraints = false
-         loadingLabel.translatesAutoresizingMaskIntoConstraints = false
+        loadingLabel.translatesAutoresizingMaskIntoConstraints = false
         
         
         NSLayoutConstraint.activate([transparentView.centerXAnchor.constraint(equalTo: mainCotainerView.centerXAnchor),transparentView.centerYAnchor.constraint(equalTo: mainCotainerView.centerYAnchor), transparentView.widthAnchor.constraint(equalToConstant: 220), transparentView.heightAnchor.constraint(equalToConstant: 100)])
@@ -553,4 +661,29 @@ extension LoginViewController: UITextFieldDelegate{
         
     }
 }
+extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            //MARK: TODO - handle couldn't get image :(
+            return
+        }
+        self.image = image
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
+            //MARK: TODO - gracefully fail out without interrupting UX
+            return
+        }
+        
+        FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
+            switch result{
+            case .success(let url):
+                self?.imageURL = url
+            case .failure(let error):
+            self?.logoImageView.layer.borderColor = UIColor.red.cgColor
 
+                print(error)
+            }
+        })
+        dismiss(animated: true, completion: nil)
+    }
+}
