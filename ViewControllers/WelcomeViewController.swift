@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class WelcomeViewController: UIViewController {
     
@@ -21,6 +22,24 @@ class WelcomeViewController: UIViewController {
         return label
     }()
     
+    lazy var logoutButton:UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 5))
+        button.setImage(UIImage(named: "logoutIcon2"), for: .normal)
+        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var profileImage:UIImageView = {
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        guesture.numberOfTapsRequired = 1
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        image.layer.cornerRadius = image.frame.height / 2
+        image.clipsToBounds = true
+        image.image = UIImage(named: "profileImage")
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(guesture)
+        return image
+    }()
     
     lazy var categoryButton:UIButton = {
         let button = UIButton(image: UIImage(named: "category")!, color: UIColor.white.cgColor)
@@ -36,14 +55,7 @@ class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .orange
-        configureWelcomeLabelConstraints()
-        configureSelectionLabelConstraints()
-        configureCategoryButtonConstraints()
-        configureRandomButtonnConstraints()
-        navigationController?.setNavigationBarHidden(false, animated: false)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(handleLogout))
+        setupView()
     }
     
       //MARK: Objc Selector functions
@@ -55,17 +67,46 @@ class WelcomeViewController: UIViewController {
                present(categoryVCWithNav, animated: true)
     }
     
+    @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
+        print("Image view tapped")
+    }
+    
     @objc func handleRandomPressed(){
         print("randomButton")
     }
     
     @objc func handleLogout(){
-        navigationController?.popViewController(animated: true)
+        do{
+            try Auth.auth().signOut()
+            let loginVC = LoginViewController()
+            loginVC.modalPresentationStyle = .fullScreen
+            present(loginVC, animated: true, completion: nil)
+        }catch let error{
+            showAlert(with: "Error", and: "Problem logining out \(error)")
+        }
     }
      //MARK: Private Methods
     
     
      //MARK: Constriaints Function
+    
+    private func setupView(){
+        view.backgroundColor = .orange
+        configureWelcomeLabelConstraints()
+        configureSelectionLabelConstraints()
+        configureCategoryButtonConstraints()
+        configureRandomButtonnConstraints()
+        configureLogoutButtonConstraints()
+        configureProfileImageConstraint()
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    private func showAlert(with title: String, and message: String) {
+          let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+          alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+          present(alertVC, animated: true, completion: nil)
+      }
+      
     private func configureWelcomeLabelConstraints(){
         view.addSubview(welcomeLabel)
         
@@ -92,5 +133,19 @@ class WelcomeViewController: UIViewController {
         
         randomButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([randomButton.topAnchor.constraint(equalTo:self.categoryButton.bottomAnchor, constant: 100), randomButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20), randomButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20), randomButton.heightAnchor.constraint(equalTo: categoryButton.heightAnchor)])
+    }
+    
+    private func configureLogoutButtonConstraints(){
+        view.addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10), logoutButton.heightAnchor.constraint(equalToConstant: 30), logoutButton.widthAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func configureProfileImageConstraint(){
+        view.addSubview(profileImage)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), profileImage.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10), profileImage.heightAnchor.constraint(equalToConstant: 50), profileImage.widthAnchor.constraint(equalToConstant: 50)])
     }
 }

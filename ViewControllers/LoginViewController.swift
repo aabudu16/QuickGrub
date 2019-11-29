@@ -232,31 +232,32 @@ class LoginViewController: UIViewController {
     }
     
     @objc func handleRegisterPressed(){
-               print("create button pressed")
-         print(self.imageURL?.absoluteString)
-       guard  signupEmailTextField.hasText, signupPasswordTextField.hasText else {
-       return}
+        print("create button pressed")
+        print(self.imageURL?.absoluteString)
+        guard  signupEmailTextField.hasText, signupPasswordTextField.hasText else {
+            return}
         
-       guard userNameTextField.text != "", logoImageView.image != UIImage(named: "imagePlaceholder") else {
-                  showAlert(with: "Error", and: "Please use a valid image and user name")
-                  return
-              }
-       guard let email = signupEmailTextField.text, let password = signupPasswordTextField.text else {
-                   showAlert(with: "Error", and: "Please fill out all fields.")
-                   return
-               }
-       
-       guard let userName = userNameTextField.text, let imageURL = imageURL else {
-           showAlert(with: "Error", and: "Please use a valid image and user name")
-           return
-       }
-       
+        guard userNameTextField.text != "", logoImageView.image != UIImage(named: "imagePlaceholder") else {
+            showAlert(with: "Error", and: "Please use a valid image and user name")
+            return
+        }
+        guard let email = signupEmailTextField.text, let password = signupPasswordTextField.text else {
+            showAlert(with: "Error", and: "Please fill out all fields.")
+            return
+        }
+        
+        guard let userName = userNameTextField.text, let imageURL = imageURL else {
+            showAlert(with: "Error", and: "Please use a valid image and user name")
+            return
+        }
+        
         self.userName = userName
+        self.transparentView.isHidden = false
         FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { [weak self] (result) in
-                 self?.currentUser = result
-                 self?.handleCreateAccountResponse(with: result)
-             }
-
+            self?.currentUser = result
+            self?.handleCreateAccountResponse(with: result)
+        }
+        
     }
     
     @objc func handleLoginPressed(){
@@ -341,7 +342,7 @@ class LoginViewController: UIViewController {
                 self.logoImageView.image = UIImage(named: "QG")
             }, completion: { (_) in
                 self.logoImageView.isUserInteractionEnabled = false
-
+                
             })
             
             
@@ -366,7 +367,7 @@ class LoginViewController: UIViewController {
         configureBottomViewConstraints()
         configureMainContainerViewConstraints()
         setupContainerView()
-          configureLoginLabel()
+        configureLoginLabel()
         configureLogoImageView()
         configureEmailTextField()
         configurePasswordTextField()
@@ -383,15 +384,15 @@ class LoginViewController: UIViewController {
     }
     
     private func presentPhotoPickerController() {
-           DispatchQueue.main.async{
-               let imagePickerViewController = UIImagePickerController()
-               imagePickerViewController.delegate = self
-               imagePickerViewController.sourceType = .photoLibrary
-               imagePickerViewController.allowsEditing = true
-               imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
-               self.present(imagePickerViewController, animated: true, completion: nil)
-           }
-       }
+        DispatchQueue.main.async{
+            let imagePickerViewController = UIImagePickerController()
+            imagePickerViewController.delegate = self
+            imagePickerViewController.sourceType = .photoLibrary
+            imagePickerViewController.allowsEditing = true
+            imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
+            self.present(imagePickerViewController, animated: true, completion: nil)
+        }
+    }
     
     private func handleCreateAccountResponse(with result: Result<User, Error>) {
         //    DispatchQueue.main.async { [weak self] in
@@ -408,23 +409,23 @@ class LoginViewController: UIViewController {
                     switch nextResult {
                     case .success():
                         FirebaseAuthService.manager.updateUserFields(userName: self?.userName, photoURL: self?.imageURL) { (updateUser) in
-            
+                            
                             switch updateUser{
                             case .failure(let error):
                                 self?.showAlert(with: "Error", and: "Problem updating your information. please try again.. Error \(error)")
                             case .success():
-                               self?.setSceneDelegateInitialVC(with: result )
+                                self?.setSceneDelegateInitialVC(with: result )
                             }
                         }
                         
                         
                         //stop activity indicator
-                       // self?.activityIndicator.stopAnimating()
+                        self?.transparentView.isHidden = true
                         print(self?.userName)
                         print(self?.imageURL?.absoluteString)
                     case .failure(let error):
                         self?.showAlert(with: "Error", and: "It seem your image or user name was not save. Please input a valid  user name, check your image format and try again")
-                        //self?.activityIndicator.stopAnimating()
+                        self?.transparentView.isHidden = true
                         print(error)
                         return
                     }
@@ -438,30 +439,30 @@ class LoginViewController: UIViewController {
     }
     
     private func setSceneDelegateInitialVC(with result: Result<User, Error>) {
-           DispatchQueue.main.async { [weak self] in
-               switch result {
-               case.success(let user):
-                   print(user)
-                   guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                       let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
-                       else { return }
-                   
-                   if FirebaseAuthService.manager.currentUser != nil {
-                       UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
-                           window.rootViewController = WelcomeViewController()
-                       }, completion: nil)
-                       
-                   } else {
-                       print("No current user")
-                   }
-                   
-                   
-               case .failure(let error):
-                   self?.showAlert(with: "Error Creating User", and: error.localizedDescription)
-               }
-               
-           }
-       }
+        DispatchQueue.main.async { [weak self] in
+            switch result {
+            case.success(let user):
+                print(user)
+                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                    let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                    else { return }
+                
+                if FirebaseAuthService.manager.currentUser != nil {
+                    UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+                        window.rootViewController = WelcomeViewController()
+                    }, completion: nil)
+                    
+                } else {
+                    print("No current user")
+                }
+                
+                
+            case .failure(let error):
+                self?.showAlert(with: "Error Creating User", and: error.localizedDescription)
+            }
+            
+        }
+    }
     private func handleLoginResponse(with result: Result<(), Error>) {
         switch result {
             
@@ -485,7 +486,7 @@ class LoginViewController: UIViewController {
                 }
             }, completion: nil)
         case .failure(let error):
-            self.showAlert(with: "Error Creating User", and: error.localizedDescription)
+            self.showAlert(with: "Invalid Entry", and: error.localizedDescription)
         }
     }
     
@@ -783,8 +784,8 @@ extension LoginViewController: UIImagePickerControllerDelegate, UINavigationCont
             case .success(let url):
                 self?.imageURL = url
             case .failure(let error):
-            self?.logoImageView.layer.borderColor = UIColor.red.cgColor
-
+                self?.logoImageView.layer.borderColor = UIColor.red.cgColor
+                
                 print(error)
             }
         })
