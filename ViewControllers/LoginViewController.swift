@@ -10,11 +10,13 @@ import UIKit
 import SHSearchBar
 import TextFieldEffects
 import Photos
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
     //MARK: properties
-    private var holdUserName:String!
+    var userName:String!
+    private var currentUser: Result<User, Error>!
     private var containerViewButtomConstraint = NSLayoutConstraint()
     private var containerViewTopConstraint = NSLayoutConstraint()
     private var imageViewTopConstraint = NSLayoutConstraint()
@@ -93,7 +95,7 @@ class LoginViewController: UIViewController {
     
     lazy var emailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
         
         tf.delegate = self
         return tf
@@ -102,7 +104,7 @@ class LoginViewController: UIViewController {
     lazy var passwordTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .namePhonePad, placeholder: "Password", borderActiveColor: .blue)
         tf.isSecureTextEntry = true
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
         
         tf.delegate = self
         return tf
@@ -110,7 +112,7 @@ class LoginViewController: UIViewController {
     
     lazy var signupEmailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Enter email", borderActiveColor: .green)
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.addTarget(self, action: #selector(signupFormValidation), for: .editingChanged)
         tf.delegate = self
         return tf
     }()
@@ -119,7 +121,7 @@ class LoginViewController: UIViewController {
     lazy var signupPasswordTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .namePhonePad, placeholder: "Create password", borderActiveColor: .green)
         tf.isSecureTextEntry = true
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.addTarget(self, action: #selector(signupFormValidation), for: .editingChanged)
         tf.delegate = self
         return tf
     }()
@@ -127,7 +129,7 @@ class LoginViewController: UIViewController {
     lazy var userNameTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .namePhonePad , placeholder: "Create User Name", borderActiveColor: .green)
         tf.autocorrectionType = .no
-        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
+        tf.addTarget(self, action: #selector(signupFormValidation), for: .editingChanged)
         tf.delegate = self
         return tf
     }()
@@ -230,7 +232,31 @@ class LoginViewController: UIViewController {
     }
     
     @objc func handleRegisterPressed(){
-       // dsaf
+               print("create button pressed")
+         print(self.imageURL?.absoluteString)
+       guard  signupEmailTextField.hasText, signupPasswordTextField.hasText else {
+       return}
+        
+       guard userNameTextField.text != "", logoImageView.image != UIImage(named: "imagePlaceholder") else {
+                  showAlert(with: "Error", and: "Please use a valid image and user name")
+                  return
+              }
+       guard let email = signupEmailTextField.text, let password = signupPasswordTextField.text else {
+                   showAlert(with: "Error", and: "Please fill out all fields.")
+                   return
+               }
+       
+       guard let userName = userNameTextField.text, let imageURL = imageURL else {
+           showAlert(with: "Error", and: "Please use a valid image and user name")
+           return
+       }
+       
+        self.userName = userName
+        FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { [weak self] (result) in
+                 self?.currentUser = result
+                 self?.handleCreateAccountResponse(with: result)
+             }
+
     }
     
     @objc func handleLoginPressed(){
@@ -258,8 +284,18 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @objc func signupFormValidation(){
+        guard signupEmailTextField.hasText, signupPasswordTextField.hasText, userNameTextField.hasText else {
+            registerButton.isEnabled = false
+            registerButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            return
+        }
+        
+        registerButton.isEnabled = true
+        registerButton.backgroundColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+    }
     
-    @objc func formValidation(){
+    @objc func loginFormValidation(){
         guard emailTextField.hasText, passwordTextField.hasText else {
             loginButton.isEnabled = false
             loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -316,9 +352,8 @@ class LoginViewController: UIViewController {
                 self.setSignupObjectViewsVisible(enable: true)
                 self.loginLabel.text = "Signup"
                 self.logoImageView.image = UIImage(named: "profileImage")
-                self.logoImageView.isUserInteractionEnabled = true
             }, completion: { (_) in
-
+                self.logoImageView.isUserInteractionEnabled = true
             })
         default:
             break
@@ -358,6 +393,75 @@ class LoginViewController: UIViewController {
            }
        }
     
+    private func handleCreateAccountResponse(with result: Result<User, Error>) {
+        //    DispatchQueue.main.async { [weak self] in
+        switch result {
+        case .success(let user):
+            FirestoreService.manager.createAppUser(user: UserProfile(from: user)) { [weak self] newResult in
+                guard FirebaseAuthService.manager.currentUser != nil else {
+                    print("cant create user")
+                    return
+                }
+                
+                // handles creating and updaring current user profile
+                FirestoreService.manager.updateCurrentUser(userName: self?.userName, photoURL: self?.imageURL) { [weak self] (nextResult) in
+                    switch nextResult {
+                    case .success():
+                        FirebaseAuthService.manager.updateUserFields(userName: self?.userName, photoURL: self?.imageURL) { (updateUser) in
+            
+                            switch updateUser{
+                            case .failure(let error):
+                                self?.showAlert(with: "Error", and: "Problem updating your information. please try again.. Error \(error)")
+                            case .success():
+                               self?.setSceneDelegateInitialVC(with: result )
+                            }
+                        }
+                        
+                        
+                        //stop activity indicator
+                       // self?.activityIndicator.stopAnimating()
+                        print(self?.userName)
+                        print(self?.imageURL?.absoluteString)
+                    case .failure(let error):
+                        self?.showAlert(with: "Error", and: "It seem your image or user name was not save. Please input a valid  user name, check your image format and try again")
+                        //self?.activityIndicator.stopAnimating()
+                        print(error)
+                        return
+                    }
+                }
+                print(newResult)
+                self?.view.backgroundColor = .green
+            }
+        case .failure(let error):
+            self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+        }
+    }
+    
+    private func setSceneDelegateInitialVC(with result: Result<User, Error>) {
+           DispatchQueue.main.async { [weak self] in
+               switch result {
+               case.success(let user):
+                   print(user)
+                   guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                       let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                       else { return }
+                   
+                   if FirebaseAuthService.manager.currentUser != nil {
+                       UIView.transition(with: window, duration: 0.3, options: .transitionFlipFromBottom, animations: {
+                           window.rootViewController = WelcomeViewController()
+                       }, completion: nil)
+                       
+                   } else {
+                       print("No current user")
+                   }
+                   
+                   
+               case .failure(let error):
+                   self?.showAlert(with: "Error Creating User", and: error.localizedDescription)
+               }
+               
+           }
+       }
     private func handleLoginResponse(with result: Result<(), Error>) {
         switch result {
             
