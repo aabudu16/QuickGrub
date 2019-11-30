@@ -26,14 +26,27 @@ open class FoldingCell: UITableViewCell {
     /// UIView whitch display when cell close
     lazy var foregroundView:RotatedView! = {
         let foreground = RotatedView()
-        foreground.backgroundColor = .blue
+        foreground.backgroundColor = .white
         foreground.layer.cornerRadius = 10
         foreground.layer.masksToBounds = true
         return foreground
     }()
+    lazy var foodNameLabel:UILabel = {
+        let label = UILabel()
+        label.font = UIFont(name: "Damascus", size: 18)
+        label.text = "Food Name"
+        return label
+    }()
+    
+    lazy  var distanceLabel:UILabel = {
+          let label = UILabel()
+        label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
+        label.text = "📍 0.3"
+          return label
+      }()
     
     lazy var resturantImage: UIImageView = {
-     let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(named: "profileImage")
         return image
     }()
@@ -69,6 +82,8 @@ open class FoldingCell: UITableViewCell {
         configureForegroundViewConstraints()
         configureContainerViewConstraints()
         configureResturantImageConstraint()
+        configureResturantNameLabelConstraints()
+        configureDistanceLabelConstraints()
         commonInit()
     }
     
@@ -428,16 +443,28 @@ open class FoldingCell: UITableViewCell {
         containerViewTop.isActive = true
     }
     
-//     func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
-//          let durations = [0.26, 0.2, 0.2]
-//          return durations[itemIndex]
-//      }
+    //     func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
+    //          let durations = [0.26, 0.2, 0.2]
+    //          return durations[itemIndex]
+    //      }
     
     private func configureResturantImageConstraint(){
         self.foregroundView.addSubview(resturantImage)
         resturantImage.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([resturantImage.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), resturantImage.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor), resturantImage.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor), resturantImage.topAnchor.constraint(equalTo: foregroundView.topAnchor)])
+        NSLayoutConstraint.activate([resturantImage.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor, constant:  -30), resturantImage.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor), resturantImage.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor), resturantImage.topAnchor.constraint(equalTo: foregroundView.topAnchor)])
+    }
+    
+    private func configureResturantNameLabelConstraints(){
+        self.foregroundView.addSubview(foodNameLabel)
+        foodNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([foodNameLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), foodNameLabel.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor, constant: 5), foodNameLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -75), foodNameLabel.topAnchor.constraint(equalTo: self.resturantImage.bottomAnchor)])
+    }
+    
+    private func configureDistanceLabelConstraints(){
+        foregroundView.addSubview(distanceLabel)
+        distanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: foodNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.resturantImage.bottomAnchor)])
     }
 }
 
@@ -472,7 +499,7 @@ open class RotatedView: UIView {
                                multiplier: 1, constant: 0),
             NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing,
                                multiplier: 1, constant: 0),
-            ])
+        ])
     }
 }
 
