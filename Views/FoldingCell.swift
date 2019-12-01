@@ -7,20 +7,109 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 /// UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
     
+    var foregroundViewTop:NSLayoutConstraint!
+    var containerViewTop:NSLayoutConstraint!
+    var animationView: UIView?
+    var animationItemViews: [RotatedView]?
     @objc open var isUnfolded = false
     
-    /// UIView is displayed when cell open
-    var containerViewTop:NSLayoutConstraint!
+    ///  the number of folding elements. Default 2
+    @IBInspectable open var itemCount: NSInteger = 4
     
+    /// The color of the back cell
+    @IBInspectable open var backViewColor: UIColor = UIColor.lightGray
+    
+    /// UIView whitch display when cell is open
     lazy var containerView:UIView = {
         let container = UIView()
         container.backgroundColor = .white
         container.isUserInteractionEnabled = true
         return container
+    }()
+    
+    lazy var resturantImageView:UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "resturant")
+        return image
+    }()
+    
+    lazy var resturantName:UILabel = {
+        let label = UILabel()
+//        label.layer.borderColor = UIColor.black.cgColor
+//        label.layer.borderWidth = 1
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir-Heavy", size: 23)
+        label.text = "Pasteles Del Caribe"
+        return label
+    }()
+    
+    lazy var addressTextView:UITextView = {
+        let tv = UITextView()
+//                tv.layer.borderColor = UIColor.black.cgColor
+//                tv.layer.borderWidth = 1
+        tv.backgroundColor = .clear
+        tv.textAlignment = .center
+        tv.textAlignment = .left
+        tv.isUserInteractionEnabled = false
+        tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
+        tv.font = UIFont(name: "Avenir-Light", size: 20)
+        return tv
+    }()
+    
+    lazy var openOrCloseLabel:UILabel = {
+        let label = UILabel()
+//                label.layer.borderColor = UIColor.black.cgColor
+//                 label.layer.borderWidth = 1
+        label.font = UIFont(name: "Avenir-Black", size: 18)
+        label.textAlignment = .center
+        label.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
+        label.text = "Open"
+        return label
+    }()
+    
+    lazy var resturantPhoneNumber:UILabel = {
+        let label = UILabel()
+//                label.layer.borderColor = UIColor.black.cgColor
+//                label.layer.borderWidth = 1
+        label.textAlignment = .left
+        label.font = UIFont(name: "Avenir-Light", size: 20)
+        label.text = "☎: 71845145200"
+        return label
+    }()
+    
+    lazy var moreDetailButton:UIButton = {
+        let button = UIButton()
+//                button.layer.borderColor = UIColor.black.cgColor
+//                button.layer.borderWidth = 1
+        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        return button
+    }()
+    
+    lazy var navigateButtom:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
+        button.layer.cornerRadius = 20
+        button.clipsToBounds = true
+        button.backgroundColor = .black
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+        button.layer.shadowRadius = 20.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.masksToBounds = false
+        return button
+    }()
+    
+    lazy var mapView:MKMapView = {
+        let map = MKMapView()
+        map.delegate = self
+        map.userTrackingMode = .followWithHeading
+        return map
     }()
     
     /// UIView whitch display when cell close
@@ -31,6 +120,7 @@ open class FoldingCell: UITableViewCell {
         foreground.layer.masksToBounds = true
         return foreground
     }()
+    
     lazy var foodNameLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Damascus", size: 18)
@@ -39,30 +129,18 @@ open class FoldingCell: UITableViewCell {
     }()
     
     lazy  var distanceLabel:UILabel = {
-          let label = UILabel()
+        let label = UILabel()
         label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
         label.text = "📍 0.3"
-          return label
-      }()
+        return label
+    }()
     
-    lazy var resturantImage: UIImageView = {
+    lazy var foodImageView: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "profileImage")
         return image
     }()
     
-    var foregroundViewTop:NSLayoutConstraint!
-    
-    
-    var animationView: UIView?
-    
-    ///  the number of folding elements. Default 2
-    @IBInspectable open var itemCount: NSInteger = 4
-    
-    /// The color of the back cell
-    @IBInspectable open var backViewColor: UIColor = UIColor.lightGray
-    
-    var animationItemViews: [RotatedView]?
     
     /**
      Folding animation types
@@ -84,6 +162,15 @@ open class FoldingCell: UITableViewCell {
         configureResturantImageConstraint()
         configureResturantNameLabelConstraints()
         configureDistanceLabelConstraints()
+        
+        configureResurantImageViewConstraints()
+        configureMapViewConstraints()
+        configureNavigateButtomConstraints()
+        configureResturantNameConstraints()
+        configureAddressTextViewConstraints()
+        configureResturantPhoneNumberConstraints()
+        configureOpenOrCloseLabelConstraints()
+        configureMoreDetailButtonConstraints()
         commonInit()
     }
     
@@ -422,13 +509,15 @@ open class FoldingCell: UITableViewCell {
         }
     }
     
+    
+    //MARK: Constraints
     func configureForegroundViewConstraints(){
         self.addSubview(foregroundView)
         foregroundView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([ foregroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), foregroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), foregroundView.heightAnchor.constraint(equalToConstant:160)])
+        NSLayoutConstraint.activate([ foregroundView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), foregroundView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), foregroundView.heightAnchor.constraint(equalToConstant:170)])
         
-        foregroundViewTop = foregroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 8)
+        foregroundViewTop = foregroundView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5)
         foregroundViewTop.isActive = true
         
     }
@@ -437,37 +526,84 @@ open class FoldingCell: UITableViewCell {
         self.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant:CGFloat(115 * itemCount))])
+        NSLayoutConstraint.activate([containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 8), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -8), containerView.heightAnchor.constraint(equalToConstant:CGFloat(120 * itemCount))])
         
         containerViewTop = containerView.topAnchor.constraint(equalTo: self.topAnchor, constant: 97)
         containerViewTop.isActive = true
     }
     
-    //     func animationDuration(_ itemIndex: NSInteger, type _: FoldingCell.AnimationType) -> TimeInterval {
-    //          let durations = [0.26, 0.2, 0.2]
-    //          return durations[itemIndex]
-    //      }
-    
     private func configureResturantImageConstraint(){
-        self.foregroundView.addSubview(resturantImage)
-        resturantImage.translatesAutoresizingMaskIntoConstraints = false
+        self.foregroundView.addSubview(foodImageView)
+        foodImageView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([resturantImage.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor, constant:  -30), resturantImage.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor), resturantImage.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor), resturantImage.topAnchor.constraint(equalTo: foregroundView.topAnchor)])
+        NSLayoutConstraint.activate([foodImageView.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor, constant:  -30), foodImageView.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor), foodImageView.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor), foodImageView.topAnchor.constraint(equalTo: foregroundView.topAnchor)])
     }
     
     private func configureResturantNameLabelConstraints(){
         self.foregroundView.addSubview(foodNameLabel)
         foodNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodNameLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), foodNameLabel.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor, constant: 5), foodNameLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -75), foodNameLabel.topAnchor.constraint(equalTo: self.resturantImage.bottomAnchor)])
+        NSLayoutConstraint.activate([foodNameLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), foodNameLabel.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor, constant: 5), foodNameLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -75), foodNameLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
     }
     
     private func configureDistanceLabelConstraints(){
         foregroundView.addSubview(distanceLabel)
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: foodNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.resturantImage.bottomAnchor)])
+        NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: foodNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
     }
+    
+    private func configureResurantImageViewConstraints(){
+        containerView.addSubview(resturantImageView)
+        resturantImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resturantImageView.topAnchor.constraint(equalTo: containerView.topAnchor),resturantImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),resturantImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),resturantImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -280)])
+    }
+    
+    private func configureResturantNameConstraints(){
+        containerView.addSubview(resturantName)
+        resturantName.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resturantName.topAnchor.constraint(equalTo: resturantImageView.bottomAnchor, constant: 3), resturantName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 3), resturantName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -3), resturantName.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureAddressTextViewConstraints(){
+        containerView.addSubview(addressTextView)
+        addressTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: resturantName.bottomAnchor),addressTextView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 3),addressTextView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -100), addressTextView.heightAnchor.constraint(equalToConstant: 90)])
+    }
+    
+    private func configureResturantPhoneNumberConstraints(){
+        containerView.addSubview(resturantPhoneNumber)
+        resturantPhoneNumber.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resturantPhoneNumber.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 3),resturantPhoneNumber.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor),resturantPhoneNumber.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), resturantPhoneNumber.bottomAnchor.constraint(equalTo: mapView.topAnchor, constant: -3)])
+    }
+    
+    private func configureOpenOrCloseLabelConstraints(){
+        containerView.addSubview(openOrCloseLabel)
+        openOrCloseLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([openOrCloseLabel.topAnchor.constraint(equalTo: resturantName.bottomAnchor), openOrCloseLabel.trailingAnchor.constraint(equalTo: resturantName.trailingAnchor), openOrCloseLabel.leadingAnchor.constraint(equalTo: addressTextView.trailingAnchor, constant: 3), openOrCloseLabel.heightAnchor.constraint(equalTo: resturantName.heightAnchor)])
+    }
+    
+    private func configureMoreDetailButtonConstraints(){
+        containerView.addSubview(moreDetailButton)
+        moreDetailButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([moreDetailButton.topAnchor.constraint(equalTo: openOrCloseLabel.bottomAnchor,constant: 5), moreDetailButton.trailingAnchor.constraint(equalTo: openOrCloseLabel.trailingAnchor), moreDetailButton.leadingAnchor.constraint(equalTo: openOrCloseLabel.leadingAnchor), moreDetailButton.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureMapViewConstraints(){
+        containerView.addSubview(mapView)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([mapView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor),mapView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),mapView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor), mapView.heightAnchor.constraint(equalToConstant: 90)])
+    }
+    
+    private func configureNavigateButtomConstraints(){
+        mapView.addSubview(navigateButtom)
+        navigateButtom.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([navigateButtom.topAnchor.constraint(equalTo: mapView.topAnchor,constant: 20), navigateButtom.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalTo: navigateButtom.heightAnchor)])
+    }
+    
 }
 
+extension FoldingCell: MKMapViewDelegate{
+    // Do something here with maps
+}
 // MARK: RotatedView
 
 open class RotatedView: UIView {

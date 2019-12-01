@@ -128,8 +128,6 @@ extension ResturantResultsViewController:UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         
         
-        cell.layer.borderWidth = 3
-        cell.layer.borderColor = UIColor.black.cgColor
         cell.backgroundColor = .blue
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         cell.durationsForExpandedState = durations
