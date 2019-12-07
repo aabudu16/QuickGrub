@@ -9,6 +9,21 @@
 import UIKit
 
 class CategoryCollectionViewCell: UICollectionViewCell {
+    
+    //MARK: Properties
+ 
+    private enum CellState {
+        case selected
+        case deselected
+        
+        var change: CellState {
+            switch self {
+            case .selected: return .deselected
+            case .deselected: return .selected
+            }
+        }
+    }
+    
     //MARK: UI Objects
     lazy var checkMarkButton:UIButton = {
         let button = UIButton()

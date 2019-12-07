@@ -13,9 +13,14 @@ class FoodImagesViewController: UIViewController {
         case foodCell
     }
     //MARK: UI Objects
+    
     lazy var collectionView:UICollectionView = {
-        var layout = UICollectionViewFlowLayout.init()
+         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
+        var layout = UPCarouselFlowLayout()
+        layout.itemSize = CGSize(width: pointEstimator.relativeWidth(multiplier: 0.73333), height: 400)
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
+        let spacingLayout = cv.collectionViewLayout as! UPCarouselFlowLayout
+        spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30)
         layout.scrollDirection = .horizontal
         cv.register(FoodImagesSellectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
         cv.backgroundColor = .white
@@ -61,6 +66,8 @@ class FoodImagesViewController: UIViewController {
         configureTransparentViewConstraints()
         configureScrollDownIndicatorConstraints()
         configureScrollLabelConstraints()
+        
+       // setupLayout()
     }
     
      // MARK: objc function
@@ -132,31 +139,14 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         cell.starRatings.image = UIImage(named: "fourStars")
         cell.categoryNameLabel.text = "Catergory name"
         cell.FoodTitleLabel.text = "Food title"
-       // cell.foodColorBadge.backgroundColor = .red
         cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
 //        cell.foodColorBadge.addTarget(self, action: #selector(handleFoodColorBadge(sender:)), for: .touchUpInside)
         
-        CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 2)
+        CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.blue.cgColor)
         cell.layer.cornerRadius = 25
         return cell
     }
     
 }
 
-extension FoodImagesViewController: UICollectionViewDelegateFlowLayout{
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let virticalCellCGSize = CGSize(width: 280, height: 400)
-        return virticalCellCGSize
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        UIEdgeInsets.init(top: -90, left: 60, bottom: 100, right: 100)
-    }
-    // spacing between cells in the VC
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 100
-    }
-    
-}
 

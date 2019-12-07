@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		28A34A5DE4D320AB320B8AD1 /* Pods_Quick_Grub2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */; };
+		8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */; };
+		8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */; };
 		858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A983E2384319A0051AF45 /* AppDelegate.swift */; };
 		858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98402384319A0051AF45 /* SceneDelegate.swift */; };
 		858A98432384319A0051AF45 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98422384319A0051AF45 /* LoginViewController.swift */; };
@@ -51,6 +53,8 @@
 		22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2Tests.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2Tests/Pods-Quick-Grub2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5CAE2684FF0D32BEB155D833 /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
+		8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeLayoutUtilityClass.swift; sourceTree = "<group>"; };
 		858A983B2384319A0051AF45 /* Quick-Grub2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick-Grub2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858A983E2384319A0051AF45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		858A98402384319A0051AF45 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +119,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8564EB3E239BF963009AE8B5 /* animation Classes */ = {
+			isa = PBXGroup;
+			children = (
+				8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */,
+			);
+			path = "animation Classes";
+			sourceTree = "<group>";
+		};
 		858A98322384319A0051AF45 = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +134,7 @@
 				85F92A5B23902DD800048FCB /* Models */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
 				858A9877238486480051AF45 /* Views */,
+				8564EB3E239BF963009AE8B5 /* animation Classes */,
 				858A9860238433160051AF45 /* ViewControllers */,
 				85F92A5423902D9B00048FCB /* Firebase */,
 				858A987223844A890051AF45 /* Custom Class */,
@@ -190,6 +203,7 @@
 			isa = PBXGroup;
 			children = (
 				858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */,
+				8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */,
 			);
 			path = "Custom Class";
 			sourceTree = "<group>";
@@ -425,8 +439,10 @@
 				858A98792384EF840051AF45 /* FoldingCell.swift in Sources */,
 				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
 				85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */,
+				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
+				8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */,
 				85F92A5F23902DD900048FCB /* Post.swift in Sources */,
 				858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */,
 				85F92A5E23902DD900048FCB /* UserProfile.swift in Sources */,

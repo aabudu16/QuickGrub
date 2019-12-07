@@ -86,6 +86,20 @@ struct CustomLayer{
         layer.shadowOpacity = 0.5
         layer.masksToBounds = false
     }
+    
+    func createCustomlayers(layer:CALayer, cornerRadius:CGFloat, backgroundColor:CGColor){
+        layer.cornerRadius = cornerRadius
+        layer.borderWidth = 2
+        layer.borderColor = UIColor.black.cgColor
+        layer.masksToBounds = true
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 5.0)
+        layer.shadowRadius = 20.0
+        layer.shadowOpacity = 0.5
+        layer.masksToBounds = false
+        layer.backgroundColor = backgroundColor
+    }
 }
+
 
 
