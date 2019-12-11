@@ -89,7 +89,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func dismissDeemView(){
-        
+        deemView.removeFromSuperview()
+        deemView.alpha = 0
     }
     
     @objc func handleCategoryPressed(){
