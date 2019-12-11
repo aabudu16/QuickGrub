@@ -13,7 +13,7 @@ class WelcomeViewController: UIViewController {
     
     //MARK: UI Objects
     
-    let filterMenuHeight:CGFloat = 400
+    let filterMenuHeight:CGFloat = 420
     
     lazy var filterMenuView:UIView = {
         let view = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight))
@@ -91,16 +91,17 @@ class WelcomeViewController: UIViewController {
             window.addSubview(deemView)
             window.addSubview(filterMenuView)
             deemView.frame = window.frame
-            UIView.animate(withDuration: 0.5) {
+            
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.deemView.alpha = 1
-                self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height - self.filterMenuHeight, width: self.view.frame.width, height: self.filterMenuHeight)
-            }
+                self.filterMenuView.frame = CGRect(x: 0, y: (self.view.frame.height - self.filterMenuHeight) + 20, width: self.view.frame.width, height: self.filterMenuHeight)
+            }, completion: nil)
         }
     }
     
     @objc func dismissDeemView(){
         
-        UIView.animate(withDuration: 0.5, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.deemView.alpha = 0
             self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight)
         }, completion: { (_) in
