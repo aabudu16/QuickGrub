@@ -13,6 +13,12 @@ class WelcomeViewController: UIViewController {
     
     //MARK: UI Objects
     
+    lazy var filterMenuView:UIView = {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        view.backgroundColor = .white
+        return view
+    }()
+    
     lazy var deemView:UIView = {
         let deemView = UIView()
         let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(dismissDeemView))
@@ -81,6 +87,7 @@ class WelcomeViewController: UIViewController {
     @objc func handleMenuButtonPressed(){
         if let window = UIApplication.shared.keyWindow{
             window.addSubview(deemView)
+            window.addSubview(filterMenuView)
             deemView.frame = window.frame
             UIView.animate(withDuration: 0.5) {
                 self.deemView.alpha = 1
@@ -91,6 +98,7 @@ class WelcomeViewController: UIViewController {
     @objc func dismissDeemView(){
         deemView.removeFromSuperview()
         deemView.alpha = 0
+        filterMenuView.removeFromSuperview()
     }
     
     @objc func handleCategoryPressed(){
