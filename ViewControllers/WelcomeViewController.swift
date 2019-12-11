@@ -16,7 +16,7 @@ class WelcomeViewController: UIViewController {
     let filterMenuHeight:CGFloat = 400
     
     lazy var filterMenuView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: self.view.frame.height - self.filterMenuHeight, width: self.view.frame.width, height: self.filterMenuHeight))
+        let view = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight))
         view.backgroundColor = .white
         return view
     }()
@@ -93,14 +93,19 @@ class WelcomeViewController: UIViewController {
             deemView.frame = window.frame
             UIView.animate(withDuration: 0.5) {
                 self.deemView.alpha = 1
+                self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height - self.filterMenuHeight, width: self.view.frame.width, height: self.filterMenuHeight)
             }
         }
     }
     
     @objc func dismissDeemView(){
-        deemView.removeFromSuperview()
-        deemView.alpha = 0
-        filterMenuView.removeFromSuperview()
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.deemView.alpha = 0
+            self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight)
+        }, completion: { (_) in
+            self.deemView.removeFromSuperview()
+        })
     }
     
     @objc func handleCategoryPressed(){
