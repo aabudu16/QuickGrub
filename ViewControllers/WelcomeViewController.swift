@@ -13,8 +13,10 @@ class WelcomeViewController: UIViewController {
     
     //MARK: UI Objects
     
+    let filterMenuHeight:CGFloat = 400
+    
     lazy var filterMenuView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 400))
+        let view = UIView(frame: CGRect(x: 0, y: self.view.frame.height - self.filterMenuHeight, width: self.view.frame.width, height: self.filterMenuHeight))
         view.backgroundColor = .white
         return view
     }()
