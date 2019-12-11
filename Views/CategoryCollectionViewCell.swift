@@ -24,6 +24,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    
     //MARK: UI Objects
     lazy var checkMarkButton:UIButton = {
         let button = UIButton()

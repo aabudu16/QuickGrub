@@ -205,7 +205,7 @@ class LoginViewController: UIViewController {
     //MARK: Objc Selector functions
     
     @objc private func imageViewDoubleTapped(sender:UITapGestureRecognizer) {
-        print("pressed")
+        print("Image view Double tapped")
         //MARK: TODO - action sheet with multiple media options
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined, .denied, .restricted:

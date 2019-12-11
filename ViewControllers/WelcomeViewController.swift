@@ -12,6 +12,16 @@ import FirebaseAuth
 class WelcomeViewController: UIViewController {
     
     //MARK: UI Objects
+    
+    lazy var deemView:UIView = {
+        let deemView = UIView()
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(dismissDeemView))
+        deemView.backgroundColor = UIColor(white: 0, alpha: 0.6)
+        deemView.alpha = 0
+        deemView.addGestureRecognizer(tapGuesture)
+        return deemView
+    }()
+    
     lazy var welcomeLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "Welcome")
         return label
@@ -21,9 +31,17 @@ class WelcomeViewController: UIViewController {
         let label = UILabel(textAlignment: .center, text: "Make a selection")
         return label
     }()
+    lazy var menuButton:UIButton = {
+        let button = UIButton()
+        let filterImage = UIImage(named: "menu")
+        button.setImage(filterImage, for: .normal)
+        button.addTarget(self, action:  #selector(handleMenuButtonPressed), for: .touchUpInside)
+        button.contentMode = .scaleToFill
+        return  button
+    }()
     
     lazy var logoutButton:UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 20, height: 5))
+        let button = UIButton()
         button.setImage(UIImage(named: "logoutIcon2"), for: .normal)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
@@ -58,13 +76,27 @@ class WelcomeViewController: UIViewController {
         setupView()
     }
     
-      //MARK: Objc Selector functions
+    //MARK: Objc Selector functions
+    
+    @objc func handleMenuButtonPressed(){
+        if let window = UIApplication.shared.keyWindow{
+            window.addSubview(deemView)
+            deemView.frame = window.frame
+            UIView.animate(withDuration: 0.5) {
+                self.deemView.alpha = 1
+            }
+        }
+    }
+    
+    @objc func dismissDeemView(){
+        
+    }
     
     @objc func handleCategoryPressed(){
         let categoryVC = CategoryViewController()
         let categoryVCWithNav =  UINavigationController(rootViewController: categoryVC)
         categoryVCWithNav.modalPresentationStyle = .fullScreen
-               present(categoryVCWithNav, animated: true)
+        present(categoryVCWithNav, animated: true)
     }
     
     @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
@@ -85,10 +117,10 @@ class WelcomeViewController: UIViewController {
             showAlert(with: "Error", and: "Problem logining out \(error)")
         }
     }
-     //MARK: Private Methods
+    //MARK: Private Methods
     
     
-     //MARK: Constriaints Function
+    //MARK: Constriaints Function
     
     private func setupView(){
         view.backgroundColor = .orange
@@ -102,11 +134,11 @@ class WelcomeViewController: UIViewController {
     }
     
     private func showAlert(with title: String, and message: String) {
-          let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-          alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          present(alertVC, animated: true, completion: nil)
-      }
-      
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
+    
     private func configureWelcomeLabelConstraints(){
         view.addSubview(welcomeLabel)
         
@@ -136,10 +168,10 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureLogoutButtonConstraints(){
-        view.addSubview(logoutButton)
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(menuButton)
+        menuButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([logoutButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10), logoutButton.heightAnchor.constraint(equalToConstant: 30), logoutButton.widthAnchor.constraint(equalToConstant: 30)])
+        NSLayoutConstraint.activate([menuButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5), menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -10), menuButton.heightAnchor.constraint(equalToConstant: 30), menuButton.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func configureProfileImageConstraint(){

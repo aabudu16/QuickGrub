@@ -17,7 +17,7 @@ class FoodImagesViewController: UIViewController {
     lazy var collectionView:UICollectionView = {
          let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         var layout = UPCarouselFlowLayout()
-        layout.itemSize = CGSize(width: pointEstimator.relativeWidth(multiplier: 0.73333), height: 400)
+        layout.itemSize = CGSize(width: pointEstimator.relativeWidth(multiplier: 0.73333), height: pointEstimator.relativeHeight(multiplier: 0.45))
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         let spacingLayout = cv.collectionViewLayout as! UPCarouselFlowLayout
         spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30)
