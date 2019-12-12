@@ -13,6 +13,7 @@ import FirebaseAuth
    // remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
     
+    let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
@@ -26,9 +27,33 @@ class WelcomeViewController: UIViewController {
         let label = UILabel()
         label.text = "Filter"
         label.textAlignment = .left
-        label.font = UIFont(name: "HelveticaNeue-Bold", size: 25)
-       // label.backgroundColor = .blue
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 28)
         return label
+    }()
+    
+    lazy var sortByLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Sort by"
+        label.textAlignment = .center
+        label.font = UIFont(name: "HelveticaNeue", size: 15)
+        return label
+    }()
+    
+    lazy var pickerView:UIPickerView = {
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        return picker
+    }()
+    
+    lazy var resetFilterButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("Reset", for: .normal)
+        button.titleLabel?.font =  UIFont(name: "HelveticaNeue", size: 15)
+        button.setTitleColor(.blue, for: .normal)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = .white
+        return button
     }()
     
     lazy var updateFilterButton:UIButton = {
@@ -175,7 +200,17 @@ class WelcomeViewController: UIViewController {
         configureFilterMenuHeightConstraint()
         configureFilterLabelConstraints()
         configureUpdateFilterButton()
+        configurePickerViewConstraints()
+         configureResetFilterButton()
+        configureSortByLabelConstraints()
+        constraint()
     }
+    
+    private func createHairLineView()-> UIView{
+        let hairLine = UIView()
+        return hairLine
+    }
+    
     private func showAlert(with title: String, and message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -244,4 +279,51 @@ class WelcomeViewController: UIViewController {
         
         NSLayoutConstraint.activate([updateFilterButton.bottomAnchor.constraint(equalTo: filterMenuView.bottomAnchor, constant: -35), updateFilterButton.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 25),updateFilterButton.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -25),updateFilterButton.heightAnchor.constraint(equalToConstant: 45)])
     }
+    
+    private func configureResetFilterButton(){
+           filterMenuView.addSubview(resetFilterButton)
+           resetFilterButton.translatesAutoresizingMaskIntoConstraints = false
+           
+           NSLayoutConstraint.activate([resetFilterButton.topAnchor.constraint(equalTo: filterMenuView.topAnchor, constant: 10), resetFilterButton.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor),resetFilterButton.heightAnchor.constraint(equalToConstant: 20), resetFilterButton.widthAnchor.constraint(equalToConstant: 100)])
+       }
+    
+    private func configurePickerViewConstraints(){
+        filterMenuView.addSubview(pickerView)
+               pickerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([pickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), pickerView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), pickerView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20),pickerView.heightAnchor.constraint(equalToConstant: 70)])
+    }
+    
+    private func constraint(){
+        let separator = createHairLineView()
+        separator.backgroundColor = .lightGray
+         filterMenuView.addSubview(separator)
+               separator.translatesAutoresizingMaskIntoConstraints = false
+               
+               NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: pickerView.bottomAnchor), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+    }
+    private func configureSortByLabelConstraints(){
+        filterMenuView.addSubview(sortByLabel)
+               sortByLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
+    }
+}
+
+extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 4
+    }
+//
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+       return CDYelpBusinessSortType[row]
+}
 }
