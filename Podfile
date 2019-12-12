@@ -11,8 +11,6 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 
   # Pods for Yelp API 
-pod 'AFNetworking', '~> 2.5'
-pod 'BDBOAuth1Manager'
 pod 'Alamofire', '~> 4.7'
 pod 'CDYelpFusionKit', '1.5.1'
 
