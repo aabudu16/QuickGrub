@@ -203,11 +203,12 @@ class WelcomeViewController: UIViewController {
         configurePickerViewConstraints()
          configureResetFilterButton()
         configureSortByLabelConstraints()
-        constraint()
+        firstLineSeporatorConstraint()
     }
     
     private func createHairLineView()-> UIView{
         let hairLine = UIView()
+        hairLine.backgroundColor = .lightGray
         return hairLine
     }
     
@@ -294,9 +295,8 @@ class WelcomeViewController: UIViewController {
         NSLayoutConstraint.activate([pickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), pickerView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), pickerView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20),pickerView.heightAnchor.constraint(equalToConstant: 70)])
     }
     
-    private func constraint(){
+    private func firstLineSeporatorConstraint(){
         let separator = createHairLineView()
-        separator.backgroundColor = .lightGray
          filterMenuView.addSubview(separator)
                separator.translatesAutoresizingMaskIntoConstraints = false
                
