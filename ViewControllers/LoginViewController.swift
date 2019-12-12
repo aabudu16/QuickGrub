@@ -167,7 +167,6 @@ class LoginViewController: UIViewController {
         segment.selectedSegmentIndex = 0
         segment.backgroundColor = .white
         segment.selectedSegmentTintColor = #colorLiteral(red: 0.1316526234, green: 0, blue: 1, alpha: 1)
-        segment.backgroundColor = UIColor(patternImage: UIImage(named: "BlueLine")!)
         segment.setTitleTextAttributes([NSAttributedString.Key.font: font], for: .normal)
         segment.addTarget(self, action: #selector(handleSegmentControlChanged(_:)), for: .valueChanged)
         return segment

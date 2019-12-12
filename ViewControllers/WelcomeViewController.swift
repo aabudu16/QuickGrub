@@ -12,14 +12,16 @@ import FirebaseAuth
 
 // remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
-    var buttonArray = [UIButton]()
-    var stackView:UIStackView!
+    
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
     let priceData = ["$", "$$", "$$$", "$$$$"]
     let isOpenArray = ["Open", "Close", "Both"]
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
+    
+    var buttonArray = [UIButton]()
+    var stackView:UIStackView!
     lazy var filterMenuView:UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -39,6 +41,22 @@ class WelcomeViewController: UIViewController {
         picker.delegate = self
         picker.dataSource = self
         return picker
+    }()
+    
+    lazy var segmentController:UISegmentedControl = {
+        let segment = UISegmentedControl(items: isOpenArray)
+        segment.selectedSegmentIndex = 2
+        segment.selectedSegmentTintColor = #colorLiteral(red: 0.1316526234, green: 0, blue: 1, alpha: 1)
+        return segment
+    }()
+    
+    lazy var limitSliderView:UISlider = {
+        let limitSlider = UISlider()
+        limitSlider.minimumValue = 1
+        limitSlider.maximumValue = 50
+        limitSlider.tintColor = UIColor.blue
+        limitSlider.value = 20
+        return limitSlider
     }()
     
     lazy var resetFilterButton:UIButton = {
@@ -203,6 +221,8 @@ class WelcomeViewController: UIViewController {
         configurePriceButtonStackView()
         configurePriceLabelConstraints()
         secondLineSeporatorConstraint()
+        configureSegmentControllerConstraints()
+        thirdLineSeporatorConstraint()
     }
     
     func addToStackViewButtons(array : [UIButton]) -> UIStackView {
@@ -330,7 +350,7 @@ class WelcomeViewController: UIViewController {
         filterMenuView.addSubview(sortByLabel)
         sortByLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
+        NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
     }
     
     private func configurePriceButtonStackView(){
@@ -352,7 +372,7 @@ class WelcomeViewController: UIViewController {
         
         filterMenuView.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 5), stackView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), stackView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20), stackView.heightAnchor.constraint(equalToConstant: 30)])
+        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 25), stackView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), stackView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20), stackView.heightAnchor.constraint(equalToConstant: 30)])
     }
     
     private func configurePriceLabelConstraints(){
@@ -365,7 +385,7 @@ class WelcomeViewController: UIViewController {
         filterMenuView.addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([priceLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 5), priceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), priceLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),priceLabel.heightAnchor.constraint(equalToConstant: 35)])
+        NSLayoutConstraint.activate([priceLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor), priceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), priceLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),priceLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
     private func secondLineSeporatorConstraint(){
@@ -373,8 +393,23 @@ class WelcomeViewController: UIViewController {
             filterMenuView.addSubview(separator)
                   separator.translatesAutoresizingMaskIntoConstraints = false
                   
-                  NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+                  NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
        }
+    
+    private func configureSegmentControllerConstraints(){
+        filterMenuView.addSubview(segmentController)
+        segmentController.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([segmentController.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 40), segmentController.leadingAnchor.constraint(equalTo: stackView.leadingAnchor, constant: 150), segmentController.trailingAnchor.constraint(equalTo: stackView.trailingAnchor), segmentController.heightAnchor.constraint(equalTo: stackView.heightAnchor)])
+    }
+    
+    private func thirdLineSeporatorConstraint(){
+        let separator = createHairLineView()
+         filterMenuView.addSubview(separator)
+               separator.translatesAutoresizingMaskIntoConstraints = false
+               
+               NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+    }
 }
 
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
