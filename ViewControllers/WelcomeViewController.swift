@@ -223,6 +223,7 @@ class WelcomeViewController: UIViewController {
         secondLineSeporatorConstraint()
         configureSegmentControllerConstraints()
         thirdLineSeporatorConstraint()
+        configurelimitSliderViewConstraints()
     }
     
     func addToStackViewButtons(array : [UIButton]) -> UIStackView {
@@ -409,6 +410,13 @@ class WelcomeViewController: UIViewController {
                separator.translatesAutoresizingMaskIntoConstraints = false
                
                NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+    }
+    
+    private func configurelimitSliderViewConstraints(){
+        filterMenuView.addSubview(limitSliderView)
+        limitSliderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([limitSliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant:  40), limitSliderView.leadingAnchor.constraint(equalTo: pickerView.leadingAnchor), limitSliderView.trailingAnchor.constraint(equalTo: segmentController.leadingAnchor, constant:  -25), limitSliderView.heightAnchor.constraint(equalTo: segmentController.heightAnchor)])
     }
 }
 
