@@ -9,16 +9,36 @@
 import UIKit
 import FirebaseAuth
 
+
+   // remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
     
     //MARK: UI Objects
-    
-    let filterMenuHeight:CGFloat = 420
+    let filterMenuHeight:CGFloat = 400
     
     lazy var filterMenuView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight))
+        let view = UIView()
         view.backgroundColor = .white
         return view
+    }()
+    
+    lazy var filterLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Filter"
+        label.textAlignment = .left
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 25)
+       // label.backgroundColor = .blue
+        return label
+    }()
+    
+    lazy var updateFilterButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("Update", for: .normal)
+        button.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 18)
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 5
+        button.backgroundColor = .blue
+        return button
     }()
     
     lazy var deemView:UIView = {
@@ -82,6 +102,7 @@ class WelcomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupFilterView()
     }
     
     //MARK: Objc Selector functions
@@ -92,7 +113,7 @@ class WelcomeViewController: UIViewController {
             window.addSubview(filterMenuView)
             deemView.frame = window.frame
             
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.75, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.deemView.alpha = 1
                 self.filterMenuView.frame = CGRect(x: 0, y: (self.view.frame.height - self.filterMenuHeight) + 20, width: self.view.frame.width, height: self.filterMenuHeight)
             }, completion: nil)
@@ -150,6 +171,11 @@ class WelcomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
+    private func setupFilterView(){
+        configureFilterMenuHeightConstraint()
+        configureFilterLabelConstraints()
+        configureUpdateFilterButton()
+    }
     private func showAlert(with title: String, and message: String) {
         let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -196,5 +222,26 @@ class WelcomeViewController: UIViewController {
         profileImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([profileImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor), profileImage.leadingAnchor.constraint(equalTo: view.leadingAnchor,constant: 10), profileImage.heightAnchor.constraint(equalToConstant: 50), profileImage.widthAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureFilterMenuHeightConstraint(){
+        view.addSubview(filterMenuView)
+        filterMenuView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -400), filterMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor), filterMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor), filterMenuView.heightAnchor.constraint(equalToConstant: filterMenuHeight)])
+    }
+    
+    private func configureFilterLabelConstraints(){
+        filterMenuView.addSubview(filterLabel)
+        filterLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([filterLabel.topAnchor.constraint(equalTo: filterMenuView.topAnchor), filterLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 20), filterLabel.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor), filterLabel.heightAnchor.constraint(equalToConstant: 40)])
+    }
+    
+    private func configureUpdateFilterButton(){
+        filterMenuView.addSubview(updateFilterButton)
+        updateFilterButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([updateFilterButton.bottomAnchor.constraint(equalTo: filterMenuView.bottomAnchor, constant: -35), updateFilterButton.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 25),updateFilterButton.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -25),updateFilterButton.heightAnchor.constraint(equalToConstant: 45)])
     }
 }
