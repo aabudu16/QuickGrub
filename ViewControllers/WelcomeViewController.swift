@@ -14,6 +14,7 @@ import FirebaseAuth
 class WelcomeViewController: UIViewController {
     
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
+    let segmentData = ["$", "$$", "$$$", "$$$$"]
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
@@ -44,6 +45,11 @@ class WelcomeViewController: UIViewController {
         picker.delegate = self
         picker.dataSource = self
         return picker
+    }()
+    
+    lazy var priceSegmentedControl: UISegmentedControl = {
+        let segment = UISegmentedControl(items: segmentData )
+        return segment
     }()
     
     lazy var resetFilterButton:UIButton = {
@@ -128,6 +134,7 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupFilterView()
+        
     }
     
     //MARK: Objc Selector functions
@@ -204,6 +211,7 @@ class WelcomeViewController: UIViewController {
          configureResetFilterButton()
         configureSortByLabelConstraints()
         firstLineSeporatorConstraint()
+        configureSegmentControlConstraints()
     }
     
     private func createHairLineView()-> UIView{
@@ -307,6 +315,14 @@ class WelcomeViewController: UIViewController {
                sortByLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
+    }
+    
+    private func configureSegmentControlConstraints(){
+        filterMenuView.addSubview(priceSegmentedControl)
+        priceSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([priceSegmentedControl.topAnchor.constraint(equalTo: pickerView.bottomAnchor,constant: 5), priceSegmentedControl.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), priceSegmentedControl.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20), priceSegmentedControl.heightAnchor.constraint(equalToConstant: 35)])
+        
     }
 }
 
