@@ -10,11 +10,13 @@ import UIKit
 import FirebaseAuth
 
 
-   // remove constant: -400 from the constraints of filter Menu Height
+// remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
-    
+    var buttonArray = [UIButton]()
+    var stackView:UIStackView!
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
-    let segmentData = ["$", "$$", "$$$", "$$$$"]
+    let priceData = ["$", "$$", "$$$", "$$$$"]
+    let isOpenArray = ["Open", "Close", "Both"]
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
@@ -32,24 +34,11 @@ class WelcomeViewController: UIViewController {
         return label
     }()
     
-    lazy var sortByLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Sort by"
-        label.textAlignment = .center
-        label.font = UIFont(name: "HelveticaNeue", size: 15)
-        return label
-    }()
-    
     lazy var pickerView:UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self
         picker.dataSource = self
         return picker
-    }()
-    
-    lazy var priceSegmentedControl: UISegmentedControl = {
-        let segment = UISegmentedControl(items: segmentData )
-        return segment
     }()
     
     lazy var resetFilterButton:UIButton = {
@@ -208,10 +197,31 @@ class WelcomeViewController: UIViewController {
         configureFilterLabelConstraints()
         configureUpdateFilterButton()
         configurePickerViewConstraints()
-         configureResetFilterButton()
+        configureResetFilterButton()
         configureSortByLabelConstraints()
         firstLineSeporatorConstraint()
-        configureSegmentControlConstraints()
+        configurePriceButtonStackView()
+        configurePriceLabelConstraints()
+        secondLineSeporatorConstraint()
+    }
+    
+    func addToStackViewButtons(array : [UIButton]) -> UIStackView {
+        let sv = UIStackView(arrangedSubviews: array)
+        sv.distribution = .fillEqually
+        sv.spacing = 3
+        sv.axis = .horizontal
+        return sv
+    }
+    private func createButtonView() -> UIButton{
+        let button = UIButton()
+        button.layer.cornerRadius = 4
+        button.backgroundColor = .lightGray
+        return button
+    }
+    
+    private func createUILableView() -> UILabel {
+        let label = UILabel()
+        return label
     }
     
     private func createHairLineView()-> UIView{
@@ -290,40 +300,81 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureResetFilterButton(){
-           filterMenuView.addSubview(resetFilterButton)
-           resetFilterButton.translatesAutoresizingMaskIntoConstraints = false
-           
-           NSLayoutConstraint.activate([resetFilterButton.topAnchor.constraint(equalTo: filterMenuView.topAnchor, constant: 10), resetFilterButton.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor),resetFilterButton.heightAnchor.constraint(equalToConstant: 20), resetFilterButton.widthAnchor.constraint(equalToConstant: 100)])
-       }
+        filterMenuView.addSubview(resetFilterButton)
+        resetFilterButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([resetFilterButton.topAnchor.constraint(equalTo: filterMenuView.topAnchor, constant: 10), resetFilterButton.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor),resetFilterButton.heightAnchor.constraint(equalToConstant: 20), resetFilterButton.widthAnchor.constraint(equalToConstant: 100)])
+    }
     
     private func configurePickerViewConstraints(){
         filterMenuView.addSubview(pickerView)
-               pickerView.translatesAutoresizingMaskIntoConstraints = false
+        pickerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([pickerView.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), pickerView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), pickerView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20),pickerView.heightAnchor.constraint(equalToConstant: 70)])
     }
     
     private func firstLineSeporatorConstraint(){
         let separator = createHairLineView()
-         filterMenuView.addSubview(separator)
-               separator.translatesAutoresizingMaskIntoConstraints = false
-               
-               NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: pickerView.bottomAnchor), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+        filterMenuView.addSubview(separator)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: pickerView.bottomAnchor), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
     }
     private func configureSortByLabelConstraints(){
+        
+        let sortByLabel = createUILableView()
+        sortByLabel.text = "Sort by"
+        sortByLabel.textAlignment = .center
+        sortByLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        
         filterMenuView.addSubview(sortByLabel)
-               sortByLabel.translatesAutoresizingMaskIntoConstraints = false
+        sortByLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor, constant: 5), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
     }
     
-    private func configureSegmentControlConstraints(){
-        filterMenuView.addSubview(priceSegmentedControl)
-        priceSegmentedControl.translatesAutoresizingMaskIntoConstraints = false
+    private func configurePriceButtonStackView(){
         
-        NSLayoutConstraint.activate([priceSegmentedControl.topAnchor.constraint(equalTo: pickerView.bottomAnchor,constant: 5), priceSegmentedControl.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), priceSegmentedControl.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20), priceSegmentedControl.heightAnchor.constraint(equalToConstant: 35)])
+        for _ in 0...3{
+            buttonArray.append(createButtonView())
+        }
         
+        buttonArray[0].tag = 0
+        buttonArray[0].setTitle("$", for: .normal)
+        buttonArray[1].tag = 1
+        buttonArray[1].setTitle("$$", for: .normal)
+        buttonArray[2].tag = 2
+        buttonArray[2].setTitle("$$$", for: .normal)
+        buttonArray[3].tag = 3
+        buttonArray[3].setTitle("$$$$", for: .normal)
+        
+        stackView = addToStackViewButtons(array: buttonArray)
+        
+        filterMenuView.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([stackView.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 5), stackView.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 80), stackView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -20), stackView.heightAnchor.constraint(equalToConstant: 30)])
     }
+    
+    private func configurePriceLabelConstraints(){
+        
+        let priceLabel = createUILableView()
+        priceLabel.text = "Price"
+        priceLabel.textAlignment = .center
+        priceLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        
+        filterMenuView.addSubview(priceLabel)
+        priceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([priceLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 5), priceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), priceLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),priceLabel.heightAnchor.constraint(equalToConstant: 35)])
+    }
+    
+    private func secondLineSeporatorConstraint(){
+           let separator = createHairLineView()
+            filterMenuView.addSubview(separator)
+                  separator.translatesAutoresizingMaskIntoConstraints = false
+                  
+                  NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+       }
 }
 
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
@@ -334,12 +385,12 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 4
     }
-//
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//
-//    }
+    //
+    //    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    //
+    //    }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-       return CDYelpBusinessSortType[row]
-}
+        return CDYelpBusinessSortType[row]
+    }
 }
