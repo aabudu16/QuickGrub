@@ -40,6 +40,7 @@
 		854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D3223A28E76001BD091 /* CDYelpRouter.swift */; };
 		854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D3323A28E76001BD091 /* CDYelpLocation.swift */; };
 		854D6D5423A28E76001BD091 /* CDYelpUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D3423A28E76001BD091 /* CDYelpUser.swift */; };
+		854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */; };
 		8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */; };
 		8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */; };
 		858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A983E2384319A0051AF45 /* AppDelegate.swift */; };
@@ -118,6 +119,7 @@
 		854D6D3223A28E76001BD091 /* CDYelpRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpRouter.swift; sourceTree = "<group>"; };
 		854D6D3323A28E76001BD091 /* CDYelpLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpLocation.swift; sourceTree = "<group>"; };
 		854D6D3423A28E76001BD091 /* CDYelpUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpUser.swift; sourceTree = "<group>"; };
+		854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpFusionKitManager.swift; sourceTree = "<group>"; };
 		8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeLayoutUtilityClass.swift; sourceTree = "<group>"; };
 		858A983B2384319A0051AF45 /* Quick-Grub2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick-Grub2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
+				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
 				854D6D1323A28E76001BD091 /* Yelp DataSource */,
 				85F92A5B23902DD800048FCB /* Models */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
@@ -533,6 +536,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				854D6D3A23A28E76001BD091 /* CDYelpCenter.swift in Sources */,
+				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
 				854D6D5023A28E76001BD091 /* CDYelpRegion.swift in Sources */,
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
