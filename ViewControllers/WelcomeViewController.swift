@@ -60,6 +60,16 @@ class WelcomeViewController: UIViewController {
         return limitSlider
     }()
     
+    lazy var distanceRangeSliderView:UISlider = {
+        let limitSlider = UISlider()
+        limitSlider.minimumValue = 2000
+        limitSlider.maximumValue = 40000
+        limitSlider.tintColor = UIColor.blue
+        limitSlider.value = 20
+        limitSlider.addTarget(self, action: #selector(handleDistanceRangeSliderValueChange(sender:)), for: .valueChanged)
+        return limitSlider
+    }()
+    
     lazy var resetFilterButton:UIButton = {
         let button = UIButton()
         button.setTitle("Reset", for: .normal)
@@ -175,6 +185,10 @@ class WelcomeViewController: UIViewController {
         let categoryVCWithNav =  UINavigationController(rootViewController: categoryVC)
         categoryVCWithNav.modalPresentationStyle = .fullScreen
         present(categoryVCWithNav, animated: true)
+    }
+    
+    @objc func handleDistanceRangeSliderValueChange(sender:UISlider){
+        print(sender.value)
     }
     
     @objc func handleLimitSliderValueChange(sender:UISlider){
