@@ -13,9 +13,15 @@ import FirebaseAuth
 // remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
     
+    
+    
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
     let priceData = ["$", "$$", "$$$", "$$$$"]
     let isOpenArray = ["Open", "Close", "Both"]
+    var pickerViewPick:CDYelpBusinessSortType?
+    var priceTiers:[CDYelpPriceTier]?
+    var openNow:Bool?
+    
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
@@ -48,6 +54,7 @@ class WelcomeViewController: UIViewController {
         let segment = UISegmentedControl(items: isOpenArray)
         segment.selectedSegmentIndex = 2
         segment.selectedSegmentTintColor = #colorLiteral(red: 0.1316526234, green: 0, blue: 1, alpha: 1)
+        segment.addTarget(self, action: #selector(handleSegmentControllerValueChanged), for: .valueChanged)
         return segment
     }()
     
@@ -88,6 +95,7 @@ class WelcomeViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(handleUpdateButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -215,6 +223,40 @@ class WelcomeViewController: UIViewController {
             showAlert(with: "Error", and: "Problem logining out \(error)")
         }
     }
+    
+    @objc func handlePriceButtonPressed(sender:UIButton){
+        buttonArray.forEach { (button) in
+            switch button.tag{
+            case 0:
+                priceTiers?.append(.oneDollarSign)
+            case 1:
+                priceTiers?.append(.twoDollarSigns)
+            case 2:
+                priceTiers?.append(.threeDollarSigns)
+            case 3:
+                priceTiers?.append(.fourDollarSigns)
+            default:
+                return
+            }
+        }
+    }
+    
+    @objc func handleSegmentControllerValueChanged(sender:UISegmentedControl){
+        switch sender.selectedSegmentIndex{
+        case 0:
+            openNow = true
+        case 1:
+            openNow = false
+        case 2:
+            openNow = nil
+        default:
+            return
+        }
+    }
+    
+    @objc func handleUpdateButtonPressed(){
+        let filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers, limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? true)
+    }
     //MARK: Private Methods
     
     
@@ -261,6 +303,7 @@ class WelcomeViewController: UIViewController {
         let button = UIButton()
         button.layer.cornerRadius = 4
         button.backgroundColor = .lightGray
+        button.addTarget(self, action: #selector(handlePriceButtonPressed), for: .touchUpInside)
         return button
     }
     
@@ -476,10 +519,21 @@ extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return 4
     }
-    //
-    //    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-    //
-    //    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch row{
+        case 0:
+            pickerViewPick = .bestMatch
+        case 1:
+            pickerViewPick = .rating
+        case 2:
+            pickerViewPick = .reviewCount
+        case 3:
+            pickerViewPick = .distance
+        default:
+            pickerViewPick = .none
+        }
+    }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return CDYelpBusinessSortType[row]

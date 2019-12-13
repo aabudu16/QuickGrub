@@ -9,8 +9,9 @@
 import Foundation
 
 struct FilterModel{
-    let sortBy:CDYelpBusinessSortType
-    let price:[CDYelpPriceTier]
+    let sortBy:CDYelpBusinessSortType?
+    let price:[CDYelpPriceTier]?
     let limit:Int
     let distance:Int
+    let openNow:Bool?
 }
