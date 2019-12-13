@@ -19,6 +19,7 @@ class WelcomeViewController: UIViewController {
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
+    var distanceLabel:UILabel!
     var limitLabel:UILabel!
     var buttonArray = [UIButton]()
     var stackView:UIStackView!
@@ -62,10 +63,10 @@ class WelcomeViewController: UIViewController {
     
     lazy var distanceRangeSliderView:UISlider = {
         let limitSlider = UISlider()
-        limitSlider.minimumValue = 2000
+        limitSlider.minimumValue = 200
         limitSlider.maximumValue = 40000
         limitSlider.tintColor = UIColor.blue
-        limitSlider.value = 20
+        limitSlider.value = 2000
         limitSlider.addTarget(self, action: #selector(handleDistanceRangeSliderValueChange(sender:)), for: .valueChanged)
         return limitSlider
     }()
@@ -188,7 +189,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func handleDistanceRangeSliderValueChange(sender:UISlider){
-        print(sender.value)
+        print(Int(sender.value))
+        distanceLabel.text = "Distance \(Int(sender.value)) mile range"
     }
     
     @objc func handleLimitSliderValueChange(sender:UISlider){
@@ -244,6 +246,8 @@ class WelcomeViewController: UIViewController {
         thirdLineSeporatorConstraint()
         configurelimitSliderViewConstraints()
         configureLimitLabelConstraints()
+        configureDistanceRangeSliderViewConstraints()
+        configureDistanceLabelConstraints()
     }
     
     func addToStackViewButtons(array : [UIButton]) -> UIStackView {
@@ -260,8 +264,12 @@ class WelcomeViewController: UIViewController {
         return button
     }
     
-    private func createUILableView() -> UILabel {
+    private func createUILableView(name:String, textAlignment: NSTextAlignment) -> UILabel {
         let label = UILabel()
+        label.font = UIFont(name: "HelveticaNeue", size: 15)
+        label.textAlignment = textAlignment
+        label.text = name
+        
         return label
     }
     
@@ -363,15 +371,12 @@ class WelcomeViewController: UIViewController {
     }
     private func configureSortByLabelConstraints(){
         
-        let sortByLabel = createUILableView()
-        sortByLabel.text = "Sort by"
-        sortByLabel.textAlignment = .center
-        sortByLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        let sortByLabel = createUILableView(name: "Sort by",textAlignment: .left)
         
         filterMenuView.addSubview(sortByLabel)
         sortByLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
+        NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
     }
     
     private func configurePriceButtonStackView(){
@@ -398,24 +403,21 @@ class WelcomeViewController: UIViewController {
     
     private func configurePriceLabelConstraints(){
         
-        let priceLabel = createUILableView()
-        priceLabel.text = "Price"
-        priceLabel.textAlignment = .center
-        priceLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        let priceLabel = createUILableView(name: "Price",textAlignment: .left)
         
         filterMenuView.addSubview(priceLabel)
         priceLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([priceLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor), priceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), priceLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),priceLabel.heightAnchor.constraint(equalToConstant: 30)])
+        NSLayoutConstraint.activate([priceLabel.topAnchor.constraint(equalTo: pickerView.bottomAnchor), priceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), priceLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),priceLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
     
     private func secondLineSeporatorConstraint(){
-           let separator = createHairLineView()
-            filterMenuView.addSubview(separator)
-                  separator.translatesAutoresizingMaskIntoConstraints = false
-                  
-                  NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
-       }
+        let separator = createHairLineView()
+        filterMenuView.addSubview(separator)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+    }
     
     private func configureSegmentControllerConstraints(){
         filterMenuView.addSubview(segmentController)
@@ -426,10 +428,10 @@ class WelcomeViewController: UIViewController {
     
     private func thirdLineSeporatorConstraint(){
         let separator = createHairLineView()
-         filterMenuView.addSubview(separator)
-               separator.translatesAutoresizingMaskIntoConstraints = false
-               
-               NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
+        filterMenuView.addSubview(separator)
+        separator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([separator.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 15), separator.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), separator.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor, constant: -10), separator.heightAnchor.constraint(equalToConstant: 1)])
     }
     
     private func configurelimitSliderViewConstraints(){
@@ -441,15 +443,28 @@ class WelcomeViewController: UIViewController {
     
     private func configureLimitLabelConstraints(){
         
-         limitLabel = createUILableView()
-        limitLabel.text = "Limit"
-        limitLabel.textAlignment = .center
-        limitLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        limitLabel = createUILableView(name: "Limit" ,textAlignment: .left)
         
         filterMenuView.addSubview(limitLabel)
         limitLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([limitLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), limitLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), limitLabel.trailingAnchor.constraint(equalTo: limitSliderView.leadingAnchor),limitLabel.heightAnchor.constraint(equalToConstant: 30)])
+        NSLayoutConstraint.activate([limitLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), limitLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), limitLabel.trailingAnchor.constraint(equalTo: limitSliderView.leadingAnchor),limitLabel.heightAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func configureDistanceRangeSliderViewConstraints(){
+        filterMenuView.addSubview(distanceRangeSliderView)
+        distanceRangeSliderView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([distanceRangeSliderView.topAnchor.constraint(equalTo: segmentController.bottomAnchor, constant: 35), distanceRangeSliderView.leadingAnchor.constraint(equalTo: limitSliderView.leadingAnchor), distanceRangeSliderView.trailingAnchor.constraint(equalTo: filterMenuView.trailingAnchor,constant: -30), distanceRangeSliderView.heightAnchor.constraint(equalTo: segmentController.heightAnchor)])
+    }
+    
+    private func configureDistanceLabelConstraints(){
+        
+        distanceLabel = createUILableView(name: "Distance",textAlignment: .left)
+        filterMenuView.addSubview(distanceLabel)
+        distanceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([distanceLabel.topAnchor.constraint(equalTo: limitSliderView.bottomAnchor, constant: 15), distanceLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 15), distanceLabel.trailingAnchor.constraint(equalTo: limitSliderView.leadingAnchor, constant: 150), distanceLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
 }
 
