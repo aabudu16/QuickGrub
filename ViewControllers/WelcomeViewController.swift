@@ -19,7 +19,7 @@ class WelcomeViewController: UIViewController {
     //MARK: UI Objects
     let filterMenuHeight:CGFloat = 400
     
-    
+    var limitLabel:UILabel!
     var buttonArray = [UIButton]()
     var stackView:UIStackView!
     lazy var filterMenuView:UIView = {
@@ -56,6 +56,7 @@ class WelcomeViewController: UIViewController {
         limitSlider.maximumValue = 50
         limitSlider.tintColor = UIColor.blue
         limitSlider.value = 20
+        limitSlider.addTarget(self, action: #selector(handleLimitSliderValueChange(sender:)), for: .valueChanged)
         return limitSlider
     }()
     
@@ -176,6 +177,10 @@ class WelcomeViewController: UIViewController {
         present(categoryVCWithNav, animated: true)
     }
     
+    @objc func handleLimitSliderValueChange(sender:UISlider){
+        limitLabel.text = "Limit \(Int(sender.value))"
+    }
+    
     @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
         print("Image view tapped")
     }
@@ -224,6 +229,7 @@ class WelcomeViewController: UIViewController {
         configureSegmentControllerConstraints()
         thirdLineSeporatorConstraint()
         configurelimitSliderViewConstraints()
+        configureLimitLabelConstraints()
     }
     
     func addToStackViewButtons(array : [UIButton]) -> UIStackView {
@@ -417,6 +423,19 @@ class WelcomeViewController: UIViewController {
         limitSliderView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([limitSliderView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant:  40), limitSliderView.leadingAnchor.constraint(equalTo: pickerView.leadingAnchor), limitSliderView.trailingAnchor.constraint(equalTo: segmentController.leadingAnchor, constant:  -25), limitSliderView.heightAnchor.constraint(equalTo: segmentController.heightAnchor)])
+    }
+    
+    private func configureLimitLabelConstraints(){
+        
+         limitLabel = createUILableView()
+        limitLabel.text = "Limit"
+        limitLabel.textAlignment = .center
+        limitLabel.font = UIFont(name: "HelveticaNeue", size: 15)
+        
+        filterMenuView.addSubview(limitLabel)
+        limitLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([limitLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 15), limitLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor), limitLabel.trailingAnchor.constraint(equalTo: limitSliderView.leadingAnchor),limitLabel.heightAnchor.constraint(equalToConstant: 30)])
     }
 }
 
