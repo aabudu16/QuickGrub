@@ -13,13 +13,11 @@ import FirebaseAuth
 // remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
     
-    
-    
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
-    let priceData = ["$", "$$", "$$$", "$$$$"]
     let isOpenArray = ["Open", "Close", "Both"]
     var pickerViewPick:CDYelpBusinessSortType?
     var priceTiers:[CDYelpPriceTier]?
+    var filterParameter:FilterModel?
     var openNow:Bool?
     
     //MARK: UI Objects
@@ -255,12 +253,9 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func handleUpdateButtonPressed(){
-        let filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers, limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? true)
+        filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? nil, limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? true)
     }
     //MARK: Private Methods
-    
-    
-    //MARK: Constriaints Function
     
     private func setupView(){
         view.backgroundColor = .orange
@@ -328,6 +323,8 @@ class WelcomeViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    
+    //MARK: Constriaints Function
     private func configureWelcomeLabelConstraints(){
         view.addSubview(welcomeLabel)
         
@@ -429,13 +426,13 @@ class WelcomeViewController: UIViewController {
         }
         
         buttonArray[0].tag = 0
-        buttonArray[0].setTitle("$", for: .normal)
+        buttonArray[0].setTitle(priceData.oneDollar.rawValue, for: .normal)
         buttonArray[1].tag = 1
-        buttonArray[1].setTitle("$$", for: .normal)
+        buttonArray[1].setTitle(priceData.twoDollars.rawValue, for: .normal)
         buttonArray[2].tag = 2
-        buttonArray[2].setTitle("$$$", for: .normal)
+        buttonArray[2].setTitle(priceData.threeDollars.rawValue, for: .normal)
         buttonArray[3].tag = 3
-        buttonArray[3].setTitle("$$$$", for: .normal)
+        buttonArray[3].setTitle(priceData.fourDollars.rawValue, for: .normal)
         
         stackView = addToStackViewButtons(array: buttonArray)
         
