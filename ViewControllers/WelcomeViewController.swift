@@ -189,13 +189,15 @@ class WelcomeViewController: UIViewController {
     
     @objc func handleCategoryPressed(){
         
-        
-        
-        
         let categoryVC = CategoryViewController()
         let categoryVCWithNav =  UINavigationController(rootViewController: categoryVC)
         categoryVCWithNav.modalPresentationStyle = .fullScreen
         present(categoryVCWithNav, animated: true)
+        if filterParameter != nil {
+            categoryVC.filterParameter = self.filterParameter
+        }else{
+            categoryVC.filterParameter = GenericParameter.genericSettingParameter
+        }
     }
     
     @objc func handleDistanceRangeSliderValueChange(sender:UISlider){

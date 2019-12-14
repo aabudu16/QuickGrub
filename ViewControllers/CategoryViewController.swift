@@ -14,7 +14,11 @@ class CategoryViewController: UIViewController {
     
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
-    var filterParameter:FilterModel?
+    var filterParameter:FilterModel?{
+        didSet{
+            print("this is what was passed over \(filterParameter)")
+        }
+    }
     
     var mode: Mode = .view {
         didSet{
