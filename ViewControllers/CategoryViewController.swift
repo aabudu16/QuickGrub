@@ -8,19 +8,14 @@
 
 import UIKit
 //MARK: Enum Cell Identifier
-enum Identifiers:String{
-    case categoryCell
-}
 
-enum Mode{
-    case view
-    case select
-}
 
 class CategoryViewController: UIViewController {
     
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
+    var filterParameter:FilterModel?
+    
     var mode: Mode = .view {
         didSet{
             switch mode {
@@ -38,8 +33,6 @@ class CategoryViewController: UIViewController {
         searchBar.placeholder = " Search..."
         searchBar.sizeToFit()
         searchBar.isTranslucent = false
-        //searchBar.backgroundImage = UIImage()
-        searchBar.backgroundColor = .blue
         searchBar.delegate = self
         return searchBar
     }()
@@ -59,11 +52,6 @@ class CategoryViewController: UIViewController {
         let view = UIView()
         view.backgroundColor = .white
         return view
-    }()
-    
-    lazy var selectedCategoryCount:UILabel = {
-        let label = UILabel(textAlignment: .center, text: "0 Categories Selected")
-        return label
     }()
     
     lazy var continueButton:UIButton = {
@@ -89,7 +77,6 @@ class CategoryViewController: UIViewController {
         configureContainerViewConstriant()
         configureSearchBarConstaints()
         configureCollectionViewConstraint()
-        configureSelectedCategoryCountConstraints()
         configureContinueButton()
     }
     
@@ -102,10 +89,6 @@ class CategoryViewController: UIViewController {
         mode = mode == .view ? .select: .view
     }
     //MARK: Private Methods
-    var count = 0
-    func incrementByOne(){
-        selectedCategoryCount.text = "\(count + 1) Categories Selected"
-    }
     
     private func configureNavigationBar(){
         navigationController?.navigationBar.barTintColor = .white
@@ -134,13 +117,7 @@ class CategoryViewController: UIViewController {
         NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: containerView.topAnchor)])
     }
     
-    private func configureSelectedCategoryCountConstraints(){
-        containerView.addSubview(selectedCategoryCount)
-        
-        selectedCategoryCount.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([selectedCategoryCount.topAnchor.constraint(equalTo: self.containerView.topAnchor), selectedCategoryCount.leadingAnchor.constraint(equalTo: self.containerView.leadingAnchor), selectedCategoryCount.trailingAnchor.constraint(equalTo: self.containerView.trailingAnchor), selectedCategoryCount.bottomAnchor.constraint(equalTo: self.containerView.bottomAnchor)])
-    }
+
     private func configureContinueButton(){
         containerView.addSubview(continueButton)
         
@@ -158,8 +135,6 @@ extension CategoryViewController: UICollectionViewDelegate{
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
         if cell.isSelected == true {
             cell.selectedView.backgroundColor = .red
-            
-            incrementByOne()
     }
     }
     
@@ -167,7 +142,6 @@ extension CategoryViewController: UICollectionViewDelegate{
        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
         if cell.isSelected == false {
             cell.selectedView.backgroundColor = .white
-            incrementByOne()
         }
     }
 }

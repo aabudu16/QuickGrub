@@ -149,9 +149,9 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
-    lazy var randomButton:UIButton = {
+    lazy var favoriteButton:UIButton = {
         let button = UIButton(image: UIImage(named: "category")!, color: UIColor.white.cgColor)
-        button.addTarget(self, action: #selector(handleRandomPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleFavoriteButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -188,6 +188,10 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func handleCategoryPressed(){
+        
+        
+        
+        
         let categoryVC = CategoryViewController()
         let categoryVCWithNav =  UINavigationController(rootViewController: categoryVC)
         categoryVCWithNav.modalPresentationStyle = .fullScreen
@@ -207,8 +211,8 @@ class WelcomeViewController: UIViewController {
         print("Image view tapped")
     }
     
-    @objc func handleRandomPressed(){
-        print("randomButton")
+    @objc func handleFavoriteButtonPressed(){
+        print("Favorite Button")
     }
     
     @objc func handleLogout(){
@@ -227,12 +231,16 @@ class WelcomeViewController: UIViewController {
             switch button.tag{
             case 0:
                 priceTiers?.append(.oneDollarSign)
+                print(button.tag)
             case 1:
                 priceTiers?.append(.twoDollarSigns)
+                print(priceTiers)
             case 2:
                 priceTiers?.append(.threeDollarSigns)
+                print(priceTiers)
             case 3:
                 priceTiers?.append(.fourDollarSigns)
+                print(priceTiers)
             default:
                 return
             }
@@ -253,7 +261,9 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func handleUpdateButtonPressed(){
-        filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? nil, limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? true)
+        filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? nil)
+        
+        print(filterParameter!)
     }
     //MARK: Private Methods
     
@@ -347,10 +357,10 @@ class WelcomeViewController: UIViewController {
     }
     
     private func configureRandomButtonnConstraints(){
-        view.addSubview(randomButton)
+        view.addSubview(favoriteButton)
         
-        randomButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([randomButton.topAnchor.constraint(equalTo:self.categoryButton.bottomAnchor, constant: 100), randomButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20), randomButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20), randomButton.heightAnchor.constraint(equalTo: categoryButton.heightAnchor)])
+        favoriteButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([favoriteButton.topAnchor.constraint(equalTo:self.categoryButton.bottomAnchor, constant: 100), favoriteButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20), favoriteButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20), favoriteButton.heightAnchor.constraint(equalTo: categoryButton.heightAnchor)])
     }
     
     private func configureLogoutButtonConstraints(){

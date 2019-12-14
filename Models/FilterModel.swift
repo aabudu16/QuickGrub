@@ -14,4 +14,9 @@ struct FilterModel{
     let limit:Int
     let distance:Int
     let openNow:Bool?
+    
+}
+
+struct GenericParameter{
+  static let genericSettingParameter = FilterModel(sortBy: .bestMatch, price: [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: 20, distance: 2000, openNow: nil)
 }
