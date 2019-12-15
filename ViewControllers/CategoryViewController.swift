@@ -14,11 +14,7 @@ class CategoryViewController: UIViewController {
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
-    var filterParameter:FilterModel?{
-        didSet{
-            print("this is what was passed over \(filterParameter)")
-        }
-    }
+    var filterParameter:FilterModel?
     
     var mode: Mode = .view {
         didSet{
@@ -159,6 +155,10 @@ extension CategoryViewController: UICollectionViewDelegate{
         if cell.isSelected == false {
             cell.selectedView.backgroundColor = .white
         }
+        if let index = selectedCategories.firstIndex(of:CDYelpCategoryAlias.yelpCategory[indexPath.row]) {
+                   selectedCategories.remove(at: index)
+               }
+        print(selectedCategories)
     }
 }
 extension CategoryViewController: UICollectionViewDataSource{
