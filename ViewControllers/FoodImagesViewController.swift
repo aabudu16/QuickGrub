@@ -15,24 +15,37 @@ class FoodImagesViewController: UIViewController {
     }
     
     //MARK: -- CoreLocation Coordinate
-    private let locationManger = CLLocationManager()
+    private let locationManager = CLLocationManager()
+    private var currentCoordinate: CLLocationCoordinate2D?
     //MARK: UI Objects
-    var userFilteredParameter: UserFullFilterModel!
+    
+    var userSlecetedResults = [ CDYelpBusiness]()
+    var userFilteredParameter: UserFullFilterModel!{
+        didSet{
+              self.collectionView.reloadData()
+        }
+    }
     
     var locations:[CLLocation]!{
         didSet{
 
-            CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: 40.67, longitude: -73.92275, radius: 10000, categories: [.vegan, .vegetarian], locale: .english_unitedStates, limit: 10, offset: 0, sortBy: .rating, priceTiers: [.fourDollarSigns, .oneDollarSign] , openNow: nil, openAt: nil, attributes: nil) { (response) in
-                guard let response = response, let businesses = response.businesses, businesses.count > 0  else { return }
+            if let userLocation = locationManager.location?.coordinate{
+                let filter = userFilteredParameter.filterModel
+                let categories = userFilteredParameter.categories
                 
-                for busi in businesses{
-                    print(busi.toJSON())
-                    
+                CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: userLocation.latitude, longitude: userLocation.longitude, radius: filter.distance, categories: categories, locale: .english_unitedStates, limit: filter.limit, offset: 0, sortBy: filter.sortBy, priceTiers: filter.price , openNow: filter.openNow, openAt: nil, attributes: nil) { (response) in
+                    DispatchQueue.main.async {
+                           guard let response = response, let businesses = response.businesses, businesses.count > 0  else {
+                                             self.showAlert(alertTitle: "Sorry no results where found", alertMessage: "Increase your search distance in the filter and try again", actionTitle: "OK")
+                                             return }
+                                         self.userSlecetedResults = businesses
+                                         print(self.userSlecetedResults.toJSON())
+                    }
+                    }
                 }
+
             }
-            
         }
-    }
     
     lazy var collectionView:UICollectionView = {
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
@@ -81,15 +94,13 @@ class FoodImagesViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        locationManger.delegate = self
-        checkLocationAuthorization()
+        locationManager.delegate = self
+         checkLocationAuthorization()
         setupCollectionView()
         configureCollectionviewConstraints()
         configureTransparentViewConstraints()
         configureScrollDownIndicatorConstraints()
         configureScrollLabelConstraints()
-        
-        // setupLayout()
     }
     
     // MARK: objc function
@@ -99,12 +110,13 @@ class FoodImagesViewController: UIViewController {
         basicAnimation.toValue = 1
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
-        showAlert(with: "vegertarian", and: """
-    Vegetarian lifestyles are associated with a reduced
-    risk of many chronic illnesses, including heart disease,
-    many types of cancer, diabetes, high blood pressure,
-    and obesity.
-    """)
+        
+        self.showAlert(alertTitle: "vegertarian", alertMessage: """
+        Vegetarian lifestyles are associated with a reduced
+        risk of many chronic illnesses, including heart disease,
+        many types of cancer, diabetes, high blood pressure,
+        and obesity.
+        """, actionTitle: "OK")
     }
     
     // MARK: Private function
@@ -113,23 +125,25 @@ class FoodImagesViewController: UIViewController {
         let status = CLLocationManager.authorizationStatus()
         switch status{
         case .authorizedWhenInUse, .authorizedAlways:
-            locationManger.requestLocation()
-            locationManger.startUpdatingLocation()
-            locationManger.desiredAccuracy = kCLLocationAccuracyBest
+            beginLocationUpdates(locationManager: locationManager)
         case.denied:
-            self.showAlert(with: "Guick Grub has been denied acesss to your location", and: "To give permission, head to your setting and grant access")
+            self.showAlert(alertTitle: "Guick Grub has been denied acesss to your location", alertMessage: "To give permission, head to your setting and grant access", actionTitle: "OK")
         case .notDetermined:
-            locationManger.requestLocation()
+            locationManager.requestAlwaysAuthorization()
+        case .restricted:
+            self.showAlert(alertTitle: "This aop has been restricted", alertMessage: "Contact customer service to figureout next step", actionTitle: "OK")
         default:
-            locationManger.requestWhenInUseAuthorization()
+            locationManager.requestWhenInUseAuthorization()
         }
     }
     
-    private func showAlert(with title: String, and message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
+    private func beginLocationUpdates(locationManager: CLLocationManager){
+        locationManager.requestLocation()
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.startUpdatingLocation()
     }
+    
+  
     
     private func setupCollectionView(){
         collectionView.delegate = self
@@ -168,21 +182,22 @@ extension FoodImagesViewController: UICollectionViewDelegate{}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return userSlecetedResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
-        
+        let info = userSlecetedResults[indexPath.row]
         cell.foodImage.image = UIImage(systemName: "photo")
         cell.starRatings.image = UIImage(named: "fourStars")
         cell.categoryNameLabel.text = "Catergory name"
-        cell.FoodTitleLabel.text = "Food title"
+        cell.FoodTitleLabel.text = info.name
         cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
         
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.blue.cgColor)
         cell.layer.cornerRadius = 25
+        collectionView.reloadData()
         return cell
     }
     
@@ -198,7 +213,7 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
         print("Authorization status changed to \(status.rawValue)")
         switch status {
         case .authorizedAlways, .authorizedWhenInUse:
-            locationManger.requestLocation()
+            locationManager.requestLocation()
         default:
             break
         }
