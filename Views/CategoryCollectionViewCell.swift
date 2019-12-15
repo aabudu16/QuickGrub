@@ -11,19 +11,6 @@ import UIKit
 class CategoryCollectionViewCell: UICollectionViewCell {
     
     //MARK: Properties
- 
-    private enum CellState {
-        case selected
-        case deselected
-        
-        var change: CellState {
-            switch self {
-            case .selected: return .deselected
-            case .deselected: return .selected
-            }
-        }
-    }
-    
     
     //MARK: UI Objects
     lazy var checkMarkButton:UIButton = {
@@ -32,7 +19,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var categoryLabel:UILabel = {
-        let label = UILabel(textAlignment: .center, text: "sonething new")
+        let label = UILabel(textAlignment: .center, text: "")
         return label
     }()
     
@@ -41,9 +28,10 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return image
     }()
     
-    lazy var  selectedView:UIView = {
-        let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+    lazy var  selectedView:SSCheckMark = {
+        let view = SSCheckMark(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         view.layer.borderWidth = 1
+        view.backgroundColor = .white
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = view.frame.height / 2
         return view

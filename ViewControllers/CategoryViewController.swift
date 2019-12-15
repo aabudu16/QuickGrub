@@ -10,7 +10,6 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
-    
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
@@ -142,19 +141,20 @@ extension CategoryViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-        if cell.isSelected == true {
-            cell.selectedView.backgroundColor = .red
-    }
-        
+//        if cell.isSelected == true {
+//            cell.selectedView.backgroundColor = .red
+//    }
+    cell.selectedView.checked = true
         selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
         print(selectedCategories)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-        if cell.isSelected == false {
-            cell.selectedView.backgroundColor = .white
-        }
+//        if cell.isSelected == false {
+//            cell.selectedView.backgroundColor = .white
+//        }
+        cell.selectedView.checked = false
         if let index = selectedCategories.firstIndex(of:CDYelpCategoryAlias.yelpCategory[indexPath.row]) {
                    selectedCategories.remove(at: index)
                }
@@ -170,6 +170,7 @@ extension CategoryViewController: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.categoryCell.rawValue, for: indexPath) as? CategoryCollectionViewCell else {return UICollectionViewCell()}
         
         let category = CDYelpCategoryAlias.yelpCategory[indexPath.row]
+        
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
         CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 10)
