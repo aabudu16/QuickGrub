@@ -16,28 +16,26 @@ class FoodImagesViewController: UIViewController {
     
     //MARK: -- CoreLocation Coordinate
     private let locationManger = CLLocationManager()
-    private var currentCoordinate: CLLocationCoordinate2D?
-    
     //MARK: UI Objects
-    var userFilteredParameter: UserFullFilterModel!{
+    var userFilteredParameter: UserFullFilterModel!
+    
+    var locations:[CLLocation]!{
         didSet{
-            print(currentCoordinate?.latitude)
-             print(currentCoordinate?.longitude)
-//            CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: 40.7432, longitude: -73.92275, radius: 10000, categories: [.vegan, .vegetarian], locale: .english_unitedStates, limit: 10, offset: 0, sortBy: .rating, priceTiers: [.fourDollarSigns, .oneDollarSign] , openNow: nil, openAt: nil, attributes: nil) { (response) in
-//
-//            guard let response = response, let businesses = response.businesses, businesses.count > 0  else { return }
-//
-//              for busi in businesses{
-//                print(busi.toJSON())
-//
-//                }
-//            }
+
+            CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: 40.67, longitude: -73.92275, radius: 10000, categories: [.vegan, .vegetarian], locale: .english_unitedStates, limit: 10, offset: 0, sortBy: .rating, priceTiers: [.fourDollarSigns, .oneDollarSign] , openNow: nil, openAt: nil, attributes: nil) { (response) in
+                guard let response = response, let businesses = response.businesses, businesses.count > 0  else { return }
+                
+                for busi in businesses{
+                    print(busi.toJSON())
+                    
+                }
+            }
             
         }
     }
     
     lazy var collectionView:UICollectionView = {
-         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
+        let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         var layout = UPCarouselFlowLayout()
         layout.itemSize = CGSize(width: pointEstimator.relativeWidth(multiplier: 0.73333), height: pointEstimator.relativeHeight(multiplier: 0.45))
         let cv = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
@@ -84,50 +82,54 @@ class FoodImagesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManger.delegate = self
-        locationAuthorization()
+        checkLocationAuthorization()
         setupCollectionView()
         configureCollectionviewConstraints()
         configureTransparentViewConstraints()
         configureScrollDownIndicatorConstraints()
         configureScrollLabelConstraints()
         
-       // setupLayout()
+        // setupLayout()
     }
     
-     // MARK: objc function
+    // MARK: objc function
     @objc func handleFoodColorBadge(){
         
         let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
         basicAnimation.toValue = 1
         basicAnimation.duration = 2
         basicAnimation.fillMode = .forwards
-          showAlert(with: "vegertarian", and: """
+        showAlert(with: "vegertarian", and: """
     Vegetarian lifestyles are associated with a reduced
     risk of many chronic illnesses, including heart disease,
     many types of cancer, diabetes, high blood pressure,
     and obesity.
     """)
-       }
+    }
     
     // MARK: Private function
     
-    private func locationAuthorization(){
+    private func checkLocationAuthorization(){
         let status = CLLocationManager.authorizationStatus()
         switch status{
         case .authorizedWhenInUse, .authorizedAlways:
             locationManger.requestLocation()
             locationManger.startUpdatingLocation()
             locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        case.denied:
+            self.showAlert(with: "Guick Grub has been denied acesss to your location", and: "To give permission, head to your setting and grant access")
+        case .notDetermined:
+            locationManger.requestLocation()
         default:
             locationManger.requestWhenInUseAuthorization()
         }
     }
-
+    
     private func showAlert(with title: String, and message: String) {
-          let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
-          alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-          present(alertVC, animated: true, completion: nil)
-      }
+        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alertVC, animated: true, completion: nil)
+    }
     
     private func setupCollectionView(){
         collectionView.delegate = self
@@ -161,7 +163,7 @@ class FoodImagesViewController: UIViewController {
     
 }
 
- //MARK: Extensions
+//MARK: Extensions
 extension FoodImagesViewController: UICollectionViewDelegate{}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
@@ -189,19 +191,20 @@ extension FoodImagesViewController:UICollectionViewDataSource{
 extension FoodImagesViewController: CLLocationManagerDelegate{
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(" new location \(locations)")
-       }
-       
-       func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-           print("Authorization status changed to \(status.rawValue)")
-           switch status {
-           case .authorizedAlways, .authorizedWhenInUse:
-               locationManger.requestLocation()
-           default:
-               break
-           }
-       }
-       func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-           print(error)
-       }
+        self.locations = locations
+    }
+
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("Authorization status changed to \(status.rawValue)")
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManger.requestLocation()
+        default:
+            break
+        }
+    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
 }
 

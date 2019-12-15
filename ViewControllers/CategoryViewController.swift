@@ -99,6 +99,7 @@ class CategoryViewController: UIViewController {
         let userFilteredParameter = UserFullFilterModel(filterModel: filterParameter, categories: selectedCategories)
         print(userFilteredParameter)
         let foodVC = FoodImagesViewController()
+        foodVC.userFilteredParameter = userFilteredParameter
         navigationController?.pushViewController(foodVC, animated: true)
         print("continue button pressed")
     }
