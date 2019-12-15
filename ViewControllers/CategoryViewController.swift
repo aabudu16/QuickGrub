@@ -162,6 +162,7 @@ extension CategoryViewController: UICollectionViewDelegate{
                }
         print(selectedCategories)
     }
+    
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {
        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
         cell.categoryLabel.font = UIFont(name: "HoeflerText-Italic", size: 25)

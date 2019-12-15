@@ -7,12 +7,28 @@
 //
 
 import UIKit
+import CoreLocation
 
 class FoodImagesViewController: UIViewController {
     enum FoodImageIdentifier:String{
         case foodCell
     }
     //MARK: UI Objects
+    var userFilteredParameter: UserFullFilterModel!{
+        didSet{
+
+//            CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: 40.7432, longitude: -73.92275, radius: 10000, categories: [.vegan, .vegetarian], locale: .english_unitedStates, limit: 10, offset: 0, sortBy: .rating, priceTiers: [.fourDollarSigns, .oneDollarSign] , openNow: nil, openAt: nil, attributes: nil) { (response) in
+//
+//            guard let response = response, let businesses = response.businesses, businesses.count > 0  else { return }
+//
+//              for busi in businesses{
+//                print(busi.toJSON())
+//
+//                }
+//            }
+            
+        }
+    }
     
     lazy var collectionView:UICollectionView = {
          let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
@@ -135,12 +151,12 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
+        
         cell.foodImage.image = UIImage(systemName: "photo")
         cell.starRatings.image = UIImage(named: "fourStars")
         cell.categoryNameLabel.text = "Catergory name"
         cell.FoodTitleLabel.text = "Food title"
         cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
-//        cell.foodColorBadge.addTarget(self, action: #selector(handleFoodColorBadge(sender:)), for: .touchUpInside)
         
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.blue.cgColor)
         cell.layer.cornerRadius = 25
