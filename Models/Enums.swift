@@ -8,11 +8,12 @@ enum priceData:String{
     case threeDollars = "$$$"
     case fourDollars = "$$$$"
 }
-
+//MARK: Enum Cell Identifier
 enum Identifiers:String{
     case categoryCell
 }
 
+//MARK: Enum navigationBar button switch
 enum Mode{
     case view
     case select

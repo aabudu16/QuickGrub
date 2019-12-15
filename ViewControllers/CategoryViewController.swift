@@ -7,8 +7,6 @@
 //
 
 import UIKit
-//MARK: Enum Cell Identifier
-
 
 class CategoryViewController: UIViewController {
     
@@ -151,11 +149,14 @@ extension CategoryViewController: UICollectionViewDelegate{
 }
 extension CategoryViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return CDYelpCategoryAlias.yelpCategory.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.categoryCell.rawValue, for: indexPath) as? CategoryCollectionViewCell else {return UICollectionViewCell()}
+        
+        let category = CDYelpCategoryAlias.yelpCategory[indexPath.row]
+        cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
         CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 10)
         return cell
