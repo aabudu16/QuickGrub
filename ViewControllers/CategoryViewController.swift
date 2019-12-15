@@ -14,7 +14,7 @@ class CategoryViewController: UIViewController {
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
     var filterParameter:FilterModel?
-    
+
     var mode: Mode = .view {
         didSet{
             switch mode {
@@ -94,6 +94,12 @@ class CategoryViewController: UIViewController {
             self.showAlert(alertTitle: nil, alertMessage: "Please select at least one category", actionTitle: "OK")
             return
         }
+        guard let filterParameter = filterParameter else {return}
+        
+        let userFilteredParameter = UserFullFilterModel(filterModel: filterParameter, categories: selectedCategories)
+        print(userFilteredParameter)
+        let foodVC = FoodImagesViewController()
+        navigationController?.pushViewController(foodVC, animated: true)
         print("continue button pressed")
     }
     //MARK: Private Methods
@@ -141,9 +147,7 @@ extension CategoryViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-//        if cell.isSelected == true {
-//            cell.selectedView.backgroundColor = .red
-//    }
+
     cell.selectedView.checked = true
         selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
         print(selectedCategories)
@@ -151,9 +155,7 @@ extension CategoryViewController: UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-//        if cell.isSelected == false {
-//            cell.selectedView.backgroundColor = .white
-//        }
+
         cell.selectedView.checked = false
         if let index = selectedCategories.firstIndex(of:CDYelpCategoryAlias.yelpCategory[indexPath.row]) {
                    selectedCategories.remove(at: index)
