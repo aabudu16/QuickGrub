@@ -6,12 +6,16 @@
 //  Copyright © 2019 Mr Wonderful. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-struct GenericAlert{
-    static  func showAlert(with title: String, and message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+extension UIViewController {
+    func showAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
+
+        }
+
+        alert.addAction(alertAction1)
+        present(alert, animated: true, completion: nil)
     }
 }

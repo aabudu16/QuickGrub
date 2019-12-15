@@ -16,9 +16,6 @@ class CategoryViewController: UIViewController {
     var layout = UICollectionViewFlowLayout.init()
     var filterParameter:FilterModel?{
         didSet{
-            guard selectedCategories != nil else {
-                
-            }
             print("this is what was passed over \(filterParameter)")
         }
     }
@@ -98,6 +95,10 @@ class CategoryViewController: UIViewController {
     }
     
     @objc func handleContinueButtonPressed(sender:UIButton){
+        guard selectedCategories.count > 0 else {
+            self.showAlert(alertTitle: nil, alertMessage: "Please select at least one category", actionTitle: "OK")
+            return
+        }
         print("continue button pressed")
     }
     //MARK: Private Methods

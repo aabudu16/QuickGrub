@@ -237,16 +237,16 @@ class LoginViewController: UIViewController {
             return}
         
         guard userNameTextField.text != "", logoImageView.image != UIImage(named: "imagePlaceholder") else {
-            showAlert(with: "Error", and: "Please use a valid image and user name")
+            self.showAlert(alertTitle: "Error", alertMessage: "Please use a valid image and user name", actionTitle: "OK")
             return
         }
         guard let email = signupEmailTextField.text, let password = signupPasswordTextField.text else {
-            showAlert(with: "Error", and: "Please fill out all fields.")
+            self.showAlert(alertTitle: "Error", alertMessage: "Please fill out all fields.", actionTitle: "OK")
             return
         }
         
         guard let userName = userNameTextField.text, let imageURL = imageURL else {
-            showAlert(with: "Error", and: "Please use a valid image and user name")
+            self.showAlert(alertTitle: "Error", alertMessage: "Please use a valid image and user name", actionTitle: "OK")
             return
         }
         
@@ -265,17 +265,17 @@ class LoginViewController: UIViewController {
             return}
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            showAlert(with: "Error", and: "Please fill out all fields.")
+            self.showAlert(alertTitle:  "Error", alertMessage: "Please fill out all fields.", actionTitle: "OK")
             return
         }
         
         guard email.isValidEmail else {
-            showAlert(with: "Error", and: "Please enter a valid email")
+            self.showAlert(alertTitle:  "Error", alertMessage:  "Please enter a valid email", actionTitle: "OK")
             return
         }
         
         guard password.isValidPassword else {
-            showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+             self.showAlert(alertTitle:  "Error", alertMessage: "Please enter a valid password. Passwords must have at least 8 characters.", actionTitle: "OK")
             return
         }
         
@@ -411,19 +411,17 @@ class LoginViewController: UIViewController {
                             
                             switch updateUser{
                             case .failure(let error):
-                                self?.showAlert(with: "Error", and: "Problem updating your information. please try again.. Error \(error)")
+                                self?.showAlert(alertTitle:  "Error", alertMessage:  "Problem updating your information. please try again.. Error \(error)", actionTitle: "OK")
                             case .success():
                                 self?.setSceneDelegateInitialVC(with: result )
                             }
                         }
-                        
-                        
                         //stop activity indicator
                         self?.transparentView.isHidden = true
                         print(self?.userName)
                         print(self?.imageURL?.absoluteString)
                     case .failure(let error):
-                        self?.showAlert(with: "Error", and: "It seem your image or user name was not save. Please input a valid  user name, check your image format and try again")
+                        self?.showAlert(alertTitle:  "Error", alertMessage:  "It seem your image or user name was not save. Please input a valid  user name, check your image format and try again", actionTitle: "OK")
                         self?.transparentView.isHidden = true
                         print(error)
                         return
@@ -433,7 +431,7 @@ class LoginViewController: UIViewController {
                 self?.view.backgroundColor = .green
             }
         case .failure(let error):
-            self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+            self.showAlert(alertTitle: "Error creating user", alertMessage: "An error occured while creating new account \(error)", actionTitle: "OK")
         }
     }
     
@@ -457,7 +455,7 @@ class LoginViewController: UIViewController {
                 
                 
             case .failure(let error):
-                self?.showAlert(with: "Error Creating User", and: error.localizedDescription)
+                self?.showAlert(alertTitle: "Error Creating User", alertMessage: error.localizedDescription, actionTitle: "OK")
             }
             
         }
@@ -481,11 +479,11 @@ class LoginViewController: UIViewController {
                     window.rootViewController = WelcomeViewController()
                     
                 } else {
-                    self.showAlert(with: "Error", and: "Account does not exist")
+                    self.showAlert(alertTitle: "Error", alertMessage: "Account does not exist", actionTitle: "OK")
                 }
             }, completion: nil)
         case .failure(let error):
-            self.showAlert(with: "Invalid Entry", and: error.localizedDescription)
+            self.showAlert(alertTitle: "Invalid Entry", alertMessage: error.localizedDescription, actionTitle: "OK")
         }
     }
     
@@ -511,11 +509,6 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func showAlert(with title: String, and message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
     
     private func setLoginObjectViewsVisible(enable:Bool){
         switch enable{
