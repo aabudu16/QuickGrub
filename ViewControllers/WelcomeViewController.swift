@@ -266,6 +266,12 @@ class WelcomeViewController: UIViewController {
         filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? nil)
         
         print(filterParameter!)
+        UIView.animate(withDuration: 0.3, animations: {
+                   self.deemView.alpha = 0
+                   self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight)
+               }, completion: { (_) in
+                   self.deemView.removeFromSuperview()
+               })
     }
     //MARK: Private Methods
     
@@ -383,7 +389,7 @@ class WelcomeViewController: UIViewController {
         view.addSubview(filterMenuView)
         filterMenuView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -400), filterMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor), filterMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor), filterMenuView.heightAnchor.constraint(equalToConstant: filterMenuHeight)])
+        NSLayoutConstraint.activate([filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 0), filterMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor), filterMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor), filterMenuView.heightAnchor.constraint(equalToConstant: filterMenuHeight)])
     }
     
     private func configureFilterLabelConstraints(){

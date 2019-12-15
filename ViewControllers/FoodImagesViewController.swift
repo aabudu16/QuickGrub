@@ -13,10 +13,16 @@ class FoodImagesViewController: UIViewController {
     enum FoodImageIdentifier:String{
         case foodCell
     }
+    
+    //MARK: -- CoreLocation Coordinate
+    private let locationManger = CLLocationManager()
+    private var currentCoordinate: CLLocationCoordinate2D?
+    
     //MARK: UI Objects
     var userFilteredParameter: UserFullFilterModel!{
         didSet{
-
+            print(currentCoordinate?.latitude)
+             print(currentCoordinate?.longitude)
 //            CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: 40.7432, longitude: -73.92275, radius: 10000, categories: [.vegan, .vegetarian], locale: .english_unitedStates, limit: 10, offset: 0, sortBy: .rating, priceTiers: [.fourDollarSigns, .oneDollarSign] , openNow: nil, openAt: nil, attributes: nil) { (response) in
 //
 //            guard let response = response, let businesses = response.businesses, businesses.count > 0  else { return }
@@ -77,6 +83,8 @@ class FoodImagesViewController: UIViewController {
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        locationManger.delegate = self
+        locationAuthorization()
         setupCollectionView()
         configureCollectionviewConstraints()
         configureTransparentViewConstraints()
@@ -102,6 +110,19 @@ class FoodImagesViewController: UIViewController {
        }
     
     // MARK: Private function
+    
+    private func locationAuthorization(){
+        let status = CLLocationManager.authorizationStatus()
+        switch status{
+        case .authorizedWhenInUse, .authorizedAlways:
+            locationManger.requestLocation()
+            locationManger.startUpdatingLocation()
+            locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        default:
+            locationManger.requestWhenInUseAuthorization()
+        }
+    }
+
     private func showAlert(with title: String, and message: String) {
           let alertVC = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
           alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
@@ -165,4 +186,22 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     
 }
 
+extension FoodImagesViewController: CLLocationManagerDelegate{
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(" new location \(locations)")
+       }
+       
+       func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+           print("Authorization status changed to \(status.rawValue)")
+           switch status {
+           case .authorizedAlways, .authorizedWhenInUse:
+               locationManger.requestLocation()
+           default:
+               break
+           }
+       }
+       func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+           print(error)
+       }
+}
 
