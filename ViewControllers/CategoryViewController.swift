@@ -10,10 +10,15 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
+    
+    var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
     var filterParameter:FilterModel?{
         didSet{
+            guard selectedCategories != nil else {
+                
+            }
             print("this is what was passed over \(filterParameter)")
         }
     }
@@ -58,7 +63,8 @@ class CategoryViewController: UIViewController {
     
     lazy var continueButton:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "continueButton"), for: .normal)
+        button.setImage(UIImage(named: "icons8-chevron-left-30"), for: .normal)
+        button.addTarget(self, action: #selector(handleContinueButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -89,6 +95,10 @@ class CategoryViewController: UIViewController {
     
     @objc func handleResetButtonPressed(_ sender:UIBarButtonItem){
         mode = mode == .view ? .select: .view
+    }
+    
+    @objc func handleContinueButtonPressed(sender:UIButton){
+        print("continue button pressed")
     }
     //MARK: Private Methods
     
@@ -138,6 +148,9 @@ extension CategoryViewController: UICollectionViewDelegate{
         if cell.isSelected == true {
             cell.selectedView.backgroundColor = .red
     }
+        
+        selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
+        print(selectedCategories)
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {

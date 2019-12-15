@@ -43,6 +43,7 @@
 		854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */; };
 		854D6D5B23A43224001BD091 /* FilterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D5A23A43224001BD091 /* FilterModel.swift */; };
 		854D6D5D23A51B13001BD091 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D5C23A51B13001BD091 /* Enums.swift */; };
+		854D6D5F23A5DF3D001BD091 /* GenericAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */; };
 		8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */; };
 		8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */; };
 		858A983F2384319A0051AF45 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A983E2384319A0051AF45 /* AppDelegate.swift */; };
@@ -124,6 +125,7 @@
 		854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpFusionKitManager.swift; sourceTree = "<group>"; };
 		854D6D5A23A43224001BD091 /* FilterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterModel.swift; sourceTree = "<group>"; };
 		854D6D5C23A51B13001BD091 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericAlert.swift; sourceTree = "<group>"; };
 		8564EB3C239BF95D009AE8B5 /* UPCarouselFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UPCarouselFlowLayout.swift; sourceTree = "<group>"; };
 		8564EB3F239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelativeLayoutUtilityClass.swift; sourceTree = "<group>"; };
 		858A983B2384319A0051AF45 /* Quick-Grub2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Quick-Grub2.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -251,6 +253,7 @@
 			children = (
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
 				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
+				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
 				854D6D1323A28E76001BD091 /* Yelp DataSource */,
 				85F92A5B23902DD800048FCB /* Models */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
@@ -599,6 +602,7 @@
 				854D6D4823A28E76001BD091 /* CDYelpEnums.swift in Sources */,
 				85F92A5F23902DD900048FCB /* Post.swift in Sources */,
 				854D6D3F23A28E76001BD091 /* CDYelpBusiness.swift in Sources */,
+				854D6D5F23A5DF3D001BD091 /* GenericAlert.swift in Sources */,
 				858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */,
 				85F92A5E23902DD900048FCB /* UserProfile.swift in Sources */,
 				854D6D4423A28E76001BD091 /* CDImage+CDYelpFusionKit.swift in Sources */,
