@@ -149,7 +149,7 @@ extension CategoryViewController: UICollectionViewDelegate{
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
 
-    cell.selectedView.checked = true
+       cell.selectedView.checked = true
         selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
         print(selectedCategories)
     }
@@ -188,6 +188,12 @@ extension CategoryViewController: UICollectionViewDataSource{
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
         CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 10)
+        
+        if selectedCategories.contains(category){
+          cell.selectedView.checked = true
+        }else {
+           cell.selectedView.checked = false
+        }
         return cell
     }
 }

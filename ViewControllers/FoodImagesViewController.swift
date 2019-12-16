@@ -17,6 +17,7 @@ class FoodImagesViewController: UIViewController {
     //MARK: -- CoreLocation Coordinate
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
+    var indexPath:IndexPath!
     //MARK: UI Objects
 
     var userSlecetedResults = [ CDYelpBusiness](){
@@ -102,11 +103,11 @@ class FoodImagesViewController: UIViewController {
 
     // MARK: objc function
     @objc func handleFoodColorBadge(){
-
-        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        basicAnimation.toValue = 1
-        basicAnimation.duration = 2
-        basicAnimation.fillMode = .forwards
+   let info = userSlecetedResults[indexPath.row]
+        
+        for category in info.categories!{
+            print(category.title)
+                 }
 
         self.showAlert(alertTitle: "vegertarian", alertMessage: """
         Vegetarian lifestyles are associated with a reduced
@@ -186,7 +187,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
-
+        self.indexPath = indexPath
         let info = userSlecetedResults[indexPath.row]
         
         ImageHelper.shared.getImage(url: info.imageUrl!) { (result) in
@@ -226,7 +227,15 @@ extension FoodImagesViewController:UICollectionViewDataSource{
             
         }
         
-        cell.categoryNameLabel.text = "Catergory name"
+//        let userCategories = userFilteredParameter.categories
+//        for category in info.categories!{
+//            for selectedCategory in userCategories{
+//                print(selectedCategory.rawValue)
+//                print(category.toJSON())
+//            }
+//        }
+       
+    
         cell.FoodTitleLabel.text = info.name
         cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
 
