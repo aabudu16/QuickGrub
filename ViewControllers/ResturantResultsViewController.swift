@@ -98,8 +98,7 @@ extension ResturantResultsViewController: UITableViewDelegate{
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { () -> Void in
             tableView.beginUpdates()
             tableView.endUpdates()
-            
-            // fix https://github.com/Ramotion/folding-cell/issues/169
+        
             if cell.frame.maxY > tableView.frame.maxY {
                 tableView.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.bottom, animated: true)
             }

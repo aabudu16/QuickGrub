@@ -64,6 +64,8 @@
 		858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987C2386D8820051AF45 /* FoodImagesViewController.swift */; };
 		858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */; };
 		858A988823885D0C0051AF45 /* scrollDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A988723885D0C0051AF45 /* scrollDownGif.gif */; };
+		859A29A923A7CF95005F8173 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29A823A7CF95005F8173 /* ImageHelper.swift */; };
+		859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29AB23A7D0A5005F8173 /* AppError.swift */; };
 		85F92A48239015C400048FCB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A47239015C400048FCB /* Secrets.swift */; };
 		85F92A53239029AF00048FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F92A52239029AF00048FCB /* GoogleService-Info.plist */; };
 		85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */; };
@@ -151,6 +153,8 @@
 		858A987C2386D8820051AF45 /* FoodImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesViewController.swift; sourceTree = "<group>"; };
 		858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSellectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A988723885D0C0051AF45 /* scrollDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrollDownGif.gif; sourceTree = "<group>"; };
+		859A29A823A7CF95005F8173 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
+		859A29AB23A7D0A5005F8173 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -261,6 +265,7 @@
 				858A9869238435F90051AF45 /* Custom Extensions */,
 				858A9877238486480051AF45 /* Views */,
 				858A9860238433160051AF45 /* ViewControllers */,
+				859A29AA23A7CFC0005F8173 /* Network Helper */,
 				85F92A5423902D9B00048FCB /* Firebase */,
 				858A987223844A890051AF45 /* Custom Class */,
 				858A98542384319D0051AF45 /* Quick-Grub2Tests */,
@@ -352,6 +357,15 @@
 				858A987323844BAD0051AF45 /* loader.gif */,
 			);
 			path = "GIF animation folder";
+			sourceTree = "<group>";
+		};
+		859A29AA23A7CFC0005F8173 /* Network Helper */ = {
+			isa = PBXGroup;
+			children = (
+				859A29AB23A7D0A5005F8173 /* AppError.swift */,
+				859A29A823A7CF95005F8173 /* ImageHelper.swift */,
+			);
+			path = "Network Helper";
 			sourceTree = "<group>";
 		};
 		85F92A5423902D9B00048FCB /* Firebase */ = {
@@ -559,6 +573,7 @@
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
 				854D6D5023A28E76001BD091 /* CDYelpRegion.swift in Sources */,
+				859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */,
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
@@ -580,6 +595,7 @@
 				854D6D4123A28E76001BD091 /* CDYelpCategoriesResponse.swift in Sources */,
 				854D6D3D23A28E76001BD091 /* CDColor.swift in Sources */,
 				854D6D4E23A28E76001BD091 /* CDYelpBusinessResponse.swift in Sources */,
+				859A29A923A7CF95005F8173 /* ImageHelper.swift in Sources */,
 				858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */,
 				854D6D3E23A28E76001BD091 /* CDYelpOpen.swift in Sources */,
 				854D6D4523A28E76001BD091 /* Parameters+CDYelpFusionKit.swift in Sources */,
