@@ -187,8 +187,7 @@ extension CategoryViewController: UICollectionViewDataSource{
         
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
-        CustomLayer.shared.createCustomlayer(layer: cell.layer, cornerRadius: 10)
-        
+        cell.layer.setCustomLayer(radius: 10)
         if selectedCategories.contains(category){
           cell.selectedView.checked = true
         }else {

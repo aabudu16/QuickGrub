@@ -28,8 +28,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     lazy var categoryNameLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Verdana-Bold", size: 18)
-        //        label.layer.borderColor = UIColor.black.cgColor
-        //        label.layer.borderWidth = 1
+        label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         return label
     }()

@@ -40,7 +40,22 @@ extension UIButton{
     }
 }
 
+//MARK: -- UILayer Extension
 
+extension CALayer{
+  func setCustomLayer(radius:CGFloat){
+                 cornerRadius = radius
+                  borderWidth = 2
+                  borderColor = UIColor.black.cgColor
+                  masksToBounds = true
+                  shadowColor = UIColor.black.cgColor
+                  shadowOffset = CGSize(width: 0, height: 5.0)
+                  shadowRadius = 20.0
+                  shadowOpacity = 0.5
+                  masksToBounds = false
+        }
+  
+}
 
 //MARK: UITextField extension
 extension UITextField {

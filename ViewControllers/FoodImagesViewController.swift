@@ -44,6 +44,7 @@ class FoodImagesViewController: UIViewController {
             }
         }
     
+    
     lazy var collectionView:UICollectionView = {
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         var layout = UPCarouselFlowLayout()
@@ -187,6 +188,9 @@ extension FoodImagesViewController:UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
+        
+        var categoryList:String = ""
+        
         self.indexPath = indexPath
         let info = userSlecetedResults[indexPath.row]
         
@@ -227,19 +231,17 @@ extension FoodImagesViewController:UICollectionViewDataSource{
             
         }
         
-//        let userCategories = userFilteredParameter.categories
-//        for category in info.categories!{
-//            for selectedCategory in userCategories{
-//                print(selectedCategory.rawValue)
-//                print(category.toJSON())
-//            }
-//        }
-       
+        for category in info.categories!{
+            if let category = category.title{
+                categoryList += "\(category) "
+            }
+        }
     
+        cell.categoryNameLabel.text = categoryList
         cell.FoodTitleLabel.text = info.name
         cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
 
-        CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.blue.cgColor)
+        CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
         cell.layer.cornerRadius = 25
         return cell
     }
