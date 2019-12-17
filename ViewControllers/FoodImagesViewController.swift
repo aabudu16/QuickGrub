@@ -19,7 +19,21 @@ class FoodImagesViewController: UIViewController {
     let checkmark = UIImage(systemName: "checkmark")
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
-    var userFoodImageSelection = [ CDYelpBusiness]()
+    var userFoodImageSelection = [ CDYelpBusiness](){
+        didSet{
+            if userFoodImageSelection.count > 0 {
+                UIView.animate(withDuration: 0.5) {
+                    self.continueButtom.alpha = 1
+                    self.continueButtom.isEnabled = true
+                }
+            }else{
+                UIView.animate(withDuration: 0.5) {
+                    self.continueButtom.alpha = 0
+                    self.continueButtom.isEnabled = false
+                }
+            }
+        }
+    }
     //MARK: UI Objects
     
     var userCategorySlecetedResults = [ CDYelpBusiness](){
@@ -140,6 +154,7 @@ class FoodImagesViewController: UIViewController {
     
     // MARK: objc function
     @objc func handleContinueButtonPressed(sender:UIButton){
+       // if userFoodImageSelection
         print("continue button pressed")
     }
     
