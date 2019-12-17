@@ -17,7 +17,6 @@ class FoodImagesViewController: UIViewController {
     //MARK: -- CoreLocation Coordinate
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
-    var indexPath:IndexPath!
     var userFoodImageSelection = [ CDYelpBusiness]()
     //MARK: UI Objects
 
@@ -110,13 +109,13 @@ class FoodImagesViewController: UIViewController {
     }
 
     // MARK: objc function
-    @objc func handleFoodColorBadge(){
-        let info = userCategorySlecetedResults[indexPath.item]
-        userFoodImageSelection.append(info)
-        print(userFoodImageSelection)
-        
-        
-    }
+//    @objc func handleFoodColorBadge(){
+//         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
+//        let info = userCategorySlecetedResults[indexPath.item]
+//
+//        userFoodImageSelection.append(info)
+//        print(info.categories!)
+//    }
 
     // MARK: Private function
     
@@ -196,8 +195,8 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
         var categoryList:String = ""
-        
-        self.indexPath = indexPath
+        cell.delegate = self
+        cell.foodColorBadge.tag = indexPath.item
         let info = userCategorySlecetedResults[indexPath.row]
         
         ImageHelper.shared.getImage(url: info.imageUrl!) { (result) in
@@ -245,7 +244,6 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     
         cell.categoryNameLabel.text = categoryList
         cell.FoodTitleLabel.text = info.name
-        cell.foodColorBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleFoodColorBadge)))
 
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
         cell.layer.cornerRadius = 25
@@ -274,3 +272,13 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
     }
 }
 
+extension FoodImagesViewController: CollectionViewCellDelegate{
+    func addSelectedFood(tag: Int) {
+         let info = userCategorySlecetedResults[tag]
+        
+        userFoodImageSelection.append(info)
+        print(tag)
+    }
+    
+    
+}

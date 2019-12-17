@@ -8,8 +8,12 @@
 
 import UIKit
 
+protocol CollectionViewCellDelegate: AnyObject {
+    func addSelectedFood(tag: Int)
+}
+
 class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
-    
+    weak var delegate: CollectionViewCellDelegate?
     let shapeLayer = CAShapeLayer()
     //MARK: UI Objects
     lazy var  foodImage:UIImageView = {
@@ -47,6 +51,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         view.layer.borderColor = UIColor.lightGray.cgColor
         view.alpha = 1
         view.backgroundColor = .blue
+        view.addTarget(self, action: #selector(handleFoodColorBadgePressed(sender:)), for: .touchUpInside)
         return view
     }()
     
@@ -68,8 +73,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }
     
     
-    @objc func handleTap(){
-        print("tapped")
+    @objc func handleFoodColorBadgePressed(sender:UIButton){
+        delegate?.addSelectedFood(tag: sender.tag)
     }
    
     func createPulse(){
