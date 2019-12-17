@@ -18,9 +18,10 @@ class FoodImagesViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     var indexPath:IndexPath!
+    var userFoodImageSelection = [ CDYelpBusiness]()
     //MARK: UI Objects
 
-    var userSlecetedResults = [ CDYelpBusiness](){
+    var userCategorySlecetedResults = [ CDYelpBusiness](){
         didSet{
               self.collectionView.reloadData()
         }
@@ -38,7 +39,7 @@ class FoodImagesViewController: UIViewController {
                            guard let response = response, let businesses = response.businesses, businesses.count > 0  else {
                                              self.showAlert(alertTitle: "Sorry no results where found", alertMessage: "Increase your search distance in the filter and try again", actionTitle: "OK")
                                              return }
-                                         self.userSlecetedResults = businesses
+                                         self.userCategorySlecetedResults = businesses
                     }
                 }
             }
@@ -54,7 +55,7 @@ class FoodImagesViewController: UIViewController {
         spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30)
         layout.scrollDirection = .horizontal
         cv.register(FoodImagesSellectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
-        cv.backgroundColor = .white
+        cv.backgroundColor = .clear
         return cv
     }()
 
@@ -88,6 +89,11 @@ class FoodImagesViewController: UIViewController {
         return label
     }()
 
+    lazy var backgroundImageView:UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "swipePageImage")
+        return image
+    }()
 
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -96,26 +102,20 @@ class FoodImagesViewController: UIViewController {
         locationManager.delegate = self
          checkLocationAuthorization()
         setupCollectionView()
+        configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-        configureTransparentViewConstraints()
-        configureScrollDownIndicatorConstraints()
-        configureScrollLabelConstraints()
+       // configureTransparentViewConstraints()
+       // configureScrollDownIndicatorConstraints()
+       // configureScrollLabelConstraints()
     }
 
     // MARK: objc function
     @objc func handleFoodColorBadge(){
-   let info = userSlecetedResults[indexPath.row]
+        let info = userCategorySlecetedResults[indexPath.item]
+        userFoodImageSelection.append(info)
+        print(userFoodImageSelection)
         
-        for category in info.categories!{
-            print(category.title)
-                 }
-
-        self.showAlert(alertTitle: "vegertarian", alertMessage: """
-        Vegetarian lifestyles are associated with a reduced
-        risk of many chronic illnesses, including heart disease,
-        many types of cancer, diabetes, high blood pressure,
-        and obesity.
-        """, actionTitle: "OK")
+        
     }
 
     // MARK: Private function
@@ -158,6 +158,12 @@ class FoodImagesViewController: UIViewController {
         NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: pointEstimator.relativeHeight(multiplier: 0.1754)), collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor), collectionView.heightAnchor.constraint(equalToConstant: pointEstimator.relativeHeight(multiplier: 0.6887))])
     }
 
+    private func configureBackgroundImageViewConstraints(){
+        view.addSubview(backgroundImageView)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([backgroundImageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+      }
+    
     private func configureTransparentViewConstraints(){
         self.view.addSubview(transparentView)
         transparentView.translatesAutoresizingMaskIntoConstraints = false
@@ -183,7 +189,7 @@ extension FoodImagesViewController: UICollectionViewDelegate{}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userSlecetedResults.count
+        return userCategorySlecetedResults.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -192,7 +198,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         var categoryList:String = ""
         
         self.indexPath = indexPath
-        let info = userSlecetedResults[indexPath.row]
+        let info = userCategorySlecetedResults[indexPath.row]
         
         ImageHelper.shared.getImage(url: info.imageUrl!) { (result) in
             switch result{

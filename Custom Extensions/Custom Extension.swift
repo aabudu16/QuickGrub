@@ -54,7 +54,6 @@ extension CALayer{
                   shadowOpacity = 0.5
                   masksToBounds = false
         }
-  
 }
 
 //MARK: UITextField extension
@@ -105,7 +104,7 @@ struct CustomLayer{
     func createCustomlayers(layer:CALayer, cornerRadius:CGFloat, backgroundColor:CGColor){
         layer.cornerRadius = cornerRadius
         layer.borderWidth = 2
-        layer.borderColor = UIColor.black.cgColor
+        layer.borderColor = UIColor.white.cgColor
         layer.masksToBounds = true
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 5.0)
