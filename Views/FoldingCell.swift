@@ -594,6 +594,7 @@ open class FoldingCell: UITableViewCell {
 extension FoldingCell: MKMapViewDelegate{
     // Do something here with maps
 }
+
 // MARK: RotatedView
 
 open class RotatedView: UIView {
@@ -615,17 +616,10 @@ open class RotatedView: UIView {
         self.addSubview(view)
         backView = view
         
-        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height,
-                                              multiplier: 1, constant: height))
-        
-        self.addConstraints([
-            NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1,
-                               constant: self.bounds.size.height - height + height / 2),
-            NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading,
-                               multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing,
-                               multiplier: 1, constant: 0),
-        ])
+        view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: height))
+        self.addConstraints([ NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: self.bounds.size.height - height + height / 2), NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
+                              
+            NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)])
     }
 }
 

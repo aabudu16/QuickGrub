@@ -106,18 +106,21 @@ class FoodImagesViewController: UIViewController {
     }()
     
     lazy var continueButtom:UIButton = {
-         let button = UIButton()
-         button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
-         button.layer.cornerRadius = 20
-         button.clipsToBounds = true
-         button.backgroundColor = .black
-         button.layer.shadowColor = UIColor.black.cgColor
-         button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-         button.layer.shadowRadius = 20.0
-         button.layer.shadowOpacity = 0.5
-         button.layer.masksToBounds = false
-         return button
-     }()
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
+        button.layer.cornerRadius = 25
+        button.clipsToBounds = true
+        button.backgroundColor = .black
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+        button.layer.shadowRadius = 20.0
+        button.layer.shadowOpacity = 0.5
+        button.layer.masksToBounds = false
+        button.alpha = 0
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(handleContinueButtonPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: Lifecycle
     override func viewDidLoad() {
@@ -132,10 +135,13 @@ class FoodImagesViewController: UIViewController {
         // configureScrollDownIndicatorConstraints()
         // configureScrollLabelConstraints()
         constraintsActivityIndicatorConstraints()
+        configureContinueButtomConstraints()
     }
     
     // MARK: objc function
-    
+    @objc func handleContinueButtonPressed(sender:UIButton){
+        print("continue button pressed")
+    }
     
     // MARK: Private function
     
@@ -160,8 +166,6 @@ class FoodImagesViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
-    
-    
     
     private func setupCollectionView(){
         collectionView.delegate = self
@@ -207,6 +211,13 @@ class FoodImagesViewController: UIViewController {
         
         NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor),activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
+    
+    private func configureContinueButtomConstraints(){
+        view.addSubview(continueButtom)
+        continueButtom.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([continueButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20), continueButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20), continueButtom.heightAnchor.constraint(equalToConstant: 50), continueButtom.widthAnchor.constraint(equalTo: continueButtom.heightAnchor)])
+    }
 }
 
 //MARK: Extensions
@@ -214,9 +225,9 @@ extension FoodImagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
-         let info = userCategorySlecetedResults[indexPath.row]
+        let info = userCategorySlecetedResults[indexPath.row]
         
-//  Handle button clicked and appending to array
+        //  Handle button clicked and appending to array
     }
 }
 
@@ -284,9 +295,9 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         if userFoodImageSelection.contains(info){
             cell.itemIsSelected = true
-               }else {
+        }else {
             cell.itemIsSelected = false
-               }
+        }
         return cell
     }
     
@@ -315,19 +326,19 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func addSelectedFood(tag: Int) {
         let info = userCategorySlecetedResults[tag]
-               guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
         
-                if cell.itemIsSelected == false{
-                    print(tag)
-                     userFoodImageSelection.append(info)
-                    print("Amount \(userFoodImageSelection.count)")
-                      cell.itemIsSelected = true
-                }else{
-                     print("Take care of deleting from array at that index")
-                    cell.itemIsSelected = false
-        
-        
-                }
+        if cell.itemIsSelected == false{
+            print(tag)
+            userFoodImageSelection.append(info)
+            print("Amount \(userFoodImageSelection.count)")
+            cell.itemIsSelected = true
+        }else{
+            print("Take care of deleting from array at that index")
+            cell.itemIsSelected = false
+            
+            
+        }
         
     }
     
