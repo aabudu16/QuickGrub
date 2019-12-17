@@ -105,6 +105,20 @@ class FoodImagesViewController: UIViewController {
         return av
     }()
     
+    lazy var continueButtom:UIButton = {
+         let button = UIButton()
+         button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
+         button.layer.cornerRadius = 20
+         button.clipsToBounds = true
+         button.backgroundColor = .black
+         button.layer.shadowColor = UIColor.black.cgColor
+         button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
+         button.layer.shadowRadius = 20.0
+         button.layer.shadowOpacity = 0.5
+         button.layer.masksToBounds = false
+         return button
+     }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -202,15 +216,7 @@ extension FoodImagesViewController: UICollectionViewDelegate{
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
          let info = userCategorySlecetedResults[indexPath.row]
         
-//        if cell.itemIsSelected == false{
-//            userFoodImageSelection.append(info)
-//            print(userFoodImageSelection.count)
-//            cell.itemIsSelected = true
-//        }else{
-//            print("tag")
-//            cell.itemIsSelected = false
-//
-//        }
+//  Handle button clicked and appending to array
     }
 }
 
@@ -277,10 +283,8 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         activityIndicator.stopAnimating()
         
         if userFoodImageSelection.contains(info){
-           // cell.foodColorBadge.imageView?.image = checkmark
             cell.itemIsSelected = true
                }else {
-                 // cell.foodColorBadge.imageView?.image = plus
             cell.itemIsSelected = false
                }
         return cell
@@ -317,13 +321,10 @@ extension FoodImagesViewController: CollectionViewCellDelegate{
                     print(tag)
                      userFoodImageSelection.append(info)
                     print("Amount \(userFoodImageSelection.count)")
-//                    cell.foodColorBadge.imageView?.image = checkmark
                       cell.itemIsSelected = true
-        
                 }else{
-                     print("tag")
+                     print("Take care of deleting from array at that index")
                     cell.itemIsSelected = false
-//                    cell.foodColorBadge.imageView?.image = plus
         
         
                 }

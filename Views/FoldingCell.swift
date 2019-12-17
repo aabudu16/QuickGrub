@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-/// UITableViewCell with folding animation
+// UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
     
     var foregroundViewTop:NSLayoutConstraint!
@@ -19,13 +19,13 @@ open class FoldingCell: UITableViewCell {
     var animationItemViews: [RotatedView]?
     @objc open var isUnfolded = false
     
-    ///  the number of folding elements. Default 2
+    //  the number of folding elements. Default 2
     @IBInspectable open var itemCount: NSInteger = 4
     
-    /// The color of the back cell
+    // The color of the back cell
     @IBInspectable open var backViewColor: UIColor = UIColor.lightGray
     
-    /// UIView whitch display when cell is open
+    // UIView whitch display when cell is open
     lazy var containerView:UIView = {
         let container = UIView()
         container.backgroundColor = .white
@@ -41,8 +41,6 @@ open class FoldingCell: UITableViewCell {
     
     lazy var resturantName:UILabel = {
         let label = UILabel()
-//        label.layer.borderColor = UIColor.black.cgColor
-//        label.layer.borderWidth = 1
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.text = "Pasteles Del Caribe"
@@ -51,8 +49,6 @@ open class FoldingCell: UITableViewCell {
     
     lazy var addressTextView:UITextView = {
         let tv = UITextView()
-//                tv.layer.borderColor = UIColor.black.cgColor
-//                tv.layer.borderWidth = 1
         tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.textAlignment = .left
@@ -64,8 +60,6 @@ open class FoldingCell: UITableViewCell {
     
     lazy var openOrCloseLabel:UILabel = {
         let label = UILabel()
-//                label.layer.borderColor = UIColor.black.cgColor
-//                 label.layer.borderWidth = 1
         label.font = UIFont(name: "Avenir-Black", size: 18)
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
@@ -75,8 +69,6 @@ open class FoldingCell: UITableViewCell {
     
     lazy var resturantPhoneNumber:UILabel = {
         let label = UILabel()
-//                label.layer.borderColor = UIColor.black.cgColor
-//                label.layer.borderWidth = 1
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 20)
         label.text = "☎: 71845145200"
@@ -85,8 +77,6 @@ open class FoldingCell: UITableViewCell {
     
     lazy var moreDetailButton:UIButton = {
         let button = UIButton()
-//                button.layer.borderColor = UIColor.black.cgColor
-//                button.layer.borderWidth = 1
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
         return button
     }()
@@ -112,7 +102,7 @@ open class FoldingCell: UITableViewCell {
         return map
     }()
     
-    /// UIView whitch display when cell close
+    // UIView whitch display when cell close
     lazy var foregroundView:RotatedView! = {
         let foreground = RotatedView()
         foreground.backgroundColor = .white
