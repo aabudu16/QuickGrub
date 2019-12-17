@@ -40,6 +40,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     lazy var FoodTitleLabel:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
         return label
     }()
     
@@ -133,7 +135,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     private func configureFoodTitleConstraints(){
         self.addSubview(FoodTitleLabel)
         FoodTitleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([FoodTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), FoodTitleLabel.trailingAnchor.constraint(equalTo: self.starRatings.leadingAnchor), FoodTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5), FoodTitleLabel.heightAnchor.constraint(equalToConstant: 25)])
+        NSLayoutConstraint.activate([FoodTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), FoodTitleLabel.trailingAnchor.constraint(equalTo: self.starRatings.leadingAnchor), FoodTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5), FoodTitleLabel.topAnchor.constraint(equalTo: foodImage.bottomAnchor)])
     }
     
     private func configureFoodColorBadgeConstraints(){

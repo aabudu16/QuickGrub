@@ -13,36 +13,36 @@ class FoodImagesViewController: UIViewController {
     enum FoodImageIdentifier:String{
         case foodCell
     }
-
+    
     //MARK: -- CoreLocation Coordinate
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     var userFoodImageSelection = [ CDYelpBusiness]()
     //MARK: UI Objects
-
+    
     var userCategorySlecetedResults = [ CDYelpBusiness](){
         didSet{
-              self.collectionView.reloadData()
+            self.collectionView.reloadData()
         }
     }
     var userFilteredParameter: UserFullFilterModel!
-
+    
     var locations:[CLLocation]!{
         didSet{
-
+            
             if let userLocation = locationManager.location?.coordinate{
                 let filter = userFilteredParameter.filterModel
                 let categories = userFilteredParameter.categories
-
+                
                 CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: userLocation.latitude, longitude: userLocation.longitude, radius: filter.distance, categories: categories, locale: .english_unitedStates, limit: filter.limit, offset: 0, sortBy: filter.sortBy, priceTiers: filter.price , openNow: filter.openNow, openAt: nil, attributes: nil) { (response) in
-                           guard let response = response, let businesses = response.businesses, businesses.count > 0  else {
-                                             self.showAlert(alertTitle: "Sorry no results where found", alertMessage: "Increase your search distance in the filter and try again", actionTitle: "OK")
-                                             return }
-                                         self.userCategorySlecetedResults = businesses
-                    }
+                    guard let response = response, let businesses = response.businesses, businesses.count > 0  else {
+                        self.showAlert(alertTitle: "Sorry no results where found", alertMessage: "Increase your search distance in the filter and try again", actionTitle: "OK")
+                        return }
+                    self.userCategorySlecetedResults = businesses
                 }
             }
         }
+    }
     
     
     lazy var collectionView:UICollectionView = {
@@ -57,7 +57,7 @@ class FoodImagesViewController: UIViewController {
         cv.backgroundColor = .clear
         return cv
     }()
-
+    
     lazy var transparentView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.layer.cornerRadius = 10
@@ -67,7 +67,7 @@ class FoodImagesViewController: UIViewController {
         tv.isUserInteractionEnabled = false
         return tv
     }()
-
+    
     lazy var scrollDownIndicator:UIImageView = {
         let gifImage = UIImageView()
         gifImage.contentMode = .scaleAspectFit
@@ -76,7 +76,7 @@ class FoodImagesViewController: UIViewController {
         gifImage.loadGif(name: "scrollDownGif")
         return gifImage
     }()
-
+    
     lazy var scrollLabel:UILabel = {
         let label = UILabel()
         label.text = "Scoll image into the pot"
@@ -87,36 +87,40 @@ class FoodImagesViewController: UIViewController {
         label.textAlignment = .center
         return label
     }()
-
+    
     lazy var backgroundImageView:UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "swipePageImage")
         return image
     }()
-
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let av = UIActivityIndicatorView()
+        av.style = .large
+        av.hidesWhenStopped = true
+        av.color = .red
+        av.startAnimating()
+        return av
+    }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         locationManager.delegate = self
-         checkLocationAuthorization()
+        checkLocationAuthorization()
         setupCollectionView()
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-       // configureTransparentViewConstraints()
-       // configureScrollDownIndicatorConstraints()
-       // configureScrollLabelConstraints()
+        // configureTransparentViewConstraints()
+        // configureScrollDownIndicatorConstraints()
+        // configureScrollLabelConstraints()
+        constraintsActivityIndicatorConstraints()
     }
-
+    
     // MARK: objc function
-//    @objc func handleFoodColorBadge(){
-//         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
-//        let info = userCategorySlecetedResults[indexPath.item]
-//
-//        userFoodImageSelection.append(info)
-//        print(info.categories!)
-//    }
-
+    
+    
     // MARK: Private function
     
     private func checkLocationAuthorization(){
@@ -134,53 +138,59 @@ class FoodImagesViewController: UIViewController {
             locationManager.requestWhenInUseAuthorization()
         }
     }
-
+    
     private func beginLocationUpdates(locationManager: CLLocationManager){
         locationManager.requestLocation()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingLocation()
     }
-
-
+    
+    
     
     private func setupCollectionView(){
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-
+    
     //MARK: Private constraints func
     private func configureCollectionviewConstraints(){
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
         NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: pointEstimator.relativeHeight(multiplier: 0.1754)), collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor), collectionView.heightAnchor.constraint(equalToConstant: pointEstimator.relativeHeight(multiplier: 0.6887))])
     }
-
+    
     private func configureBackgroundImageViewConstraints(){
         view.addSubview(backgroundImageView)
         backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([backgroundImageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-      }
+    }
     
     private func configureTransparentViewConstraints(){
         self.view.addSubview(transparentView)
         transparentView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([transparentView.heightAnchor.constraint(equalToConstant: 200), transparentView.widthAnchor.constraint(equalToConstant: 180), transparentView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor), transparentView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)])
     }
-
+    
     private func configureScrollDownIndicatorConstraints(){
         self.transparentView.addSubview(scrollDownIndicator)
         scrollDownIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 30), scrollDownIndicator.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor)])
     }
-
+    
     private func configureScrollLabelConstraints(){
         self.transparentView.addSubview(scrollLabel)
         scrollLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([scrollLabel.topAnchor.constraint(equalTo: transparentView.topAnchor), scrollLabel.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollLabel.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) , scrollLabel.heightAnchor.constraint(equalToConstant: 50)])
     }
-
+    
+    private func constraintsActivityIndicatorConstraints(){
+        self.view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor),activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
 }
 
 //MARK: Extensions
@@ -190,7 +200,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return userCategorySlecetedResults.count
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
@@ -212,9 +222,9 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         switch info.rating{
         case 0.0:
-          cell.starRatings.image = UIImage(named: "stars_0")
+            cell.starRatings.image = UIImage(named: "stars_0")
         case 1.0:
-           cell.starRatings.image = UIImage(named: "stars_1")
+            cell.starRatings.image = UIImage(named: "stars_1")
         case 1.5:
             cell.starRatings.image = UIImage(named: "stars_1half")
         case 2.0:
@@ -241,15 +251,16 @@ extension FoodImagesViewController:UICollectionViewDataSource{
                 categoryList += "\(category) "
             }
         }
-    
+        
         cell.categoryNameLabel.text = categoryList
         cell.FoodTitleLabel.text = info.name
-
+        
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
         cell.layer.cornerRadius = 25
+        activityIndicator.stopAnimating()
         return cell
     }
-
+    
 }
 
 extension FoodImagesViewController: CLLocationManagerDelegate{
@@ -257,7 +268,7 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
         print(" new location \(locations)")
         self.locations = locations
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         print("Authorization status changed to \(status.rawValue)")
         switch status {
@@ -274,7 +285,7 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func addSelectedFood(tag: Int) {
-         let info = userCategorySlecetedResults[tag]
+        let info = userCategorySlecetedResults[tag]
         
         userFoodImageSelection.append(info)
         print(tag)

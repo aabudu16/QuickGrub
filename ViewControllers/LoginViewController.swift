@@ -153,9 +153,9 @@ class LoginViewController: UIViewController {
         button.addTarget(self, action: #selector(handleRegisterPressed), for: .touchUpInside)
         return button
     }()
-    let activityIndcator: UIActivityIndicatorView = {
+    lazy var activityIndicator: UIActivityIndicatorView = {
         let av = UIActivityIndicatorView()
-        av.style = .medium
+        av.style = .large
         av.hidesWhenStopped = true
         return av
     }()
@@ -196,7 +196,7 @@ class LoginViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         loginButton.setTitle("Enter", for: .normal)
-        activityIndcator.stopAnimating()
+        activityIndicator.stopAnimating()
         emailTextField.text = ""
         passwordTextField.text = ""
     }
@@ -533,13 +533,13 @@ class LoginViewController: UIViewController {
         case true:
             setLoginButton(enable: true)
             loginButton.setTitle("Login", for: .normal)
-            activityIndcator.stopAnimating()
+            activityIndicator.stopAnimating()
             transparentView.isHidden = true
         case false:
             setLoginButton(enable: false)
             loginButton.setTitle("", for: .normal)
             loginButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-            activityIndcator.startAnimating()
+            activityIndicator.startAnimating()
             transparentView.isHidden = false
         }
     }
@@ -633,13 +633,13 @@ class LoginViewController: UIViewController {
     }
     
     private func configureActivityIndcatorConstrainst(){
-        loginButton.addSubview(activityIndcator)
-        activityIndcator.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [activityIndcator.topAnchor.constraint(equalTo: loginButton.topAnchor),
-             activityIndcator.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
-             activityIndcator.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
-             activityIndcator.bottomAnchor.constraint(equalTo: loginButton.bottomAnchor)])
+            [activityIndicator.topAnchor.constraint(equalTo: loginButton.topAnchor),
+             activityIndicator.leadingAnchor.constraint(equalTo: loginButton.leadingAnchor),
+             activityIndicator.trailingAnchor.constraint(equalTo: loginButton.trailingAnchor),
+             activityIndicator.bottomAnchor.constraint(equalTo: loginButton.bottomAnchor)])
     }
     
     private func configureSegmentedControllerConstraints(){
