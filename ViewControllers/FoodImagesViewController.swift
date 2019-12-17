@@ -15,6 +15,8 @@ class FoodImagesViewController: UIViewController {
     }
     
     //MARK: -- CoreLocation Coordinate
+    let plus = UIImage(systemName: "plus")
+    let checkmark = UIImage(systemName: "checkmark")
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     var userFoodImageSelection = [ CDYelpBusiness]()
@@ -194,7 +196,23 @@ class FoodImagesViewController: UIViewController {
 }
 
 //MARK: Extensions
-extension FoodImagesViewController: UICollectionViewDelegate{}
+extension FoodImagesViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
+         let info = userCategorySlecetedResults[indexPath.row]
+        
+//        if cell.itemIsSelected == false{
+//            userFoodImageSelection.append(info)
+//            print(userFoodImageSelection.count)
+//            cell.itemIsSelected = true
+//        }else{
+//            print("tag")
+//            cell.itemIsSelected = false
+//
+//        }
+    }
+}
 
 extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -203,7 +221,6 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
-        
         var categoryList:String = ""
         cell.delegate = self
         cell.foodColorBadge.tag = indexPath.item
@@ -258,6 +275,14 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
         cell.layer.cornerRadius = 25
         activityIndicator.stopAnimating()
+        
+        if userFoodImageSelection.contains(info){
+           // cell.foodColorBadge.imageView?.image = checkmark
+            cell.itemIsSelected = true
+               }else {
+                 // cell.foodColorBadge.imageView?.image = plus
+            cell.itemIsSelected = false
+               }
         return cell
     }
     
@@ -286,9 +311,23 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func addSelectedFood(tag: Int) {
         let info = userCategorySlecetedResults[tag]
+               guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
         
-        userFoodImageSelection.append(info)
-        print(tag)
+                if cell.itemIsSelected == false{
+                    print(tag)
+                     userFoodImageSelection.append(info)
+                    print("Amount \(userFoodImageSelection.count)")
+//                    cell.foodColorBadge.imageView?.image = checkmark
+                      cell.itemIsSelected = true
+        
+                }else{
+                     print("tag")
+                    cell.itemIsSelected = false
+//                    cell.foodColorBadge.imageView?.image = plus
+        
+        
+                }
+        
     }
     
     

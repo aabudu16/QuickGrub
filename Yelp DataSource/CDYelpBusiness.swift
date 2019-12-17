@@ -2,7 +2,11 @@
 
 import ObjectMapper
 
-public class CDYelpBusiness: Mappable {
+public class CDYelpBusiness: Mappable, Equatable{
+    public static func == (lhs: CDYelpBusiness, rhs: CDYelpBusiness) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
 
     public var id: String?
     public var name: String?

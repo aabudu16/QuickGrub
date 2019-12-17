@@ -18,3 +18,8 @@ enum Mode{
     case view
     case select
 }
+
+enum CurrentState{
+    case selected
+    case deselected
+}

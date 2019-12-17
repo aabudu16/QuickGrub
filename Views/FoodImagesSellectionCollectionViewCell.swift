@@ -14,6 +14,16 @@ protocol CollectionViewCellDelegate: AnyObject {
 
 class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     weak var delegate: CollectionViewCellDelegate?
+    
+    let plus = UIImage(systemName: "plus")
+    let checkmark = UIImage(systemName: "checkmark")
+    
+       var itemIsSelected:Bool = false {
+        didSet{
+            self.itemIsSelected == true ? foodColorBadge.setImage( checkmark, for: .normal) : foodColorBadge.setImage( plus, for: .normal)
+        }
+    }
+
     let shapeLayer = CAShapeLayer()
     //MARK: UI Objects
     lazy var  foodImage:UIImageView = {
@@ -78,7 +88,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     @objc func handleFoodColorBadgePressed(sender:UIButton){
         delegate?.addSelectedFood(tag: sender.tag)
     }
-   
+    
     func createPulse(){
         let position = foodColorBadge.frame.size.width / 2
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 16, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
