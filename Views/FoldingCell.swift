@@ -100,6 +100,13 @@ open class FoldingCell: UITableViewCell {
         return map
     }()
     
+    lazy var heartImage:UIButton = {
+        let heart = UIButton()
+        heart.contentMode = .scaleToFill
+        heart.setImage(UIImage(systemName: "heart")?.withTintColor(.white), for: .normal)
+        return heart
+    }()
+    
     // UIView whitch display when cell close
     lazy var foregroundView:RotatedView! = {
         let foreground = RotatedView()
@@ -154,6 +161,7 @@ open class FoldingCell: UITableViewCell {
         configureDistanceLabelConstraints()
         
         configureResurantImageViewConstraints()
+        configureHeartImageConstraints()
         configureMapViewConstraints()
         configureNavigateButtomConstraints()
         configureResturantNameConstraints()
@@ -587,6 +595,12 @@ open class FoldingCell: UITableViewCell {
         mapView.addSubview(navigateButtom)
         navigateButtom.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([navigateButtom.topAnchor.constraint(equalTo: mapView.topAnchor,constant: 20), navigateButtom.trailingAnchor.constraint(equalTo: mapView.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalTo: navigateButtom.heightAnchor)])
+    }
+    
+    private func configureHeartImageConstraints(){
+        containerView.addSubview(heartImage)
+        heartImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([heartImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5), heartImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5), heartImage.heightAnchor.constraint(equalToConstant: 30), heartImage.widthAnchor.constraint(equalTo: heartImage.heightAnchor)])
     }
     
 }
