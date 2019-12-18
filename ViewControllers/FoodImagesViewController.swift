@@ -19,7 +19,7 @@ class FoodImagesViewController: UIViewController {
     let checkmark = UIImage(systemName: "checkmark")
     private let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
-    var userFoodImageSelection = [ CDYelpBusiness](){
+    var userFoodImageSelection = [CDYelpBusiness](){
         didSet{
             if userFoodImageSelection.count > 0 {
                 UIView.animate(withDuration: 0.5) {
@@ -154,7 +154,9 @@ class FoodImagesViewController: UIViewController {
     
     // MARK: objc function
     @objc func handleContinueButtonPressed(sender:UIButton){
-       // if userFoodImageSelection
+        let resturantResultVC = ResturantResultsViewController()
+         resturantResultVC.userFoodImageSelection = userFoodImageSelection
+        navigationController?.pushViewController(resturantResultVC, animated: true)
         print("continue button pressed")
     }
     

@@ -52,9 +52,10 @@ open class FoldingCell: UITableViewCell {
         tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.textAlignment = .left
+        tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
         tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
-        tv.font = UIFont(name: "Avenir-Light", size: 20)
+        tv.font = UIFont(name: "Avenir-Light", size: 19)
         return tv
     }()
     
@@ -62,8 +63,6 @@ open class FoldingCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir-Black", size: 18)
         label.textAlignment = .center
-        label.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
-        label.text = "Open"
         return label
     }()
     
@@ -71,7 +70,6 @@ open class FoldingCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 20)
-        label.text = "☎: 71845145200"
         return label
     }()
     
@@ -111,23 +109,25 @@ open class FoldingCell: UITableViewCell {
         return foreground
     }()
     
-    lazy var foodNameLabel:UILabel = {
+    lazy var resturantNameLabel:UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Damascus", size: 18)
-        label.text = "Food Name"
+        label.font = UIFont(name: "DamascusBold", size: 20)
+        label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy  var distanceLabel:UILabel = {
         let label = UILabel()
         label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
-        label.text = "📍 0.3"
+        label.textColor = .white
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy var foodImageView: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "profileImage")
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -530,15 +530,15 @@ open class FoldingCell: UITableViewCell {
     }
     
     private func configureResturantNameLabelConstraints(){
-        self.foregroundView.addSubview(foodNameLabel)
-        foodNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodNameLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), foodNameLabel.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor, constant: 5), foodNameLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -75), foodNameLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
+        self.foregroundView.addSubview(resturantNameLabel)
+        resturantNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resturantNameLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), resturantNameLabel.leadingAnchor.constraint(equalTo: self.foregroundView.leadingAnchor, constant: 5), resturantNameLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -100), resturantNameLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
     }
     
     private func configureDistanceLabelConstraints(){
         foregroundView.addSubview(distanceLabel)
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: foodNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
+        NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: resturantNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
     }
     
     private func configureResurantImageViewConstraints(){
