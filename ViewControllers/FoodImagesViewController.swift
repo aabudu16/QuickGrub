@@ -50,11 +50,12 @@ class FoodImagesViewController: UIViewController {
                 let filter = userFilteredParameter.filterModel
                 let categories = userFilteredParameter.categories
                 
-                CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: userLocation.latitude, longitude: userLocation.longitude, radius: filter.distance, categories: categories, locale: .english_unitedStates, limit: filter.limit, offset: 0, sortBy: filter.sortBy, priceTiers: filter.price , openNow: filter.openNow, openAt: nil, attributes: nil) { (response) in
+                CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: userLocation.latitude, longitude: userLocation.longitude, radius: filter.distance, categories: categories, locale: .english_unitedStates, limit: filter.limit, offset: 0, sortBy: filter.sortBy, priceTiers: filter.price , openNow: filter.openNow, openAt: nil, attributes: nil) {[weak self] (response) in
                     guard let response = response, let businesses = response.businesses, businesses.count > 0  else {
-                        self.showAlert(alertTitle: "Sorry no results where found", alertMessage: "Increase your search distance in the filter and try again", actionTitle: "OK")
+                        self?.activityIndicator.stopAnimating()
+                        self?.popViewControllerAlert()
                         return }
-                    self.userCategorySlecetedResults = businesses
+                    self?.userCategorySlecetedResults = businesses
                 }
             }
         }
@@ -162,6 +163,15 @@ class FoodImagesViewController: UIViewController {
     
     // MARK: Private function
     
+    private func popViewControllerAlert(){
+        let alert = UIAlertController(title: "Sorry no results where found", message: "Increase your search distance in the filter and try again", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "OK", style: .cancel) { (pop) in
+            self.navigationController?.popViewController(animated: true)
+        }
+        alert.addAction(ok)
+        present(alert, animated: true, completion: nil)
+    }
     private func checkLocationAuthorization(){
         let status = CLLocationManager.authorizationStatus()
         switch status{
