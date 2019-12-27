@@ -10,6 +10,9 @@ pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 
+  #Pod for Image  caching 
+pod 'Kingfisher'
+
   # Pods for Yelp API 
 pod 'Alamofire', '~> 4.7'
 pod 'CDYelpFusionKit', '1.5.1'
