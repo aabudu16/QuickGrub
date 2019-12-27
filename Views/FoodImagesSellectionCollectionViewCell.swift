@@ -86,12 +86,12 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }
     
     public func configurefoodImagesCellData(yelpImages:CDYelpBusiness){
-        
        var categoryList:String = ""
         
         let image = UIImage(named: "FoodPlaceholder")
         foodImage.kf.indicatorType = .activity
         foodImage.kf.setImage(with: yelpImages.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+        
         switch yelpImages.rating{
                case 0.0:
                    starRatings.image = UIImage(named: "stars_0")

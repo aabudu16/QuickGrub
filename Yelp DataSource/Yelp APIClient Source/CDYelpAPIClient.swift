@@ -232,8 +232,7 @@ public class CDYelpAPIClient: NSObject {
 
             let parameters = Parameters.businessParameters(withLocale: locale)
 
-            self.manager.request(CDYelpRouter.business(id: id,
-                                                       parameters: parameters)).responseObject { (response: DataResponse<CDYelpBusiness>) in
+            self.manager.request(CDYelpRouter.business(id: id, parameters: parameters)).responseObject { (response: DataResponse<CDYelpBusiness>) in
 
                 switch response.result {
                 case .success(let business):

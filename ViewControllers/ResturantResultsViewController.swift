@@ -10,11 +10,26 @@ import UIKit
 
 class ResturantResultsViewController: UIViewController {
     
-    var userFoodImageSelection = [ CDYelpBusiness](){
-        didSet{
-            tableView.reloadData()
+    var businessFullDetail = [CDYelpBusiness](){
+        didSet {
+           print(businessFullDetail.count)
+           tableView.reloadData()
         }
     }
+    
+    var userFoodImageSelection = [ CDYelpBusiness](){
+        didSet{
+            for individualBusiness in userFoodImageSelection{
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: nil) { [weak self] (business) in
+                       if let business = business {
+                        self?.businessFullDetail.append(business)
+                    }
+                }
+
+            }
+        }
+    }
+    
     enum ResturantCellIdentifier:String{
         case ResturantCell
     }
@@ -126,13 +141,14 @@ extension ResturantResultsViewController: UITableViewDelegate{
 
 extension ResturantResultsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return  userFoodImageSelection.count
+        return  businessFullDetail.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         
-        let info = userFoodImageSelection[indexPath.row]
+        let info = businessFullDetail[indexPath.row]
+        let distance = userFoodImageSelection[indexPath.row]
         
         
         
@@ -152,7 +168,7 @@ extension ResturantResultsViewController:UITableViewDataSource{
             }
     
         cell.resturantPhoneNumber.text = info.displayPhone
-        cell.distanceLabel.text = "📍 \(Int(info.distance ?? 0.0)) mi"
+        cell.distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
         cell.resturantName.text = info.name
         cell.resturantNameLabel.text = info.name
         

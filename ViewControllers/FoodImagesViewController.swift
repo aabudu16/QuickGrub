@@ -36,7 +36,7 @@ class FoodImagesViewController: UIViewController {
     }
     //MARK: UI Objects
     
-    var userCategorySlecetedResults = [ CDYelpBusiness](){
+    var userCategorySelectedResults = [ CDYelpBusiness](){
         didSet{
             self.collectionView.reloadData()
         }
@@ -55,7 +55,7 @@ class FoodImagesViewController: UIViewController {
                         self?.activityIndicator.stopAnimating()
                         self?.popViewControllerAlert()
                         return }
-                    self?.userCategorySlecetedResults = businesses
+                    self?.userCategorySelectedResults = businesses
                 }
             }
         }
@@ -252,7 +252,7 @@ extension FoodImagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
-        let info = userCategorySlecetedResults[indexPath.row]
+        let info = userCategorySelectedResults[indexPath.row]
         
         //  Handle button clicked and appending to array
     }
@@ -260,7 +260,7 @@ extension FoodImagesViewController: UICollectionViewDelegate{
 
 extension FoodImagesViewController:UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userCategorySlecetedResults.count
+        return userCategorySelectedResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -268,7 +268,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         cell.delegate = self
         cell.foodColorBadge.tag = indexPath.item
-        let info = userCategorySlecetedResults[indexPath.row]
+        let info = userCategorySelectedResults[indexPath.row]
         
         cell.configurefoodImagesCellData(yelpImages: info)
         
@@ -306,7 +306,7 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func addSelectedFood(tag: Int) {
-        let info = userCategorySlecetedResults[tag]
+        let info = userCategorySelectedResults[tag]
         guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
         
         if cell.itemIsSelected == false{
