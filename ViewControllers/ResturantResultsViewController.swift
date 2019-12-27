@@ -147,45 +147,11 @@ extension ResturantResultsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         
-        let info = businessFullDetail[indexPath.row]
+        let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
         
-        
-        
-        ImageHelper.shared.getImage(url: info.imageUrl!) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "URL cant be converted to an image \(error)", actionTitle: "OK")
-            case .success(let image):
-                DispatchQueue.main.async {
-                     cell.foodImageView.image = image
-                }
-            }
-        }
-       
-        if let displayAddress = info.location?.displayAddress{
-             cell.addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-            }
-    
-        cell.resturantPhoneNumber.text = info.displayPhone
-        cell.distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
-        cell.resturantName.text = info.name
-        cell.resturantNameLabel.text = info.name
-        
-        switch info.isClosed{
-        case true:
-            cell.openOrCloseLabel.text = "Open"
-            cell.openOrCloseLabel.textColor = .green
-        case false:
-            cell.openOrCloseLabel.text = "Close"
-            cell.openOrCloseLabel.textColor = .red
-        default:
-            cell.openOrCloseLabel.text = "NA"
-        }
-        
-        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
-        cell.durationsForExpandedState = durations
-        cell.durationsForCollapsedState = durations
+        cell.configureBusinessData(business: businessInfo, distance: distance)
+
         return cell
     }
     

@@ -139,6 +139,37 @@ open class FoldingCell: UITableViewCell {
     }()
     
     
+    public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
+       
+         let image = UIImage(named: "FoodPlaceholder")
+            foodImageView.kf.indicatorType = .activity
+            foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+           
+            if let displayAddress = business.location?.displayAddress{
+                 addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+                }
+        
+            resturantPhoneNumber.text = business.displayPhone
+            distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
+            resturantName.text = business.name
+            resturantNameLabel.text = business.name
+            
+            switch business.isClosed{
+            case true:
+                openOrCloseLabel.text = "Open"
+                openOrCloseLabel.textColor = .green
+            case false:
+                openOrCloseLabel.text = "Close"
+                openOrCloseLabel.textColor = .red
+            default:
+                openOrCloseLabel.text = "NA"
+            }
+        
+        let durations: [TimeInterval] = [0.26, 0.2, 0.2]
+        durationsForExpandedState = durations
+        durationsForCollapsedState = durations
+    }
+    
     /**
      Folding animation types
      
