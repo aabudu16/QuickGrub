@@ -84,6 +84,46 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public func configurefoodImagesCellData(yelpImages:CDYelpBusiness){
+        
+       var categoryList:String = ""
+        switch yelpImages.rating{
+               case 0.0:
+                   starRatings.image = UIImage(named: "stars_0")
+               case 1.0:
+                   starRatings.image = UIImage(named: "stars_1")
+               case 1.5:
+                   starRatings.image = UIImage(named: "stars_1half")
+               case 2.0:
+                   starRatings.image = UIImage(named: "stars_2")
+               case 2.5:
+                   starRatings.image = UIImage(named: "stars_2half")
+               case 3.0:
+                   starRatings.image = UIImage(named: "stars_3")
+               case 3.5:
+                   starRatings.image = UIImage(named: "stars_3half")
+               case 4.0:
+                   starRatings.image = UIImage(named: "stars_4")
+               case 4.5:
+                   starRatings.image = UIImage(named: "stars_4half")
+               case 5.0:
+                   starRatings.image = UIImage(named: "stars_5")
+               default:
+                   starRatings.image = UIImage(named: "stars_0")
+                   
+               }
+        
+        
+        for category in yelpImages.categories!{
+            if let category = category.title{
+                categoryList += "\(category) "
+            }
+        }
+        
+        categoryNameLabel.text = categoryList
+        FoodTitleLabel.text = yelpImages.name
+    }
+    
     
     @objc func handleFoodColorBadgePressed(sender:UIButton){
         delegate?.addSelectedFood(tag: sender.tag)

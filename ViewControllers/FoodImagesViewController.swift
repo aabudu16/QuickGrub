@@ -265,7 +265,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
-        var categoryList:String = ""
+        
         cell.delegate = self
         cell.foodColorBadge.tag = indexPath.item
         let info = userCategorySlecetedResults[indexPath.row]
@@ -281,40 +281,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
             }
         }
         
-        switch info.rating{
-        case 0.0:
-            cell.starRatings.image = UIImage(named: "stars_0")
-        case 1.0:
-            cell.starRatings.image = UIImage(named: "stars_1")
-        case 1.5:
-            cell.starRatings.image = UIImage(named: "stars_1half")
-        case 2.0:
-            cell.starRatings.image = UIImage(named: "stars_2")
-        case 2.5:
-            cell.starRatings.image = UIImage(named: "stars_2half")
-        case 3.0:
-            cell.starRatings.image = UIImage(named: "stars_3")
-        case 3.5:
-            cell.starRatings.image = UIImage(named: "stars_3half")
-        case 4.0:
-            cell.starRatings.image = UIImage(named: "stars_4")
-        case 4.5:
-            cell.starRatings.image = UIImage(named: "stars_4half")
-        case 5.0:
-            cell.starRatings.image = UIImage(named: "stars_5")
-        default:
-            cell.starRatings.image = UIImage(named: "stars_0")
-            
-        }
-        
-        for category in info.categories!{
-            if let category = category.title{
-                categoryList += "\(category) "
-            }
-        }
-        
-        cell.categoryNameLabel.text = categoryList
-        cell.FoodTitleLabel.text = info.name
+        cell.configurefoodImagesCellData(yelpImages: info)
         
         CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
         cell.layer.cornerRadius = 25

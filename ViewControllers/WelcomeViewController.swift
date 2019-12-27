@@ -233,16 +233,12 @@ class WelcomeViewController: UIViewController {
             switch button.tag{
             case 0:
                 priceTiers?.append(.oneDollarSign)
-                print(button.tag)
             case 1:
                 priceTiers?.append(.twoDollarSigns)
-                print(priceTiers)
             case 2:
                 priceTiers?.append(.threeDollarSigns)
-                print(priceTiers)
             case 3:
                 priceTiers?.append(.fourDollarSigns)
-                print(priceTiers)
             default:
                 return
             }
