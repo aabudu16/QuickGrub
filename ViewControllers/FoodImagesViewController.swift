@@ -270,21 +270,8 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         cell.foodColorBadge.tag = indexPath.item
         let info = userCategorySlecetedResults[indexPath.row]
         
-        ImageHelper.shared.getImage(url: info.imageUrl!) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "URL cant be converted to an image \(error)", actionTitle: "OK")
-            case .success(let image):
-                DispatchQueue.main.async {
-                    cell.foodImage.image = image
-                }
-            }
-        }
-        
         cell.configurefoodImagesCellData(yelpImages: info)
         
-        CustomLayer.shared.createCustomlayers(layer: cell.layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
-        cell.layer.cornerRadius = 25
         activityIndicator.stopAnimating()
         
         if userFoodImageSelection.contains(info){

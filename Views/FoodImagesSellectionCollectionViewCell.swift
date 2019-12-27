@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol CollectionViewCellDelegate: AnyObject {
     func addSelectedFood(tag: Int)
@@ -87,6 +88,10 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     public func configurefoodImagesCellData(yelpImages:CDYelpBusiness){
         
        var categoryList:String = ""
+        
+        let image = UIImage(named: "FoodPlaceholder")
+        foodImage.kf.indicatorType = .activity
+        foodImage.kf.setImage(with: yelpImages.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         switch yelpImages.rating{
                case 0.0:
                    starRatings.image = UIImage(named: "stars_0")
@@ -113,6 +118,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
                    
                }
         
+        categoryNameLabel.text = categoryList
+               FoodTitleLabel.text = yelpImages.name
         
         for category in yelpImages.categories!{
             if let category = category.title{
@@ -120,8 +127,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
             }
         }
         
-        categoryNameLabel.text = categoryList
-        FoodTitleLabel.text = yelpImages.name
+        CustomLayer.shared.createCustomlayers(layer: layer, cornerRadius: 2, backgroundColor: UIColor.white.cgColor)
+        layer.cornerRadius = 25
     }
     
     
