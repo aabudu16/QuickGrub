@@ -33,11 +33,17 @@ open class FoldingCell: UITableViewCell {
         return container
     }()
     
-    lazy var resturantImageView:UIImageView = {
-        let image = UIImageView()
-        image.image = UIImage(named: "resturant")
-        return image
+    lazy var imageScrollView:UIScrollView = {
+        let view = UIScrollView(frame: .zero)
+        view.isPagingEnabled = true
+        return view
     }()
+    
+//    lazy var resturantImageViews:UIImageView = {
+//        let image = UIImageView()
+//        image.image = UIImage(named: "resturant")
+//        return image
+//    }()
     
     lazy var resturantName:UILabel = {
         let label = UILabel()
@@ -165,6 +171,20 @@ open class FoldingCell: UITableViewCell {
                 openOrCloseLabel.text = "NA"
             }
         
+        if let photoArray = business.photos{
+            for index in 0..<photoArray.count{
+                let imageView = UIImageView()
+                imageView.contentMode = .scaleAspectFill
+                let imageUrl = URL(string: photoArray[index])
+                imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+                let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
+                imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                
+                imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(index + 1)
+                imageScrollView.addSubview(imageView)
+            }
+        }
+        
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         durationsForExpandedState = durations
         durationsForCollapsedState = durations
@@ -220,6 +240,7 @@ open class FoldingCell: UITableViewCell {
     }
     
     // MARK: configure
+    
     
     private func configureDefaultState() {
         
@@ -581,15 +602,15 @@ open class FoldingCell: UITableViewCell {
     }
     
     private func configureResurantImageViewConstraints(){
-        containerView.addSubview(resturantImageView)
-        resturantImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([resturantImageView.topAnchor.constraint(equalTo: containerView.topAnchor),resturantImageView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),resturantImageView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),resturantImageView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -280)])
+        containerView.addSubview(imageScrollView)
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: containerView.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),imageScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -280)])
     }
     
     private func configureResturantNameConstraints(){
         containerView.addSubview(resturantName)
         resturantName.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([resturantName.topAnchor.constraint(equalTo: resturantImageView.bottomAnchor, constant: 3), resturantName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 3), resturantName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -3), resturantName.heightAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([resturantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: 3), resturantName.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 3), resturantName.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -3), resturantName.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     private func configureAddressTextViewConstraints(){
