@@ -66,6 +66,7 @@
 		858A988823885D0C0051AF45 /* scrollDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A988723885D0C0051AF45 /* scrollDownGif.gif */; };
 		859A29A923A7CF95005F8173 /* ImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29A823A7CF95005F8173 /* ImageHelper.swift */; };
 		859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29AB23A7D0A5005F8173 /* AppError.swift */; };
+		859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */; };
 		85F92A48239015C400048FCB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A47239015C400048FCB /* Secrets.swift */; };
 		85F92A53239029AF00048FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F92A52239029AF00048FCB /* GoogleService-Info.plist */; };
 		85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */; };
@@ -155,6 +156,7 @@
 		858A988723885D0C0051AF45 /* scrollDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrollDownGif.gif; sourceTree = "<group>"; };
 		859A29A823A7CF95005F8173 /* ImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageHelper.swift; sourceTree = "<group>"; };
 		859A29AB23A7D0A5005F8173 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
 				858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */,
+				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
@@ -591,6 +594,7 @@
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A987B2384FCC40051AF45 /* ResturantResultsViewController.swift in Sources */,
+				859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */,
 				85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */,
 				854D6D4123A28E76001BD091 /* CDYelpCategoriesResponse.swift in Sources */,
 				854D6D3D23A28E76001BD091 /* CDColor.swift in Sources */,

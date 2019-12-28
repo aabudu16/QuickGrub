@@ -165,8 +165,6 @@ extension ResturantResultsViewController:UITableViewDataSource{
 extension ResturantResultsViewController: FoldingCellDelegate{
     func navigateToDestination(tag: Int) {
        let businessInfo = businessFullDetail[tag]
-      //  guard let cell = tableView.cellForRow(at:  IndexPath(row: tag, section: 0)) as? FoldingCell else {return}
-        
         guard let lat = businessInfo.coordinates?.latitude, let long =  businessInfo.coordinates?.longitude else {return}
         
                 let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
