@@ -39,19 +39,19 @@ open class FoldingCell: UITableViewCell {
         return container
     }()
     
-    lazy var pageControl: UIPageControl = {
-        let pc = UIPageControl()
-        pc.hidesForSinglePage = true
-        pc.pageIndicatorTintColor = .blue
-        pc.currentPageIndicatorTintColor = .red
-        return pc
-    }()
-    
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
         return view
     }()
+    
+    lazy var pageControl: UIPageControl = {
+           let pc = UIPageControl()
+           pc.hidesForSinglePage = true
+           pc.pageIndicatorTintColor = .blue
+           pc.currentPageIndicatorTintColor = .red
+           return pc
+       }()
     
     lazy var resturantName:UILabel = {
         let label = UILabel()
@@ -96,10 +96,11 @@ open class FoldingCell: UITableViewCell {
     
     lazy var navigateButtom:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
+        button.setImage(UIImage(named: "navigate"), for: .normal)
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
-        button.backgroundColor = .black
+        button.tintColor = .white
+        button.backgroundColor = .blue
         button.layer.shadowColor = UIColor.black.cgColor
         button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
         button.layer.shadowRadius = 20.0
