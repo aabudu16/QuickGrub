@@ -30,8 +30,25 @@ class RestaurantDetailViewController: UIViewController {
     }()
     
     lazy var logoView:UIView = {
-        let view = UIView()
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 110, height: 60))
+        view.backgroundColor = .white
+        view.layer.borderWidth = 0.5
+        view.layer.shadowOpacity = 0.1
+        view.layer.masksToBounds = false
+        view.layer.borderColor = UIColor.lightGray.cgColor
         return view
+    }()
+    
+    lazy var logoLabel:UILabel = {
+        let label = UILabel()
+        label.text = "The Best Resturant Ever"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+
+        return label
     }()
     
     lazy var resturantName:UILabel = {
@@ -116,6 +133,8 @@ class RestaurantDetailViewController: UIViewController {
         view.backgroundColor = .white
         configureImageScrollViewConstraints()
         configurePageControlConstraints()
+        configureLogoViewConstraints()
+        configureLogoLabelConstraints()
     }
     
     //MARK: - Private constraints functions
@@ -131,4 +150,15 @@ class RestaurantDetailViewController: UIViewController {
         NSLayoutConstraint.activate([pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -5), pageControl.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor), pageControl.heightAnchor.constraint(equalToConstant: 10), pageControl.widthAnchor.constraint(equalToConstant: 30)])
     }
     
+    private func configureLogoViewConstraints(){
+        view.addSubview(logoView)
+        logoView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoView.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: (logoView.layer.frame.height / 2)), logoView.trailingAnchor.constraint(equalTo: imageScrollView.trailingAnchor, constant: -10), logoView.heightAnchor.constraint(equalToConstant: 60), logoView.widthAnchor.constraint(equalToConstant: 110)])
+    }
+    
+    private func configureLogoLabelConstraints(){
+        logoView.addSubview(logoLabel)
+        logoLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
+    }
 }
