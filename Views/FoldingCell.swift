@@ -85,6 +85,7 @@ open class FoldingCell: UITableViewCell {
     lazy var moreDetailButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
+        button.addTarget(self, action: #selector(handleMoreButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -99,6 +100,7 @@ open class FoldingCell: UITableViewCell {
         button.layer.shadowRadius = 20.0
         button.layer.shadowOpacity = 0.5
         button.layer.masksToBounds = false
+        button.addTarget(self, action: #selector(handleNavigateButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -237,14 +239,20 @@ open class FoldingCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /**
-     Call this method in methods init(style: UITableViewCellStyle, reuseIdentifier: String?) after creating Views
-     */
+    
+    
+    @objc func handleMoreButtonPressed(){
+       print("more button pressed")
+    }
+    
+    @objc func handleNavigateButtonPressed(){
+        print(" navigate button pressed")
+    }
+    
     @objc open func commonInit() {
         configureDefaultState()
-        
+    
         selectionStyle = .none
-        
         containerView.layer.cornerRadius = foregroundView.layer.cornerRadius
         containerView.layer.masksToBounds = true
     }
@@ -255,9 +263,7 @@ open class FoldingCell: UITableViewCell {
     private func configureDefaultState() {
         
         guard let foregroundViewTop = self.foregroundViewTop,
-            let containerViewTop = self.containerViewTop else {
-                fatalError("set foregroundViewTop or containerViewTop outlets in storyboard")
-        }
+            let containerViewTop = self.containerViewTop else {return}
         
         containerViewTop.constant = foregroundViewTop.constant
         containerView.alpha = 0

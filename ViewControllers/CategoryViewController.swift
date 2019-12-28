@@ -41,7 +41,7 @@ class CategoryViewController: UIViewController {
         let collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: Identifiers.categoryCell.rawValue)
         collectionView.allowsMultipleSelection = true
-        collectionView.backgroundColor = .green
+        collectionView.backgroundColor = #colorLiteral(red: 0.6938746572, green: 0.6897519231, blue: 0.6970449686, alpha: 1)
         collectionView.delegate = self
         collectionView.dataSource = self
         return collectionView
@@ -149,6 +149,8 @@ extension CategoryViewController: UICollectionViewDelegate{
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
 
+        cell.layer.borderWidth = 2.5
+        cell.layer.borderColor = UIColor.darkGray.cgColor
        cell.selectedView.checked = true
         selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
         print(selectedCategories)
@@ -157,6 +159,8 @@ extension CategoryViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
 
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = UIColor.gray.cgColor
         cell.selectedView.checked = false
         if let index = selectedCategories.firstIndex(of:CDYelpCategoryAlias.yelpCategory[indexPath.row]) {
                    selectedCategories.remove(at: index)
@@ -187,10 +191,14 @@ extension CategoryViewController: UICollectionViewDataSource{
         
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
-        cell.layer.setCustomLayer(radius: 10)
+        cell.layer.setCustomLayer(radius: 0)
         if selectedCategories.contains(category){
+            cell.layer.borderWidth = 2.5
+          cell.layer.borderColor = UIColor.darkGray.cgColor
           cell.selectedView.checked = true
         }else {
+            cell.layer.borderWidth = 1.5
+            cell.layer.borderColor = UIColor.gray.cgColor
            cell.selectedView.checked = false
         }
         return cell
@@ -200,7 +208,9 @@ extension CategoryViewController: UICollectionViewDataSource{
 extension CategoryViewController: UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let virticalCellCGSize = CGSize(width: 200, height: 200)
+        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 0, right: 5)
+        layout.minimumInteritemSpacing = 5
+        let virticalCellCGSize = CGSize(width: (collectionView.frame.size.width - 20) / 2, height: collectionView.frame.size.height / 4)
         return virticalCellCGSize
     }
 }
