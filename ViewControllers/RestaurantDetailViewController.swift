@@ -109,8 +109,21 @@ class RestaurantDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
+        configureImageScrollViewConstraints()
+        configurePageControlConstraints()
     }
     
+    //MARK: - Private constraints functions
+    private func configureImageScrollViewConstraints(){
+        view.addSubview(imageScrollView)
+        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: view.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),imageScrollView.heightAnchor.constraint(equalToConstant: 350)])
+    }
+    
+    private func configurePageControlConstraints(){
+        view.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -5), pageControl.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor), pageControl.heightAnchor.constraint(equalToConstant: 10), pageControl.widthAnchor.constraint(equalToConstant: 30)])
+    }
     
 }
