@@ -150,7 +150,7 @@ open class FoldingCell: UITableViewCell {
     }()
     
     private func zoomToLatestLocation(with coordinate:CLLocationCoordinate2D){
-        let zoomRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+        let zoomRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 100, longitudinalMeters: 100)
         mapView.setRegion(zoomRegion, animated: true)
     }
     
