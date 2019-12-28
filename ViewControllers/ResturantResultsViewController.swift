@@ -151,7 +151,6 @@ extension ResturantResultsViewController:UITableViewDataSource{
         
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
-        
         cell.configureBusinessData(business: businessInfo, distance: distance)
 
         return cell

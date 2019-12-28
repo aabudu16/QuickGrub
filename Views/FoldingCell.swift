@@ -39,7 +39,6 @@ open class FoldingCell: UITableViewCell {
         pc.hidesForSinglePage = true
         pc.pageIndicatorTintColor = .blue
         pc.currentPageIndicatorTintColor = .red
-        pc.numberOfPages = 3
         return pc
     }()
     
@@ -178,6 +177,7 @@ open class FoldingCell: UITableViewCell {
         if let photoArray = business.photos{
             
             for (index, photoString) in photoArray.enumerated(){
+                pageControl.numberOfPages = photoArray.count
                 let imageView = UIImageView()
                 imageView.contentMode = .scaleAspectFill
                 let imageUrl = URL(string: photoString)
@@ -230,6 +230,7 @@ open class FoldingCell: UITableViewCell {
         configureOpenOrCloseLabelConstraints()
         configureMoreDetailButtonConstraints()
         commonInit()
+        imageScrollView.delegate = self
     }
     
     required public init?(coder: NSCoder) {
@@ -670,6 +671,13 @@ open class FoldingCell: UITableViewCell {
         NSLayoutConstraint.activate([heartImage.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5), heartImage.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -5), heartImage.heightAnchor.constraint(equalToConstant: 30), heartImage.widthAnchor.constraint(equalTo: heartImage.heightAnchor)])
     }
     
+}
+
+extension FoldingCell: UIScrollViewDelegate{
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = scrollView.contentOffset.x / scrollView.frame.size.width
+        pageControl.currentPage = Int(page)
+    }
 }
 
 extension FoldingCell: MKMapViewDelegate{
