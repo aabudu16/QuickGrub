@@ -29,6 +29,11 @@ class RestaurantDetailViewController: UIViewController {
         return pc
     }()
     
+    lazy var logoView:UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     lazy var resturantName:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
