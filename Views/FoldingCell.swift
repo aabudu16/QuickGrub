@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import Kingfisher
 
 // UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
@@ -38,12 +39,6 @@ open class FoldingCell: UITableViewCell {
         view.isPagingEnabled = true
         return view
     }()
-    
-//    lazy var resturantImageViews:UIImageView = {
-//        let image = UIImageView()
-//        image.image = UIImage(named: "resturant")
-//        return image
-//    }()
     
     lazy var resturantName:UILabel = {
         let label = UILabel()
@@ -148,9 +143,9 @@ open class FoldingCell: UITableViewCell {
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
        
          let image = UIImage(named: "FoodPlaceholder")
-            foodImageView.kf.indicatorType = .activity
-            foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-           
+            self.foodImageView.kf.indicatorType = .activity
+            self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+        
             if let displayAddress = business.location?.displayAddress{
                  addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
                 }
@@ -172,17 +167,34 @@ open class FoldingCell: UITableViewCell {
             }
         
         if let photoArray = business.photos{
-            for index in 0..<photoArray.count{
+            
+            for (index, photo) in photoArray.enumerated(){
                 let imageView = UIImageView()
                 imageView.contentMode = .scaleAspectFill
-                let imageUrl = URL(string: photoArray[index])
-                imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-                let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
-                imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-                
-                imageScrollView.contentSize.width = imageScrollView.frame.width * CGFloat(index + 1)
-                imageScrollView.addSubview(imageView)
+                let imageUrl = URL(string: photo)
+                DispatchQueue.main.async {
+                     imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+                                   let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
+                                   imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                                   
+                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
+                    self.imageScrollView.addSubview(imageView)
+                }
+
             }
+//            for index in 0..<photoArray.count{
+//                let imageView = UIImageView()
+//                imageView.contentMode = .scaleAspectFill
+//                let imageUrl = URL(string: photoArray[index])
+//                DispatchQueue.main.async {
+//                     imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+//                                   let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
+//                                   imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+//
+//                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
+//                    self.imageScrollView.addSubview(imageView)
+//                }
+//            }
         }
         
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
@@ -604,7 +616,7 @@ open class FoldingCell: UITableViewCell {
     private func configureResurantImageViewConstraints(){
         containerView.addSubview(imageScrollView)
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: containerView.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),imageScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -280)])
+        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: containerView.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),imageScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -260)])
     }
     
     private func configureResturantNameConstraints(){
@@ -622,7 +634,7 @@ open class FoldingCell: UITableViewCell {
     private func configureResturantPhoneNumberConstraints(){
         containerView.addSubview(resturantPhoneNumber)
         resturantPhoneNumber.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([resturantPhoneNumber.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 3),resturantPhoneNumber.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor),resturantPhoneNumber.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), resturantPhoneNumber.bottomAnchor.constraint(equalTo: mapView.topAnchor, constant: -3)])
+        NSLayoutConstraint.activate([resturantPhoneNumber.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 3),resturantPhoneNumber.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor),resturantPhoneNumber.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), resturantPhoneNumber.bottomAnchor.constraint(equalTo: mapView.topAnchor, constant: -5)])
     }
     
     private func configureOpenOrCloseLabelConstraints(){

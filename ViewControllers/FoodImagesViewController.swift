@@ -55,7 +55,9 @@ class FoodImagesViewController: UIViewController {
                         self?.activityIndicator.stopAnimating()
                         self?.popViewControllerAlert()
                         return }
-                    self?.userCategorySelectedResults = businesses
+                    DispatchQueue.main.async {
+                         self?.userCategorySelectedResults = businesses
+                    }
                 }
             }
         }

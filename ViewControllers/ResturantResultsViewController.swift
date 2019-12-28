@@ -21,8 +21,10 @@ class ResturantResultsViewController: UIViewController {
         didSet{
             for individualBusiness in userFoodImageSelection{
                 CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: nil) { [weak self] (business) in
+                    DispatchQueue.main.async {
                        if let business = business {
                         self?.businessFullDetail.append(business)
+                        }
                     }
                 }
 
