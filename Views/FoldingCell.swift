@@ -34,6 +34,15 @@ open class FoldingCell: UITableViewCell {
         return container
     }()
     
+    lazy var pageControl: UIPageControl = {
+        let pc = UIPageControl()
+        pc.hidesForSinglePage = true
+        pc.pageIndicatorTintColor = .blue
+        pc.currentPageIndicatorTintColor = .red
+        pc.numberOfPages = 3
+        return pc
+    }()
+    
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
@@ -168,10 +177,10 @@ open class FoldingCell: UITableViewCell {
         
         if let photoArray = business.photos{
             
-            for (index, photo) in photoArray.enumerated(){
+            for (index, photoString) in photoArray.enumerated(){
                 let imageView = UIImageView()
                 imageView.contentMode = .scaleAspectFill
-                let imageUrl = URL(string: photo)
+                let imageUrl = URL(string: photoString)
                 DispatchQueue.main.async {
                      imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
                                    let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
@@ -182,19 +191,6 @@ open class FoldingCell: UITableViewCell {
                 }
 
             }
-//            for index in 0..<photoArray.count{
-//                let imageView = UIImageView()
-//                imageView.contentMode = .scaleAspectFill
-//                let imageUrl = URL(string: photoArray[index])
-//                DispatchQueue.main.async {
-//                     imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-//                                   let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
-//                                   imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-//
-//                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
-//                    self.imageScrollView.addSubview(imageView)
-//                }
-//            }
         }
         
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
@@ -223,7 +219,8 @@ open class FoldingCell: UITableViewCell {
         configureResturantNameLabelConstraints()
         configureDistanceLabelConstraints()
         
-        configureResurantImageViewConstraints()
+        configureImageScrollViewConstraints()
+        configurePageControlConstraints()
         configureHeartImageConstraints()
         configureMapViewConstraints()
         configureNavigateButtomConstraints()
@@ -613,10 +610,16 @@ open class FoldingCell: UITableViewCell {
         NSLayoutConstraint.activate([distanceLabel.bottomAnchor.constraint(equalTo: self.foregroundView.bottomAnchor), distanceLabel.trailingAnchor.constraint(equalTo: self.foregroundView.trailingAnchor, constant: -2), distanceLabel.leadingAnchor.constraint(equalTo: resturantNameLabel.trailingAnchor), distanceLabel.topAnchor.constraint(equalTo: self.foodImageView.bottomAnchor)])
     }
     
-    private func configureResurantImageViewConstraints(){
+    private func configureImageScrollViewConstraints(){
         containerView.addSubview(imageScrollView)
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: containerView.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),imageScrollView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -260)])
+    }
+    
+    private func configurePageControlConstraints(){
+        containerView.addSubview(pageControl)
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -5), pageControl.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor), pageControl.heightAnchor.constraint(equalToConstant: 10), pageControl.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func configureResturantNameConstraints(){
