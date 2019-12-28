@@ -157,7 +157,7 @@ class FoodImagesViewController: UIViewController {
     
     // MARK: objc function
     @objc func handleContinueButtonPressed(sender:UIButton){
-        let resturantResultVC = ResturantResultsViewController()
+        let resturantResultVC = RestaurantResultsViewController()
          resturantResultVC.userFoodImageSelection = userFoodImageSelection
         navigationController?.pushViewController(resturantResultVC, animated: true)
         print("continue button pressed")

@@ -60,7 +60,7 @@
 		858A987423844BAE0051AF45 /* loader.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A987323844BAD0051AF45 /* loader.gif */; };
 		858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */; };
 		858A98792384EF840051AF45 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98782384EF840051AF45 /* FoldingCell.swift */; };
-		858A987B2384FCC40051AF45 /* ResturantResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */; };
+		858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */; };
 		858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987C2386D8820051AF45 /* FoodImagesViewController.swift */; };
 		858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */; };
 		858A988823885D0C0051AF45 /* scrollDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A988723885D0C0051AF45 /* scrollDownGif.gif */; };
@@ -150,7 +150,7 @@
 		858A987323844BAD0051AF45 /* loader.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loader.gif; sourceTree = "<group>"; };
 		858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A98782384EF840051AF45 /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
-		858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResturantResultsViewController.swift; sourceTree = "<group>"; };
+		858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResultsViewController.swift; sourceTree = "<group>"; };
 		858A987C2386D8820051AF45 /* FoodImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesViewController.swift; sourceTree = "<group>"; };
 		858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSellectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A988723885D0C0051AF45 /* scrollDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrollDownGif.gif; sourceTree = "<group>"; };
@@ -314,7 +314,7 @@
 			isa = PBXGroup;
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
-				858A987A2384FCC40051AF45 /* ResturantResultsViewController.swift */,
+				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
 				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
@@ -593,7 +593,7 @@
 				854D6D5423A28E76001BD091 /* CDYelpUser.swift in Sources */,
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
-				858A987B2384FCC40051AF45 /* ResturantResultsViewController.swift in Sources */,
+				858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */,
 				859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */,
 				85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */,
 				854D6D4123A28E76001BD091 /* CDYelpCategoriesResponse.swift in Sources */,

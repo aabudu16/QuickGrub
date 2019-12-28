@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class ResturantResultsViewController: UIViewController {
+class RestaurantResultsViewController: UIViewController {
     
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
@@ -96,7 +96,7 @@ class ResturantResultsViewController: UIViewController {
     }
 }
 
-extension ResturantResultsViewController: UITableViewDelegate{
+extension RestaurantResultsViewController: UITableViewDelegate{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeights[indexPath.row]
     }
@@ -143,7 +143,7 @@ extension ResturantResultsViewController: UITableViewDelegate{
     }
 }
 
-extension ResturantResultsViewController:UITableViewDataSource{
+extension RestaurantResultsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return  businessFullDetail.count
     }
@@ -162,7 +162,7 @@ extension ResturantResultsViewController:UITableViewDataSource{
     
 }
 
-extension ResturantResultsViewController: FoldingCellDelegate{
+extension RestaurantResultsViewController: FoldingCellDelegate{
     func navigateToDestination(tag: Int) {
        let businessInfo = businessFullDetail[tag]
         guard let lat = businessInfo.coordinates?.latitude, let long =  businessInfo.coordinates?.longitude else {return}
