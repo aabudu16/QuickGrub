@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class ResturantResultsViewController: UIViewController {
     
@@ -148,12 +150,31 @@ extension ResturantResultsViewController:UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
-        
+        cell.delegate = self
+        cell.navigateButtom.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
         cell.configureBusinessData(business: businessInfo, distance: distance)
 
         return cell
+    }
+    
+    
+}
+
+extension ResturantResultsViewController: FoldingCellDelegate{
+    func navigateToDestination(tag: Int) {
+       let businessInfo = businessFullDetail[tag]
+      //  guard let cell = tableView.cellForRow(at:  IndexPath(row: tag, section: 0)) as? FoldingCell else {return}
+        
+        guard let lat = businessInfo.coordinates?.latitude, let long =  businessInfo.coordinates?.longitude else {return}
+        
+                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = businessInfo.name
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+       
     }
     
     

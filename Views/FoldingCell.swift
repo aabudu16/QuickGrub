@@ -11,9 +11,14 @@ import MapKit
 import CoreLocation
 import Kingfisher
 
+protocol FoldingCellDelegate: AnyObject {
+    func navigateToDestination(tag: Int)
+}
+
 // UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
     
+    weak var delegate: FoldingCellDelegate?
     var foregroundViewTop:NSLayoutConstraint!
     var containerViewTop:NSLayoutConstraint!
     var animationView: UIView?
@@ -100,7 +105,7 @@ open class FoldingCell: UITableViewCell {
         button.layer.shadowRadius = 20.0
         button.layer.shadowOpacity = 0.5
         button.layer.masksToBounds = false
-        button.addTarget(self, action: #selector(handleNavigateButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
         return button
     }()
     
@@ -254,9 +259,12 @@ open class FoldingCell: UITableViewCell {
        print("more button pressed")
     }
     
-    @objc func handleNavigateButtonPressed(){
-        print(" navigate button pressed")
+       @objc private func getDirections(sender:UIButton) {
+        
+        delegate?.navigateToDestination(tag: sender.tag)
+        
     }
+
     
     @objc open func commonInit() {
         configureDefaultState()
