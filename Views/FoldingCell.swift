@@ -149,6 +149,10 @@ open class FoldingCell: UITableViewCell {
         return image
     }()
     
+    private func zoomToLatestLocation(with coordinate:CLLocationCoordinate2D){
+        let zoomRegion = MKCoordinateRegion.init(center: coordinate, latitudinalMeters: 200, longitudinalMeters: 200)
+        mapView.setRegion(zoomRegion, animated: true)
+    }
     
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
        
@@ -194,6 +198,11 @@ open class FoldingCell: UITableViewCell {
 
             }
         }
+        //MARK: - Adds annotation to mapview
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 40.6782, longitude: business.coordinates?.longitude ?? -73.9442)
+                   self.mapView.addAnnotation(annotation)
+        zoomToLatestLocation(with: annotation.coordinate)
         
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
         durationsForExpandedState = durations
