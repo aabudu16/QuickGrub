@@ -15,8 +15,8 @@ class RestaurantDetailViewController: UIViewController {
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
-//        view.layer.borderColor = UIColor.blue.cgColor
-//        view.layer.borderWidth = 2
+        //        view.layer.borderColor = UIColor.blue.cgColor
+        //        view.layer.borderWidth = 2
         return view
     }()
     
@@ -47,7 +47,7 @@ class RestaurantDetailViewController: UIViewController {
         label.textColor = .black
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-
+        
         return label
     }()
     
@@ -55,8 +55,8 @@ class RestaurantDetailViewController: UIViewController {
         let label = UILabel()
         label.textAlignment = .center
         
-//        label.layer.borderColor = UIColor.blue.cgColor
-//        label.layer.borderWidth = 2
+        //        label.layer.borderColor = UIColor.blue.cgColor
+        //        label.layer.borderWidth = 2
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.text = "Pasteles Del Caribe"
@@ -69,8 +69,8 @@ class RestaurantDetailViewController: UIViewController {
         tv.textAlignment = .center
         tv.textAlignment = .left
         
-//        tv.layer.borderColor = UIColor.blue.cgColor
-//        tv.layer.borderWidth = 2
+                tv.layer.borderColor = UIColor.blue.cgColor
+                tv.layer.borderWidth = 2
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
         tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
@@ -81,12 +81,26 @@ class RestaurantDetailViewController: UIViewController {
     lazy var foodMenuButton:UIButton = {
         let button = UIButton()
         
-//        button.layer.borderColor = UIColor.blue.cgColor
-//        button.layer.borderWidth = 2
+        //        button.layer.borderColor = UIColor.blue.cgColor
+        //        button.layer.borderWidth = 2
         button.setImage(#imageLiteral(resourceName: "menu-1"), for: .normal)
         return button
     }()
     
+    lazy var  starRatings:UIImageView = {
+        let image = UIImageView()
+                image.layer.borderColor = UIColor.blue.cgColor
+                      image.layer.borderWidth = 2
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
+    
+    lazy var ratingsCount:UILabel = {
+        let label = UILabel()
+        label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
+        label.text = "3870 Ratings"
+        return label
+    }()
     lazy var hoursOfOperationTextView:UITextView = {
         let tv = UITextView()
         tv.backgroundColor = .clear
@@ -155,24 +169,28 @@ class RestaurantDetailViewController: UIViewController {
         configureResturantNameConstraints()
         configureAddressTextViewConstraints()
         configureFoodMenuButtonConstraints()
+        configureStarRatingsLabelConstraints()
+        configureRatingsCountConstraints()
     }
     
     //MARK:@Objc function
-    @objc func handleFavoriteButtonPressed(){
+    @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
         print("favorite button pressed")
     }
     
-    @objc func handleShareButtonPressed(){
-           print("favorite button pressed")
-       }
+    @objc func handleShareButtonPressed(sender:UIBarButtonItem){
+        print("favorite button pressed")
+    }
     //MARK:Private function
     
     private func setupNavigationBarButtons(){
-        let favorite = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(handleFavoriteButtonPressed))
-        let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(handleShareButtonPressed))
-
+        let favorite = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(handleFavoriteButtonPressed(sender:)))
+        let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(handleShareButtonPressed(sender:)))
+        
+        favorite.tintColor = .black
+        share.tintColor = .black
         navigationItem.rightBarButtonItems = [favorite, share]
-
+        
     }
     
     //MARK: - Private constraints functions
@@ -203,18 +221,30 @@ class RestaurantDetailViewController: UIViewController {
     private func configureResturantNameConstraints(){
         view.addSubview(restaurantName)
         restaurantName.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([restaurantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), restaurantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), restaurantName.heightAnchor.constraint(equalToConstant: 50), restaurantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -5)])
+        NSLayoutConstraint.activate([restaurantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), restaurantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), restaurantName.heightAnchor.constraint(equalToConstant: 50), restaurantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -35)])
     }
     
     private func configureAddressTextViewConstraints(){
         view.addSubview(addressTextView)
         addressTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor, constant:  5), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 100), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor, constant:  5), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 85), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
     }
     
     private func configureFoodMenuButtonConstraints(){
         view.addSubview(foodMenuButton)
         foodMenuButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([foodMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 5), foodMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), foodMenuButton.heightAnchor.constraint(equalToConstant: 80), foodMenuButton.widthAnchor.constraint(equalToConstant: 70)])
+    }
+    
+    private func configureStarRatingsLabelConstraints(){
+        view.addSubview(starRatings)
+        starRatings.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 3), starRatings.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
+    }
+    
+    private func configureRatingsCountConstraints(){
+        view.addSubview(ratingsCount)
+        ratingsCount.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([ratingsCount.topAnchor.constraint(equalTo: starRatings.topAnchor), ratingsCount.leadingAnchor.constraint(equalTo: starRatings.trailingAnchor,constant: 3), ratingsCount.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), ratingsCount.heightAnchor.constraint(equalTo: starRatings.heightAnchor)])
     }
 }
