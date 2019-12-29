@@ -15,8 +15,8 @@ class RestaurantDetailViewController: UIViewController {
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
-        view.layer.borderColor = UIColor.blue.cgColor
-        view.layer.borderWidth = 2
+//        view.layer.borderColor = UIColor.blue.cgColor
+//        view.layer.borderWidth = 2
         return view
     }()
     
@@ -51,11 +51,12 @@ class RestaurantDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var resturantName:UILabel = {
+    lazy var restaurantName:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
+        
+//        label.layer.borderColor = UIColor.blue.cgColor
+//        label.layer.borderWidth = 2
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.text = "Pasteles Del Caribe"
@@ -67,11 +68,23 @@ class RestaurantDetailViewController: UIViewController {
         tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.textAlignment = .left
+        
+//        tv.layer.borderColor = UIColor.blue.cgColor
+//        tv.layer.borderWidth = 2
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
         tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
         tv.font = UIFont(name: "Avenir-Light", size: 19)
         return tv
+    }()
+    
+    lazy var foodMenuButton:UIButton = {
+        let button = UIButton()
+        
+//        button.layer.borderColor = UIColor.blue.cgColor
+//        button.layer.borderWidth = 2
+        button.setImage(#imageLiteral(resourceName: "menu-1"), for: .normal)
+        return button
     }()
     
     lazy var hoursOfOperationTextView:UITextView = {
@@ -133,12 +146,33 @@ class RestaurantDetailViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBarButtons()
         view.backgroundColor = .white
         configureImageScrollViewConstraints()
         configurePageControlConstraints()
         configureLogoViewConstraints()
         configureLogoLabelConstraints()
         configureResturantNameConstraints()
+        configureAddressTextViewConstraints()
+        configureFoodMenuButtonConstraints()
+    }
+    
+    //MARK:@Objc function
+    @objc func handleFavoriteButtonPressed(){
+        print("favorite button pressed")
+    }
+    
+    @objc func handleShareButtonPressed(){
+           print("favorite button pressed")
+       }
+    //MARK:Private function
+    
+    private func setupNavigationBarButtons(){
+        let favorite = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(handleFavoriteButtonPressed))
+        let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(handleShareButtonPressed))
+
+        navigationItem.rightBarButtonItems = [favorite, share]
+
     }
     
     //MARK: - Private constraints functions
@@ -167,8 +201,20 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     private func configureResturantNameConstraints(){
-        view.addSubview(resturantName)
-        resturantName.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([resturantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), resturantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), resturantName.heightAnchor.constraint(equalToConstant: 50), resturantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -5)])
+        view.addSubview(restaurantName)
+        restaurantName.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([restaurantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), restaurantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), restaurantName.heightAnchor.constraint(equalToConstant: 50), restaurantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -5)])
+    }
+    
+    private func configureAddressTextViewConstraints(){
+        view.addSubview(addressTextView)
+        addressTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor, constant:  5), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 100), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+    }
+    
+    private func configureFoodMenuButtonConstraints(){
+        view.addSubview(foodMenuButton)
+        foodMenuButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([foodMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 5), foodMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), foodMenuButton.heightAnchor.constraint(equalToConstant: 80), foodMenuButton.widthAnchor.constraint(equalToConstant: 70)])
     }
 }
