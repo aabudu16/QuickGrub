@@ -277,7 +277,6 @@ open class FoldingCell: UITableViewCell {
     
     // MARK: configure
     
-    
     private func configureDefaultState() {
         
         guard let foregroundViewTop = self.foregroundViewTop,

@@ -54,6 +54,9 @@ class RestaurantDetailViewController: UIViewController {
     lazy var resturantName:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.layer.borderColor = UIColor.blue.cgColor
+        label.layer.borderWidth = 2
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.text = "Pasteles Del Caribe"
         return label
@@ -135,6 +138,7 @@ class RestaurantDetailViewController: UIViewController {
         configurePageControlConstraints()
         configureLogoViewConstraints()
         configureLogoLabelConstraints()
+        configureResturantNameConstraints()
     }
     
     //MARK: - Private constraints functions
@@ -160,5 +164,11 @@ class RestaurantDetailViewController: UIViewController {
         logoView.addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
+    }
+    
+    private func configureResturantNameConstraints(){
+        view.addSubview(resturantName)
+        resturantName.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resturantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), resturantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), resturantName.heightAnchor.constraint(equalToConstant: 50), resturantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -5)])
     }
 }
