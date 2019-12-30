@@ -15,8 +15,8 @@ class RestaurantDetailViewController: UIViewController {
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
-        //        view.layer.borderColor = UIColor.blue.cgColor
-        //        view.layer.borderWidth = 2
+        view.layer.borderColor = UIColor.blue.cgColor
+        view.layer.borderWidth = 2
         return view
     }()
     
@@ -31,7 +31,7 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var logoView:UIView = {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: 110, height: 60))
-        view.backgroundColor = .white
+        view.backgroundColor = #colorLiteral(red: 0.9692103267, green: 0.9634483457, blue: 0.9736391902, alpha: 1)
         view.layer.borderWidth = 0.5
         view.layer.shadowOpacity = 0.1
         view.layer.masksToBounds = false
@@ -41,7 +41,7 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var logoLabel:UILabel = {
         let label = UILabel()
-        label.text = "The Best Resturant Ever"
+        label.text = "Pasteles Del Caribe"
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
         label.textColor = .black
@@ -53,10 +53,7 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var restaurantName:UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        
-        //        label.layer.borderColor = UIColor.blue.cgColor
-        //        label.layer.borderWidth = 2
+        label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.text = "Pasteles Del Caribe"
@@ -68,9 +65,6 @@ class RestaurantDetailViewController: UIViewController {
         tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.textAlignment = .left
-        
-                tv.layer.borderColor = UIColor.blue.cgColor
-                tv.layer.borderWidth = 2
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
         tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
@@ -80,23 +74,21 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var foodMenuButton:UIButton = {
         let button = UIButton()
-        
-        //        button.layer.borderColor = UIColor.blue.cgColor
-        //        button.layer.borderWidth = 2
         button.setImage(#imageLiteral(resourceName: "menu-1"), for: .normal)
         return button
     }()
     
     lazy var  starRatings:UIImageView = {
         let image = UIImageView()
-                image.layer.borderColor = UIColor.blue.cgColor
-                      image.layer.borderWidth = 2
+        image.image = UIImage(named: "stars_4half")
         image.contentMode = .scaleAspectFit
         return image
     }()
     
     lazy var ratingsCount:UILabel = {
         let label = UILabel()
+//        label.layer.borderColor = UIColor.blue.cgColor
+//        label.layer.borderWidth = 2
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
         label.text = "3870 Ratings"
         return label
@@ -108,7 +100,6 @@ class RestaurantDetailViewController: UIViewController {
         tv.textAlignment = .left
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
-        tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
         tv.font = UIFont(name: "Avenir-Light", size: 19)
         return tv
     }()
@@ -130,7 +121,31 @@ class RestaurantDetailViewController: UIViewController {
     lazy var restaurantMenuButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        // button.addTarget(self, action: #selector(handleRestaurantMenuButtonPressed), for: .touchUpInside)
+         button.addTarget(self, action: #selector(handleRestaurantMenuButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
+    lazy var containerView:UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+       view.layer.shadowOpacity = 0.1
+       view.layer.masksToBounds = false
+        return view
+    }()
+    
+    lazy var aboutButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("About", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 20)
+        button.setTitleColor(.blue, for: .normal)
+        return button
+    }()
+    
+    lazy var reviewButton:UIButton = {
+        let button = UIButton()
+        button.setTitle("Reviews", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 20)
+        button.setTitleColor(.blue, for: .normal)
         return button
     }()
     
@@ -171,9 +186,17 @@ class RestaurantDetailViewController: UIViewController {
         configureFoodMenuButtonConstraints()
         configureStarRatingsLabelConstraints()
         configureRatingsCountConstraints()
+        
+        configureContainerViewConstraints()
+        configureAboutButtonConstraints()
+        configureReviewButtonConstraints()
     }
     
     //MARK:@Objc function
+    
+    @objc func handleRestaurantMenuButtonPressed(){
+        print("Menu button pressed")
+    }
     @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
         print("favorite button pressed")
     }
@@ -193,11 +216,17 @@ class RestaurantDetailViewController: UIViewController {
         
     }
     
+    private func createHairLineView()-> UIView{
+           let hairLine = UIView()
+           hairLine.backgroundColor = .lightGray
+           return hairLine
+       }
+    
     //MARK: - Private constraints functions
     private func configureImageScrollViewConstraints(){
         view.addSubview(imageScrollView)
         imageScrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: view.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),imageScrollView.heightAnchor.constraint(equalToConstant: 350)])
+        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: view.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),imageScrollView.heightAnchor.constraint(equalToConstant: 300)])
     }
     
     private func configurePageControlConstraints(){
@@ -209,7 +238,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureLogoViewConstraints(){
         view.addSubview(logoView)
         logoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoView.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: (logoView.layer.frame.height / 2)), logoView.trailingAnchor.constraint(equalTo: imageScrollView.trailingAnchor, constant: -10), logoView.heightAnchor.constraint(equalToConstant: 60), logoView.widthAnchor.constraint(equalToConstant: 110)])
+        NSLayoutConstraint.activate([logoView.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: (logoView.layer.frame.height / 2)), logoView.trailingAnchor.constraint(equalTo: imageScrollView.trailingAnchor, constant: -10), logoView.heightAnchor.constraint(equalToConstant: 60), logoView.widthAnchor.constraint(equalToConstant: 90)])
     }
     
     private func configureLogoLabelConstraints(){
@@ -227,19 +256,19 @@ class RestaurantDetailViewController: UIViewController {
     private func configureAddressTextViewConstraints(){
         view.addSubview(addressTextView)
         addressTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor, constant:  5), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 85), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 85), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
     }
     
     private func configureFoodMenuButtonConstraints(){
         view.addSubview(foodMenuButton)
         foodMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 5), foodMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), foodMenuButton.heightAnchor.constraint(equalToConstant: 80), foodMenuButton.widthAnchor.constraint(equalToConstant: 70)])
+        NSLayoutConstraint.activate([foodMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 25), foodMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), foodMenuButton.heightAnchor.constraint(equalToConstant: 80), foodMenuButton.widthAnchor.constraint(equalToConstant: 70)])
     }
     
     private func configureStarRatingsLabelConstraints(){
         view.addSubview(starRatings)
         starRatings.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 3), starRatings.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
+        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 0), starRatings.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
     }
     
     private func configureRatingsCountConstraints(){
@@ -247,4 +276,23 @@ class RestaurantDetailViewController: UIViewController {
         ratingsCount.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([ratingsCount.topAnchor.constraint(equalTo: starRatings.topAnchor), ratingsCount.leadingAnchor.constraint(equalTo: starRatings.trailingAnchor,constant: 3), ratingsCount.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), ratingsCount.heightAnchor.constraint(equalTo: starRatings.heightAnchor)])
     }
+    
+    private func configureContainerViewConstraints(){
+        view.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: starRatings.bottomAnchor), containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10), containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), containerView.heightAnchor.constraint(equalToConstant: 45)])
+    }
+    
+    private func configureAboutButtonConstraints(){
+        containerView.addSubview(aboutButton)
+        aboutButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([aboutButton.topAnchor.constraint(equalTo: containerView.topAnchor), aboutButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor), aboutButton.widthAnchor.constraint(equalTo: starRatings.widthAnchor), aboutButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)])
+    }
+    
+    private func configureReviewButtonConstraints(){
+        containerView.addSubview(reviewButton)
+        reviewButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([reviewButton.topAnchor.constraint(equalTo: containerView.topAnchor), reviewButton.leadingAnchor.constraint(equalTo: ratingsCount.leadingAnchor), reviewButton.heightAnchor.constraint(equalTo: aboutButton.heightAnchor), reviewButton.widthAnchor.constraint(equalTo: aboutButton.widthAnchor)])
+    }
+    
 }

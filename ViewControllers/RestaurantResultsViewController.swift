@@ -26,6 +26,12 @@ class RestaurantResultsViewController: UIViewController {
                     DispatchQueue.main.async {
                        if let business = business {
                         self?.businessFullDetail.append(business)
+                        for open in business.hours!{
+                            for j in open.open!{
+                                print(" we open \(j.start)")
+                                 print(" we close \(j.end)")
+                            }
+                        }
                         }
                     }
                 }
