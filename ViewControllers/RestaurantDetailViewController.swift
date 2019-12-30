@@ -100,7 +100,16 @@ class RestaurantDetailViewController: UIViewController {
         tv.textAlignment = .left
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
-        tv.font = UIFont(name: "Avenir-Light", size: 19)
+        tv.font = UIFont(name: "Avenir-Light", size: 16)
+        tv.text = """
+        Sunday         11:30AM – 2.20AM
+        Monday        11:30AM – 2AM
+        Tuesday        11:30AM – 2AM
+        Wednesday  11:30AM – 2AM
+        Thursday      11:30AM – 2AM
+        Friday           11:30AM – 3.30AM
+        Saturday       11:30AM – 3AM
+        """
         return tv
     }()
     
@@ -111,10 +120,11 @@ class RestaurantDetailViewController: UIViewController {
         return label
     }()
     
-    lazy var resturantPhoneNumber:UILabel = {
+    lazy var restaurantPhoneNumber:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Light", size: 20)
+        label.text = "(718)450-4321"
+        label.font = UIFont(name: "Avenir-Light", size: 18)
         return label
     }()
     
@@ -128,7 +138,8 @@ class RestaurantDetailViewController: UIViewController {
     lazy var containerView:UIView = {
         let view = UIView()
         view.backgroundColor = .white
-       view.layer.shadowOpacity = 0.1
+       view.layer.shadowOpacity = 0.2
+        view.layer.shadowOffset = CGSize(width: 0.5, height: 1)
        view.layer.masksToBounds = false
         return view
     }()
@@ -151,25 +162,15 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var navigateButtom:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(systemName: "arrowtriangle.right.fill"), for: .normal)
+        button.setTitle("Direction", for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 18)
         button.layer.cornerRadius = 20
         button.clipsToBounds = true
-        button.backgroundColor = .black
-        button.layer.shadowColor = UIColor.black.cgColor
+        button.tintColor = .white
+        button.backgroundColor = .blue
         button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-        button.layer.shadowRadius = 20.0
-        button.layer.shadowOpacity = 0.5
-        button.layer.masksToBounds = false
-        // button.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
+        //button.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
         return button
-    }()
-    
-    lazy  var distanceLabel:UILabel = {
-        let label = UILabel()
-        label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
-        label.textColor = .white
-        label.adjustsFontSizeToFitWidth = true
-        return label
     }()
     
     //MARK: - Lifecycle
@@ -183,13 +184,15 @@ class RestaurantDetailViewController: UIViewController {
         configureLogoLabelConstraints()
         configureResturantNameConstraints()
         configureAddressTextViewConstraints()
+        configureRestaurantPhoneNumberConstraints()
         configureFoodMenuButtonConstraints()
         configureStarRatingsLabelConstraints()
         configureRatingsCountConstraints()
-        
         configureContainerViewConstraints()
         configureAboutButtonConstraints()
         configureReviewButtonConstraints()
+        configureHoursOfOperationTextViewConstraints()
+        configureNavigateButtomConstraints()
     }
     
     //MARK:@Objc function
@@ -256,7 +259,13 @@ class RestaurantDetailViewController: UIViewController {
     private func configureAddressTextViewConstraints(){
         view.addSubview(addressTextView)
         addressTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 85), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 75), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+    }
+    
+    private func configureRestaurantPhoneNumberConstraints(){
+        view.addSubview(restaurantPhoneNumber)
+        restaurantPhoneNumber.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([restaurantPhoneNumber.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 0), restaurantPhoneNumber.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), restaurantPhoneNumber.heightAnchor.constraint(equalToConstant: 40), restaurantPhoneNumber.widthAnchor.constraint(equalTo: addressTextView.widthAnchor)])
     }
     
     private func configureFoodMenuButtonConstraints(){
@@ -268,7 +277,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureStarRatingsLabelConstraints(){
         view.addSubview(starRatings)
         starRatings.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 0), starRatings.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
+        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: restaurantPhoneNumber.bottomAnchor,constant: 0), starRatings.leadingAnchor.constraint(equalTo: restaurantPhoneNumber.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
     }
     
     private func configureRatingsCountConstraints(){
@@ -293,6 +302,18 @@ class RestaurantDetailViewController: UIViewController {
         containerView.addSubview(reviewButton)
         reviewButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([reviewButton.topAnchor.constraint(equalTo: containerView.topAnchor), reviewButton.leadingAnchor.constraint(equalTo: ratingsCount.leadingAnchor), reviewButton.heightAnchor.constraint(equalTo: aboutButton.heightAnchor), reviewButton.widthAnchor.constraint(equalTo: aboutButton.widthAnchor)])
+    }
+    
+    private func configureHoursOfOperationTextViewConstraints(){
+        view.addSubview(hoursOfOperationTextView)
+        hoursOfOperationTextView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([hoursOfOperationTextView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 2), hoursOfOperationTextView.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), hoursOfOperationTextView.trailingAnchor.constraint(equalTo: reviewButton.trailingAnchor, constant: 30), hoursOfOperationTextView.heightAnchor.constraint(equalToConstant: 200)])
+    }
+    
+    private func configureNavigateButtomConstraints(){
+        view.addSubview(navigateButtom)
+        navigateButtom.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([navigateButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -20), navigateButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalToConstant: 120)])
     }
     
 }
