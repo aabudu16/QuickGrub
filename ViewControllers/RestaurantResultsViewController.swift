@@ -157,8 +157,9 @@ extension RestaurantResultsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         cell.delegate = self
-        cell.detailVCDelegate = self
         cell.navigateButtom.tag = indexPath.row
+        cell.detailVCDelegate = self
+        cell.moreDetailButton.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
         cell.configureBusinessData(business: businessInfo, distance: distance)
@@ -187,8 +188,9 @@ extension RestaurantResultsViewController: NavigateToRestaurantDetailVCDelegate{
         let businessInfo = businessFullDetail[tag]
         
         let restaurantDetailVC = RestaurantDetailViewController()
+        restaurantDetailVC.business = businessInfo
         self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
     }
     
-    
 }
+

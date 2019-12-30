@@ -7,13 +7,71 @@
 //
 
 import UIKit
+import Kingfisher
 
 class RestaurantDetailViewController: UIViewController {
     
     //MARK: - UIObjects
-    var businessInfo:CDYelpBusiness!{
+     let image = UIImage(named: "FoodPlaceholder")
+    var business:CDYelpBusiness!{
         didSet{
-            print(businessInfo.name)
+//                    if let photoArray = business.photos{
+//
+//                for (index, photoString) in photoArray.enumerated(){
+//                    pageControl.numberOfPages = photoArray.count
+//                    let imageView = UIImageView()
+//                    imageView.contentMode = .scaleAspectFill
+//                    let imageUrl = URL(string: photoString)
+//                    DispatchQueue.main.async {
+//                        imageView.kf.setImage(with: imageUrl, placeholder: self.image, options: [.transition(.fade(0.2))])
+//                                       let xPosition:CGFloat = self.view.frame.width * CGFloat(index)
+//                                       imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+//
+//                        self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
+//                        self.imageScrollView.addSubview(imageView)
+//                    }
+//
+//                }
+//            }
+            
+            logoLabel.text = business.name
+            restaurantName.text = business.name
+            if let displayAddress = business.location?.displayAddress{
+                     addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+                    }
+            
+                restaurantPhoneNumber.text = business.displayPhone
+            
+            switch business.rating{
+                   case 0.0:
+                       starRatings.image = UIImage(named: "stars_0")
+                   case 1.0:
+                       starRatings.image = UIImage(named: "stars_1")
+                   case 1.5:
+                       starRatings.image = UIImage(named: "stars_1half")
+                   case 2.0:
+                       starRatings.image = UIImage(named: "stars_2")
+                   case 2.5:
+                       starRatings.image = UIImage(named: "stars_2half")
+                   case 3.0:
+                       starRatings.image = UIImage(named: "stars_3")
+                   case 3.5:
+                       starRatings.image = UIImage(named: "stars_3half")
+                   case 4.0:
+                       starRatings.image = UIImage(named: "stars_4")
+                   case 4.5:
+                       starRatings.image = UIImage(named: "stars_4half")
+                   case 5.0:
+                       starRatings.image = UIImage(named: "stars_5")
+                   default:
+                       starRatings.image = UIImage(named: "stars_0")
+                       
+                   }
+            if let reviewCount = business.reviewCount{
+               reviewCountLabel.text = "\(reviewCount) Ratings"
+            }
+            
+
         }
     }
     
@@ -30,7 +88,6 @@ class RestaurantDetailViewController: UIViewController {
         pc.hidesForSinglePage = true
         pc.pageIndicatorTintColor = .blue
         pc.currentPageIndicatorTintColor = .red
-        pc.numberOfPages = 3
         return pc
     }()
     
@@ -46,9 +103,10 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var logoLabel:UILabel = {
         let label = UILabel()
-        label.text = "Pasteles Del Caribe"
+//        label.layer.borderColor = UIColor.blue.cgColor
+//        label.layer.borderWidth = 2
         label.textAlignment = .center
-        label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
+        label.font = UIFont(name: "Savoye LET", size: 30)
         label.textColor = .black
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
@@ -66,7 +124,6 @@ class RestaurantDetailViewController: UIViewController {
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
-        label.text = "Pasteles Del Caribe"
         return label
     }()
     
@@ -77,7 +134,6 @@ class RestaurantDetailViewController: UIViewController {
         tv.textAlignment = .left
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
-        tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
         tv.font = UIFont(name: "Avenir-Light", size: 19)
         return tv
     }()
@@ -95,11 +151,10 @@ class RestaurantDetailViewController: UIViewController {
         return image
     }()
     
-    lazy var ratingsCount:UILabel = {
+    lazy var reviewCountLabel:UILabel = {
         let label = UILabel()
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
         label.font = UIFont(name: "Avenir-Light", size: 15)
-        label.text = "3870 Ratings"
         return label
     }()
     lazy var hoursOfOperationTextView:UITextView = {
@@ -185,6 +240,7 @@ class RestaurantDetailViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        setScrollViewDelegate()
         setupNavigationBarButtons()
         view.backgroundColor = .white
         configureImageScrollViewConstraints()
@@ -218,6 +274,10 @@ class RestaurantDetailViewController: UIViewController {
         print("favorite button pressed")
     }
     //MARK:Private function
+    
+    private func setScrollViewDelegate(){
+        imageScrollView.delegate = self
+    }
     
     private func setupNavigationBarButtons(){
         let favorite = UIBarButtonItem(image: UIImage(systemName: "bookmark"), style: .plain, target: self, action: #selector(handleFavoriteButtonPressed(sender:)))
@@ -257,7 +317,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureLogoLabelConstraints(){
         logoView.addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
+        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: 10),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
     }
     
     private func configureBadgeImageViewConstraints(){
@@ -298,9 +358,9 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     private func configureRatingsCountConstraints(){
-        view.addSubview(ratingsCount)
-        ratingsCount.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ratingsCount.topAnchor.constraint(equalTo: starRatings.topAnchor), ratingsCount.leadingAnchor.constraint(equalTo: starRatings.trailingAnchor,constant: 3), ratingsCount.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), ratingsCount.heightAnchor.constraint(equalTo: starRatings.heightAnchor)])
+        view.addSubview(reviewCountLabel)
+        reviewCountLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([reviewCountLabel.topAnchor.constraint(equalTo: starRatings.topAnchor), reviewCountLabel.leadingAnchor.constraint(equalTo: starRatings.trailingAnchor,constant: 3), reviewCountLabel.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), reviewCountLabel.heightAnchor.constraint(equalTo: starRatings.heightAnchor)])
     }
     
     private func configureContainerViewConstraints(){
@@ -318,7 +378,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureReviewButtonConstraints(){
         containerView.addSubview(reviewButton)
         reviewButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([reviewButton.topAnchor.constraint(equalTo: containerView.topAnchor), reviewButton.leadingAnchor.constraint(equalTo: ratingsCount.leadingAnchor), reviewButton.heightAnchor.constraint(equalTo: aboutButton.heightAnchor), reviewButton.widthAnchor.constraint(equalTo: aboutButton.widthAnchor)])
+        NSLayoutConstraint.activate([reviewButton.topAnchor.constraint(equalTo: containerView.topAnchor), reviewButton.leadingAnchor.constraint(equalTo: reviewCountLabel.leadingAnchor), reviewButton.heightAnchor.constraint(equalTo: aboutButton.heightAnchor), reviewButton.widthAnchor.constraint(equalTo: aboutButton.widthAnchor)])
     }
     
     private func configureHoursOfOperationTextViewConstraints(){
@@ -333,4 +393,11 @@ class RestaurantDetailViewController: UIViewController {
         NSLayoutConstraint.activate([navigateButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -30), navigateButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalToConstant: 120)])
     }
     
+}
+
+extension RestaurantDetailViewController: UIScrollViewDelegate{
+    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let page = scrollView.contentOffset.x / scrollView.frame.size.width
+       // pageControl.currentPage = Int(page)
+    }
 }

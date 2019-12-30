@@ -61,7 +61,6 @@ open class FoldingCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
-        label.text = "Pasteles Del Caribe"
         return label
     }()
     
@@ -72,7 +71,6 @@ open class FoldingCell: UITableViewCell {
         tv.textAlignment = .left
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
-        tv.text = "218-28 Merrick Blvd, Springfield Gardens, NY 11413"
         tv.font = UIFont(name: "Avenir-Light", size: 19)
         return tv
     }()
