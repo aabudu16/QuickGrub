@@ -51,6 +51,11 @@ class RestaurantDetailViewController: UIViewController {
         return label
     }()
     
+    lazy var badgeImageView:UIImageView = {
+        let iv = UIImageView()
+        iv.image = UIImage(named: "foodBadge")
+        return iv
+    }()
     lazy var restaurantName:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -182,6 +187,7 @@ class RestaurantDetailViewController: UIViewController {
         configurePageControlConstraints()
         configureLogoViewConstraints()
         configureLogoLabelConstraints()
+        configureBadgeImageViewConstraints()
         configureResturantNameConstraints()
         configureAddressTextViewConstraints()
         configureRestaurantPhoneNumberConstraints()
@@ -250,6 +256,13 @@ class RestaurantDetailViewController: UIViewController {
         NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
     }
     
+    private func configureBadgeImageViewConstraints(){
+        view.addSubview(badgeImageView)
+        badgeImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([badgeImageView.topAnchor.constraint(equalTo: logoView.topAnchor,constant: -20), badgeImageView.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -20), badgeImageView.heightAnchor.constraint(equalToConstant: 45), badgeImageView.widthAnchor.constraint(equalTo: badgeImageView.heightAnchor)])
+        
+    }
+    
     private func configureResturantNameConstraints(){
         view.addSubview(restaurantName)
         restaurantName.translatesAutoresizingMaskIntoConstraints = false
@@ -313,7 +326,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureNavigateButtomConstraints(){
         view.addSubview(navigateButtom)
         navigateButtom.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([navigateButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -20), navigateButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalToConstant: 120)])
+        NSLayoutConstraint.activate([navigateButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -30), navigateButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalToConstant: 120)])
     }
     
 }
