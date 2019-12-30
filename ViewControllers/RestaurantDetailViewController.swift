@@ -117,9 +117,10 @@ class RestaurantDetailViewController: UIViewController {
         return tv
     }()
     
-    lazy var foodMenuButton:UIButton = {
+    lazy var businessMenuButton:UIButton = {
         let button = UIButton()
         button.setImage(#imageLiteral(resourceName: "menu-1"), for: .normal)
+        button.addTarget(self, action: #selector(handleBusinessMenuButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -169,13 +170,6 @@ class RestaurantDetailViewController: UIViewController {
         label.text = "(718)450-4321"
         label.font = UIFont(name: "Avenir-Light", size: 18)
         return label
-    }()
-    
-    lazy var restaurantMenuButton:UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        button.addTarget(self, action: #selector(handleRestaurantMenuButtonPressed), for: .touchUpInside)
-        return button
     }()
     
     lazy var containerView:UIView = {
@@ -247,7 +241,7 @@ class RestaurantDetailViewController: UIViewController {
     }
     //MARK:@Objc function
     
-    @objc func handleRestaurantMenuButtonPressed(){
+    @objc func handleBusinessMenuButtonPressed(sender:UIButton){
         print("Menu button pressed")
     }
     @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
@@ -351,9 +345,9 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     private func configureFoodMenuButtonConstraints(){
-        view.addSubview(foodMenuButton)
-        foodMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 25), foodMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), foodMenuButton.heightAnchor.constraint(equalToConstant: 80), foodMenuButton.widthAnchor.constraint(equalToConstant: 70)])
+        view.addSubview(businessMenuButton)
+        businessMenuButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([businessMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 25), businessMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), businessMenuButton.heightAnchor.constraint(equalToConstant: 80), businessMenuButton.widthAnchor.constraint(equalToConstant: 70)])
     }
     
     private func configureStarRatingsLabelConstraints(){
