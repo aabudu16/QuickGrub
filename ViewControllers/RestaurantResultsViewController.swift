@@ -157,6 +157,7 @@ extension RestaurantResultsViewController:UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         cell.delegate = self
+        cell.detailVCDelegate = self
         cell.navigateButtom.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
@@ -178,7 +179,15 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
                 let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = businessInfo.name
                 mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-       
+    }
+}
+
+extension RestaurantResultsViewController: NavigateToRestaurantDetailVCDelegate{
+    func navigateToDetailedViewController(tag: Int) {
+        let businessInfo = businessFullDetail[tag]
+        
+        let restaurantDetailVC = RestaurantDetailViewController()
+        self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
     }
     
     

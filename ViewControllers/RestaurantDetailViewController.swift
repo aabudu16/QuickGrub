@@ -11,6 +11,11 @@ import UIKit
 class RestaurantDetailViewController: UIViewController {
     
     //MARK: - UIObjects
+    var businessInfo:CDYelpBusiness!{
+        didSet{
+            print(businessInfo.name)
+        }
+    }
     
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
@@ -92,9 +97,8 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var ratingsCount:UILabel = {
         let label = UILabel()
-//        label.layer.borderColor = UIColor.blue.cgColor
-//        label.layer.borderWidth = 2
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
+        label.font = UIFont(name: "Avenir-Light", size: 15)
         label.text = "3870 Ratings"
         return label
     }()

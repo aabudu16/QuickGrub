@@ -15,10 +15,14 @@ protocol FoldingCellDelegate: AnyObject {
     func navigateToDestination(tag: Int)
 }
 
+protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
+    func navigateToDetailedViewController(tag: Int)
+}
 // UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
     
     weak var delegate: FoldingCellDelegate?
+    weak var detailVCDelegate: NavigateToRestaurantDetailVCDelegate?
     var foregroundViewTop:NSLayoutConstraint!
     var containerViewTop:NSLayoutConstraint!
     var animationView: UIView?
@@ -90,7 +94,7 @@ open class FoldingCell: UITableViewCell {
     lazy var moreDetailButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-        button.addTarget(self, action: #selector(handleMoreButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleMoreButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -256,8 +260,8 @@ open class FoldingCell: UITableViewCell {
     
     
     
-    @objc func handleMoreButtonPressed(){
-       print("more button pressed")
+    @objc func handleMoreButtonPressed(sender:UIButton){
+        detailVCDelegate?.navigateToDetailedViewController(tag: sender.tag)
     }
     
        @objc private func getDirections(sender:UIButton) {
