@@ -8,6 +8,8 @@
 
 import UIKit
 import Kingfisher
+import CoreLocation
+import MapKit
 
 class RestaurantDetailViewController: UIViewController {
     
@@ -206,7 +208,7 @@ class RestaurantDetailViewController: UIViewController {
         button.tintColor = .white
         button.backgroundColor = .blue
         button.layer.shadowOffset = CGSize(width: 0, height: 5.0)
-        //button.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
+        button.addTarget(self, action: #selector(getDirections), for: .touchUpInside)
         return button
     }()
     
@@ -240,6 +242,15 @@ class RestaurantDetailViewController: UIViewController {
         populateImageScrollView()
     }
     //MARK:@Objc function
+    @objc func getDirections(sender:UIButton){
+        guard let lat = business.coordinates?.latitude, let long =  business.coordinates?.longitude else {return}
+        
+        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+        
+        let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
+        mapItem.name = business.name
+        mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){
         print("Menu button pressed")
