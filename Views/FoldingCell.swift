@@ -11,13 +11,6 @@ import MapKit
 import CoreLocation
 import Kingfisher
 
-protocol FoldingCellDelegate: AnyObject {
-    func navigateToDestination(tag: Int)
-}
-
-protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
-    func navigateToDetailedViewController(tag: Int)
-}
 // UITableViewCell with folding animation
 open class FoldingCell: UITableViewCell {
     

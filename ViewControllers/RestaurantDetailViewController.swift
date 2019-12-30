@@ -103,8 +103,6 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var logoLabel:UILabel = {
         let label = UILabel()
-//        label.layer.borderColor = UIColor.blue.cgColor
-//        label.layer.borderWidth = 2
         label.textAlignment = .center
         label.font = UIFont(name: "Savoye LET", size: 30)
         label.textColor = .black
@@ -317,7 +315,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureLogoLabelConstraints(){
         logoView.addSubview(logoLabel)
         logoLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: 10),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
+        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor, constant: 2),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: 10),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor, constant: -2),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
     }
     
     private func configureBadgeImageViewConstraints(){
