@@ -18,7 +18,12 @@ class ImageHelper {
     
     // MARK: - Instance Methods
     
-    func getImage(url: URL, completionHandler: @escaping (Result<UIImage, AppError>) -> ()) {
+    func getImage(urlString: String, completionHandler: @escaping (Result<UIImage, AppError>) -> ()) {
+        
+        guard let url = URL(string: urlString) else {
+            completionHandler(.failure(.badURL))
+            return
+        }
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard error == nil else {
                 completionHandler(.failure(.badURL))

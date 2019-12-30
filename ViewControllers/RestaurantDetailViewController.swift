@@ -12,66 +12,47 @@ import Kingfisher
 class RestaurantDetailViewController: UIViewController {
     
     //MARK: - UIObjects
-     let image = UIImage(named: "FoodPlaceholder")
+    let image = UIImage(named: "FoodPlaceholder")
     var business:CDYelpBusiness!{
         didSet{
-//                    if let photoArray = business.photos{
-//
-//                for (index, photoString) in photoArray.enumerated(){
-//                    pageControl.numberOfPages = photoArray.count
-//                    let imageView = UIImageView()
-//                    imageView.contentMode = .scaleAspectFill
-//                    let imageUrl = URL(string: photoString)
-//                    DispatchQueue.main.async {
-//                        imageView.kf.setImage(with: imageUrl, placeholder: self.image, options: [.transition(.fade(0.2))])
-//                                       let xPosition:CGFloat = self.view.frame.width * CGFloat(index)
-//                                       imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-//
-//                        self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
-//                        self.imageScrollView.addSubview(imageView)
-//                    }
-//
-//                }
-//            }
-            
             logoLabel.text = business.name
             restaurantName.text = business.name
             if let displayAddress = business.location?.displayAddress{
-                     addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-                    }
-            
-                restaurantPhoneNumber.text = business.displayPhone
-            
-            switch business.rating{
-                   case 0.0:
-                       starRatings.image = UIImage(named: "stars_0")
-                   case 1.0:
-                       starRatings.image = UIImage(named: "stars_1")
-                   case 1.5:
-                       starRatings.image = UIImage(named: "stars_1half")
-                   case 2.0:
-                       starRatings.image = UIImage(named: "stars_2")
-                   case 2.5:
-                       starRatings.image = UIImage(named: "stars_2half")
-                   case 3.0:
-                       starRatings.image = UIImage(named: "stars_3")
-                   case 3.5:
-                       starRatings.image = UIImage(named: "stars_3half")
-                   case 4.0:
-                       starRatings.image = UIImage(named: "stars_4")
-                   case 4.5:
-                       starRatings.image = UIImage(named: "stars_4half")
-                   case 5.0:
-                       starRatings.image = UIImage(named: "stars_5")
-                   default:
-                       starRatings.image = UIImage(named: "stars_0")
-                       
-                   }
-            if let reviewCount = business.reviewCount{
-               reviewCountLabel.text = "\(reviewCount) Ratings"
+                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
             }
             
-
+            restaurantPhoneNumber.text = business.displayPhone
+            
+            switch business.rating{
+            case 0.0:
+                starRatings.image = UIImage(named: "stars_0")
+            case 1.0:
+                starRatings.image = UIImage(named: "stars_1")
+            case 1.5:
+                starRatings.image = UIImage(named: "stars_1half")
+            case 2.0:
+                starRatings.image = UIImage(named: "stars_2")
+            case 2.5:
+                starRatings.image = UIImage(named: "stars_2half")
+            case 3.0:
+                starRatings.image = UIImage(named: "stars_3")
+            case 3.5:
+                starRatings.image = UIImage(named: "stars_3half")
+            case 4.0:
+                starRatings.image = UIImage(named: "stars_4")
+            case 4.5:
+                starRatings.image = UIImage(named: "stars_4half")
+            case 5.0:
+                starRatings.image = UIImage(named: "stars_5")
+            default:
+                starRatings.image = UIImage(named: "stars_0")
+                
+            }
+            if let reviewCount = business.reviewCount{
+                reviewCountLabel.text = "\(reviewCount) Ratings"
+            }
+            
+            
         }
     }
     
@@ -193,16 +174,16 @@ class RestaurantDetailViewController: UIViewController {
     lazy var restaurantMenuButton:UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "ellipsis"), for: .normal)
-         button.addTarget(self, action: #selector(handleRestaurantMenuButtonPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(handleRestaurantMenuButtonPressed), for: .touchUpInside)
         return button
     }()
     
     lazy var containerView:UIView = {
         let view = UIView()
         view.backgroundColor = .white
-       view.layer.shadowOpacity = 0.2
+        view.layer.shadowOpacity = 0.2
         view.layer.shadowOffset = CGSize(width: 0.5, height: 1)
-       view.layer.masksToBounds = false
+        view.layer.masksToBounds = false
         return view
     }()
     
@@ -259,6 +240,11 @@ class RestaurantDetailViewController: UIViewController {
         configureNavigateButtomConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        populateImageScrollView()
+    }
     //MARK:@Objc function
     
     @objc func handleRestaurantMenuButtonPressed(){
@@ -273,6 +259,27 @@ class RestaurantDetailViewController: UIViewController {
     }
     //MARK:Private function
     
+    private func populateImageScrollView(){
+        if let photoArray = self.business.photos{
+            for (index, photoString) in photoArray.enumerated(){
+                self.pageControl.numberOfPages = photoArray.count
+                let image = UIImage(named: "FoodPlaceholder")
+                let imageView = UIImageView()
+                imageView.contentMode = .scaleAspectFill
+                let imageUrl = URL(string: photoString)
+                DispatchQueue.main.async {
+                    
+                    imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+                    imageView.setNeedsDisplay()
+                    let xPosition:CGFloat = self.view.frame.width * CGFloat(index)
+                    imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                    
+                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
+                    self.imageScrollView.addSubview(imageView)
+                }
+            }
+        }
+    }
     private func setScrollViewDelegate(){
         imageScrollView.delegate = self
     }
@@ -288,10 +295,10 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     private func createHairLineView()-> UIView{
-           let hairLine = UIView()
-           hairLine.backgroundColor = .lightGray
-           return hairLine
-       }
+        let hairLine = UIView()
+        hairLine.backgroundColor = .lightGray
+        return hairLine
+    }
     
     //MARK: - Private constraints functions
     private func configureImageScrollViewConstraints(){
@@ -396,6 +403,6 @@ class RestaurantDetailViewController: UIViewController {
 extension RestaurantDetailViewController: UIScrollViewDelegate{
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.size.width
-       // pageControl.currentPage = Int(page)
+        //           pageControl.currentPage = Int(page)
     }
 }

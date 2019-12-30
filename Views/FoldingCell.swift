@@ -190,6 +190,7 @@ open class FoldingCell: UITableViewCell {
                 let imageUrl = URL(string: photoString)
                 DispatchQueue.main.async {
                      imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+                    imageView.setNeedsDisplay()
                                    let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
                                    imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
                                    
