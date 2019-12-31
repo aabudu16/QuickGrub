@@ -14,7 +14,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     //MARK: -- Data types
 
     weak var profileDelegate:YelpCustomerProfileDelegate?
-    weak var moreYelpReviews:MoreYelpReviewDelegate?
+    weak var moreYelpReviewsDelegate:MoreYelpReviewDelegate?
     
     //MARK: -- Objects
     lazy var customerImage:UIImageView = {
@@ -100,11 +100,11 @@ class CustomerReviewTableViewCell: UITableViewCell {
     //MARK: -- @objc function
     
     @objc func customerImageViewDoubleTapped(sender:UITapGestureRecognizer){
-        print("customer image dobble tapped")
+        profileDelegate?.viewCustomerProfile(tag: sender.view!.tag)
     }
     
     @objc func yelpImageViewTapped(sender:UITapGestureRecognizer){
-        print("customer image dobble tapped")
+        moreYelpReviewsDelegate?.viewMoreYelpReviews(tag: sender.view!.tag)
     }
     
     //MARK:-- pubic function

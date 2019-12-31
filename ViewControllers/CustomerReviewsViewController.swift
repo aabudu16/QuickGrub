@@ -96,6 +96,12 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue) as? CustomerReviewTableViewCell else {return UITableViewCell()}
 
         let review = customerReviews[indexPath.row]
+        cell.moreYelpReviewsDelegate = self
+        cell.profileDelegate = self
+        
+        cell.customerImage.tag = indexPath.row
+        cell.yelpLogo.tag = indexPath.row
+        
         cell.customerReviewTableViewCellData(yelpReview: review)
         
         return cell
@@ -109,12 +115,21 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
 
 extension CustomerReviewsViewController:YelpCustomerProfileDelegate{
     func viewCustomerProfile(tag: Int) {
-        <#code#>
+        let profile = customerReviews[tag]
+        
+        guard let profileURL = profile.user?.profileUrl else {
+            self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(profile.user?.name ?? "the profile") link on YELP.", actionTitle: "OK")
+                   return
+               }
+               UIApplication.shared.open(profileURL, options: [:], completionHandler: nil)
     }
 }
 
 extension CustomerReviewsViewController:MoreYelpReviewDelegate{
     func viewMoreYelpReviews(tag: Int) {
-        <#code#>
+        let review = customerReviews[tag]
+        
+        print(review.url)
+        print(tag)
     }
 }
