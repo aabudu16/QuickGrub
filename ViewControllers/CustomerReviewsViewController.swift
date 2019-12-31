@@ -66,7 +66,7 @@ class CustomerReviewsViewController: UIViewController {
     //MARK: -- @objc function
     
     @objc func dismissButtonPressed(sender:UIButton){
-         sender.backgroundColor = .blue
+        sender.backgroundColor = .blue
         self.dismiss(animated: true) {
             sender.backgroundColor = .blue
         }
@@ -94,7 +94,7 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue) as? CustomerReviewTableViewCell else {return UITableViewCell()}
-
+        
         let review = customerReviews[indexPath.row]
         cell.moreYelpReviewsDelegate = self
         cell.profileDelegate = self
@@ -106,7 +106,7 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
         
         return cell
     }
-   
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
@@ -119,17 +119,20 @@ extension CustomerReviewsViewController:YelpCustomerProfileDelegate{
         
         guard let profileURL = profile.user?.profileUrl else {
             self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(profile.user?.name ?? "the profile") link on YELP.", actionTitle: "OK")
-                   return
-               }
-               UIApplication.shared.open(profileURL, options: [:], completionHandler: nil)
+            return
+        }
+        UIApplication.shared.open(profileURL, options: [:], completionHandler: nil)
     }
 }
 
 extension CustomerReviewsViewController:MoreYelpReviewDelegate{
     func viewMoreYelpReviews(tag: Int) {
-        let review = customerReviews[tag]
+        let fullReview = customerReviews[tag]
         
-        print(review.url)
-        print(tag)
+        guard let review = fullReview.url else {
+            self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(fullReview.user?.name ?? "the full review") link on YELP.", actionTitle: "OK")
+            return
+        }
+        UIApplication.shared.open(review, options: [:], completionHandler: nil)
     }
 }
