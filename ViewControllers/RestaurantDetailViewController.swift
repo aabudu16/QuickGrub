@@ -25,6 +25,7 @@ class RestaurantDetailViewController: UIViewController {
             
             restaurantPhoneNumber.text = business.displayPhone
             
+            // ratings images
             switch business.rating{
             case 0.0:
                 starRatings.image = UIImage(named: "stars_0")
@@ -50,10 +51,19 @@ class RestaurantDetailViewController: UIViewController {
                 starRatings.image = UIImage(named: "stars_0")
                 
             }
+            // review count
             if let reviewCount = business.reviewCount{
                 reviewCountLabel.text = "\(reviewCount) Ratings"
             }
             
+            // hours of operation
+            if let hours = business.hours{
+                if let unWrappedHours = hours.first.flatMap({$0.open}){
+                    unWrappedHours.forEach({print($0.toJSON())})
+                }
+            }
+            
+            print(  business.url)
             
         }
     }
@@ -61,8 +71,6 @@ class RestaurantDetailViewController: UIViewController {
     lazy var imageScrollView:UIScrollView = {
         let view = UIScrollView(frame: .zero)
         view.isPagingEnabled = true
-        view.layer.borderColor = UIColor.blue.cgColor
-        view.layer.borderWidth = 2
         return view
     }()
     
@@ -188,6 +196,7 @@ class RestaurantDetailViewController: UIViewController {
         button.setTitle("About", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 20)
         button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(handleAboutButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -250,6 +259,15 @@ class RestaurantDetailViewController: UIViewController {
         let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
         mapItem.name = business.name
         mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+    }
+    
+    @objc func handleAboutButtonPressed(sender:UIButton){
+        
+        guard let businessURL = business.url else {
+            self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(business.name ?? "the business") link on YELP.", actionTitle: "OK")
+            return
+        }
+        UIApplication.shared.open(businessURL, options: [:], completionHandler: nil)
     }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){

@@ -172,11 +172,11 @@ open class FoldingCell: UITableViewCell {
             
             switch business.isClosed{
             case true:
-                openOrCloseLabel.text = "Open"
-                openOrCloseLabel.textColor = .green
-            case false:
                 openOrCloseLabel.text = "Close"
-                openOrCloseLabel.textColor = .red
+                openOrCloseLabel.textColor = #colorLiteral(red: 0.8468823433, green: 0.1903522015, blue: 0.1447911263, alpha: 1)
+            case false:
+                openOrCloseLabel.text = "Open"
+                openOrCloseLabel.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
             default:
                 openOrCloseLabel.text = "NA"
             }
