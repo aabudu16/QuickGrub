@@ -12,19 +12,20 @@ class CustomerReviewTableViewCell: UITableViewCell {
     
     //MARK: -- Objects
     lazy var customerImage:UIImageView = {
-        let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
-        iv.layer.cornerRadius = 40
-        iv.layer.masksToBounds = true
-        iv.contentMode = .scaleAspectFill
-        iv.image = UIImage(named: "profileImage")
-        return iv
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        guesture.numberOfTapsRequired = 2
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        image.layer.cornerRadius = image.frame.height / 2
+        image.clipsToBounds = true
+        image.image = UIImage(named: "profileImage")
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(guesture)
+        return image
     }()
     
     lazy var yelpLogo:UIImageView = {
         let iv = UIImageView()
         iv.image = UIImage(named: "yelpLogo")
-        iv.layer.borderColor = UIColor.blue.cgColor
-        iv.layer.borderWidth = 2
         return iv
     }()
     
@@ -33,9 +34,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 19)
         label.text = "4.5 / 5.0 Stars"
-        
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
         return label
     }()
     
@@ -43,12 +41,9 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
-        label.font = UIFont(name: "Avenir-Light", size: 15)
+        label.font = UIFont(name: "Avenir-Light", size: 14)
         label.adjustsFontSizeToFitWidth = true
         label.text = "3.34pm 3/3/2019"
-        
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
         return label
     }()
     
@@ -58,9 +53,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         label.font = UIFont(name: "Avenir-Heavy", size: 18)
          label.adjustsFontSizeToFitWidth = true
         label.text = "Mike A"
-        
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
         return label
     }()
     
@@ -68,11 +60,8 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = UIFont(name: "Avenir-Light", size: 15)
+        label.font = UIFont(name: "Avenir-Light", size: 20)
         label.text = "One of the best Thai places in Long Island Pros:  + Simply quaint - it's such a great spot to grab a nice meal on your way home+ Free delivery - minimum..."
-        
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
         return label
     }()
     
@@ -90,6 +79,14 @@ class CustomerReviewTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: -- @objc function
+    
+    @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
+        print("customer image dobble tapped")
+    }
+    
+    
+    //MARK:-- Private constraints
     private func configureCustomerImageConstraints(){
         self.addSubview(customerImage)
         customerImage.translatesAutoresizingMaskIntoConstraints = false

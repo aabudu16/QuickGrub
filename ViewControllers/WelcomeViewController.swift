@@ -139,6 +139,7 @@ class WelcomeViewController: UIViewController {
         image.clipsToBounds = true
         image.image = UIImage(named: "profileImage")
         image.isUserInteractionEnabled = true
+        image.contentMode = .scaleAspectFill
         image.addGestureRecognizer(guesture)
         return image
     }()
