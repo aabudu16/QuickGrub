@@ -23,7 +23,7 @@ class CustomerReviewsViewController: UIViewController {
                 DispatchQueue.main.async {
                     if let reviews = response?.reviews{
                         self.customerReviews = reviews
-                        print(reviews[0].text)
+                        print(reviews[0].toJSON())
                     }
                 }
             }
@@ -34,6 +34,7 @@ class CustomerReviewsViewController: UIViewController {
     lazy var tableView:UITableView = {
         let tableview = UITableView()
         tableview.register(CustomerReviewTableViewCell.self, forCellReuseIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue)
+        tableview.estimatedRowHeight = 68
         return tableview
     }()
     
@@ -99,7 +100,7 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
     }
    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 250
+        return UITableView.automaticDimension
     }
     
 }

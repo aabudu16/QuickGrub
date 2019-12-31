@@ -44,6 +44,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
         label.font = UIFont(name: "Avenir-Light", size: 15)
+        label.adjustsFontSizeToFitWidth = true
         label.text = "3.34pm 3/3/2019"
         
         label.layer.borderColor = UIColor.blue.cgColor
@@ -55,6 +56,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Heavy", size: 18)
+         label.adjustsFontSizeToFitWidth = true
         label.text = "Mike A"
         
         label.layer.borderColor = UIColor.blue.cgColor
@@ -66,7 +68,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = UIFont(name: "Avenir-Light", size: 19)
+        label.font = UIFont(name: "Avenir-Light", size: 15)
         label.text = "One of the best Thai places in Long Island Pros:  + Simply quaint - it's such a great spot to grab a nice meal on your way home+ Free delivery - minimum..."
         
         label.layer.borderColor = UIColor.blue.cgColor
