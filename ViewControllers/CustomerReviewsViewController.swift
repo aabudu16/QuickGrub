@@ -11,13 +11,19 @@ import UIKit
 class CustomerReviewsViewController: UIViewController {
     
     //MARK: -- Objects
-    var customerReviews = [CDYelpReview]()
+    var customerReviews = [CDYelpReview](){
+        didSet{
+            tableView.reloadData()
+        }
+    }
+    
     var businessID:String!{
         didSet{
             CDYelpFusionKitManager.shared.apiClient.fetchReviews(forBusinessId: businessID, locale: nil) { (response) in
                 DispatchQueue.main.async {
                     if let reviews = response?.reviews{
                         self.customerReviews = reviews
+                        print(reviews[0].text)
                     }
                 }
             }
@@ -27,7 +33,7 @@ class CustomerReviewsViewController: UIViewController {
     
     lazy var tableView:UITableView = {
         let tableview = UITableView()
-        tableview.register(FoldingCell.self, forCellReuseIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue)
+        tableview.register(CustomerReviewTableViewCell.self, forCellReuseIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue)
         return tableview
     }()
     
@@ -41,6 +47,7 @@ class CustomerReviewsViewController: UIViewController {
     //MARK: -- private function
     
     private func setupTableView(){
+        view.backgroundColor = .blue
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -50,20 +57,30 @@ class CustomerReviewsViewController: UIViewController {
     private func configureTableViewConstraints(){
         view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: view.topAnchor),tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor), tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: view.topAnchor,constant: 50),tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor), tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
 }
 
 //MARK: -- Extensions
-extension CustomerReviewsViewController: UITableViewDelegate{}
-extension CustomerReviewsViewController: UITableViewDataSource{
+//extension CustomerReviewsViewController: UITableViewDelegate{
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
+//}
+extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return customerReviews.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue) as? CustomerReviewTableViewCell else {return UITableViewCell()}
+        
+        
+        return cell
     }
-    
+   
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 250
+    }
     
 }

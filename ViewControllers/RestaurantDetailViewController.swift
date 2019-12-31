@@ -272,7 +272,14 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     @objc func handleReviewButtonPressed(sender:UIButton){
-    
+        guard let businessID = business.id else {
+            self.showAlert(alertTitle: nil, alertMessage: "Cant access \(business.name ?? "the business") review on YELP.", actionTitle: "OK")
+            return}
+        
+        let CustomerReviewVC = CustomerReviewsViewController()
+        CustomerReviewVC.businessID = businessID
+        CustomerReviewVC.modalPresentationStyle = .popover
+        present(CustomerReviewVC, animated: true, completion: nil)
     }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){

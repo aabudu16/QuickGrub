@@ -524,6 +524,13 @@ public enum CDYelpStars: String {
 
 
 // A list of the sizes the Yelp stars asset can be returned in.
+//
+//  CustomerReviewTableViewCell.swift
+//  Quick-Grub2
+//
+//  Created by Mr Wonderful on 12/31/19.
+//  Copyright © 2019 Mr Wonderful. All rights reserved.
+//
 
 public enum CDYelpStarsSize: String {
     case small      = "small"

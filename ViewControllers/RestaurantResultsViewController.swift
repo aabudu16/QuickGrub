@@ -14,7 +14,6 @@ class RestaurantResultsViewController: UIViewController {
     
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
-           print(businessFullDetail.count)
            tableView.reloadData()
         }
     }

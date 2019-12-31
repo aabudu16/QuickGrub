@@ -1,3 +1,10 @@
+//
+//  CustomerReviewTableViewCell.swift
+//  Quick-Grub2
+//
+//  Created by Mr Wonderful on 12/31/19.
+//  Copyright © 2019 Mr Wonderful. All rights reserved.
+//
 
 public extension CDColor {
 

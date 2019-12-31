@@ -1,9 +1,9 @@
 //
-//  String+Extensions.swift
-//  FavoritePlaces
+//  CustomerReviewTableViewCell.swift
+//  Quick-Grub2
 //
-//  Created by C4Q on 11/20/19.
-//  Copyright © 2019 Iram Fattah. All rights reserved.
+//  Created by Mr Wonderful on 12/31/19.
+//  Copyright © 2019 Mr Wonderful. All rights reserved.
 //
 
 import Foundation
