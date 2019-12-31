@@ -37,11 +37,19 @@ class CustomerReviewsViewController: UIViewController {
         return tableview
     }()
     
+    lazy var dismissButton:UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .blue
+        button.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
         configureTableViewConstraints()
+        configureDismissButtonConstraints()
     }
     
     //MARK: -- private function
@@ -52,6 +60,15 @@ class CustomerReviewsViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    
+    //MARK: -- @objc function
+    
+    @objc func dismissButtonPressed(sender:UIButton){
+         sender.backgroundColor = .blue
+        self.dismiss(animated: true) {
+            sender.backgroundColor = .blue
+        }
+    }
     //MARK: -- Private constraints
     
     private func configureTableViewConstraints(){
@@ -59,14 +76,15 @@ class CustomerReviewsViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: view.topAnchor,constant: 50),tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor), tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
+    
+    private func configureDismissButtonConstraints(){
+        view.addSubview(dismissButton)
+        dismissButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([dismissButton.topAnchor.constraint(equalTo: view.topAnchor), dismissButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),dismissButton.trailingAnchor.constraint(equalTo: view.trailingAnchor), dismissButton.bottomAnchor.constraint(equalTo: tableView.topAnchor)])
+    }
 }
 
 //MARK: -- Extensions
-//extension CustomerReviewsViewController: UITableViewDelegate{
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
-//}
 extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return customerReviews.count

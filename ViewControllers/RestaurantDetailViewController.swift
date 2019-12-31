@@ -276,10 +276,13 @@ class RestaurantDetailViewController: UIViewController {
             self.showAlert(alertTitle: nil, alertMessage: "Cant access \(business.name ?? "the business") review on YELP.", actionTitle: "OK")
             return}
         
-        let CustomerReviewVC = CustomerReviewsViewController()
-        CustomerReviewVC.businessID = businessID
-        CustomerReviewVC.modalPresentationStyle = .popover
-        present(CustomerReviewVC, animated: true, completion: nil)
+        let customerReviewVC = CustomerReviewsViewController()
+        customerReviewVC.businessID = businessID
+        customerReviewVC.modalPresentationStyle = .popover
+        present(customerReviewVC, animated: true) {
+        customerReviewVC.dismissButton.backgroundColor = .red
+        }
+       // present(customerReviewVC, animated: true, completion: nil)
     }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){
