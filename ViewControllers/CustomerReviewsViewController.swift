@@ -106,3 +106,15 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
 }
+
+extension CustomerReviewsViewController:YelpCustomerProfileDelegate{
+    func viewCustomerProfile(tag: Int) {
+        <#code#>
+    }
+}
+
+extension CustomerReviewsViewController:MoreYelpReviewDelegate{
+    func viewMoreYelpReviews(tag: Int) {
+        <#code#>
+    }
+}

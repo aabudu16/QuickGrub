@@ -16,3 +16,11 @@ protocol FoldingCellDelegate: AnyObject {
 protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
     func navigateToDetailedViewController(tag: Int)
 }
+
+protocol YelpCustomerProfileDelegate:AnyObject{
+    func viewCustomerProfile(tag:Int)
+}
+
+protocol MoreYelpReviewDelegate:AnyObject{
+    func viewMoreYelpReviews(tag:Int)
+}

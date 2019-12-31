@@ -10,6 +10,12 @@ import UIKit
 
 class CustomerReviewTableViewCell: UITableViewCell {
     
+    
+    //MARK: -- Data types
+
+    weak var profileDelegate:YelpCustomerProfileDelegate?
+    weak var moreYelpReviews:MoreYelpReviewDelegate?
+    
     //MARK: -- Objects
     lazy var customerImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(customerImageViewDoubleTapped(sender:)))
@@ -64,7 +70,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Heavy", size: 20)
-         label.adjustsFontSizeToFitWidth = true
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
@@ -98,13 +104,13 @@ class CustomerReviewTableViewCell: UITableViewCell {
     }
     
     @objc func yelpImageViewTapped(sender:UITapGestureRecognizer){
-           print("customer image dobble tapped")
-       }
+        print("customer image dobble tapped")
+    }
     
     //MARK:-- pubic function
     
-     public func customerReviewTableViewCellData(yelpReview:CDYelpReview){
-         let image = UIImage(named: "profileImage")
+    public func customerReviewTableViewCellData(yelpReview:CDYelpReview){
+        let image = UIImage(named: "profileImage")
         customerImage.kf.setImage(with: yelpReview.user?.imageUrl, placeholder: image)
         
         if let ratings = yelpReview.rating{
@@ -137,7 +143,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     }
     
     private func configureRatingsLabelConstraints(){
-       self.addSubview(ratingsLabel)
+        self.addSubview(ratingsLabel)
         ratingsLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([ratingsLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor), ratingsLabel.leadingAnchor.constraint(equalTo: customerImage.trailingAnchor, constant: 3), ratingsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor), ratingsLabel.bottomAnchor.constraint(equalTo: customerImage.bottomAnchor, constant: -20)])
     }
@@ -166,3 +172,4 @@ class CustomerReviewTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([readMoreLabel.bottomAnchor.constraint(equalTo: yelpLogo.bottomAnchor), readMoreLabel.trailingAnchor.constraint(equalTo: yelpLogo.leadingAnchor), readMoreLabel.heightAnchor.constraint(equalToConstant: 20), readMoreLabel.widthAnchor.constraint(equalToConstant: 90)])
     }
 }
+

@@ -279,7 +279,7 @@ class RestaurantDetailViewController: UIViewController {
         customerReviewVC.businessID = businessID
         customerReviewVC.modalPresentationStyle = .popover
         present(customerReviewVC, animated: true) {
-        customerReviewVC.dismissButton.backgroundColor = .red
+        customerReviewVC.dismissButton.backgroundColor = #colorLiteral(red: 0.8273282647, green: 0.1290322244, blue: 0.0612013787, alpha: 1)
         }
        // present(customerReviewVC, animated: true, completion: nil)
     }
