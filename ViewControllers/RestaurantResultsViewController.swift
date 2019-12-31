@@ -26,22 +26,12 @@ class RestaurantResultsViewController: UIViewController {
                     DispatchQueue.main.async {
                        if let business = business {
                         self?.businessFullDetail.append(business)
-//                        for open in business.hours!{
-//                            for j in open.open!{
-//                                print(" we open \(j.start)")
-//                                 print(" we close \(j.end)")
-//                            }
-//                        }
                         }
                     }
                 }
 
             }
         }
-    }
-    
-    enum ResturantCellIdentifier:String{
-        case ResturantCell
     }
     
     enum Const {
@@ -52,7 +42,7 @@ class RestaurantResultsViewController: UIViewController {
     
     lazy var tableView:UITableView = {
         let tableview = UITableView()
-        tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.ResturantCell.rawValue)
+        tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.resturantCell.rawValue)
         return tableview
     }()
     
@@ -155,7 +145,7 @@ extension RestaurantResultsViewController:UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.ResturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.resturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         cell.delegate = self
         cell.navigateButtom.tag = indexPath.row
         cell.detailVCDelegate = self

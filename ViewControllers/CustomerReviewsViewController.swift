@@ -9,22 +9,52 @@
 import UIKit
 
 class CustomerReviewsViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    //MARK: -- Objects
+    var customerReviews = [CDYelpReview]()
+    var businessID:String!{
+        didSet{
+            CDYelpFusionKitManager.shared.apiClient.fetchReviews(forBusinessId: businessID, locale: nil) { (response) in
+                if let reviews = response?.reviews{
+                   self.customerReviews = reviews
+                }
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    lazy var tableView:UITableView = {
+        let tableview = UITableView()
+        tableview.register(FoldingCell.self, forCellReuseIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue)
+        return tableview
+    }()
+    
+    //MARK: -- LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setupTableView()
     }
-    */
+    
+    //MARK: -- private function
+    
+    private func setupTableView(){
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    //MARK: -- Private constraints
+}
 
+extension CustomerReviewsViewController: UITableViewDelegate{}
+extension CustomerReviewsViewController: UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return customerReviews.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
 }

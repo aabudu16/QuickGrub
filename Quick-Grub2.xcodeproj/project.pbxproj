@@ -69,6 +69,7 @@
 		859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */; };
 		859A29F423BA5A70005F8173 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F323BA5A70005F8173 /* Protocol.swift */; };
 		859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */; };
+		859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F723BB0D22005F8173 /* CellIdentifiers.swift */; };
 		85F92A48239015C400048FCB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A47239015C400048FCB /* Secrets.swift */; };
 		85F92A53239029AF00048FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F92A52239029AF00048FCB /* GoogleService-Info.plist */; };
 		85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */; };
@@ -161,6 +162,7 @@
 		859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
 		859A29F323BA5A70005F8173 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewsViewController.swift; sourceTree = "<group>"; };
+		859A29F723BB0D22005F8173 /* CellIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiers.swift; sourceTree = "<group>"; };
 		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -266,6 +268,7 @@
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
 				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
 				859A29F323BA5A70005F8173 /* Protocol.swift */,
+				859A29F723BB0D22005F8173 /* CellIdentifiers.swift */,
 				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
 				854D6D1323A28E76001BD091 /* Yelp DataSource */,
 				85F92A5B23902DD800048FCB /* Models */,
@@ -590,6 +593,7 @@
 				854D6D4023A28E76001BD091 /* CDYelpTerm.swift in Sources */,
 				854D6D4F23A28E76001BD091 /* CDYelpSearchResponse.swift in Sources */,
 				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
+				859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */,
 				854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */,
 				854D6D6123A66ED9001BD091 /* SSCheckMark.swift in Sources */,
 				854D6D5123A28E76001BD091 /* CDYelpConstants.swift in Sources */,

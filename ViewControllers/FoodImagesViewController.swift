@@ -10,9 +10,6 @@ import UIKit
 import CoreLocation
 
 class FoodImagesViewController: UIViewController {
-    enum FoodImageIdentifier:String{
-        case foodCell
-    }
     
     //MARK: -- CoreLocation Coordinate
     let plus = UIImage(systemName: "plus")
