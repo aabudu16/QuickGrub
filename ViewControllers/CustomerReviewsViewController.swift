@@ -40,6 +40,7 @@ class CustomerReviewsViewController: UIViewController {
     lazy var dismissButton:UIButton = {
         let button = UIButton()
         button.backgroundColor = .blue
+        button.setTitle("Reviews", for: .normal)
         button.addTarget(self, action: #selector(dismissButtonPressed), for: .touchUpInside)
         return button
     }()

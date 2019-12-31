@@ -136,7 +136,6 @@ class RestaurantDetailViewController: UIViewController {
     
     lazy var  starRatings:UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "stars_4half")
         image.contentMode = .scaleAspectFit
         return image
     }()
