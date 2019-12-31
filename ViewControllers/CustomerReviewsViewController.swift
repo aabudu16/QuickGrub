@@ -26,6 +26,7 @@ class CustomerReviewsViewController: UIViewController {
     lazy var tableView:UITableView = {
         let tableview = UITableView()
         tableview.register(FoldingCell.self, forCellReuseIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue)
+        
         return tableview
     }()
     
