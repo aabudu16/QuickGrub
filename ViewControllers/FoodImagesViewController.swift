@@ -152,6 +152,10 @@ class FoodImagesViewController: UIViewController {
         configureContinueButtomConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.collectionView.reloadData()
+    }
     // MARK: objc function
     @objc func handleContinueButtonPressed(sender:UIButton){
         let resturantResultVC = RestaurantResultsViewController()
@@ -267,6 +271,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         cell.delegate = self
         cell.foodColorBadge.tag = indexPath.item
+        cell.createPulse()
         let info = userCategorySelectedResults[indexPath.row]
         
         cell.configurefoodImagesCellData(yelpImages: info)
