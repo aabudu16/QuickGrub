@@ -205,6 +205,7 @@ class RestaurantDetailViewController: UIViewController {
         button.setTitle("Reviews", for: .normal)
         button.titleLabel?.font = UIFont(name: "Avenir-Black", size: 20)
         button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(handleReviewButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -268,6 +269,10 @@ class RestaurantDetailViewController: UIViewController {
             return
         }
         UIApplication.shared.open(businessURL, options: [:], completionHandler: nil)
+    }
+    
+    @objc func handleReviewButtonPressed(sender:UIButton){
+        
     }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){
