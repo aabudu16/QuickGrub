@@ -12,7 +12,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     
     //MARK: -- Objects
     lazy var customerImage:UIImageView = {
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(customerImageViewDoubleTapped(sender:)))
         guesture.numberOfTapsRequired = 2
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         image.layer.cornerRadius = image.frame.height / 2
@@ -24,9 +24,13 @@ class CustomerReviewTableViewCell: UITableViewCell {
     }()
     
     lazy var yelpLogo:UIImageView = {
-        let iv = UIImageView()
-        iv.image = UIImage(named: "yelpLogo")
-        return iv
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(yelpImageViewTapped(sender:)))
+        guesture.numberOfTapsRequired = 1
+        let image = UIImageView()
+        image.image = UIImage(named: "yelpLogo")
+        image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(guesture)
+        return image
     }()
     
     lazy var ratingsLabel:UILabel = {
@@ -81,11 +85,13 @@ class CustomerReviewTableViewCell: UITableViewCell {
     
     //MARK: -- @objc function
     
-    @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
+    @objc func customerImageViewDoubleTapped(sender:UITapGestureRecognizer){
         print("customer image dobble tapped")
     }
     
-    
+    @objc func yelpImageViewTapped(sender:UITapGestureRecognizer){
+           print("customer image dobble tapped")
+       }
     //MARK:-- Private constraints
     private func configureCustomerImageConstraints(){
         self.addSubview(customerImage)
