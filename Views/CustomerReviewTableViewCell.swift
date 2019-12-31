@@ -17,10 +17,11 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
-        image.image = UIImage(named: "profileImage")
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFill
         image.addGestureRecognizer(guesture)
+        image.layer.borderColor = UIColor.black.cgColor
+        image.layer.borderWidth = 0.2
         return image
     }()
     
@@ -28,16 +29,25 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(yelpImageViewTapped(sender:)))
         guesture.numberOfTapsRequired = 1
         let image = UIImageView()
-        image.image = UIImage(named: "yelpLogo")
+        image.image = UIImage(named: "yelplogo-1")
         image.isUserInteractionEnabled = true
         image.addGestureRecognizer(guesture)
         return image
     }()
     
+    lazy var readMoreLabel:UILabel = {
+        let label = UILabel()
+        label.text = "Read more"
+        label.textAlignment = .right
+        label.textColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
+        label.font = UIFont(name: "Avenir-Light", size: 15)
+        return label
+    }()
+    
     lazy var ratingsLabel:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Light", size: 19)
+        label.font = UIFont(name: "Avenir-Light", size: 16)
         return label
     }()
     
@@ -53,9 +63,8 @@ class CustomerReviewTableViewCell: UITableViewCell {
     lazy var nameLabel:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.font = UIFont(name: "Avenir-Heavy", size: 18)
+        label.font = UIFont(name: "Avenir-Heavy", size: 20)
          label.adjustsFontSizeToFitWidth = true
-        label.text = "Mike A"
         return label
     }()
     
@@ -64,7 +73,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.font = UIFont(name: "Avenir-Light", size: 18)
-        label.text = "One of the best Thai places in Long Island Pros:  + Simply quaint - it's such a great spot to grab a nice meal on your way home+ Free delivery - minimum..."
         return label
     }()
     
@@ -76,6 +84,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         configureTimeCreatingLabelConstraints()
         configureReviewTextLabelConstraints()
         configureYelpLogoConstraints()
+        //configureReadMoreLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -130,7 +139,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     private func configureRatingsLabelConstraints(){
        self.addSubview(ratingsLabel)
         ratingsLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ratingsLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor), ratingsLabel.leadingAnchor.constraint(equalTo: customerImage.trailingAnchor, constant: 3), ratingsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor), ratingsLabel.bottomAnchor.constraint(equalTo: customerImage.bottomAnchor)])
+        NSLayoutConstraint.activate([ratingsLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor), ratingsLabel.leadingAnchor.constraint(equalTo: customerImage.trailingAnchor, constant: 3), ratingsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor), ratingsLabel.bottomAnchor.constraint(equalTo: customerImage.bottomAnchor, constant: -20)])
     }
     
     private func configureTimeCreatingLabelConstraints(){
@@ -148,6 +157,12 @@ class CustomerReviewTableViewCell: UITableViewCell {
     private func configureYelpLogoConstraints(){
         self.addSubview(yelpLogo)
         yelpLogo.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([yelpLogo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -3), yelpLogo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3), yelpLogo.heightAnchor.constraint(equalToConstant: 40), yelpLogo.widthAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([yelpLogo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1), yelpLogo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3), yelpLogo.heightAnchor.constraint(equalToConstant: 40), yelpLogo.widthAnchor.constraint(equalToConstant: 100)])
+    }
+    
+    private func configureReadMoreLabelConstraints(){
+        self.addSubview(readMoreLabel)
+        readMoreLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([readMoreLabel.bottomAnchor.constraint(equalTo: yelpLogo.bottomAnchor), readMoreLabel.trailingAnchor.constraint(equalTo: yelpLogo.leadingAnchor), readMoreLabel.heightAnchor.constraint(equalToConstant: 20), readMoreLabel.widthAnchor.constraint(equalToConstant: 90)])
     }
 }
