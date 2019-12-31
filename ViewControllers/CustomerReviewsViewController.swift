@@ -32,8 +32,8 @@ class CustomerReviewsViewController: UIViewController {
     //MARK: -- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupTableView()
+        configureTableViewConstraints()
     }
     
     //MARK: -- private function
@@ -44,8 +44,15 @@ class CustomerReviewsViewController: UIViewController {
     }
     
     //MARK: -- Private constraints
+    
+    private func configureTableViewConstraints(){
+        view.addSubview(tableView)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: view.topAnchor),tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor), tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
 }
 
+//MARK: -- Extensions
 extension CustomerReviewsViewController: UITableViewDelegate{}
 extension CustomerReviewsViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
