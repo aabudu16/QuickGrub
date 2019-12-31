@@ -15,8 +15,10 @@ class CustomerReviewsViewController: UIViewController {
     var businessID:String!{
         didSet{
             CDYelpFusionKitManager.shared.apiClient.fetchReviews(forBusinessId: businessID, locale: nil) { (response) in
-                if let reviews = response?.reviews{
-                   self.customerReviews = reviews
+                DispatchQueue.main.async {
+                    if let reviews = response?.reviews{
+                        self.customerReviews = reviews
+                    }
                 }
             }
         }

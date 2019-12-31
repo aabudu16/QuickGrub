@@ -70,6 +70,7 @@
 		859A29F423BA5A70005F8173 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F323BA5A70005F8173 /* Protocol.swift */; };
 		859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */; };
 		859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F723BB0D22005F8173 /* CellIdentifiers.swift */; };
+		859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */; };
 		85F92A48239015C400048FCB /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A47239015C400048FCB /* Secrets.swift */; };
 		85F92A53239029AF00048FCB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 85F92A52239029AF00048FCB /* GoogleService-Info.plist */; };
 		85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */; };
@@ -163,6 +164,7 @@
 		859A29F323BA5A70005F8173 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewsViewController.swift; sourceTree = "<group>"; };
 		859A29F723BB0D22005F8173 /* CellIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiers.swift; sourceTree = "<group>"; };
+		859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewTableViewCell.swift; sourceTree = "<group>"; };
 		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 			children = (
 				858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */,
 				858A98782384EF840051AF45 /* FoldingCell.swift */,
+				859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */,
 				858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */,
 			);
 			path = Views;
@@ -590,6 +593,7 @@
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
+				859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */,
 				854D6D4023A28E76001BD091 /* CDYelpTerm.swift in Sources */,
 				854D6D4F23A28E76001BD091 /* CDYelpSearchResponse.swift in Sources */,
 				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
