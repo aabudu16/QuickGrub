@@ -14,11 +14,12 @@ class CustomerReviewTableViewCell: UITableViewCell {
     lazy var customerImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(customerImageViewDoubleTapped(sender:)))
         guesture.numberOfTapsRequired = 2
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 80))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
         image.image = UIImage(named: "profileImage")
         image.isUserInteractionEnabled = true
+        image.contentMode = .scaleAspectFill
         image.addGestureRecognizer(guesture)
         return image
     }()
@@ -37,7 +38,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.font = UIFont(name: "Avenir-Light", size: 19)
-        label.text = "4.5 / 5.0 Stars"
         return label
     }()
     
@@ -47,7 +47,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         label.textColor = #colorLiteral(red: 0.4234377742, green: 0.4209252, blue: 0.4253720939, alpha: 1)
         label.font = UIFont(name: "Avenir-Light", size: 14)
         label.adjustsFontSizeToFitWidth = true
-        label.text = "3.34pm 3/3/2019"
         return label
     }()
     
@@ -64,7 +63,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
         let label = UILabel()
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = UIFont(name: "Avenir-Light", size: 20)
+        label.font = UIFont(name: "Avenir-Light", size: 18)
         label.text = "One of the best Thai places in Long Island Pros:  + Simply quaint - it's such a great spot to grab a nice meal on your way home+ Free delivery - minimum..."
         return label
     }()
@@ -92,6 +91,29 @@ class CustomerReviewTableViewCell: UITableViewCell {
     @objc func yelpImageViewTapped(sender:UITapGestureRecognizer){
            print("customer image dobble tapped")
        }
+    
+    //MARK:-- pubic function
+    
+     public func customerReviewTableViewCellData(yelpReview:CDYelpReview){
+         let image = UIImage(named: "profileImage")
+        customerImage.kf.setImage(with: yelpReview.user?.imageUrl, placeholder: image)
+        
+        if let ratings = yelpReview.rating{
+            ratingsLabel.text = "\(ratings) / 5 Stars"
+        }
+        
+        if let timeCreating = yelpReview.timeCreated{
+            timeCreatingLabel.text = timeCreating
+        }
+        
+        if let name = yelpReview.user?.name{
+            nameLabel.text = name
+        }
+        
+        if let review = yelpReview.text{
+            reviewTextLabel.text = review
+        }
+    }
     //MARK:-- Private constraints
     private func configureCustomerImageConstraints(){
         self.addSubview(customerImage)

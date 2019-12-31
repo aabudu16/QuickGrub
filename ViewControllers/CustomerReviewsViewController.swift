@@ -94,7 +94,9 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomerReviewsIdentifer.customerReviewsCell.rawValue) as? CustomerReviewTableViewCell else {return UITableViewCell()}
-        
+
+        let review = customerReviews[indexPath.row]
+        cell.customerReviewTableViewCellData(yelpReview: review)
         
         return cell
     }
