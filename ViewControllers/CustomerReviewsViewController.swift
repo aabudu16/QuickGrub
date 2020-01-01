@@ -121,7 +121,7 @@ extension CustomerReviewsViewController:YelpCustomerProfileDelegate{
             self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(profile.user?.name ?? "the profile") link on YELP.", actionTitle: "OK")
             return
         }
-        UIApplication.shared.open(profileURL, options: [:], completionHandler: nil)
+        self.showSafariVC(for: profileURL)
     }
 }
 
@@ -133,6 +133,6 @@ extension CustomerReviewsViewController:MoreYelpReviewDelegate{
             self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(fullReview.user?.name ?? "the full review") link on YELP.", actionTitle: "OK")
             return
         }
-        UIApplication.shared.open(review, options: [:], completionHandler: nil)
+        self.showSafariVC(for: review)
     }
 }
