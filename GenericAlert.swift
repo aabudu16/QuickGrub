@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 
 extension UIViewController {
     func showAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
@@ -17,5 +18,11 @@ extension UIViewController {
 
         alert.addAction(alertAction1)
         present(alert, animated: true, completion: nil)
+    }
+    
+    func showSafariVC(for url:URL){
+        let safariVC = SFSafariViewController(url: url)
+        safariVC.modalPresentationStyle = .popover
+        present(safariVC, animated: true)
     }
 }

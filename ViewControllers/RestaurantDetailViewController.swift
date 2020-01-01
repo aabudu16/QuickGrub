@@ -268,7 +268,8 @@ class RestaurantDetailViewController: UIViewController {
             self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(business.name ?? "the business") link on YELP.", actionTitle: "OK")
             return
         }
-        UIApplication.shared.open(businessURL, options: [:], completionHandler: nil)
+        self.showSafariVC(for: businessURL)
+
     }
     
     @objc func handleReviewButtonPressed(sender:UIButton){
@@ -296,6 +297,7 @@ class RestaurantDetailViewController: UIViewController {
         print("favorite button pressed")
     }
     //MARK:Private function
+    
     
     private func populateImageScrollView(){
         if let photoArray = self.business.photos{
@@ -443,4 +445,8 @@ extension RestaurantDetailViewController: UIScrollViewDelegate{
         let page = scrollView.contentOffset.x / scrollView.frame.size.width
         //           pageControl.currentPage = Int(page)
     }
+}
+
+extension RestaurantDetailViewController: SFSafariViewControllerDelegate{
+    
 }
