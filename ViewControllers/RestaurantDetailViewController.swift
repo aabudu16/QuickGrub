@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import CoreLocation
 import MapKit
+import SafariServices
 
 class RestaurantDetailViewController: UIViewController {
     
