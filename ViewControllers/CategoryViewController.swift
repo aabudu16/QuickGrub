@@ -10,6 +10,7 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
+    var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
@@ -25,6 +26,27 @@ class CategoryViewController: UIViewController {
             }
         }
     }
+    
+    var searchCategoryResult:[CDYelpCategoryAlias]{
+        get{
+            guard let searchCategoryString = searchCategoryString else {
+                return yelpCategories
+            }
+            guard searchCategoryString != "" else {
+                return yelpCategories
+            }
+            
+            return yelpCategories.filter({$0.rawValue.lowercased() == searchCategoryString.lowercased()})
+        }
+
+    }
+    
+    var searchCategoryString:String? = nil {
+        didSet {
+            self.categoryCollectionView.reloadData()
+        }
+    }
+
     
     lazy var searchBar:UISearchBar = {
         let searchBar = UISearchBar()
@@ -151,8 +173,8 @@ extension CategoryViewController: UICollectionViewDelegate{
 
         cell.layer.borderWidth = 2.5
         cell.layer.borderColor = UIColor.darkGray.cgColor
-       cell.selectedView.checked = true
-        selectedCategories.append(CDYelpCategoryAlias.yelpCategory[indexPath.row])
+        cell.selectedView.checked = true
+        selectedCategories.append(yelpCategories[indexPath.row])
         print(selectedCategories)
     }
     
@@ -162,7 +184,7 @@ extension CategoryViewController: UICollectionViewDelegate{
         cell.layer.borderWidth = 1.5
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.selectedView.checked = false
-        if let index = selectedCategories.firstIndex(of:CDYelpCategoryAlias.yelpCategory[indexPath.row]) {
+        if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
                    selectedCategories.remove(at: index)
                }
         print(selectedCategories)
@@ -181,13 +203,13 @@ extension CategoryViewController: UICollectionViewDelegate{
 }
 extension CategoryViewController: UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CDYelpCategoryAlias.yelpCategory.count
+        return searchCategoryResult.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.categoryCell.rawValue, for: indexPath) as? CategoryCollectionViewCell else {return UICollectionViewCell()}
         
-        let category = CDYelpCategoryAlias.yelpCategory[indexPath.row]
+        let category = searchCategoryResult[indexPath.row]
         
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
@@ -224,6 +246,14 @@ extension CategoryViewController:UISearchBarDelegate{
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = false
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+           searchBar.resignFirstResponder()
+       }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchCategoryString = searchBar.text
     }
 }
 
