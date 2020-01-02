@@ -53,6 +53,7 @@ open class FoldingCell: UITableViewCell {
     lazy var resturantName:UILabel = {
         let label = UILabel()
         label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         return label
     }()

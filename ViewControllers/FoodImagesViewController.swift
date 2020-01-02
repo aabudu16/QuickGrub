@@ -79,7 +79,7 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(1.0)
         tv.isUserInteractionEnabled = false
         return tv
     }()
@@ -89,7 +89,7 @@ class FoodImagesViewController: UIViewController {
         gifImage.contentMode = .scaleAspectFit
         gifImage.center = transparentView.center
         gifImage.isUserInteractionEnabled = false
-        gifImage.loadGif(name: "scrollDownGif")
+        gifImage.loadGif(name: "checkMark2")
         return gifImage
     }()
     
@@ -145,9 +145,9 @@ class FoodImagesViewController: UIViewController {
         setupCollectionView()
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-        // configureTransparentViewConstraints()
-        // configureScrollDownIndicatorConstraints()
-        // configureScrollLabelConstraints()
+         configureTransparentViewConstraints()
+         configureScrollDownIndicatorConstraints()
+       //  configureScrollLabelConstraints()
         constraintsActivityIndicatorConstraints()
         configureContinueButtomConstraints()
     }
@@ -220,13 +220,13 @@ class FoodImagesViewController: UIViewController {
     private func configureTransparentViewConstraints(){
         self.view.addSubview(transparentView)
         transparentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([transparentView.heightAnchor.constraint(equalToConstant: 200), transparentView.widthAnchor.constraint(equalToConstant: 180), transparentView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor), transparentView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor)])
+        NSLayoutConstraint.activate([transparentView.heightAnchor.constraint(equalToConstant: 200), transparentView.widthAnchor.constraint(equalToConstant: 100),transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), transparentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
     }
     
     private func configureScrollDownIndicatorConstraints(){
         self.transparentView.addSubview(scrollDownIndicator)
         scrollDownIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 30), scrollDownIndicator.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor)])
+        NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 0), scrollDownIndicator.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor)])
     }
     
     private func configureScrollLabelConstraints(){
@@ -253,12 +253,18 @@ class FoodImagesViewController: UIViewController {
 //MARK: Extensions
 extension FoodImagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
         let info = userCategorySelectedResults[indexPath.row]
-        
-        //  Handle button clicked and appending to array
+
     }
+
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
+        let info = userCategorySelectedResults[indexPath.row]
+
+ 
+}
 }
 
 extension FoodImagesViewController:UICollectionViewDataSource{

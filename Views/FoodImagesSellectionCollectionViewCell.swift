@@ -13,7 +13,7 @@ protocol CollectionViewCellDelegate: AnyObject {
     func addSelectedFood(tag: Int)
 }
 
-class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
+class FoodImagesSellectionCollectionViewCell: UICollectionViewCell { 
     weak var delegate: CollectionViewCellDelegate?
     
     let plus = UIImage(systemName: "plus")
