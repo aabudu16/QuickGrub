@@ -166,7 +166,7 @@ class WelcomeViewController: UIViewController {
     //MARK: Objc Selector functions
     
     @objc func handleMenuButtonPressed(){
-        if let window = UIApplication.shared.keyWindow{
+        if let window = UIApplication.shared.windows.first{
             window.addSubview(deemView)
             window.addSubview(filterMenuView)
             deemView.frame = window.frame

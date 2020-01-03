@@ -74,7 +74,17 @@ class FoodImagesViewController: UIViewController {
         return cv
     }()
     
-    lazy var transparentView:UIView = {
+    lazy var displayView:UIView = {
+        let tv = UIView(frame: UIScreen.main.bounds)
+        tv.layer.cornerRadius = 10
+        tv.layer.masksToBounds = true
+        tv.clipsToBounds = true
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        tv.isUserInteractionEnabled = false
+        return tv
+    }()
+    
+    lazy var scrollDownView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
@@ -87,7 +97,7 @@ class FoodImagesViewController: UIViewController {
     lazy var scrollDownIndicator:UIImageView = {
         let gifImage = UIImageView()
         gifImage.contentMode = .scaleAspectFit
-        gifImage.center = transparentView.center
+        gifImage.center = scrollDownView.center
         gifImage.isUserInteractionEnabled = false
         gifImage.loadGif(name: "checkMark2")
         return gifImage
@@ -145,7 +155,9 @@ class FoodImagesViewController: UIViewController {
         setupCollectionView()
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-         configureTransparentViewConstraints()
+        
+        configureDisplayViewConstraints()
+         configureScrollDownViewConstraints()
          configureScrollDownIndicatorConstraints()
        //  configureScrollLabelConstraints()
         constraintsActivityIndicatorConstraints()
@@ -217,22 +229,28 @@ class FoodImagesViewController: UIViewController {
         NSLayoutConstraint.activate([backgroundImageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
-    private func configureTransparentViewConstraints(){
-        self.view.addSubview(transparentView)
-        transparentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([transparentView.heightAnchor.constraint(equalToConstant: 200), transparentView.widthAnchor.constraint(equalToConstant: 100),transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), transparentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
+    private func configureDisplayViewConstraints(){
+        view.addSubview(displayView)
+        displayView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([displayView.topAnchor.constraint(equalTo: view.topAnchor), displayView.leadingAnchor.constraint(equalTo: view.leadingAnchor), displayView.trailingAnchor.constraint(equalTo: view.trailingAnchor), displayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+    
+    private func configureScrollDownViewConstraints(){
+        self.view.addSubview(scrollDownView)
+        scrollDownView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([scrollDownView.heightAnchor.constraint(equalToConstant: 200), scrollDownView.widthAnchor.constraint(equalToConstant: 100),scrollDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), scrollDownView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
     }
     
     private func configureScrollDownIndicatorConstraints(){
-        self.transparentView.addSubview(scrollDownIndicator)
+        self.scrollDownView.addSubview(scrollDownIndicator)
         scrollDownIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: transparentView.topAnchor, constant: 0), scrollDownIndicator.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor)])
+        NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: scrollDownView.topAnchor, constant: 0), scrollDownIndicator.leadingAnchor.constraint(equalTo: scrollDownView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: scrollDownView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: scrollDownView.bottomAnchor)])
     }
     
     private func configureScrollLabelConstraints(){
-        self.transparentView.addSubview(scrollLabel)
+        self.scrollDownView.addSubview(scrollLabel)
         scrollLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollLabel.topAnchor.constraint(equalTo: transparentView.topAnchor), scrollLabel.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor), scrollLabel.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor) , scrollLabel.heightAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([scrollLabel.topAnchor.constraint(equalTo: scrollDownView.topAnchor), scrollLabel.leadingAnchor.constraint(equalTo: scrollDownView.leadingAnchor), scrollLabel.trailingAnchor.constraint(equalTo: scrollDownView.trailingAnchor) , scrollLabel.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     private func constraintsActivityIndicatorConstraints(){

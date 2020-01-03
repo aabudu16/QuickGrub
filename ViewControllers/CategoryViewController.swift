@@ -213,6 +213,7 @@ extension CategoryViewController: UICollectionViewDataSource{
         
         cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         cell.backgroundColor = .white
+        cell.categoryImage.image = UIImage(named: category.rawValue)
         cell.layer.setCustomLayer(radius: 0)
         if selectedCategories.contains(category){
             cell.layer.borderWidth = 2.5

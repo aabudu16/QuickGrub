@@ -1372,6 +1372,7 @@ public enum CDYelpBusinessCategoryFilter: String {
     case russian                    = "russian"
     case salad                      = "salad"
     case sandwiches                 = "sandwiches"
+    case salmaon                    = "salmon"
     case scandinavian               = "scandinavian"
     case schnitzel                  = "schnitzel"
     case scottish                   = "scottish"
