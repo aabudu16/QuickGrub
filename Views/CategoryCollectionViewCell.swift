@@ -25,9 +25,9 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.textColor = .white
         label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowRadius = 9.0
+        label.layer.shadowRadius = 3.0
         label.layer.shadowOpacity = 5.0
-        label.layer.shadowOffset = CGSize(width: 5, height: 5)
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
         label.layer.masksToBounds = false
         return label
     }()

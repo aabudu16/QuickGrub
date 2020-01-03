@@ -84,11 +84,13 @@ class CategoryViewController: UIViewController {
     
     lazy var rightBarButton:UIBarButtonItem = {
         let button = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleResetButtonPressed(_:)))
+        button.tintColor = .black
         return button
     }()
     
     lazy var leftBarButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(image: UIImage(systemName: "arrow.left"), style: .plain, target: self, action: #selector(handleHomeButtomPressed(_:)))
+        let button = UIBarButtonItem(image: UIImage(systemName: "house"), style: .plain, target: self, action: #selector(handleHomeButtomPressed(_:)))
+        button.tintColor = .black
         return button
     }()
     
