@@ -20,6 +20,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var categoryLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "")
+        
+        label.layer.borderColor = UIColor.blue.cgColor
+        label.layer.borderWidth = 2
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
         return label
     }()
     
@@ -61,7 +66,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private func configureCategoryLabelConstraints(){
         self.addSubview(categoryLabel)
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([categoryLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor), categoryLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor)])
+        NSLayoutConstraint.activate([categoryLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor), categoryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor), categoryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor), categoryLabel.heightAnchor.constraint(equalToConstant: 40)])
     }
     
     private func configureSelectedViewConstraints(){
