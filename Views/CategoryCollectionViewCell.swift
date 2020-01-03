@@ -20,11 +20,16 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var categoryLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "")
-        
-        label.layer.borderColor = UIColor.blue.cgColor
-        label.layer.borderWidth = 2
+
         label.adjustsFontSizeToFitWidth = true
+        label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.numberOfLines = 0
+        label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 9.0
+        label.layer.shadowOpacity = 5.0
+        label.layer.shadowOffset = CGSize(width: 5, height: 5)
+        label.layer.masksToBounds = false
         return label
     }()
     
