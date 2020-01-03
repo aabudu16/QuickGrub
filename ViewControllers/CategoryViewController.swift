@@ -200,11 +200,8 @@ extension CategoryViewController: UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Identifiers.categoryCell.rawValue, for: indexPath) as? CategoryCollectionViewCell else {return UICollectionViewCell()}
         
         let category = searchCategoryResult[indexPath.row]
+        cell.configureCategoryCollectionViewCell(with: category)
         
-        cell.categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
-        cell.backgroundColor = .white
-        cell.categoryImage.image = UIImage(named: category.rawValue)
-        cell.layer.setCustomLayer(radius: 0)
         if selectedCategories.contains(category){
             cell.layer.borderWidth = 2.5
           cell.layer.borderColor = UIColor.darkGray.cgColor

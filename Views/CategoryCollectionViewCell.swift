@@ -20,7 +20,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var categoryLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "")
-
         label.adjustsFontSizeToFitWidth = true
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.numberOfLines = 0
@@ -35,6 +34,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var categoryImage:UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleToFill
         return image
     }()
     
@@ -59,6 +59,16 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: -- Public function
+    
+    public func configureCategoryCollectionViewCell(with category:CDYelpCategoryAlias){
+        
+        categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
+        self.backgroundColor = .white
+        categoryImage.image = UIImage(named: category.rawValue)
+        self.layer.setCustomLayer(radius: 0)
+    }
+    
     //MARK: Private constraints
     
     private func configureCategoryImageConstraints(){
@@ -71,7 +81,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private func configureCategoryLabelConstraints(){
         self.addSubview(categoryLabel)
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([categoryLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor), categoryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor), categoryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor), categoryLabel.heightAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([categoryLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor), categoryLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 3), categoryLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3), categoryLabel.heightAnchor.constraint(equalToConstant: 40)])
     }
     
     private func configureSelectedViewConstraints(){
