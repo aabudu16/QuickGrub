@@ -165,15 +165,26 @@ open class FoldingCell: UITableViewCell {
     }
     
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
-        
+        var firstAddress = String()
+        var secondAdress:String? = nil
         let image = UIImage(named: "FoodPlaceholder")
         self.foodImageView.kf.indicatorType = .activity
         self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         
-        if let displayAddress = business.location?.displayAddress{
-            addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+        if let displayAddress = business.location?.displayAddress?[0]{
+            firstAddress = displayAddress
         }
         
+        if (business.location?.displayAddress?.count)! > 1{
+            if let displayAddress = business.location?.displayAddress{
+                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+            }
+        }else{
+            if let displayAddress = business.location?.displayAddress{
+            addressTextView.text = "\(displayAddress[0])"
+            }
+        }
+        addressTextView.text = "\(firstAddress) \(secondAdress ?? "")"
         resturantPhoneNumber.text = business.displayPhone
         distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
         resturantName.text = business.name

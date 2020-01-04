@@ -104,15 +104,6 @@ func drawRectGrayedOut(rect: CGRect) {
 }
 
 func drawRectOpenCircle(rect: CGRect) {
-   // let context = UIGraphicsGetCurrentContext()
-   
-   
-  //  context!.saveGState()
-   // context!.restoreGState()
-   // context!.saveGState()
-   // context!.setShadow(offset: shadowOffset, blur: CGFloat(shadowBlurRadius), color: shadow.cgColor)
-   // UIColor.white.setStroke()
-   // context!.restoreGState()
 
 }
 }

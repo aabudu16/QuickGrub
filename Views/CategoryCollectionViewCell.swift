@@ -37,8 +37,8 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var  selectedView:SSCheckMark = {
         let view = SSCheckMark(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        view.layer.borderWidth = 0.2
-        view.backgroundColor = .lightGray
+        view.layer.borderWidth = 0.1
+        view.backgroundColor = #colorLiteral(red: 0.8601346612, green: 0.8550221324, blue: 0.8640649915, alpha: 1)
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = view.frame.height / 2
         view.clipsToBounds = true
