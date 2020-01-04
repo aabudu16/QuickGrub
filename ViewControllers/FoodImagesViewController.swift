@@ -120,7 +120,7 @@ class FoodImagesViewController: UIViewController {
         let label = UILabel()
         label.text = "Tap on the icon to select item, Tap the icon again to de-select item"
         label.textColor = .white
-        label.font = label.font.withSize(15)
+        label.font = label.font.withSize(20)
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.textAlignment = .center
