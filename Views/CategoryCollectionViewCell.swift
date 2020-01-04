@@ -24,16 +24,17 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.numberOfLines = 0
         label.textColor = .white
-        label.layer.shadowColor = UIColor.black.cgColor
-        label.layer.shadowRadius = 3.0
-        label.layer.shadowOpacity = 5.0
-        label.layer.shadowOffset = CGSize(width: 1, height: 1)
-        label.layer.masksToBounds = false
+                label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 0.5
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowOffset = CGSize(width: 0.1, height: 0.1)
+                label.layer.masksToBounds = false
         return label
     }()
     
     lazy var categoryImage:UIImageView = {
         let image = UIImageView()
+        image.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0.2).enable()
         image.contentMode = .scaleToFill
         return image
     }()
@@ -61,11 +62,14 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     //MARK: -- Public function
     
+    
+    
     public func configureCategoryCollectionViewCell(with category:CDYelpCategoryAlias){
         
         categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
         self.backgroundColor = .white
-        categoryImage.image = UIImage(named: category.rawValue)
+        let image = UIImage(named: category.rawValue)
+        categoryImage.image = image
         self.layer.setCustomLayer(radius: 0)
     }
     
@@ -91,7 +95,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([selectedView.topAnchor.constraint(equalTo: self.topAnchor, constant: 5), selectedView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -5), selectedView.heightAnchor.constraint(equalToConstant: 20), selectedView.widthAnchor.constraint(equalToConstant: 20)])
     }
     
-  
+    
     
 }
 

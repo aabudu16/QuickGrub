@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28A34A5DE4D320AB320B8AD1 /* Pods_Quick_Grub2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */; };
+		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -99,6 +100,7 @@
 		22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2Tests.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2Tests/Pods-Quick-Grub2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5CAE2684FF0D32BEB155D833 /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -342,6 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				858A9861238433A10051AF45 /* Custom Extension.swift */,
+				8504513C23C05C57006DB14A /* BlurView Extension.swift */,
 				85F92A6023903F4100048FCB /* String+Extensions.swift */,
 			);
 			path = "Custom Extensions";
@@ -636,6 +639,7 @@
 				854D6D4323A28E76001BD091 /* CDYelpEventsResponse.swift in Sources */,
 				854D6D3823A28E76001BD091 /* CDYelpError.swift in Sources */,
 				854D6D3923A28E76001BD091 /* URL+CDYelpFusionKit.swift in Sources */,
+				8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,

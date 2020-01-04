@@ -71,7 +71,7 @@ class CategoryViewController: UIViewController {
     
     lazy var containerView:UIView = {
         let view = UIView()
-        view.backgroundColor = .white
+        view.backgroundColor = .blue
         return view
     }()
     
@@ -98,10 +98,15 @@ class CategoryViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureNavigationBar()
-        configureContainerViewConstriant()
         configureSearchBarConstaints()
         configureCollectionViewConstraint()
+        configureContainerViewConstriant()
         configureContinueButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //presentContainerView()
     }
     
     //MARK: Objc Selector functions
@@ -129,6 +134,20 @@ class CategoryViewController: UIViewController {
     }
     //MARK: Private Methods
     
+    private func presentContainerView(){
+        if selectedCategories.count > 0{
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                self.containerView.frame = CGRect(x: 0, y: (self.view.frame.height - 80) + 20, width: self.view.frame.width, height: 80)
+            }, completion: nil)
+        } else{
+           UIView.animate(withDuration: 0.3, animations: {
+               self.containerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 80)
+           }, completion: { (_) in
+              print("nothing")
+           })
+        }
+    }
+    
     private func configureNavigationBar(){
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.topItem?.title = "Browse by cuisine"
@@ -140,7 +159,7 @@ class CategoryViewController: UIViewController {
     private func configureContainerViewConstriant(){
         view.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),containerView.heightAnchor.constraint(equalToConstant: 40),containerView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)])
+        NSLayoutConstraint.activate([ containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),containerView.heightAnchor.constraint(equalToConstant: 80),containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor)])
     }
     
     private func configureSearchBarConstaints(){
@@ -153,7 +172,7 @@ class CategoryViewController: UIViewController {
     private func configureCollectionViewConstraint(){
         view.addSubview(categoryCollectionView)
         categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: containerView.topAnchor)])
+        NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     
 
@@ -178,6 +197,7 @@ extension CategoryViewController: UICollectionViewDelegate{
         cell.selectedView.checked = true
         selectedCategories.append(yelpCategories[indexPath.row])
         print(selectedCategories)
+        presentContainerView()
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
@@ -190,6 +210,7 @@ extension CategoryViewController: UICollectionViewDelegate{
                    selectedCategories.remove(at: index)
                }
         print(selectedCategories)
+        presentContainerView()
     }
 }
 
