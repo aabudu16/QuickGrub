@@ -298,7 +298,10 @@ class RestaurantDetailViewController: UIViewController {
     }
     
     @objc func handleShareButtonPressed(sender:UIBarButtonItem){
-        print("favorite button pressed")
+        
+        guard let businessURL = business.url else {return}
+        let share = UIActivityViewController(activityItems: [businessURL], applicationActivities: [])
+        present(share, animated: true, completion: nil)
     }
     //MARK:Private function
     

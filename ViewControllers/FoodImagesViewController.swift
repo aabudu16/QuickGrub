@@ -82,7 +82,7 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.4)
         tv.isUserInteractionEnabled = true
         tv.addGestureRecognizer(tap)
         return tv
@@ -112,7 +112,7 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         tv.isUserInteractionEnabled = false
         return tv
     }()
