@@ -23,7 +23,6 @@ class CustomerReviewsViewController: UIViewController {
                 DispatchQueue.main.async {
                     if let reviews = response?.reviews{
                         self.customerReviews = reviews
-                        print(reviews[0].toJSON())
                     }
                 }
             }

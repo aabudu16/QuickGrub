@@ -63,9 +63,6 @@ class RestaurantDetailViewController: UIViewController {
                     unWrappedHours.forEach({print($0.toJSON())})
                 }
             }
-            
-            print(  business.url)
-            
         }
     }
     
@@ -248,9 +245,9 @@ class RestaurantDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         populateImageScrollView()
     }
+    
     //MARK:@Objc function
     @objc func getDirections(sender:UIButton){
         guard let lat = business.coordinates?.latitude, let long =  business.coordinates?.longitude else {return}
@@ -281,9 +278,10 @@ class RestaurantDetailViewController: UIViewController {
         customerReviewVC.businessID = businessID
         customerReviewVC.modalPresentationStyle = .popover
         present(customerReviewVC, animated: true) {
-        customerReviewVC.dismissButton.backgroundColor = #colorLiteral(red: 0.8273282647, green: 0.1290322244, blue: 0.0612013787, alpha: 1)
+            UIView.animate(withDuration: 0.4) {
+                customerReviewVC.dismissButton.backgroundColor = #colorLiteral(red: 0.8273282647, green: 0.1290322244, blue: 0.0612013787, alpha: 1)
+            }
         }
-       // present(customerReviewVC, animated: true, completion: nil)
     }
     
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){

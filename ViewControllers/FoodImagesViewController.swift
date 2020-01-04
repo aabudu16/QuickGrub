@@ -71,16 +71,20 @@ class FoodImagesViewController: UIViewController {
         layout.scrollDirection = .horizontal
         cv.register(FoodImagesSellectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
         cv.backgroundColor = .clear
+        cv.isUserInteractionEnabled = false
         return cv
     }()
     
     lazy var displayView:UIView = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleEnablingCollectionView(guesture:)))
+        tap.numberOfTouchesRequired = 1
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        tv.isUserInteractionEnabled = false
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        tv.isUserInteractionEnabled = true
+        tv.addGestureRecognizer(tap)
         return tv
     }()
     
@@ -174,6 +178,13 @@ class FoodImagesViewController: UIViewController {
          resturantResultVC.userFoodImageSelection = userFoodImageSelection
         navigationController?.pushViewController(resturantResultVC, animated: true)
         print("continue button pressed")
+    }
+    
+    @objc func handleEnablingCollectionView(guesture:UITapGestureRecognizer){
+        displayView.removeFromSuperview()
+        collectionView.isUserInteractionEnabled = true
+        scrollDownView.removeFromSuperview()
+        
     }
     
     // MARK: Private function

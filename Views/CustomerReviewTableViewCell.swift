@@ -41,15 +41,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         return image
     }()
     
-    lazy var readMoreLabel:UILabel = {
-        let label = UILabel()
-        label.text = "Read more"
-        label.textAlignment = .right
-        label.textColor = #colorLiteral(red: 0.3647058904, green: 0.06666667014, blue: 0.9686274529, alpha: 1)
-        label.font = UIFont(name: "Avenir-Light", size: 15)
-        return label
-    }()
-    
     lazy var ratingsLabel:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -90,7 +81,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         configureTimeCreatingLabelConstraints()
         configureReviewTextLabelConstraints()
         configureYelpLogoConstraints()
-        //configureReadMoreLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -157,7 +147,7 @@ class CustomerReviewTableViewCell: UITableViewCell {
     private func configureReviewTextLabelConstraints(){
         self.addSubview(reviewTextLabel)
         reviewTextLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([reviewTextLabel.topAnchor.constraint(equalTo: timeCreatingLabel.bottomAnchor,constant: 3), reviewTextLabel.leadingAnchor.constraint(equalTo: customerImage.leadingAnchor), reviewTextLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -45), reviewTextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
+        NSLayoutConstraint.activate([reviewTextLabel.topAnchor.constraint(equalTo: timeCreatingLabel.bottomAnchor,constant: 3), reviewTextLabel.leadingAnchor.constraint(equalTo: customerImage.leadingAnchor), reviewTextLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -90), reviewTextLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
     
     private func configureYelpLogoConstraints(){
@@ -165,11 +155,6 @@ class CustomerReviewTableViewCell: UITableViewCell {
         yelpLogo.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([yelpLogo.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -1), yelpLogo.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -3), yelpLogo.heightAnchor.constraint(equalToConstant: 40), yelpLogo.widthAnchor.constraint(equalToConstant: 100)])
     }
-    
-    private func configureReadMoreLabelConstraints(){
-        self.addSubview(readMoreLabel)
-        readMoreLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([readMoreLabel.bottomAnchor.constraint(equalTo: yelpLogo.bottomAnchor), readMoreLabel.trailingAnchor.constraint(equalTo: yelpLogo.leadingAnchor), readMoreLabel.heightAnchor.constraint(equalToConstant: 20), readMoreLabel.widthAnchor.constraint(equalToConstant: 90)])
-    }
+
 }
 
