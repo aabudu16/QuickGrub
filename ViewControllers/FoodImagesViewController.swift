@@ -53,7 +53,7 @@ class FoodImagesViewController: UIViewController {
                         self?.popViewControllerAlert()
                         return }
                     DispatchQueue.main.async {
-                         self?.userCategorySelectedResults = businesses
+                        self?.userCategorySelectedResults = businesses
                     }
                 }
             }
@@ -75,7 +75,7 @@ class FoodImagesViewController: UIViewController {
         return cv
     }()
     
-    lazy var displayView:UIView = {
+    lazy var dimView:UIView = {
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleEnablingCollectionView(guesture:)))
         tap.numberOfTouchesRequired = 1
         let tv = UIView(frame: UIScreen.main.bounds)
@@ -88,12 +88,12 @@ class FoodImagesViewController: UIViewController {
         return tv
     }()
     
-    lazy var instructionView:UIView = {
+    lazy var checkMarkIndicatorView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         tv.isUserInteractionEnabled = false
         return tv
     }()
@@ -101,15 +101,24 @@ class FoodImagesViewController: UIViewController {
     lazy var checkMarkIndicator:UIImageView = {
         let gifImage = UIImageView()
         gifImage.contentMode = .scaleAspectFit
-        gifImage.center = instructionView.center
+        gifImage.center = checkMarkIndicatorView.center
         gifImage.isUserInteractionEnabled = false
         gifImage.loadGif(name: "checkMark2")
         return gifImage
     }()
     
+    lazy var instructionLabelView:UIView = {
+        let tv = UIView(frame: UIScreen.main.bounds)
+        tv.layer.cornerRadius = 10
+        tv.layer.masksToBounds = true
+        tv.clipsToBounds = true
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        tv.isUserInteractionEnabled = false
+        return tv
+    }()
     lazy var instructionLabel:UILabel = {
         let label = UILabel()
-        label.text = "Scoll image into the pot"
+        label.text = "Tap on the icon to select item, Tap the icon again to de-select item"
         label.textColor = .white
         label.font = label.font.withSize(15)
         label.adjustsFontSizeToFitWidth = true
@@ -160,10 +169,11 @@ class FoodImagesViewController: UIViewController {
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
         
-        configureDisplayViewConstraints()
-         configureScrollDownViewConstraints()
-         configureScrollDownIndicatorConstraints()
-       //  configureScrollLabelConstraints()
+        configureDimViewConstraints()
+        configureCheckMarkIndicatorViewConstraints()
+        configureCheckMarkIndicatorConstraints()
+        configureInstructionLabelViewConstraints()
+        configureInstructionLabelConstraints()
         constraintsActivityIndicatorConstraints()
         configureContinueButtomConstraints()
     }
@@ -175,15 +185,15 @@ class FoodImagesViewController: UIViewController {
     // MARK: objc function
     @objc func handleContinueButtonPressed(sender:UIButton){
         let resturantResultVC = RestaurantResultsViewController()
-         resturantResultVC.userFoodImageSelection = userFoodImageSelection
+        resturantResultVC.userFoodImageSelection = userFoodImageSelection
         navigationController?.pushViewController(resturantResultVC, animated: true)
         print("continue button pressed")
     }
     
     @objc func handleEnablingCollectionView(guesture:UITapGestureRecognizer){
-        displayView.removeFromSuperview()
+        dimView.removeFromSuperview()
         collectionView.isUserInteractionEnabled = true
-        instructionView.removeFromSuperview()
+        checkMarkIndicatorView.removeFromSuperview()
         
     }
     
@@ -240,28 +250,34 @@ class FoodImagesViewController: UIViewController {
         NSLayoutConstraint.activate([backgroundImageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
-    private func configureDisplayViewConstraints(){
-        view.addSubview(displayView)
-        displayView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([displayView.topAnchor.constraint(equalTo: view.topAnchor), displayView.leadingAnchor.constraint(equalTo: view.leadingAnchor), displayView.trailingAnchor.constraint(equalTo: view.trailingAnchor), displayView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    private func configureDimViewConstraints(){
+        view.addSubview(dimView)
+        dimView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([dimView.topAnchor.constraint(equalTo: view.topAnchor), dimView.leadingAnchor.constraint(equalTo: view.leadingAnchor), dimView.trailingAnchor.constraint(equalTo: view.trailingAnchor), dimView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
-    private func configureScrollDownViewConstraints(){
-        self.view.addSubview(instructionView)
-        instructionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionView.heightAnchor.constraint(equalToConstant: 200), instructionView.widthAnchor.constraint(equalToConstant: 100),instructionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), instructionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
+    private func configureCheckMarkIndicatorViewConstraints(){
+        self.view.addSubview(checkMarkIndicatorView)
+        checkMarkIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([checkMarkIndicatorView.heightAnchor.constraint(equalToConstant: 201), checkMarkIndicatorView.widthAnchor.constraint(equalToConstant: 101),checkMarkIndicatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 71), checkMarkIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)])
     }
     
-    private func configureScrollDownIndicatorConstraints(){
-        self.instructionView.addSubview(checkMarkIndicator)
+    private func configureCheckMarkIndicatorConstraints(){
+        self.checkMarkIndicatorView.addSubview(checkMarkIndicator)
         checkMarkIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: instructionView.topAnchor, constant: 0), checkMarkIndicator.leadingAnchor.constraint(equalTo: instructionView.leadingAnchor), checkMarkIndicator.trailingAnchor.constraint(equalTo: instructionView.trailingAnchor) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: instructionView.bottomAnchor)])
+        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: checkMarkIndicatorView.topAnchor, constant: 0), checkMarkIndicator.leadingAnchor.constraint(equalTo: checkMarkIndicatorView.leadingAnchor), checkMarkIndicator.trailingAnchor.constraint(equalTo: checkMarkIndicatorView.trailingAnchor) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: checkMarkIndicatorView.bottomAnchor)])
     }
     
-    private func configureScrollLabelConstraints(){
-        self.instructionView.addSubview(instructionLabel)
+    private func configureInstructionLabelViewConstraints(){
+        dimView.addSubview(instructionLabelView)
+        instructionLabelView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([instructionLabelView.centerYAnchor.constraint(equalTo: dimView.centerYAnchor), instructionLabelView.centerXAnchor.constraint(equalTo: dimView.centerXAnchor), instructionLabelView.heightAnchor.constraint(equalToConstant: 200), instructionLabelView.widthAnchor.constraint(equalToConstant: 200)])
+    }
+    
+    private func configureInstructionLabelConstraints(){
+        self.instructionLabelView.addSubview(instructionLabel)
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabel.topAnchor.constraint(equalTo: instructionView.topAnchor), instructionLabel.leadingAnchor.constraint(equalTo: instructionView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionView.trailingAnchor) , instructionLabel.heightAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([instructionLabel.topAnchor.constraint(equalTo: instructionLabelView.topAnchor), instructionLabel.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor) , instructionLabel.bottomAnchor.constraint(equalTo: instructionLabelView.bottomAnchor)])
     }
     
     private func constraintsActivityIndicatorConstraints(){
@@ -282,18 +298,18 @@ class FoodImagesViewController: UIViewController {
 //MARK: Extensions
 extension FoodImagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
         let info = userCategorySelectedResults[indexPath.row]
-
+        
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
         let info = userCategorySelectedResults[indexPath.row]
-
- 
-}
+        
+        
+    }
 }
 
 extension FoodImagesViewController:UICollectionViewDataSource{
