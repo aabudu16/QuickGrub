@@ -82,32 +82,32 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.4)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         tv.isUserInteractionEnabled = true
         tv.addGestureRecognizer(tap)
         return tv
     }()
     
-    lazy var scrollDownView:UIView = {
+    lazy var instructionView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(1.0)
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         tv.isUserInteractionEnabled = false
         return tv
     }()
     
-    lazy var scrollDownIndicator:UIImageView = {
+    lazy var checkMarkIndicator:UIImageView = {
         let gifImage = UIImageView()
         gifImage.contentMode = .scaleAspectFit
-        gifImage.center = scrollDownView.center
+        gifImage.center = instructionView.center
         gifImage.isUserInteractionEnabled = false
         gifImage.loadGif(name: "checkMark2")
         return gifImage
     }()
     
-    lazy var scrollLabel:UILabel = {
+    lazy var instructionLabel:UILabel = {
         let label = UILabel()
         label.text = "Scoll image into the pot"
         label.textColor = .white
@@ -183,7 +183,7 @@ class FoodImagesViewController: UIViewController {
     @objc func handleEnablingCollectionView(guesture:UITapGestureRecognizer){
         displayView.removeFromSuperview()
         collectionView.isUserInteractionEnabled = true
-        scrollDownView.removeFromSuperview()
+        instructionView.removeFromSuperview()
         
     }
     
@@ -247,21 +247,21 @@ class FoodImagesViewController: UIViewController {
     }
     
     private func configureScrollDownViewConstraints(){
-        self.view.addSubview(scrollDownView)
-        scrollDownView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollDownView.heightAnchor.constraint(equalToConstant: 200), scrollDownView.widthAnchor.constraint(equalToConstant: 100),scrollDownView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), scrollDownView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
+        self.view.addSubview(instructionView)
+        instructionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([instructionView.heightAnchor.constraint(equalToConstant: 200), instructionView.widthAnchor.constraint(equalToConstant: 100),instructionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 72), instructionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -24)])
     }
     
     private func configureScrollDownIndicatorConstraints(){
-        self.scrollDownView.addSubview(scrollDownIndicator)
-        scrollDownIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollDownIndicator.topAnchor.constraint(equalTo: scrollDownView.topAnchor, constant: 0), scrollDownIndicator.leadingAnchor.constraint(equalTo: scrollDownView.leadingAnchor), scrollDownIndicator.trailingAnchor.constraint(equalTo: scrollDownView.trailingAnchor) ,scrollDownIndicator.bottomAnchor.constraint(equalTo: scrollDownView.bottomAnchor)])
+        self.instructionView.addSubview(checkMarkIndicator)
+        checkMarkIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: instructionView.topAnchor, constant: 0), checkMarkIndicator.leadingAnchor.constraint(equalTo: instructionView.leadingAnchor), checkMarkIndicator.trailingAnchor.constraint(equalTo: instructionView.trailingAnchor) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: instructionView.bottomAnchor)])
     }
     
     private func configureScrollLabelConstraints(){
-        self.scrollDownView.addSubview(scrollLabel)
-        scrollLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([scrollLabel.topAnchor.constraint(equalTo: scrollDownView.topAnchor), scrollLabel.leadingAnchor.constraint(equalTo: scrollDownView.leadingAnchor), scrollLabel.trailingAnchor.constraint(equalTo: scrollDownView.trailingAnchor) , scrollLabel.heightAnchor.constraint(equalToConstant: 50)])
+        self.instructionView.addSubview(instructionLabel)
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([instructionLabel.topAnchor.constraint(equalTo: instructionView.topAnchor), instructionLabel.leadingAnchor.constraint(equalTo: instructionView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionView.trailingAnchor) , instructionLabel.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     private func constraintsActivityIndicatorConstraints(){
