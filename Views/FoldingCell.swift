@@ -43,12 +43,12 @@ open class FoldingCell: UITableViewCell {
     }()
     
     lazy var pageControl: UIPageControl = {
-           let pc = UIPageControl()
-           pc.hidesForSinglePage = true
-           pc.pageIndicatorTintColor = .blue
-           pc.currentPageIndicatorTintColor = .red
-           return pc
-       }()
+        let pc = UIPageControl()
+        pc.hidesForSinglePage = true
+        pc.pageIndicatorTintColor = .blue
+        pc.currentPageIndicatorTintColor = .red
+        return pc
+    }()
     
     lazy var resturantName:UILabel = {
         let label = UILabel()
@@ -133,6 +133,10 @@ open class FoldingCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "DamascusBold", size: 20)
         label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.0
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowOffset = CGSize(width: 0.1, height: 0.1)
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -141,6 +145,10 @@ open class FoldingCell: UITableViewCell {
         let label = UILabel()
         label.font = UIFont(name: "Avenir Next Medium 18.0", size: 18)
         label.textColor = .white
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1.0
+        label.layer.shadowOpacity = 0.5
+        label.layer.shadowOffset = CGSize(width: 0.1, height: 0.1)
         label.adjustsFontSizeToFitWidth = true
         return label
     }()
@@ -157,30 +165,30 @@ open class FoldingCell: UITableViewCell {
     }
     
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
-       
-         let image = UIImage(named: "FoodPlaceholder")
-            self.foodImageView.kf.indicatorType = .activity
-            self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         
-            if let displayAddress = business.location?.displayAddress{
-                 addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-                }
+        let image = UIImage(named: "FoodPlaceholder")
+        self.foodImageView.kf.indicatorType = .activity
+        self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         
-            resturantPhoneNumber.text = business.displayPhone
-            distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
-            resturantName.text = business.name
-            resturantNameLabel.text = business.name
-            
-            switch business.isClosed{
-            case true:
-                openOrCloseLabel.text = "Close"
-                openOrCloseLabel.textColor = #colorLiteral(red: 0.8468823433, green: 0.1903522015, blue: 0.1447911263, alpha: 1)
-            case false:
-                openOrCloseLabel.text = "Open"
-                openOrCloseLabel.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
-            default:
-                openOrCloseLabel.text = "NA"
-            }
+        if let displayAddress = business.location?.displayAddress{
+            addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+        }
+        
+        resturantPhoneNumber.text = business.displayPhone
+        distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
+        resturantName.text = business.name
+        resturantNameLabel.text = business.name
+        
+        switch business.isClosed{
+        case true:
+            openOrCloseLabel.text = "Close"
+            openOrCloseLabel.textColor = #colorLiteral(red: 0.8468823433, green: 0.1903522015, blue: 0.1447911263, alpha: 1)
+        case false:
+            openOrCloseLabel.text = "Open"
+            openOrCloseLabel.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
+        default:
+            openOrCloseLabel.text = "NA"
+        }
         
         if let photoArray = business.photos{
             
@@ -190,21 +198,21 @@ open class FoldingCell: UITableViewCell {
                 imageView.contentMode = .scaleAspectFill
                 let imageUrl = URL(string: photoString)
                 DispatchQueue.main.async {
-                     imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+                    imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
                     imageView.setNeedsDisplay()
-                                   let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
-                                   imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-                                   
+                    let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
+                    imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                    
                     self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
                     self.imageScrollView.addSubview(imageView)
                 }
-
+                
             }
         }
         //MARK: - Adds annotation to mapview
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 40.6782, longitude: business.coordinates?.longitude ?? -73.9442)
-                   self.mapView.addAnnotation(annotation)
+        self.mapView.addAnnotation(annotation)
         zoomToLatestLocation(with: annotation.coordinate)
         
         let durations: [TimeInterval] = [0.26, 0.2, 0.2]
@@ -257,16 +265,16 @@ open class FoldingCell: UITableViewCell {
         detailVCDelegate?.navigateToDetailedViewController(tag: sender.tag)
     }
     
-       @objc private func getDirections(sender:UIButton) {
+    @objc private func getDirections(sender:UIButton) {
         
         delegate?.navigateToDestination(tag: sender.tag)
         
     }
-
+    
     
     @objc open func commonInit() {
         configureDefaultState()
-    
+        
         selectionStyle = .none
         containerView.layer.cornerRadius = foregroundView.layer.cornerRadius
         containerView.layer.masksToBounds = true
@@ -728,7 +736,7 @@ open class RotatedView: UIView {
         view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: height))
         self.addConstraints([ NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1, constant: self.bounds.size.height - height + height / 2), NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 0),
                               
-            NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)])
+                              NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1, constant: 0)])
     }
 }
 
