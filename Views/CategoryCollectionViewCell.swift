@@ -13,10 +13,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     //MARK: Properties
     
     //MARK: UI Objects
-    lazy var checkMarkButton:UIButton = {
-        let button = UIButton()
-        return button
-    }()
     
     lazy var categoryLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "")
@@ -24,11 +20,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         label.font = UIFont(name: "Avenir-Heavy", size: 23)
         label.numberOfLines = 0
         label.textColor = .white
-                label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowColor = UIColor.black.cgColor
         label.layer.shadowRadius = 0.5
         label.layer.shadowOpacity = 0.5
         label.layer.shadowOffset = CGSize(width: 0.1, height: 0.1)
-                label.layer.masksToBounds = false
+        label.layer.masksToBounds = false
         return label
     }()
     
@@ -41,10 +37,11 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     lazy var  selectedView:SSCheckMark = {
         let view = SSCheckMark(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-        view.layer.borderWidth = 1
-        view.backgroundColor = .white
+        view.layer.borderWidth = 0.2
+        view.backgroundColor = .lightGray
         view.layer.borderColor = UIColor.black.cgColor
         view.layer.cornerRadius = view.frame.height / 2
+        view.clipsToBounds = true
         return view
     }()
     

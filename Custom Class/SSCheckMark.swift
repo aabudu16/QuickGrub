@@ -49,20 +49,20 @@ func drawRectChecked(rect: CGRect) {
     let checkmarkBlue2 = UIColor.blue
     let shadow2 = UIColor.white
 
-    let shadow2Offset = CGSize(width: 0.1, height: -0.1)
+    let shadow2Offset = CGSize(width: 0.0, height: -0.1)
     let shadow2BlurRadius = 2.5
     let frame = self.bounds
-    let group = CGRect(x: frame.minX + 3, y: frame.minY + 3, width: frame.width - 6, height: frame.height - 6)
+    let group = CGRect(x: frame.minX , y: frame.minY , width: frame.width , height: frame.height )
 
-    let checkedOvalPath = UIBezierPath(ovalIn: CGRect(x: group.minX + floor(group.width * 0.0 + 0.5), y: group.minY + floor(group.height * 0.0 + 0.5), width: floor(group.width * 1.0 + 0.5) - floor(group.width * 0.0 + 0.5), height: floor(group.height * 1.0 + 0.5) - floor(group.height * 0.0 + 0.5)))
+    let checkedOvalPath = UIBezierPath(ovalIn: CGRect(x: group.minX + floor(group.width * 0.0 + 0.5), y: group.minY + floor(group.height * 0.0 + 0.9), width: floor(group.width * 1.0 + 0.5) - floor(group.width * 0.0 + 0.5), height: floor(group.height * 1.0 + 0.5) - floor(group.height * 0.0 + 0.5)))
 
     context!.saveGState()
     context!.setShadow(offset: shadow2Offset, blur: CGFloat(shadow2BlurRadius), color: shadow2.cgColor)
     checkmarkBlue2.setFill()
     checkedOvalPath.fill()
     context!.restoreGState()
-    UIColor.white.setStroke()
-    checkedOvalPath.lineWidth = 0
+    UIColor.black.setStroke()
+    checkedOvalPath.lineWidth = 1
     checkedOvalPath.stroke()
     let bezierPath = UIBezierPath()
     bezierPath.move(to: CGPoint(x: group.minX + 0.27083 * group.width, y: group.minY + 0.54167 * group.height))
@@ -70,7 +70,7 @@ func drawRectChecked(rect: CGRect) {
     bezierPath.addLine(to: CGPoint(x: group.minX + 0.75000 * group.width, y: group.minY + 0.35417 * group.height))
     bezierPath.lineCapStyle = CGLineCap.square
     UIColor.white.setStroke()
-    bezierPath.lineWidth = 3
+    bezierPath.lineWidth = 2
     bezierPath.stroke()
 }
 
