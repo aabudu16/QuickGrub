@@ -20,8 +20,14 @@ class RestaurantDetailViewController: UIViewController {
         didSet{
             logoLabel.text = business.name
             restaurantName.text = business.name
-            if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+            if (business.location?.displayAddress?.count)! > 1{
+                if let displayAddress = business.location?.displayAddress{
+                    addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+                }
+            }else{
+                if let displayAddress = business.location?.displayAddress{
+                addressTextView.text = "\(displayAddress[0])"
+                }
             }
             
             restaurantPhoneNumber.text = business.displayPhone

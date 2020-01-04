@@ -165,8 +165,6 @@ open class FoldingCell: UITableViewCell {
     }
     
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
-        var firstAddress = String()
-        var secondAdress:String? = nil
         let image = UIImage(named: "FoodPlaceholder")
         self.foodImageView.kf.indicatorType = .activity
         self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
