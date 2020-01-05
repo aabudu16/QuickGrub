@@ -362,7 +362,6 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func handleShortCut(tag: Int) {
-        print(tag)
     }
     
     func addSelectedFood(tag: Int) {
