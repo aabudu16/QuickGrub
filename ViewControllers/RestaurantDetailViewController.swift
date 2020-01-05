@@ -14,6 +14,7 @@ import SafariServices
 
 class RestaurantDetailViewController: UIViewController {
     
+    
     //MARK: - UIObjects
     let image = UIImage(named: "FoodPlaceholder")
     var business:CDYelpBusiness!{
@@ -127,7 +128,7 @@ class RestaurantDetailViewController: UIViewController {
         tv.textAlignment = .left
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
-        tv.font = UIFont(name: "Avenir-Light", size: 19)
+        tv.font = UIFont(name: "Avenir-Light", size: 18)
         return tv
     }()
     
@@ -180,7 +181,6 @@ class RestaurantDetailViewController: UIViewController {
     lazy var restaurantPhoneNumber:UILabel = {
         let label = UILabel()
         label.textAlignment = .left
-        label.text = "(718)450-4321"
         label.font = UIFont(name: "Avenir-Light", size: 18)
         return label
     }()
@@ -294,13 +294,13 @@ class RestaurantDetailViewController: UIViewController {
         print("Menu button pressed")
     }
     @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
-        print("favorite button pressed")
+         print("Menu favorite pressed")
     }
     
     @objc func handleShareButtonPressed(sender:UIBarButtonItem){
         
         guard let businessURL = business.url else {return}
-        let share = UIActivityViewController(activityItems: [businessURL], applicationActivities: [])
+        let share = UIActivityViewController(activityItems: [businessURL], applicationActivities: nil)
         present(share, animated: true, completion: nil)
     }
     //MARK:Private function
@@ -388,7 +388,7 @@ class RestaurantDetailViewController: UIViewController {
     private func configureAddressTextViewConstraints(){
         view.addSubview(addressTextView)
         addressTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 75), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
+        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 78), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
     }
     
     private func configureRestaurantPhoneNumberConstraints(){
@@ -448,12 +448,13 @@ class RestaurantDetailViewController: UIViewController {
 }
 
 extension RestaurantDetailViewController: UIScrollViewDelegate{
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.size.width
-        //           pageControl.currentPage = Int(page)
+                   pageControl.currentPage = Int(page)
     }
 }
 
 extension RestaurantDetailViewController: SFSafariViewControllerDelegate{
     
 }
+

@@ -705,9 +705,9 @@ open class FoldingCell: UITableViewCell {
     }
     
 }
-
+//MARK:-- extensions
 extension FoldingCell: UIScrollViewDelegate{
-    public func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let page = scrollView.contentOffset.x / scrollView.frame.size.width
         pageControl.currentPage = Int(page)
     }
