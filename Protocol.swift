@@ -9,6 +9,13 @@
 import Foundation
 import UIKit
 
+protocol CollectionViewCellDelegate: AnyObject {
+    func addSelectedFood(tag: Int)
+    func handleShortCut(tag: Int)
+}
+
+
+
 protocol FoldingCellDelegate: AnyObject {
     func navigateToDestination(tag: Int)
 }

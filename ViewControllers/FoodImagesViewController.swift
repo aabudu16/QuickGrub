@@ -322,6 +322,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         cell.delegate = self
         cell.foodColorBadge.tag = indexPath.item
+        cell.FoodTitleLabel.tag = indexPath.item
         cell.createPulse()
         let info = userCategorySelectedResults[indexPath.row]
         
@@ -360,6 +361,10 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 }
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
+    func handleShortCut(tag: Int) {
+        print(tag)
+    }
+    
     func addSelectedFood(tag: Int) {
         let info = userCategorySelectedResults[tag]
         guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}

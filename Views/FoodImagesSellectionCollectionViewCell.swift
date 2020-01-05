@@ -9,10 +9,6 @@
 import UIKit
 import Kingfisher
 
-protocol CollectionViewCellDelegate: AnyObject {
-    func addSelectedFood(tag: Int)
-}
-
 class FoodImagesSellectionCollectionViewCell: UICollectionViewCell { 
     weak var delegate: CollectionViewCellDelegate?
     
@@ -49,10 +45,14 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }()
     
     lazy var FoodTitleLabel:UILabel = {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.tapGetstureDetected))
+        tapGesture.numberOfTapsRequired = 2
         let label = UILabel()
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(tapGesture)
         return label
     }()
     
@@ -76,8 +76,6 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
         configureFoodColorBadgeConstraints()
-        
-        
         createPulse()
     }
     
@@ -85,6 +83,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK:-- Public Functions
     public func configurefoodImagesCellData(yelpImages:CDYelpBusiness){
        var categoryList:String = ""
         
@@ -118,7 +117,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
                    
                }
         
-        categoryNameLabel.text = categoryList
+        categoryNameLabel.text = yelpImages.categories![0].title
                FoodTitleLabel.text = yelpImages.name
         
         for category in yelpImages.categories!{
@@ -132,10 +131,21 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }
     
     
+    //MARK:-- @objc functions
+    
+    // MARK: Handle Gesture detection
+
+      @objc func tapGetstureDetected(sender:UITapGestureRecognizer) {
+        delegate?.handleShortCut(tag: sender.view!.tag)
+         print(sender.view!.tag)
+      }
+    
     @objc func handleFoodColorBadgePressed(sender:UIButton){
         delegate?.addSelectedFood(tag: sender.tag)
     }
     
+    //MARK:-- fuctions
+        
     func createPulse(){
         let position = foodColorBadge.frame.size.width / 2
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 16, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)

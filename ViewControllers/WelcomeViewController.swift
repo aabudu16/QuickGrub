@@ -160,9 +160,9 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupFilterView()
-        
     }
     
+
     //MARK: Objc Selector functions
     
     @objc func handleMenuButtonPressed(){

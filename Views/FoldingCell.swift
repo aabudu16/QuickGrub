@@ -63,6 +63,8 @@ open class FoldingCell: UITableViewCell {
         tv.backgroundColor = .clear
         tv.textAlignment = .center
         tv.textAlignment = .left
+        tv.dataDetectorTypes = [.address]
+        tv.linkTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.blue]
         tv.adjustsFontForContentSizeCategory = false
         tv.isUserInteractionEnabled = false
         tv.font = UIFont(name: "Avenir-Light", size: 19)
