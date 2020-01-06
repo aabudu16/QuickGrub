@@ -69,11 +69,13 @@ class UpdateUserProfileViewController: UIViewController {
     
     lazy var userNameTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: UIKeyboardType.namePhonePad, placeholder: "User name", borderActiveColor: UIColor.blue)
+        tf.delegate = self
         return tf
     }()
     
     lazy var userEmailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: UIKeyboardType.namePhonePad, placeholder: "Email", borderActiveColor: UIColor.blue)
+        tf.delegate = self
         return tf
     }()
     
@@ -152,5 +154,12 @@ class UpdateUserProfileViewController: UIViewController {
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
         userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
+    }
+}
+
+extension UpdateUserProfileViewController:UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
