@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
@@ -34,7 +35,7 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var topView:UIView = {
-       let view = UIView()
+        let view = UIView()
         view.backgroundColor = .blue
         view.layer.borderWidth = 3
         view.layer.borderColor = UIColor.white.cgColor
@@ -43,10 +44,10 @@ class UpdateUserProfileViewController: UIViewController {
     lazy var rightBarButton:UIBarButtonItem = {
         let settingsImage = UIImage(systemName: "gear")
         let button = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(handleSettingsButtonPressed(_:)))
-          
-           button.tintColor = .black
-           return button
-       }()
+        
+        button.tintColor = .black
+        return button
+    }()
     
     lazy var updateButton:UIButton = {
         let button = UIButton()
@@ -66,6 +67,16 @@ class UpdateUserProfileViewController: UIViewController {
         return button
     }()
     
+    lazy var userNameTextField:HoshiTextField = {
+        let tf = HoshiTextField(keyboardType: UIKeyboardType.namePhonePad, placeholder: "User name", borderActiveColor: UIColor.blue)
+        return tf
+    }()
+    
+    lazy var userEmailTextField:HoshiTextField = {
+        let tf = HoshiTextField(keyboardType: UIKeyboardType.namePhonePad, placeholder: "Email", borderActiveColor: UIColor.blue)
+        return tf
+    }()
+    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -75,7 +86,9 @@ class UpdateUserProfileViewController: UIViewController {
         configureProfileImageConstraints()
         configureUpdateProfileLabelConstraints()
         configureCamerabuttonConstraints()
+        configureUserNameTextFieldConstraints()
         configureUpdateButtonConstraints()
+        
     }
     
     //MARK: @objc function
@@ -124,5 +137,12 @@ class UpdateUserProfileViewController: UIViewController {
         view.addSubview(camerabutton)
         camerabutton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([camerabutton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -(camerabutton.frame.height / 2)), camerabutton.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor), camerabutton.heightAnchor.constraint(equalToConstant:100),camerabutton.heightAnchor.constraint(equalToConstant: 100)])
+    }
+    
+    private func configureUserNameTextFieldConstraints(){
+        view.addSubview(userNameTextField)
+        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([userNameTextField.topAnchor.constraint(equalTo: profileImage.bottomAnchor,constant: 3),userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
+        userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
 }

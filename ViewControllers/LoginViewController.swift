@@ -95,6 +95,7 @@ class LoginViewController: UIViewController {
     
     lazy var emailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
+        //tf.placeholderColor = .clear
         tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
         
         tf.delegate = self
@@ -127,7 +128,7 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var userNameTextField:HoshiTextField = {
-        let tf = HoshiTextField(keyboardType: .namePhonePad , placeholder: "Create User Name", borderActiveColor: .green)
+        let tf = HoshiTextField(keyboardType: .namePhonePad, placeholder: "User Name", borderActiveColor: UIColor.green)
         tf.autocorrectionType = .no
         tf.addTarget(self, action: #selector(signupFormValidation), for: .editingChanged)
         tf.delegate = self
@@ -748,6 +749,7 @@ extension LoginViewController: UITextFieldDelegate{
         passwordTextField.placeholderColor = .blue
         signupEmailTextField.placeholderColor = .green
         signupPasswordTextField.placeholderColor = .green
+        userNameTextField.placeholderColor = .green
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
@@ -755,7 +757,7 @@ extension LoginViewController: UITextFieldDelegate{
         passwordTextField.placeholderColor = .black
         signupEmailTextField.placeholderColor = .black
         signupPasswordTextField.placeholderColor = .black
-        
+        userNameTextField.placeholderColor = .black
     }
 }
 extension LoginViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

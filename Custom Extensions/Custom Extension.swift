@@ -74,7 +74,7 @@ extension HoshiTextField {
     public convenience init(keyboardType:  UIKeyboardType , placeholder: String, borderActiveColor: UIColor){
         self.init()
         self.keyboardType = keyboardType
-        self.placeholder = text
+        self.placeholder = placeholder
         self.borderInactiveColor = .gray
         self.borderActiveColor = borderActiveColor
     }
