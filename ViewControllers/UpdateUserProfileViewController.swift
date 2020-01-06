@@ -87,6 +87,7 @@ class UpdateUserProfileViewController: UIViewController {
         configureUpdateProfileLabelConstraints()
         configureCamerabuttonConstraints()
         configureUserNameTextFieldConstraints()
+        configureUserEmailTextFieldConstraints()
         configureUpdateButtonConstraints()
         
     }
@@ -144,5 +145,12 @@ class UpdateUserProfileViewController: UIViewController {
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([userNameTextField.topAnchor.constraint(equalTo: profileImage.bottomAnchor,constant: 3),userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
         userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
+    }
+    
+    private func configureUserEmailTextFieldConstraints(){
+        view.addSubview(userEmailTextField)
+        userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
+        userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
 }
