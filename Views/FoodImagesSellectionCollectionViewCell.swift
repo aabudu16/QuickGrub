@@ -11,16 +11,18 @@ import Kingfisher
 
 class FoodImagesSellectionCollectionViewCell: UICollectionViewCell { 
     weak var delegate: CollectionViewCellDelegate?
+    var shortCutViewTopAnchor:NSLayoutConstraint?
+    var newShortCutViewTopAnchor:NSLayoutConstraint?
     
     let plus = UIImage(systemName: "plus")
     let checkmark = UIImage(systemName: "checkmark")
     
-       var itemIsSelected:Bool = false {
+    var itemIsSelected:Bool = false {
         didSet{
             self.itemIsSelected == true ? foodColorBadge.setImage( checkmark, for: .normal) : foodColorBadge.setImage( plus, for: .normal)
         }
     }
-
+    
     let shapeLayer = CAShapeLayer()
     //MARK: UI Objects
     lazy var  foodImage:UIImageView = {
@@ -68,15 +70,19 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    lazy var instructionLabelView:UIView = {
+    lazy var shortCutView:UIView = {
         let tv = UIView(frame: UIScreen.main.bounds)
-        tv.layer.cornerRadius = 10
-        tv.layer.masksToBounds = true
-        tv.clipsToBounds = true
         tv.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0.6).enable()
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         tv.isUserInteractionEnabled = false
         return tv
+    }()
+    
+    lazy var logoImage:UIImageView = {
+        let logo = UIImageView()
+        logo.layer.borderColor = UIColor.blue.cgColor
+        logo.layer.borderWidth = 2
+        logo.image = UIImage(named: "foodBadge")
+        return logo
     }()
     
     //MARK: Lifecycle
@@ -87,7 +93,8 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
         configureFoodColorBadgeConstraints()
-        configureInstructionLabelViewConstraints()
+        configureShortCutViewViewConstraints()
+        configureLogoImageConstraints()
         createPulse()
     }
     
@@ -97,40 +104,40 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     
     //MARK:-- Public Functions
     public func configurefoodImagesCellData(yelpImages:CDYelpBusiness){
-       var categoryList:String = ""
+        var categoryList:String = ""
         
         let image = UIImage(named: "FoodPlaceholder")
         foodImage.kf.indicatorType = .activity
         foodImage.kf.setImage(with: yelpImages.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         
         switch yelpImages.rating{
-               case 0.0:
-                   starRatings.image = UIImage(named: "stars_0")
-               case 1.0:
-                   starRatings.image = UIImage(named: "stars_1")
-               case 1.5:
-                   starRatings.image = UIImage(named: "stars_1half")
-               case 2.0:
-                   starRatings.image = UIImage(named: "stars_2")
-               case 2.5:
-                   starRatings.image = UIImage(named: "stars_2half")
-               case 3.0:
-                   starRatings.image = UIImage(named: "stars_3")
-               case 3.5:
-                   starRatings.image = UIImage(named: "stars_3half")
-               case 4.0:
-                   starRatings.image = UIImage(named: "stars_4")
-               case 4.5:
-                   starRatings.image = UIImage(named: "stars_4half")
-               case 5.0:
-                   starRatings.image = UIImage(named: "stars_5")
-               default:
-                   starRatings.image = UIImage(named: "stars_0")
-                   
-               }
+        case 0.0:
+            starRatings.image = UIImage(named: "stars_0")
+        case 1.0:
+            starRatings.image = UIImage(named: "stars_1")
+        case 1.5:
+            starRatings.image = UIImage(named: "stars_1half")
+        case 2.0:
+            starRatings.image = UIImage(named: "stars_2")
+        case 2.5:
+            starRatings.image = UIImage(named: "stars_2half")
+        case 3.0:
+            starRatings.image = UIImage(named: "stars_3")
+        case 3.5:
+            starRatings.image = UIImage(named: "stars_3half")
+        case 4.0:
+            starRatings.image = UIImage(named: "stars_4")
+        case 4.5:
+            starRatings.image = UIImage(named: "stars_4half")
+        case 5.0:
+            starRatings.image = UIImage(named: "stars_5")
+        default:
+            starRatings.image = UIImage(named: "stars_0")
+            
+        }
         
         categoryNameLabel.text = yelpImages.categories![0].title
-               FoodTitleLabel.text = yelpImages.name
+        FoodTitleLabel.text = yelpImages.name
         
         for category in yelpImages.categories!{
             if let category = category.title{
@@ -146,17 +153,17 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     //MARK:-- @objc functions
     
     // MARK: Handle Gesture detection
-
-      @objc func tapGetstureDetected(sender:UITapGestureRecognizer) {
+    
+    @objc func tapGetstureDetected(sender:UITapGestureRecognizer) {
         delegate?.handleShortCut(tag: sender.view!.tag)
-      }
+    }
     
     @objc func handleFoodColorBadgePressed(sender:UIButton){
         delegate?.addSelectedFood(tag: sender.tag)
     }
     
     //MARK:-- fuctions
-        
+    
     func createPulse(){
         let position = foodColorBadge.frame.size.width / 2
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 16, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
@@ -189,7 +196,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     }
     
     
-     //MARK: Private constraint functions
+    //MARK: Private constraint functions
     private func configureCategoryNameLabelConstraints(){
         self.addSubview(categoryNameLabel)
         categoryNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -222,10 +229,23 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  5), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 30), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
     }
     
-    private func configureInstructionLabelViewConstraints(){
-        foodImage.addSubview(instructionLabelView)
-        instructionLabelView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabelView.topAnchor.constraint(equalTo: foodImage.topAnchor), instructionLabelView.leadingAnchor.constraint(equalTo: foodImage.leadingAnchor), instructionLabelView.trailingAnchor.constraint(equalTo: foodImage.trailingAnchor), instructionLabelView.bottomAnchor.constraint(equalTo: foodImage.bottomAnchor)])
+    private func configureShortCutViewViewConstraints(){
+        foodImage.addSubview(shortCutView)
+        shortCutView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([shortCutView.leadingAnchor.constraint(equalTo: foodImage.leadingAnchor), shortCutView.trailingAnchor.constraint(equalTo: foodImage.trailingAnchor), shortCutView.bottomAnchor.constraint(equalTo: foodImage.bottomAnchor)])
+        
+        shortCutViewTopAnchor = shortCutView.topAnchor.constraint(equalTo: foodImage.bottomAnchor)
+        shortCutViewTopAnchor?.isActive = true
+        
+        newShortCutViewTopAnchor = shortCutView.topAnchor.constraint(equalTo: foodImage.topAnchor)
+        newShortCutViewTopAnchor?.isActive = false
+    }
+    
+    private func configureLogoImageConstraints(){
+        shortCutView.addSubview(logoImage)
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoImage.topAnchor.constraint(equalTo: shortCutView.topAnchor), logoImage.centerXAnchor.constraint(equalTo: shortCutView.centerXAnchor), logoImage.heightAnchor.constraint(equalToConstant: 60), logoImage.widthAnchor.constraint(equalToConstant: 60)])
     }
     
 }
