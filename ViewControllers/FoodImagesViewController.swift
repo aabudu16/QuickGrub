@@ -362,8 +362,15 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func handleShortCut(tag: Int) {
-         let info = userCategorySelectedResults[tag]
-        print("this is \(info.name)")
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
+        
+        cell.shortCutViewTopAnchor?.isActive = false
+        cell.newShortCutViewTopAnchor?.isActive = true
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+            cell.shortCutView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            cell.layoutIfNeeded()
+        }, completion: nil)
+        
     }
     
     func addSelectedFood(tag: Int) {
