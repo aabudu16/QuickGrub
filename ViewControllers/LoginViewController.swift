@@ -490,22 +490,22 @@ class LoginViewController: UIViewController {
     private func setSignupObjectViewsVisible(enable:Bool){
         switch enable{
         case true:
-            self.userNameTextField.isHidden = false
-            self.userNameTextField.isEnabled = true
-            self.signupEmailTextField.isHidden = false
-            self.signupEmailTextField.isEnabled = true
-            self.signupPasswordTextField.isHidden = false
-            self.signupPasswordTextField.isEnabled = true
-            self.registerButton.isHidden = false
+            userNameTextField.isHidden = false
+            userNameTextField.isEnabled = true
+            signupEmailTextField.isHidden = false
+            signupEmailTextField.isEnabled = true
+            signupPasswordTextField.isHidden = false
+            signupPasswordTextField.isEnabled = true
+            registerButton.isHidden = false
             
         case false:
-            self.userNameTextField.isHidden = true
-            self.userNameTextField.isEnabled = false
-            self.signupEmailTextField.isHidden = true
-            self.signupEmailTextField.isEnabled = false
-            self.signupPasswordTextField.isHidden = true
-            self.signupPasswordTextField.isEnabled = false
-            self.registerButton.isHidden = true
+            userNameTextField.isHidden = true
+            userNameTextField.isEnabled = false
+            signupEmailTextField.isHidden = true
+            signupEmailTextField.isEnabled = false
+            signupPasswordTextField.isHidden = true
+            signupPasswordTextField.isEnabled = false
+            registerButton.isHidden = true
         }
     }
     
@@ -513,17 +513,17 @@ class LoginViewController: UIViewController {
     private func setLoginObjectViewsVisible(enable:Bool){
         switch enable{
         case true:
-            self.emailTextField.isHidden = false
-            self.emailTextField.isEnabled = true
-            self.passwordTextField.isHidden = false
-            self.passwordTextField.isEnabled = true
-            self.loginButton.isHidden = false
+            emailTextField.isHidden = false
+            emailTextField.isEnabled = true
+            passwordTextField.isHidden = false
+            passwordTextField.isEnabled = true
+            loginButton.isHidden = false
         case false:
-            self.emailTextField.isHidden = true
-            self.emailTextField.isEnabled = false
-            self.passwordTextField.isHidden = true
-            self.passwordTextField.isEnabled = false
-            self.loginButton.isHidden = true
+            emailTextField.isHidden = true
+            emailTextField.isEnabled = false
+            passwordTextField.isHidden = true
+            passwordTextField.isEnabled = false
+            loginButton.isHidden = true
         }
     }
     // Enable or Disable the login button

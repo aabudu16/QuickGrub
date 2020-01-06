@@ -160,6 +160,8 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupFilterView()
+        setupProfileImage()
+        setupWelcomeLabel()
     }
     
 
@@ -302,7 +304,17 @@ class WelcomeViewController: UIViewController {
         configureDistanceLabelConstraints()
     }
     
-    func addToStackViewButtons(array : [UIButton]) -> UIStackView {
+    private func setupProfileImage(){
+        let placeholderImage =  UIImage(systemName: "photo")?.withTintColor(.black)
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        profileImage.kf.setImage(with: currentUser.photoURL, placeholder: placeholderImage)
+    }
+    
+    private func setupWelcomeLabel(){
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        welcomeLabel.text = "Welcome \(currentUser.displayName ?? "")"
+    }
+   private func addToStackViewButtons(array : [UIButton]) -> UIStackView {
         let sv = UIStackView(arrangedSubviews: array)
         sv.distribution = .fillEqually
         sv.spacing = 3
