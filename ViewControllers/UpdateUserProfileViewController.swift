@@ -60,6 +60,14 @@ class UpdateUserProfileViewController: UIViewController {
         return button
     }()
     
+    lazy var cancelButton:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .black
+        button.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
+        return button
+    }()
+    
     lazy var camerabutton:UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
@@ -90,11 +98,17 @@ class UpdateUserProfileViewController: UIViewController {
         configureCamerabuttonConstraints()
         configureUserNameTextFieldConstraints()
         configureUserEmailTextFieldConstraints()
+        configureCancelButtonConstraints()
         configureUpdateButtonConstraints()
         
     }
     
     //MARK: @objc function
+    
+    @objc func handleDismissButton(){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @objc func handleUpdateButtonPressed(){
         print("update button pressed")
     }
@@ -154,6 +168,12 @@ class UpdateUserProfileViewController: UIViewController {
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
         userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
+    }
+    
+    private func configureCancelButtonConstraints(){
+        view.addSubview(cancelButton)
+        cancelButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant:  5), cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -5), cancelButton.heightAnchor.constraint(equalToConstant: 50), cancelButton.widthAnchor.constraint(equalToConstant: 50)])
     }
 }
 
