@@ -10,16 +10,18 @@ import UIKit
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
-    lazy var updateProfilrLate:UILabel = {
+    lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
         label.text = "Update Profile"
+        label.font =  UIFont(name: "HelveticaNeue-Bold", size: 25)
+        label.textColor = .white
         return label
     }()
     
     lazy var profileImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
         guesture.numberOfTapsRequired = 1
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
         image.image = UIImage(named: "bagels")
@@ -34,6 +36,8 @@ class UpdateUserProfileViewController: UIViewController {
     lazy var topView:UIView = {
        let view = UIView()
         view.backgroundColor = .blue
+        view.layer.borderWidth = 3
+        view.layer.borderColor = UIColor.white.cgColor
         return view
     }()
     lazy var rightBarButton:UIBarButtonItem = {
@@ -55,6 +59,13 @@ class UpdateUserProfileViewController: UIViewController {
         return button
     }()
     
+    lazy var camerabutton:UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
+        button.tintColor = .gray
+        return button
+    }()
+    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +73,9 @@ class UpdateUserProfileViewController: UIViewController {
         configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
+        configureUpdateProfileLabelConstraints()
+        configureCamerabuttonConstraints()
+        configureUpdateButtonConstraints()
     }
     
     //MARK: @objc function
@@ -90,7 +104,25 @@ class UpdateUserProfileViewController: UIViewController {
     private func configureProfileImageConstraints(){
         view.addSubview(profileImage)
         profileImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor), profileImage.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(profileImage.frame.height / 2)), profileImage.heightAnchor.constraint(equalToConstant: 100), profileImage.widthAnchor.constraint(equalToConstant: 100)])
+        NSLayoutConstraint.activate([profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor), profileImage.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(profileImage.frame.height / 2)), profileImage.heightAnchor.constraint(equalToConstant: 120), profileImage.widthAnchor.constraint(equalToConstant: 120)])
     }
     
+    private func configureUpdateProfileLabelConstraints(){
+        topView.addSubview(updateProfileLabel)
+        updateProfileLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([updateProfileLabel.topAnchor.constraint(equalTo: topView.topAnchor,constant: 3),updateProfileLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10), updateProfileLabel.heightAnchor.constraint(equalToConstant: 50), updateProfileLabel.widthAnchor.constraint(equalToConstant: 200)])
+    }
+    
+    private func configureUpdateButtonConstraints(){
+        view.addSubview(updateButton)
+        updateButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([updateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35), updateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),updateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),updateButton.heightAnchor.constraint(equalToConstant: 45)])
+    }
+    
+    private func configureCamerabuttonConstraints(){
+        view.addSubview(camerabutton)
+        camerabutton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([camerabutton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -(camerabutton.frame.height / 2)), camerabutton.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor), camerabutton.heightAnchor.constraint(equalToConstant:100),camerabutton.heightAnchor.constraint(equalToConstant: 100)])
+    }
 }
