@@ -19,13 +19,13 @@ class UpdateUserProfileViewController: UIViewController {
     lazy var profileImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
         guesture.numberOfTapsRequired = 1
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
-        image.image = UIImage(named: "profileImage")
+        image.image = UIImage(named: "bagels")
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFill
-        image.layer.borderWidth = 2
+        image.layer.borderWidth = 3
         image.layer.borderColor = UIColor.white.cgColor
         image.addGestureRecognizer(guesture)
         return image
@@ -61,6 +61,7 @@ class UpdateUserProfileViewController: UIViewController {
         view.backgroundColor = .white
         configureNavigationBar()
         configureTopViewConstraints()
+        configureProfileImageConstraints()
     }
     
     //MARK: @objc function
@@ -84,6 +85,12 @@ class UpdateUserProfileViewController: UIViewController {
         view.addSubview(topView)
         topView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),topView.leadingAnchor.constraint(equalTo: view.leadingAnchor), topView.trailingAnchor.constraint(equalTo: view.trailingAnchor), topView.heightAnchor.constraint(equalToConstant: 140)])
+    }
+    
+    private func configureProfileImageConstraints(){
+        view.addSubview(profileImage)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor), profileImage.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(profileImage.frame.height / 2)), profileImage.heightAnchor.constraint(equalToConstant: 100), profileImage.widthAnchor.constraint(equalToConstant: 100)])
     }
     
 }
