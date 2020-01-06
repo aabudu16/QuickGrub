@@ -68,6 +68,17 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
+    lazy var instructionLabelView:UIView = {
+        let tv = UIView(frame: UIScreen.main.bounds)
+        tv.layer.cornerRadius = 10
+        tv.layer.masksToBounds = true
+        tv.clipsToBounds = true
+        tv.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0.6).enable()
+        tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        tv.isUserInteractionEnabled = false
+        return tv
+    }()
+    
     //MARK: Lifecycle
     override init (frame:CGRect){
         super.init(frame:frame)
@@ -76,6 +87,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
         configureFoodColorBadgeConstraints()
+        configureInstructionLabelViewConstraints()
         createPulse()
     }
     
@@ -137,7 +149,6 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
 
       @objc func tapGetstureDetected(sender:UITapGestureRecognizer) {
         delegate?.handleShortCut(tag: sender.view!.tag)
-         print(sender.view!.tag)
       }
     
     @objc func handleFoodColorBadgePressed(sender:UIButton){
@@ -209,6 +220,12 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         self.addSubview(foodColorBadge)
         foodColorBadge.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  5), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 30), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
+    }
+    
+    private func configureInstructionLabelViewConstraints(){
+        foodImage.addSubview(instructionLabelView)
+        instructionLabelView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([instructionLabelView.topAnchor.constraint(equalTo: foodImage.topAnchor), instructionLabelView.leadingAnchor.constraint(equalTo: foodImage.leadingAnchor), instructionLabelView.trailingAnchor.constraint(equalTo: foodImage.trailingAnchor), instructionLabelView.bottomAnchor.constraint(equalTo: foodImage.bottomAnchor)])
     }
     
 }

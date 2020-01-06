@@ -93,7 +93,6 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
-        tv.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         tv.isUserInteractionEnabled = false
         return tv
     }()
@@ -112,6 +111,7 @@ class FoodImagesViewController: UIViewController {
         tv.layer.cornerRadius = 10
         tv.layer.masksToBounds = true
         tv.clipsToBounds = true
+        tv.blurView.setup(style: UIBlurEffect.Style.dark, alpha: 0.6).enable()
         tv.backgroundColor = UIColor.black.withAlphaComponent(0.5)
         tv.isUserInteractionEnabled = false
         return tv
@@ -362,6 +362,8 @@ extension FoodImagesViewController: CLLocationManagerDelegate{
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func handleShortCut(tag: Int) {
+         let info = userCategorySelectedResults[tag]
+        print("this is \(info.name)")
     }
     
     func addSelectedFood(tag: Int) {
