@@ -132,7 +132,7 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var profileImage:UIImageView = {
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 1
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         image.layer.cornerRadius = image.frame.height / 2
@@ -212,8 +212,9 @@ class WelcomeViewController: UIViewController {
         limitLabel.text = "Limit \(Int(sender.value))"
     }
     
-    @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
-        print("Image view tapped")
+    @objc func presentUpdateProfileVC(sender:UITapGestureRecognizer){
+        let updateProfileVC = UpdateUserProfileViewController()
+        present(updateProfileVC, animated: true, completion: nil)
     }
     
     @objc func handleFavoriteButtonPressed(){

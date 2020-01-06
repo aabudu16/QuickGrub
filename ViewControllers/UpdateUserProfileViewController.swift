@@ -20,7 +20,7 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var profileImage:UIImageView = {
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 1
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         image.layer.cornerRadius = image.frame.height / 2
@@ -99,7 +99,7 @@ class UpdateUserProfileViewController: UIViewController {
         print("update button pressed")
     }
     
-    @objc func imageViewDoubleTapped(sender:UITapGestureRecognizer){
+    @objc func presentUpdateProfileVC(sender:UITapGestureRecognizer){
         print("Image view tapped")
     }
     

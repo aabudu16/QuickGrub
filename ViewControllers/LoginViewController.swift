@@ -76,7 +76,7 @@ class LoginViewController: UIViewController {
     }()
     
     lazy var logoImageView: UIImageView = {
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(imageViewDoubleTapped(sender:)))
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 2
         let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         iv.contentMode = .scaleAspectFill
@@ -204,7 +204,7 @@ class LoginViewController: UIViewController {
     
     //MARK: Objc Selector functions
     
-    @objc private func imageViewDoubleTapped(sender:UITapGestureRecognizer) {
+    @objc private func presentUpdateProfileVC(sender:UITapGestureRecognizer) {
         print("Image view Double tapped")
         //MARK: TODO - action sheet with multiple media options
         switch PHPhotoLibrary.authorizationStatus() {
