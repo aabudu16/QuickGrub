@@ -22,7 +22,7 @@ class UpdateUserProfileViewController: UIViewController {
     
     lazy var profileImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(presentPHPhotoLibrary(sender:)))
-        guesture.numberOfTapsRequired = 1
+        guesture.numberOfTapsRequired = 2
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
@@ -73,6 +73,7 @@ class UpdateUserProfileViewController: UIViewController {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
         button.tintColor = .gray
+        button.addTarget(self, action: #selector(presentPHPhotoLibrary(sender:)), for: .touchUpInside)
         return button
     }()
     
@@ -115,25 +116,25 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     @objc func presentPHPhotoLibrary(sender:UITapGestureRecognizer){
-            print("Image view Double tapped")
-            //MARK: TODO - action sheet with multiple media options
-            switch PHPhotoLibrary.authorizationStatus() {
-            case .notDetermined, .denied, .restricted:
-                PHPhotoLibrary.requestAuthorization({[weak self] status in
-                    switch status {
-                    case .authorized:
-                        self?.presentPhotoPickerController()
-                    case .denied:
-                        //MARK: TODO - set up more intuitive UI interaction
-                        print("Denied photo library permissions")
-                    default:
-                        //MARK: TODO - set up more intuitive UI interaction
-                        print("No usable status")
-                    }
-                })
-            default:
-                presentPhotoPickerController()
-            }
+        //MARK: TODO - action sheet with multiple media options
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined, .denied, .restricted:
+            PHPhotoLibrary.requestAuthorization({[weak self] status in
+                switch status {
+                case .authorized:
+                    self?.presentPhotoPickerController()
+                case .denied:
+                    //MARK: TODO - set up more intuitive UI interaction
+                    print("Denied photo library permissions")
+                default:
+                    //MARK: TODO - set up more intuitive UI interaction
+                    print("No usable status")
+                }
+            })
+        default:
+            presentPhotoPickerController()
+        }
+        
     }
     
     @objc func handleSettingsButtonPressed(_ sender:UIBarButtonItem){
@@ -144,7 +145,7 @@ class UpdateUserProfileViewController: UIViewController {
     private func presentPhotoPickerController() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
-           // imagePickerViewController.delegate = self
+            imagePickerViewController.delegate = self
             imagePickerViewController.sourceType = .photoLibrary
             imagePickerViewController.allowsEditing = true
             imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
@@ -190,15 +191,15 @@ class UpdateUserProfileViewController: UIViewController {
     private func configureUserNameTextFieldConstraints(){
         view.addSubview(userNameTextField)
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([userNameTextField.topAnchor.constraint(equalTo: profileImage.bottomAnchor,constant: 3),userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
-        userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
+        NSLayoutConstraint.activate([userNameTextField.topAnchor.constraint(equalTo: camerabutton.bottomAnchor,constant: 3),userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
+                                     userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
     
     private func configureUserEmailTextFieldConstraints(){
         view.addSubview(userEmailTextField)
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
-        userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
+                                     userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
     
     private func configureCancelButtonConstraints(){
@@ -212,5 +213,33 @@ extension UpdateUserProfileViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+}
+
+extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else {
+            //MARK: TODO - handle couldn't get image :(
+            return
+        }
+        profileImage.image = image
+        
+        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
+            //MARK: TODO - gracefully fail out without interrupting UX
+            return
+        }
+        
+        //        FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
+        //            switch result{
+        //            case .success(let url):
+        //                return
+        //               // self?.imageURL = url
+        //            case .failure(let error):
+        //               // self?.logoImageView.layer.borderColor = UIColor.red.cgColor
+        //
+        //                print(error)
+        //            }
+        //        })
+        dismiss(animated: true, completion: nil)
     }
 }
