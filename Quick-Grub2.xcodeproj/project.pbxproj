@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28A34A5DE4D320AB320B8AD1 /* Pods_Quick_Grub2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */; };
 		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
+		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -101,6 +102,7 @@
 		5CAE2684FF0D32BEB155D833 /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
+		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
 				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
 				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
+				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
 				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
@@ -595,6 +598,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */,
 				854D6D3A23A28E76001BD091 /* CDYelpCenter.swift in Sources */,
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
