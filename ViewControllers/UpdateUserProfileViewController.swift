@@ -8,6 +8,7 @@
 
 import UIKit
 import TextFieldEffects
+import Photos
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
@@ -20,7 +21,7 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var profileImage:UIImageView = {
-        let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(presentPHPhotoLibrary(sender:)))
         guesture.numberOfTapsRequired = 1
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         image.layer.cornerRadius = image.frame.height / 2
@@ -113,12 +114,42 @@ class UpdateUserProfileViewController: UIViewController {
         print("update button pressed")
     }
     
-    @objc func presentUpdateProfileVC(sender:UITapGestureRecognizer){
-        print("Image view tapped")
+    @objc func presentPHPhotoLibrary(sender:UITapGestureRecognizer){
+            print("Image view Double tapped")
+            //MARK: TODO - action sheet with multiple media options
+            switch PHPhotoLibrary.authorizationStatus() {
+            case .notDetermined, .denied, .restricted:
+                PHPhotoLibrary.requestAuthorization({[weak self] status in
+                    switch status {
+                    case .authorized:
+                        self?.presentPhotoPickerController()
+                    case .denied:
+                        //MARK: TODO - set up more intuitive UI interaction
+                        print("Denied photo library permissions")
+                    default:
+                        //MARK: TODO - set up more intuitive UI interaction
+                        print("No usable status")
+                    }
+                })
+            default:
+                presentPhotoPickerController()
+            }
     }
     
     @objc func handleSettingsButtonPressed(_ sender:UIBarButtonItem){
         print("Image view tapped")
+    }
+    
+    //MARK: Private function
+    private func presentPhotoPickerController() {
+        DispatchQueue.main.async{
+            let imagePickerViewController = UIImagePickerController()
+           // imagePickerViewController.delegate = self
+            imagePickerViewController.sourceType = .photoLibrary
+            imagePickerViewController.allowsEditing = true
+            imagePickerViewController.mediaTypes = ["public.image", "public.movie"]
+            self.present(imagePickerViewController, animated: true, completion: nil)
+        }
     }
     private func configureNavigationBar(){
         navigationController?.navigationBar.barTintColor = .white
