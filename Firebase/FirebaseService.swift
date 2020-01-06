@@ -43,7 +43,7 @@ class FirestoreService {
         }
     }
     
-    func updateCurrentUser(userName: String? = nil, photoURL: URL? = nil, completion: @escaping (Result<(), Error>) -> ()){
+    func updateCurrentUser(userName: String? = nil, photoURL: URL? = nil, isInformed:Bool? = false, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
             //MARK: TODO - handle can't get current user
             return
@@ -58,6 +58,9 @@ class FirestoreService {
             updateFields["photoURL"] = photo.absoluteString
         }
         
+        if let isInformed = isInformed{
+            updateFields["isInformed"] = isInformed
+        }
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -74,8 +77,9 @@ class FirestoreService {
                 completion(.failure(error))
             } else {
                 let users = snapshot?.documents.compactMap({ (snapshot) -> UserProfile? in
+                    let isInformed = false
                     let userID = snapshot.documentID
-                    let user = UserProfile(from: snapshot.data(), id: userID)
+                    let user = UserProfile(from: snapshot.data(), id: userID, isInformed: isInformed)
                     return user
                 })
                 completion(.success(users ?? []))

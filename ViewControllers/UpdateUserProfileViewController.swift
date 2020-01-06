@@ -26,7 +26,6 @@ class UpdateUserProfileViewController: UIViewController {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 120, height: 120))
         image.layer.cornerRadius = image.frame.height / 2
         image.clipsToBounds = true
-        image.image = UIImage(named: "bagels")
         image.isUserInteractionEnabled = true
         image.contentMode = .scaleAspectFill
         image.layer.borderWidth = 3
