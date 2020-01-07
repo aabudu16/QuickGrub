@@ -104,11 +104,6 @@ class CategoryViewController: UIViewController {
         configureContinueButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        //presentContainerView()
-    }
-    
     //MARK: Objc Selector functions
     @objc func handleHomeButtomPressed(_ sender:UIBarButtonItem){
         self.dismiss(animated: true, completion: nil)

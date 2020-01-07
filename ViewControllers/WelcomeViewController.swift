@@ -9,10 +9,10 @@
 import UIKit
 import FirebaseAuth
 
-
-// remove constant: -400 from the constraints of filter Menu Height
 class WelcomeViewController: UIViewController {
     
+    var filterMenuViewTopConstraints:NSLayoutConstraint?
+    var newfilterMenuViewTopConstraints:NSLayoutConstraint?
     let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
     let isOpenArray = ["Open", "Close", "Both"]
     var pickerViewPick:CDYelpBusinessSortType?
@@ -100,6 +100,7 @@ class WelcomeViewController: UIViewController {
     lazy var deemView:UIView = {
         let deemView = UIView()
         let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(dismissDeemView))
+        tapGuesture.numberOfTapsRequired = 1
         deemView.backgroundColor = UIColor(white: 0, alpha: 0.6)
         deemView.alpha = 0
         deemView.addGestureRecognizer(tapGuesture)
@@ -168,26 +169,22 @@ class WelcomeViewController: UIViewController {
     //MARK: Objc Selector functions
     
     @objc func handleMenuButtonPressed(){
-        if let window = UIApplication.shared.windows.first{
-            window.addSubview(deemView)
-            window.addSubview(filterMenuView)
-            deemView.frame = window.frame
-            
+            filterMenuViewTopConstraints?.isActive = false
+            newfilterMenuViewTopConstraints?.isActive = true
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
                 self.deemView.alpha = 1
-                self.filterMenuView.frame = CGRect(x: 0, y: (self.view.frame.height - self.filterMenuHeight) + 20, width: self.view.frame.width, height: self.filterMenuHeight)
+                self.view.layoutIfNeeded()
             }, completion: nil)
-        }
     }
     
     @objc func dismissDeemView(){
         
+        filterMenuViewTopConstraints?.isActive = true
+        newfilterMenuViewTopConstraints?.isActive = false
         UIView.animate(withDuration: 0.3, animations: {
             self.deemView.alpha = 0
-            self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight)
-        }, completion: { (_) in
-            self.deemView.removeFromSuperview()
-        })
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     
     @objc func handleCategoryPressed(){
@@ -265,13 +262,12 @@ class WelcomeViewController: UIViewController {
     @objc func handleUpdateButtonPressed(){
         filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? nil)
         
-        print(filterParameter!)
+     filterMenuViewTopConstraints?.isActive = true
+        newfilterMenuViewTopConstraints?.isActive = false
         UIView.animate(withDuration: 0.3, animations: {
-                   self.deemView.alpha = 0
-                   self.filterMenuView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: self.filterMenuHeight)
-               }, completion: { (_) in
-                   self.deemView.removeFromSuperview()
-               })
+            self.deemView.alpha = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
     }
     //MARK: Private Methods
     
@@ -287,6 +283,7 @@ class WelcomeViewController: UIViewController {
     }
     
     private func setupFilterView(){
+        configueDeemViewConstraints()
         configureFilterMenuHeightConstraint()
         configureFilterLabelConstraints()
         configureUpdateFilterButton()
@@ -399,7 +396,13 @@ class WelcomeViewController: UIViewController {
         view.addSubview(filterMenuView)
         filterMenuView.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 0), filterMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor), filterMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor), filterMenuView.heightAnchor.constraint(equalToConstant: filterMenuHeight)])
+        NSLayoutConstraint.activate([ filterMenuView.leadingAnchor.constraint(equalTo: view.leadingAnchor), filterMenuView.trailingAnchor.constraint(equalTo: view.trailingAnchor), filterMenuView.heightAnchor.constraint(equalToConstant: filterMenuHeight)])
+        
+         filterMenuViewTopConstraints = filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: 0)
+        filterMenuViewTopConstraints?.isActive = true
+        
+        newfilterMenuViewTopConstraints = filterMenuView.topAnchor.constraint(equalTo: view.bottomAnchor, constant: -filterMenuHeight + 20)
+        newfilterMenuViewTopConstraints?.isActive = false
     }
     
     private func configureFilterLabelConstraints(){
@@ -445,6 +448,12 @@ class WelcomeViewController: UIViewController {
         sortByLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([sortByLabel.topAnchor.constraint(equalTo: filterLabel.bottomAnchor), sortByLabel.leadingAnchor.constraint(equalTo: filterMenuView.leadingAnchor, constant: 10), sortByLabel.trailingAnchor.constraint(equalTo: pickerView.leadingAnchor),sortByLabel.heightAnchor.constraint(equalTo: pickerView.heightAnchor)])
+    }
+    
+    private func configueDeemViewConstraints(){
+        view.addSubview(deemView)
+        deemView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([deemView.topAnchor.constraint(equalTo: view.topAnchor), deemView.leadingAnchor.constraint(equalTo: view.leadingAnchor), deemView.trailingAnchor.constraint(equalTo: view.trailingAnchor), deemView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
     private func configurePriceButtonStackView(){
