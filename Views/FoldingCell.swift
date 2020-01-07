@@ -111,7 +111,7 @@ open class FoldingCell: UITableViewCell {
     lazy var mapView:MKMapView = {
         let map = MKMapView()
         map.delegate = self
-        map.userTrackingMode = .followWithHeading
+        map.isScrollEnabled = false
         return map
     }()
     

@@ -71,6 +71,25 @@ class FirestoreService {
         }
     }
     
+    func updateCurrentUserIsInformedField(isInformed:Bool? = true, completion: @escaping (Result<(), Error>) -> ()){
+        guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
+            //MARK: TODO - handle can't get current user
+            return
+        }
+        var updateFields = [String:Any]()
+        if let isInformed = isInformed{
+                   updateFields["isInformed"] = isInformed
+               }
+               db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
+                   if let error = error {
+                       completion(.failure(error))
+                   } else {
+                       completion(.success(()))
+                   }
+                   
+               }
+    }
+    
     func getAllUsers(completion: @escaping (Result<[UserProfile], Error>) -> ()) {
         db.collection(FireStoreCollections.users.rawValue).getDocuments { (snapshot, error) in
             if let error = error {

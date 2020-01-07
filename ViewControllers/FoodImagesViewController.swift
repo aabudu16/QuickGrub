@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreLocation
+import FirebaseFirestore
+import FirebaseAuth
 
 class FoodImagesViewController: UIViewController {
     
@@ -191,9 +193,16 @@ class FoodImagesViewController: UIViewController {
     }
     
     @objc func handleEnablingCollectionView(guesture:UITapGestureRecognizer){
-        dimView.removeFromSuperview()
-        collectionView.isUserInteractionEnabled = true
-        checkMarkIndicatorView.removeFromSuperview()
+        FirestoreService.manager.updateCurrentUserIsInformedField { (result) in
+            switch result{
+            case .success(()):
+                self.dimView.removeFromSuperview()
+                self.collectionView.isUserInteractionEnabled = true
+                self.checkMarkIndicatorView.removeFromSuperview()
+            case .failure(let error):
+                print(error)
+            }
+        }
         
     }
     
