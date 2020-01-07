@@ -9,10 +9,11 @@
 import UIKit
 import TextFieldEffects
 import Photos
+import Kingfisher
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
-    
+     var isImageStoredInFireBase = false
     var imageURL: URL?
     lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
@@ -135,7 +136,9 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-        
+        guard isImageStoredInFireBase == true else {
+            self.showAlert(alertTitle: "Error", alertMessage: "Image has not saved yet, please try again", actionTitle: "OK")
+            return}
         guard imageURL != nil else {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
             return}
@@ -204,6 +207,7 @@ class UpdateUserProfileViewController: UIViewController {
             case .success(()):
                 self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
+                self.isImageStoredInFireBase = false
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
@@ -226,6 +230,11 @@ class UpdateUserProfileViewController: UIViewController {
         userEmailTextField.text = "\(currentUser.email ?? "")"
     }
     
+    
+//    private func updateWelcomePage(imageUrl:URL?, userName:String?){
+//        let welcomeVC = WelcomeViewController()
+//        welcomeVC.profileImage.kf.setImage(with: imageUrl)
+//    }
     private func presentPhotoPickerController() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
@@ -323,7 +332,8 @@ extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINav
                     switch result{
                     case .success(let url):
                             (self?.imageURL = url)!
-                        
+                            self?.isImageStoredInFireBase = true
+                            print(self?.isImageStoredInFireBase)
                     case .failure(let error):
                         self?.showAlert(alertTitle: "Error", alertMessage: "Rant into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
                     }

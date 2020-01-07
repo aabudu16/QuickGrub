@@ -164,7 +164,6 @@ class WelcomeViewController: UIViewController {
         setupProfileImage()
         setupWelcomeLabel()
     }
-    
 
     //MARK: Objc Selector functions
     
