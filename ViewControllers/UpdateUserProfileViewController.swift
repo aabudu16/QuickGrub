@@ -12,6 +12,8 @@ import Photos
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
+    
+    var imageURL: URL? = nil
     lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
         label.text = "Update Profile"
@@ -123,14 +125,30 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-        guard let email = userEmailTextField.text else{return}
+        
+        guard imageURL != nil else {
+            self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
+            return}
+        
+        guard let email = userEmailTextField.text else {return}
         guard let userName = userNameTextField.text else {return}
-        FirestoreService.manager.updateCurrentUser(userName: userName, email: email) { (result) in
+        guard let imageURL = imageURL else {
+           // imageURL = self.profileImage.imag
+            return}
+        
+        FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
             switch result{
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
             case .success(()):
-                self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
+                FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
+                    switch result{
+                    case .success(()):
+                        self.updateFireBaseEmail(email: email)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
             }
         }
     }
@@ -163,6 +181,16 @@ class UpdateUserProfileViewController: UIViewController {
     
     //MARK: Private function
     
+    private func updateFireBaseEmail(email:String){
+        FirebaseAuthService.manager.updateUserEmail(email: email) { (result) in
+            switch result{
+            case .success(()):
+                self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+            }
+        }
+    }
     private func setupProfileImage(){
         let placeholderImage =  UIImage(systemName: "photo")?.withTintColor(.black)
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -256,27 +284,24 @@ extension UpdateUserProfileViewController:UITextFieldDelegate{
 extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let image = info[.editedImage] as? UIImage else {
-            //MARK: TODO - handle couldn't get image :(
+            self.showAlert(alertTitle: "Error", alertMessage: "Cant edit image", actionTitle: "OK")
             return
         }
         profileImage.image = image
         
         guard let imageData = image.jpegData(compressionQuality: 0.7) else {
-            //MARK: TODO - gracefully fail out without interrupting UX
             return
         }
         
-        //        FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
-        //            switch result{
-        //            case .success(let url):
-        //                return
-        //               // self?.imageURL = url
-        //            case .failure(let error):
-        //               // self?.logoImageView.layer.borderColor = UIColor.red.cgColor
-        //
-        //                print(error)
-        //            }
-        //        })
+                FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
+                    switch result{
+                    case .success(let url):
+                            (self?.imageURL = url)!
+                        
+                    case .failure(let error):
+                        self?.showAlert(alertTitle: "Error", alertMessage: "Rant into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
+                    }
+                })
         dismiss(animated: true, completion: nil)
     }
 }

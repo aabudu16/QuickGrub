@@ -14,7 +14,7 @@ class FirebaseAuthService {
     static let manager = FirebaseAuthService()
     
     private let auth = Auth.auth()
-
+    
     var currentUser: User? {
         return auth.currentUser
     }
@@ -22,14 +22,29 @@ class FirebaseAuthService {
     
     
     func createNewUser(email: String, password: String, completion: @escaping (Result<User,Error>) -> ()) {
-           auth.createUser(withEmail: email, password: password) { (result, error) in
-               if let createdUser = result?.user {
-                   completion(.success(createdUser))
-               } else if let error = error {
-                   completion(.failure(error))
-               }
-           }
-       }
+        auth.createUser(withEmail: email, password: password) { (result, error) in
+            if let createdUser = result?.user {
+                completion(.success(createdUser))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func updateUserEmail(email: String? = nil, completion: @escaping (Result<(),Error>) -> ()){
+        let updateEmail = auth.currentUser
+        
+        if let email = email{
+            updateEmail?.updateEmail(to: email, completion: { (error) in
+                if let error = error {
+                    completion(.failure(error))
+                } else {
+                    completion(.success(()))
+                }
+            })
+        }
+        
+    }
     
     func updateUserFields(userName: String? = nil,photoURL: URL? = nil, completion: @escaping (Result<(),Error>) -> ()){
         let changeRequest = auth.currentUser?.createProfileChangeRequest()
@@ -39,6 +54,7 @@ class FirebaseAuthService {
         if let photoURL = photoURL {
             changeRequest?.photoURL = photoURL
         }
+        
         changeRequest?.commitChanges(completion: { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -49,23 +65,23 @@ class FirebaseAuthService {
     }
     
     func loginUser(email: String, password: String, completion: @escaping (Result<(), Error>) -> ()) {
-           auth.signIn(withEmail: email, password: password) { (result, error) in
-               if let user = result?.user {
-                   completion(.success(()))
-               } else if let error = error {
-                   completion(.failure(error))
-               }
-           }
-       }
-
+        auth.signIn(withEmail: email, password: password) { (result, error) in
+            if let user = result?.user {
+                completion(.success(()))
+            } else if let error = error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
     func logoutUser(){
         do{
-           try auth.signOut()
+            try auth.signOut()
         }catch let error{
             print(error)
         }
     }
-       private init () {}
+    private init () {}
     
     
 }
