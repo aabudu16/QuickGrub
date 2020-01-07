@@ -13,7 +13,7 @@ import Photos
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
     
-    var imageURL: URL? = nil
+    var imageURL: URL?
     lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
         label.text = "Update Profile"
@@ -90,10 +90,18 @@ class UpdateUserProfileViewController: UIViewController {
         return tf
     }()
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let av = UIActivityIndicatorView()
+        av.style = .large
+        av.hidesWhenStopped = true
+        return av
+    }()
+    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+       // imageURL = profileImage
         configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
@@ -103,9 +111,11 @@ class UpdateUserProfileViewController: UIViewController {
         configureUserEmailTextFieldConstraints()
         configureCancelButtonConstraints()
         configureUpdateButtonConstraints()
+        configureActivityIndicatorConstraint()
         setupProfileImage()
         setupUserNameTextField()
         setupUserEmailTextField()
+        setImageURLString()
         
     }
     
@@ -132,14 +142,13 @@ class UpdateUserProfileViewController: UIViewController {
         
         guard let email = userEmailTextField.text else {return}
         guard let userName = userNameTextField.text else {return}
-        guard let imageURL = imageURL else {
-           // imageURL = self.profileImage.imag
-            return}
-        
+        guard let imageURL = imageURL else {return}
+        activityIndicator.startAnimating()
         FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
             switch result{
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+                self.activityIndicator.stopAnimating()
             case .success(()):
                 FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
                     switch result{
@@ -147,6 +156,7 @@ class UpdateUserProfileViewController: UIViewController {
                         self.updateFireBaseEmail(email: email)
                     case .failure(let error):
                         print(error)
+                        self.activityIndicator.stopAnimating()
                     }
                 }
             }
@@ -181,13 +191,22 @@ class UpdateUserProfileViewController: UIViewController {
     
     //MARK: Private function
     
+    private func setImageURLString(){
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        if let url = currentUser.photoURL{
+            imageURL = url
+        }
+    }
+    
     private func updateFireBaseEmail(email:String){
         FirebaseAuthService.manager.updateUserEmail(email: email) { (result) in
             switch result{
             case .success(()):
                 self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
+                self.activityIndicator.stopAnimating()
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+                self.activityIndicator.stopAnimating()
             }
         }
     }
@@ -272,6 +291,13 @@ class UpdateUserProfileViewController: UIViewController {
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant:  5), cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -5), cancelButton.heightAnchor.constraint(equalToConstant: 50), cancelButton.widthAnchor.constraint(equalToConstant: 50)])
     }
+    
+    private func configureActivityIndicatorConstraint(){
+        view.addSubview(activityIndicator)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor), activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor), activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor), activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+    
 }
 
 extension UpdateUserProfileViewController:UITextFieldDelegate{
