@@ -101,6 +101,9 @@ class UpdateUserProfileViewController: UIViewController {
         configureUserEmailTextFieldConstraints()
         configureCancelButtonConstraints()
         configureUpdateButtonConstraints()
+        setupProfileImage()
+        setupUserNameTextField()
+        setupUserEmailTextField()
         
     }
     
@@ -111,7 +114,25 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     @objc func handleUpdateButtonPressed(){
-        print("update button pressed")
+        guard userEmailTextField.hasText, userEmailTextField.text != "" else{
+            self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Email", actionTitle: "OK")
+            return
+        }
+        
+        guard userNameTextField.hasText, userNameTextField.text != "" else{
+            self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
+            return
+        }
+        guard let email = userEmailTextField.text else{return}
+        guard let userName = userNameTextField.text else {return}
+        FirestoreService.manager.updateCurrentUser(userName: userName, email: email) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+            case .success(()):
+                self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
+            }
+        }
     }
     
     @objc func presentPHPhotoLibrary(sender:UITapGestureRecognizer){
@@ -141,6 +162,23 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     //MARK: Private function
+    
+    private func setupProfileImage(){
+        let placeholderImage =  UIImage(systemName: "photo")?.withTintColor(.black)
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        profileImage.kf.setImage(with: currentUser.photoURL, placeholder: placeholderImage)
+    }
+    
+    private func setupUserNameTextField(){
+           guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+           userNameTextField.text = "\(currentUser.displayName ?? "")"
+       }
+    
+    private func setupUserEmailTextField(){
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        userEmailTextField.text = "\(currentUser.email ?? "")"
+    }
+    
     private func presentPhotoPickerController() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
