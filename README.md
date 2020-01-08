@@ -42,11 +42,16 @@ click on the naviagtion button to get directions or click on the ellipsis icon t
 Users are presented with more information about the venue.
 you can swipe to see more images.
 You can click on the ABOUT button to navigate to Yelp using safari in app.
-click on the naviagtion button to get directions 
-click on REVIEW button to present the reviewVC. 
-in the reviewVC, you can see reviews, click on read more to read full review and click on profile image to see Yelp user profile on yelp.
-dismiss the reviewVC by clicking on the red topView.
-Here you can share and save the resturant.
+click on the naviagtion button to get directions. 
+click on REVIEW button to present the reviewVC.  
+in the reviewVC, you can see reviews, click on read more to read full review and click on profile image to see Yelp user profile on yelp. 
+dismiss the reviewVC by clicking on the red topView. 
+Here you can share and save the resturant. 
 
-#
+## FrameWorks
+Mapkit, FireBase, UIkit, TextFieldEffects,  Photos, Kingfisher, CoreLocation.
+
+## APIs
+
+Yelp API
 
