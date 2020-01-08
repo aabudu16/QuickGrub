@@ -49,7 +49,7 @@ dismiss the reviewVC by clicking on the red topView.
 Here you can share and save the resturant. 
 
 ## FrameWorks
-Mapkit, FireBase, UIkit, TextFieldEffects,  Photos, Kingfisher, CoreLocation.
+Mapkit, FireBase, UIkit, TextFieldEffects,  Photos, Kingfisher, CoreLocation, AlamoFire.
 
 ## APIs
 
