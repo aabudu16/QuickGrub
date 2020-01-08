@@ -230,11 +230,12 @@ class UpdateUserProfileViewController: UIViewController {
         userEmailTextField.text = "\(currentUser.email ?? "")"
     }
     
-    
+//    
 //    private func updateWelcomePage(imageUrl:URL?, userName:String?){
 //        let welcomeVC = WelcomeViewController()
 //        welcomeVC.profileImage.kf.setImage(with: imageUrl)
 //    }
+    
     private func presentPhotoPickerController() {
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()

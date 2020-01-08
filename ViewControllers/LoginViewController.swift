@@ -75,6 +75,14 @@ class LoginViewController: UIViewController {
         return view
     }()
     
+    lazy var cameraImage:UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(systemName: "camera.fill")
+        image.alpha = 0
+        image.tintColor = .black
+        return image
+    }()
+    
     lazy var logoImageView: UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 2
@@ -340,6 +348,7 @@ class LoginViewController: UIViewController {
                 self.setSignupObjectViewsVisible(enable: false)
                 self.loginLabel.text = "Login"
                 self.logoImageView.image = UIImage(named: "QG")
+                self.cameraImage.alpha = 0
             }, completion: { (_) in
                 self.logoImageView.isUserInteractionEnabled = false
                 
@@ -353,6 +362,7 @@ class LoginViewController: UIViewController {
                 self.setSignupObjectViewsVisible(enable: true)
                 self.loginLabel.text = "Signup"
                 self.logoImageView.image = UIImage(named: "profileImage")
+                self.cameraImage.alpha = 1
             }, completion: { (_) in
                 self.logoImageView.isUserInteractionEnabled = true
             })
@@ -369,6 +379,7 @@ class LoginViewController: UIViewController {
         setupContainerView()
         configureLoginLabel()
         configureLogoImageView()
+        configureCameraImageConstraints()
         configureEmailTextField()
         configurePasswordTextField()
         configureLoginButton()
@@ -592,6 +603,12 @@ class LoginViewController: UIViewController {
                 .constraint(equalToConstant: 150)])
         imageViewTopConstraint = logoImageView.topAnchor.constraint(equalTo: mainCotainerView.topAnchor)
         imageViewTopConstraint.isActive = true
+    }
+    
+    private func configureCameraImageConstraints(){
+        logoImageView.addSubview(cameraImage)
+        cameraImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([cameraImage.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor), cameraImage.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor), cameraImage.heightAnchor.constraint(equalToConstant: 40), cameraImage.widthAnchor.constraint(equalToConstant: 40)])
     }
     
     private func configureLoginLabel(){
