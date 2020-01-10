@@ -193,6 +193,16 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     //MARK: Private function
+
+    func showDismissAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
+           let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+           let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+           }
+           
+           alert.addAction(alertAction1)
+           present(alert, animated: true, completion: nil)
+       }
     
     private func setImageURLString(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -205,7 +215,7 @@ class UpdateUserProfileViewController: UIViewController {
         FirebaseAuthService.manager.updateUserEmail(email: email) { (result) in
             switch result{
             case .success(()):
-                self.showAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
+                self.showDismissAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
                 self.isImageStoredInFireBase = false
             case .failure(let error):
