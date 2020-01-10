@@ -149,6 +149,7 @@ class LoginViewController: UIViewController {
         CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
         button.setTitle("Enter", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(handleLoginPressed), for: .touchUpInside)
         button.isEnabled = false
         return button
@@ -160,6 +161,7 @@ class LoginViewController: UIViewController {
         button.isEnabled = false
         button.setTitle("Register", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(handleRegisterPressed), for: .touchUpInside)
         return button
     }()
