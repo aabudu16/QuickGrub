@@ -104,7 +104,7 @@ class FoodImagesViewController: UIViewController {
         gifImage.contentMode = .scaleAspectFit
         gifImage.center = checkMarkIndicatorView.center
         gifImage.isUserInteractionEnabled = false
-        gifImage.loadGif(name: "checkMark2")
+        gifImage.loadGif(name: "checkMarkAnimate")
         return gifImage
     }()
     
@@ -172,10 +172,10 @@ class FoodImagesViewController: UIViewController {
         configureCollectionviewConstraints()
         
         configureDimViewConstraints()
-        configureCheckMarkIndicatorViewConstraints()
-        configureCheckMarkIndicatorConstraints()
         configureInstructionLabelViewConstraints()
         configureInstructionLabelConstraints()
+        configureCheckMarkIndicatorViewConstraints()
+        configureCheckMarkIndicatorConstraints()
         constraintsActivityIndicatorConstraints()
         configureContinueButtomConstraints()
     }
