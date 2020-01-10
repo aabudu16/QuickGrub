@@ -330,9 +330,9 @@ class UpdateUserProfileViewController: UIViewController {
        }
     
     private func configureCancelButtonConstraints(){
-        view.addSubview(cancelButton)
+        topView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant:  5), cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -5), cancelButton.heightAnchor.constraint(equalToConstant: 50), cancelButton.widthAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([cancelButton.topAnchor.constraint(equalTo: topView.topAnchor, constant:  5), cancelButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant:  -5), cancelButton.heightAnchor.constraint(equalToConstant: 50), cancelButton.widthAnchor.constraint(equalToConstant: 50)])
     }
     
     private func configureActivityIndicatorConstraint(){
