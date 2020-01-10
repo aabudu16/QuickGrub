@@ -13,7 +13,7 @@ import Kingfisher
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
-     var isImageStoredInFireBase = false
+    // var isImageStoredInFireBase = false
     var imageURL: URL?
     lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
@@ -89,7 +89,8 @@ class UpdateUserProfileViewController: UIViewController {
        let button = UIButton()
         button.setImage(UIImage(systemName: "pencil"), for: .normal)
         button.tag = 0
-        button.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        button.showsTouchWhenHighlighted = true
+        button.tintColor = .black
         return button
     }()
     
@@ -103,6 +104,7 @@ class UpdateUserProfileViewController: UIViewController {
        let button = UIButton()
         button.setImage(UIImage(systemName: "pencil"), for: .normal)
          button.tag = 1
+        button.isHighlighted = true
         button.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
         return button
     }()
@@ -154,9 +156,9 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-        guard isImageStoredInFireBase == true else {
-            self.showAlert(alertTitle: "Error", alertMessage: "Image has not saved yet, please try again", actionTitle: "OK")
-            return}
+//        guard isImageStoredInFireBase == true else {
+//            self.showAlert(alertTitle: "Error", alertMessage: "Image has not saved yet, please try again", actionTitle: "OK")
+//            return}
         guard imageURL != nil else {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
             return}
@@ -235,7 +237,7 @@ class UpdateUserProfileViewController: UIViewController {
             case .success(()):
                 self.showDismissAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
-                self.isImageStoredInFireBase = false
+                //self.isImageStoredInFireBase = false
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
@@ -265,6 +267,8 @@ class UpdateUserProfileViewController: UIViewController {
 //    }
     
     private func presentPhotoPickerController() {
+        updateButton.isEnabled = false
+        updateButton.backgroundColor = .gray
         DispatchQueue.main.async{
             let imagePickerViewController = UIImagePickerController()
             imagePickerViewController.delegate = self
@@ -373,8 +377,8 @@ extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINav
                     switch result{
                     case .success(let url):
                             (self?.imageURL = url)!
-                            self?.isImageStoredInFireBase = true
-                            print(self?.isImageStoredInFireBase)
+                            self?.updateButton.isEnabled = true
+                            self?.updateButton.backgroundColor = .blue
                     case .failure(let error):
                         self?.showAlert(alertTitle: "Error", alertMessage: "Ran into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
                     }
