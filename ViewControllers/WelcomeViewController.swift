@@ -170,10 +170,13 @@ class WelcomeViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         setupFilterView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupProfileImage()
         setupWelcomeLabel()
     }
-
     //MARK: Objc functions
     
     @objc func handleMenuButtonPressed(){
@@ -219,6 +222,7 @@ class WelcomeViewController: UIViewController {
     
     @objc func presentUpdateProfileVC(sender:UITapGestureRecognizer){
         let updateProfileVC = UpdateUserProfileViewController()
+        updateProfileVC.modalPresentationStyle = .fullScreen
         present(updateProfileVC, animated: true, completion: nil)
     }
     

@@ -125,9 +125,9 @@ class UpdateUserProfileViewController: UIViewController {
         configureUpdateProfileLabelConstraints()
         configureCamerabuttonConstraints()
         configureUserNameTextFieldConstraints()
-        configureUpdateUserNameButtonConstraints()
+        configureUpdateUserNameIconConstraints()
         configureUserEmailTextFieldConstraints()
-        configureUpdateEmailButtonConstraints()
+        configureUpdateEmailIconConstraints()
         configureCancelButtonConstraints()
         configureUpdateButtonConstraints()
         configureActivityIndicatorConstraint()
@@ -310,10 +310,10 @@ class UpdateUserProfileViewController: UIViewController {
                                      userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
     
-    private func configureUpdateUserNameButtonConstraints(){
+    private func configureUpdateUserNameIconConstraints(){
         userNameTextField.addSubview(updateUserNameIcon)
         updateUserNameIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([updateUserNameIcon.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -5), updateUserNameIcon.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameIcon.heightAnchor.constraint(equalToConstant: 40), updateUserNameIcon.widthAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([updateUserNameIcon.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -10), updateUserNameIcon.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameIcon.heightAnchor.constraint(equalToConstant: 20), updateUserNameIcon.widthAnchor.constraint(equalToConstant: 20)])
     }
     
     private func configureUserEmailTextFieldConstraints(){
@@ -323,10 +323,10 @@ class UpdateUserProfileViewController: UIViewController {
                                      userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
     
-    private func configureUpdateEmailButtonConstraints(){
+    private func configureUpdateEmailIconConstraints(){
            userEmailTextField.addSubview(updateEmailIcon)
            updateEmailIcon.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([updateEmailIcon.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailIcon.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailIcon.heightAnchor.constraint(equalToConstant: 40), updateEmailIcon.widthAnchor.constraint(equalToConstant: 40)])
+           NSLayoutConstraint.activate([updateEmailIcon.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailIcon.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailIcon.heightAnchor.constraint(equalToConstant: 20), updateEmailIcon.widthAnchor.constraint(equalToConstant: 20)])
        }
     
     private func configureCancelButtonConstraints(){

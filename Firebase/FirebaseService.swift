@@ -1,10 +1,4 @@
-//
-//  FirebaseService.swift
-//  FavoritePlaces
-//
-//  Created by Mr Wonderful on 11/21/19.
-//  Copyright © 2019 Iram Fattah. All rights reserved.
-//
+
 
 import Foundation
 import FirebaseFirestore
