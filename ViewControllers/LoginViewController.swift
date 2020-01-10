@@ -77,15 +77,15 @@ class LoginViewController: UIViewController {
     
     lazy var cameraImage:UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(systemName: "camera.fill")
+        image.image = UIImage(systemName: "camera")
         image.alpha = 0
-        image.tintColor = .black
+        image.tintColor = .gray
         return image
     }()
     
     lazy var logoImageView: UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
-        guesture.numberOfTapsRequired = 2
+        guesture.numberOfTapsRequired = 1
         let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
         iv.contentMode = .scaleAspectFill
         iv.image = #imageLiteral(resourceName: "QG")
@@ -98,12 +98,13 @@ class LoginViewController: UIViewController {
     
     lazy var loginLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "Login")
+        label.font = UIFont(name: "Avenir-Heavy", size: 23)
+        label.adjustsFontSizeToFitWidth = true
         return label
     }()
     
     lazy var emailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
-        //tf.placeholderColor = .clear
         tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
         
         tf.delegate = self
@@ -214,7 +215,6 @@ class LoginViewController: UIViewController {
     
     @objc private func presentUpdateProfileVC(sender:UITapGestureRecognizer) {
         print("Image view Double tapped")
-        //MARK: TODO - action sheet with multiple media options
         switch PHPhotoLibrary.authorizationStatus() {
         case .notDetermined, .denied, .restricted:
             PHPhotoLibrary.requestAuthorization({[weak self] status in
@@ -222,11 +222,9 @@ class LoginViewController: UIViewController {
                 case .authorized:
                     self?.presentPhotoPickerController()
                 case .denied:
-                    //MARK: TODO - set up more intuitive UI interaction
-                    print("Denied photo library permissions")
+                    self?.showAlert(alertTitle: "Caution", alertMessage: "A profile image is required to create an account. Go to your settings to grant access in order to proceed", actionTitle: "OK")
                 default:
-                    //MARK: TODO - set up more intuitive UI interaction
-                    print("No usable status")
+                     self?.presentPhotoPickerController()
                 }
             })
         default:
@@ -240,8 +238,6 @@ class LoginViewController: UIViewController {
     }
     
     @objc func handleRegisterPressed(){
-        print("create button pressed")
-        print(self.imageURL?.absoluteString)
         guard  signupEmailTextField.hasText, signupPasswordTextField.hasText else {
             return}
         
@@ -254,7 +250,7 @@ class LoginViewController: UIViewController {
             return
         }
         
-        guard let userName = userNameTextField.text, let imageURL = imageURL else {
+        guard let userName = userNameTextField.text, imageURL != nil else {
             self.showAlert(alertTitle: "Error", alertMessage: "Please use a valid image and user name", actionTitle: "OK")
             return
         }
@@ -361,7 +357,7 @@ class LoginViewController: UIViewController {
                 self.setLoginObjectViewsVisible(enable: false)
                 self.setSignupObjectViewsVisible(enable: true)
                 self.loginLabel.text = "Signup"
-                self.logoImageView.image = UIImage(named: "profileImage")
+                self.logoImageView.image = nil
                 self.cameraImage.alpha = 1
             }, completion: { (_) in
                 self.logoImageView.isUserInteractionEnabled = true
@@ -377,8 +373,8 @@ class LoginViewController: UIViewController {
         configureBottomViewConstraints()
         configureMainContainerViewConstraints()
         setupContainerView()
-        configureLoginLabel()
         configureLogoImageView()
+        configureLoginLabel()
         configureCameraImageConstraints()
         configureEmailTextField()
         configurePasswordTextField()
@@ -608,14 +604,14 @@ class LoginViewController: UIViewController {
     private func configureCameraImageConstraints(){
         logoImageView.addSubview(cameraImage)
         cameraImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([cameraImage.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor), cameraImage.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor), cameraImage.heightAnchor.constraint(equalToConstant: 40), cameraImage.widthAnchor.constraint(equalToConstant: 40)])
+        NSLayoutConstraint.activate([cameraImage.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor), cameraImage.centerYAnchor.constraint(equalTo: logoImageView.centerYAnchor), cameraImage.heightAnchor.constraint(equalToConstant: 30), cameraImage.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func configureLoginLabel(){
         containerView.addSubview(loginLabel)
         loginLabel.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([loginLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 60),loginLabel.centerXAnchor.constraint(equalTo: containerView.centerXAnchor), loginLabel.heightAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([loginLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),loginLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 2), loginLabel.trailingAnchor.constraint(equalTo: logoImageView.leadingAnchor), loginLabel.heightAnchor.constraint(equalToConstant: 40)])
     }
     
     
@@ -623,7 +619,7 @@ class LoginViewController: UIViewController {
         containerView.addSubview(emailTextField)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [emailTextField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 10),
+            [emailTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10),
              emailTextField.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
              emailTextField.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.72),
              emailTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.13)])
@@ -671,7 +667,7 @@ class LoginViewController: UIViewController {
         containerView.addSubview(userNameTextField)
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
-            [userNameTextField.topAnchor.constraint(equalTo: loginLabel.bottomAnchor, constant: 0),
+            [userNameTextField.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10),
              userNameTextField.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
              userNameTextField.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.72),
              userNameTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.13)])

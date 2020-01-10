@@ -169,8 +169,9 @@ open class FoldingCell: UITableViewCell {
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
         let image = UIImage(named: "FoodPlaceholder")
         self.foodImageView.kf.indicatorType = .activity
-        self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         
+        
+        self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         if (business.location?.displayAddress?.count)! > 1{
             if let displayAddress = business.location?.displayAddress{
                 addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"

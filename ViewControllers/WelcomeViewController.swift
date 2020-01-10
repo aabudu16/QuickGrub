@@ -146,9 +146,18 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var categoryButton:UIButton = {
-        let button = UIButton(image: UIImage(named: "category")!, color: UIColor.white.cgColor)
+        let button = UIButton()
+       // let button = UIButton(image: UIImage(named: "category")!, color: UIColor.black.cgColor)
         button.addTarget(self, action: #selector(handleCategoryPressed), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var categoryLabel:UILabel = {
+       let label = UILabel()
+        label.text = "category"
+        label.textAlignment = .center
+        label.backgroundColor = .white
+        return label
     }()
     
     lazy var favoriteButton:UIButton = {
@@ -165,7 +174,7 @@ class WelcomeViewController: UIViewController {
         setupWelcomeLabel()
     }
 
-    //MARK: Objc Selector functions
+    //MARK: Objc functions
     
     @objc func handleMenuButtonPressed(){
             filterMenuViewTopConstraints?.isActive = false
@@ -275,6 +284,7 @@ class WelcomeViewController: UIViewController {
         configureWelcomeLabelConstraints()
         configureSelectionLabelConstraints()
         configureCategoryButtonConstraints()
+        configureCategoryLabelConstraints()
         configureRandomButtonnConstraints()
         configureLogoutButtonConstraints()
         configureProfileImageConstraint()
@@ -368,6 +378,13 @@ class WelcomeViewController: UIViewController {
         
         categoryButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([categoryButton.topAnchor.constraint(equalTo:self.selectionLabel.bottomAnchor, constant: 10), categoryButton.leadingAnchor.constraint(equalTo: self.view.leadingAnchor, constant: 20), categoryButton.trailingAnchor.constraint(equalTo: self.view.trailingAnchor, constant: -20), categoryButton.heightAnchor.constraint(equalToConstant: 250)])
+    }
+    
+    
+    private func configureCategoryLabelConstraints(){
+        categoryButton.addSubview(categoryLabel)
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([categoryLabel.topAnchor.constraint(equalTo: categoryButton.topAnchor), categoryLabel.leadingAnchor.constraint(equalTo: categoryButton.leadingAnchor), categoryLabel.trailingAnchor.constraint(equalTo: categoryButton.trailingAnchor), categoryLabel.bottomAnchor.constraint(equalTo: categoryButton.bottomAnchor)])
     }
     
     private func configureRandomButtonnConstraints(){

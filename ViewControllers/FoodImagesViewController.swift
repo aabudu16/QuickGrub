@@ -266,27 +266,28 @@ class FoodImagesViewController: UIViewController {
     }
     
     private func configureCheckMarkIndicatorViewConstraints(){
-        self.view.addSubview(checkMarkIndicatorView)
+        self.instructionLabelView.addSubview(checkMarkIndicatorView)
         checkMarkIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([checkMarkIndicatorView.heightAnchor.constraint(equalToConstant: 201), checkMarkIndicatorView.widthAnchor.constraint(equalToConstant: 101),checkMarkIndicatorView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 71), checkMarkIndicatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25)])
+        
+        NSLayoutConstraint.activate([checkMarkIndicatorView.topAnchor.constraint(equalTo: instructionLabelView.topAnchor), checkMarkIndicatorView.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), checkMarkIndicatorView.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor), checkMarkIndicatorView.bottomAnchor.constraint(equalTo: instructionLabel.topAnchor)])
     }
     
     private func configureCheckMarkIndicatorConstraints(){
         self.checkMarkIndicatorView.addSubview(checkMarkIndicator)
         checkMarkIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: checkMarkIndicatorView.topAnchor, constant: 0), checkMarkIndicator.leadingAnchor.constraint(equalTo: checkMarkIndicatorView.leadingAnchor), checkMarkIndicator.trailingAnchor.constraint(equalTo: checkMarkIndicatorView.trailingAnchor) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: checkMarkIndicatorView.bottomAnchor)])
+        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: checkMarkIndicatorView.topAnchor, constant: -50), checkMarkIndicator.leadingAnchor.constraint(equalTo: checkMarkIndicatorView.leadingAnchor, constant: -50), checkMarkIndicator.trailingAnchor.constraint(equalTo: checkMarkIndicatorView.trailingAnchor, constant: 50) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: checkMarkIndicatorView.bottomAnchor, constant: 50)])
     }
     
     private func configureInstructionLabelViewConstraints(){
         dimView.addSubview(instructionLabelView)
         instructionLabelView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabelView.centerYAnchor.constraint(equalTo: dimView.centerYAnchor), instructionLabelView.centerXAnchor.constraint(equalTo: dimView.centerXAnchor), instructionLabelView.heightAnchor.constraint(equalToConstant: 200), instructionLabelView.widthAnchor.constraint(equalToConstant: 200)])
+        NSLayoutConstraint.activate([instructionLabelView.centerYAnchor.constraint(equalTo: dimView.centerYAnchor), instructionLabelView.centerXAnchor.constraint(equalTo: dimView.centerXAnchor), instructionLabelView.heightAnchor.constraint(equalToConstant: 300), instructionLabelView.widthAnchor.constraint(equalToConstant: 300)])
     }
     
     private func configureInstructionLabelConstraints(){
         self.instructionLabelView.addSubview(instructionLabel)
         instructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabel.topAnchor.constraint(equalTo: instructionLabelView.topAnchor), instructionLabel.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor) , instructionLabel.bottomAnchor.constraint(equalTo: instructionLabelView.bottomAnchor)])
+        NSLayoutConstraint.activate([instructionLabel.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor) , instructionLabel.bottomAnchor.constraint(equalTo: instructionLabelView.bottomAnchor), instructionLabel.heightAnchor.constraint(equalToConstant: 200)])
     }
     
     private func constraintsActivityIndicatorConstraints(){
@@ -330,7 +331,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
         
         cell.delegate = self
-        cell.foodColorBadge.tag = indexPath.item
+        cell.addItemButton.tag = indexPath.item
         cell.FoodTitleLabel.tag = indexPath.item
         cell.createPulse()
         let info = userCategorySelectedResults[indexPath.row]

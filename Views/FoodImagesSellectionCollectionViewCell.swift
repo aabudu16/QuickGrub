@@ -19,7 +19,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     
     var itemIsSelected:Bool = false {
         didSet{
-            self.itemIsSelected == true ? foodColorBadge.setImage( checkmark, for: .normal) : foodColorBadge.setImage( plus, for: .normal)
+            self.itemIsSelected == true ? addItemButton.setImage( checkmark, for: .normal) : addItemButton.setImage( plus, for: .normal)
         }
     }
     
@@ -58,14 +58,15 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    lazy var foodColorBadge:UIButton = {
+    lazy var addItemButton:UIButton = {
         let view = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
-        view.setImage(UIImage(systemName: "plus")?.withTintColor(.white), for: .normal)
+        view.setImage(UIImage(systemName: "plus"), for: .normal)
+        view.tintColor = .white
         view.layer.cornerRadius = view.layer.frame.height / 2
         view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.lightGray.cgColor
+        view.layer.borderColor = UIColor.white.cgColor
         view.alpha = 1
-        view.backgroundColor = .blue
+        view.backgroundColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
         view.addTarget(self, action: #selector(handleFoodColorBadgePressed(sender:)), for: .touchUpInside)
         return view
     }()
@@ -92,7 +93,7 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         configureFoodImageConstraints()
         configureStarRatingsConstraints()
         configureFoodTitleConstraints()
-        configureFoodColorBadgeConstraints()
+        configureAddItemButtonConstraints()
         configureShortCutViewViewConstraints()
         configureLogoImageConstraints()
         createPulse()
@@ -165,15 +166,15 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
     //MARK:-- fuctions
     
     func createPulse(){
-        let position = foodColorBadge.frame.size.width / 2
+        let position = addItemButton.frame.size.width / 2
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 16, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
         shapeLayer.path = circularPath.cgPath
-        shapeLayer.strokeColor = UIColor.blue.cgColor
-        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.strokeColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        shapeLayer.fillColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
         shapeLayer.lineWidth = 40.0
         shapeLayer.lineCap = .round
         shapeLayer.position = CGPoint(x: position, y: position)
-        foodColorBadge.layer.addSublayer(shapeLayer)
+        addItemButton.layer.addSublayer(shapeLayer)
         animatePulse()
     }
     
@@ -223,10 +224,10 @@ class FoodImagesSellectionCollectionViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([FoodTitleLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), FoodTitleLabel.trailingAnchor.constraint(equalTo: self.starRatings.leadingAnchor), FoodTitleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5), FoodTitleLabel.topAnchor.constraint(equalTo: foodImage.bottomAnchor)])
     }
     
-    private func configureFoodColorBadgeConstraints(){
-        self.addSubview(foodColorBadge)
-        foodColorBadge.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([foodColorBadge.topAnchor.constraint(equalTo: self.topAnchor, constant:  5), foodColorBadge.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), foodColorBadge.heightAnchor.constraint(equalToConstant: 30), foodColorBadge.widthAnchor.constraint(equalTo: self.foodColorBadge.heightAnchor)])
+    private func configureAddItemButtonConstraints(){
+        self.addSubview(addItemButton)
+        addItemButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([addItemButton.topAnchor.constraint(equalTo: self.topAnchor, constant:  5), addItemButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant:  -10), addItemButton.heightAnchor.constraint(equalToConstant: 30), addItemButton.widthAnchor.constraint(equalTo: self.addItemButton.heightAnchor)])
     }
     
     private func configureShortCutViewViewConstraints(){
