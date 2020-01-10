@@ -59,6 +59,7 @@ class UpdateUserProfileViewController: UIViewController {
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
         button.backgroundColor = .blue
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(handleUpdateButtonPressed), for: .touchUpInside)
         return button
     }()
@@ -67,6 +68,7 @@ class UpdateUserProfileViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .black
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(handleDismissButton), for: .touchUpInside)
         return button
     }()
@@ -75,6 +77,7 @@ class UpdateUserProfileViewController: UIViewController {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         button.setImage(UIImage(systemName: "camera.fill"), for: .normal)
         button.tintColor = .gray
+        button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(presentPHPhotoLibrary(sender:)), for: .touchUpInside)
         return button
     }()
@@ -85,13 +88,11 @@ class UpdateUserProfileViewController: UIViewController {
         return tf
     }()
     
-    lazy var updateUserNameButton:UIButton = {
-       let button = UIButton()
-        button.setImage(UIImage(systemName: "pencil"), for: .normal)
-        button.tag = 0
-        button.showsTouchWhenHighlighted = true
-        button.tintColor = .black
-        return button
+    lazy var updateUserNameIcon:UIImageView = {
+       let image = UIImageView()
+       image.image = UIImage(systemName: "pencil")
+       image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+       return image
     }()
     
     lazy var userEmailTextField:HoshiTextField = {
@@ -100,13 +101,11 @@ class UpdateUserProfileViewController: UIViewController {
         return tf
     }()
     
-    lazy var updateEmailButton:UIButton = {
-       let button = UIButton()
-        button.setImage(UIImage(systemName: "pencil"), for: .normal)
-         button.tag = 1
-        button.isHighlighted = true
-        button.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
-        return button
+    lazy var updateEmailIcon:UIImageView = {
+       let image = UIImageView()
+        image.image = UIImage(systemName: "pencil")
+        image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        return image
     }()
     
     lazy var activityIndicator: UIActivityIndicatorView = {
@@ -120,7 +119,6 @@ class UpdateUserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-       // imageURL = profileImage
         configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
@@ -156,9 +154,7 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-//        guard isImageStoredInFireBase == true else {
-//            self.showAlert(alertTitle: "Error", alertMessage: "Image has not saved yet, please try again", actionTitle: "OK")
-//            return}
+
         guard imageURL != nil else {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
             return}
@@ -237,7 +233,6 @@ class UpdateUserProfileViewController: UIViewController {
             case .success(()):
                 self.showDismissAlert(alertTitle: "Success", alertMessage: "Your profile was updated", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
-                //self.isImageStoredInFireBase = false
             case .failure(let error):
                 self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
                 self.activityIndicator.stopAnimating()
@@ -259,12 +254,6 @@ class UpdateUserProfileViewController: UIViewController {
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
         userEmailTextField.text = "\(currentUser.email ?? "")"
     }
-    
-//    
-//    private func updateWelcomePage(imageUrl:URL?, userName:String?){
-//        let welcomeVC = WelcomeViewController()
-//        welcomeVC.profileImage.kf.setImage(with: imageUrl)
-//    }
     
     private func presentPhotoPickerController() {
         updateButton.isEnabled = false
@@ -322,9 +311,9 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     private func configureUpdateUserNameButtonConstraints(){
-        userNameTextField.addSubview(updateUserNameButton)
-        updateUserNameButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([updateUserNameButton.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -5), updateUserNameButton.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameButton.heightAnchor.constraint(equalToConstant: 40), updateUserNameButton.widthAnchor.constraint(equalToConstant: 40)])
+        userNameTextField.addSubview(updateUserNameIcon)
+        updateUserNameIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([updateUserNameIcon.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -5), updateUserNameIcon.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameIcon.heightAnchor.constraint(equalToConstant: 40), updateUserNameIcon.widthAnchor.constraint(equalToConstant: 40)])
     }
     
     private func configureUserEmailTextFieldConstraints(){
@@ -335,9 +324,9 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     private func configureUpdateEmailButtonConstraints(){
-           userEmailTextField.addSubview(updateEmailButton)
-           updateEmailButton.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([updateEmailButton.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailButton.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailButton.heightAnchor.constraint(equalToConstant: 40), updateEmailButton.widthAnchor.constraint(equalToConstant: 40)])
+           userEmailTextField.addSubview(updateEmailIcon)
+           updateEmailIcon.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([updateEmailIcon.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailIcon.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailIcon.heightAnchor.constraint(equalToConstant: 40), updateEmailIcon.widthAnchor.constraint(equalToConstant: 40)])
        }
     
     private func configureCancelButtonConstraints(){
@@ -384,5 +373,11 @@ extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINav
                     }
                 })
         dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        updateButton.isEnabled = true
+        updateButton.backgroundColor = .blue
+        picker.dismiss(animated: true, completion: nil)
     }
 }
