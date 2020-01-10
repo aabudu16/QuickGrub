@@ -85,10 +85,26 @@ class UpdateUserProfileViewController: UIViewController {
         return tf
     }()
     
+    lazy var updateUserNameButton:UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(systemName: "pencil"), for: .normal)
+        button.tag = 0
+        button.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        return button
+    }()
+    
     lazy var userEmailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: UIKeyboardType.namePhonePad, placeholder: "Email", borderActiveColor: UIColor.blue)
         tf.delegate = self
         return tf
+    }()
+    
+    lazy var updateEmailButton:UIButton = {
+       let button = UIButton()
+        button.setImage(UIImage(systemName: "pencil"), for: .normal)
+         button.tag = 1
+        button.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        return button
     }()
     
     lazy var activityIndicator: UIActivityIndicatorView = {
@@ -109,7 +125,9 @@ class UpdateUserProfileViewController: UIViewController {
         configureUpdateProfileLabelConstraints()
         configureCamerabuttonConstraints()
         configureUserNameTextFieldConstraints()
+        configureUpdateUserNameButtonConstraints()
         configureUserEmailTextFieldConstraints()
+        configureUpdateEmailButtonConstraints()
         configureCancelButtonConstraints()
         configureUpdateButtonConstraints()
         configureActivityIndicatorConstraint()
@@ -299,12 +317,24 @@ class UpdateUserProfileViewController: UIViewController {
                                      userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
     
+    private func configureUpdateUserNameButtonConstraints(){
+        userNameTextField.addSubview(updateUserNameButton)
+        updateUserNameButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([updateUserNameButton.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -5), updateUserNameButton.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameButton.heightAnchor.constraint(equalToConstant: 40), updateUserNameButton.widthAnchor.constraint(equalToConstant: 40)])
+    }
+    
     private func configureUserEmailTextFieldConstraints(){
         view.addSubview(userEmailTextField)
         userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
                                      userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
     }
+    
+    private func configureUpdateEmailButtonConstraints(){
+           userEmailTextField.addSubview(updateEmailButton)
+           updateEmailButton.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([updateEmailButton.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailButton.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailButton.heightAnchor.constraint(equalToConstant: 40), updateEmailButton.widthAnchor.constraint(equalToConstant: 40)])
+       }
     
     private func configureCancelButtonConstraints(){
         view.addSubview(cancelButton)
@@ -346,7 +376,7 @@ extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINav
                             self?.isImageStoredInFireBase = true
                             print(self?.isImageStoredInFireBase)
                     case .failure(let error):
-                        self?.showAlert(alertTitle: "Error", alertMessage: "Rant into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
+                        self?.showAlert(alertTitle: "Error", alertMessage: "Ran into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
                     }
                 })
         dismiss(animated: true, completion: nil)
