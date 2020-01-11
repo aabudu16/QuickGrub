@@ -10,12 +10,24 @@ import UIKit
 
 class ForgetPasswordViewController: UIViewController {
 
+    //MARK: UI Objects
+    let topView:UIView = {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
+     let view = UIView()
+        view.backgroundColor = .blue
+        view.addGestureRecognizer(gesture)
+        return view
+    }()
     
+    //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .white
         // Do any additional setup after loading the view.
     }
     
-
+    //MARK: @objc func
+    @objc func handleCancelView(){
+       print("view tapped")
+    }
 }

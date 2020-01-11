@@ -234,9 +234,9 @@ class LoginViewController: UIViewController {
         }
     }
     
-    
     @objc func handleForgetPasswordButtonPressed(){
-        print("still need code to to handle the forget password ")
+       let forgetVC = ForgetPasswordViewController()
+        present(forgetVC, animated: true, completion: nil)
     }
     
     @objc func handleRegisterPressed(){
