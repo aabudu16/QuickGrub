@@ -20,16 +20,40 @@ class ForgetPasswordViewController: UIViewController {
         return view
     }()
     
-
+    lazy var emailTextField:HoshiTextField = {
+        let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
+        //tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
+        
+        tf.delegate = self
+        return tf
+    }()
+    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
+        
     }
     
     //MARK: @objc func
     @objc func handleCancelView(){
        print("view tapped")
+    }
+}
+
+//MARK: Extension
+extension ForgetPasswordViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        emailTextField.placeholderColor = .blue
+       
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        emailTextField.placeholderColor = .black
     }
 }
