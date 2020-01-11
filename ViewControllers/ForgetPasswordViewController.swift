@@ -22,10 +22,14 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var emailTextField:HoshiTextField = {
         let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
-        //tf.addTarget(self, action: #selector(loginFormValidation), for: .editingChanged)
-        
+        tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.delegate = self
         return tf
+    }()
+    
+    lazy var sendButton:UIButton = {
+       let button = UIButton()
+        return button
     }()
     
     //MARK: LifeCycle
@@ -38,6 +42,16 @@ class ForgetPasswordViewController: UIViewController {
     //MARK: @objc func
     @objc func handleCancelView(){
        print("view tapped")
+    }
+    
+    @objc func formValidation(){
+        guard emailTextField.hasText else {
+            sendButton.isEnabled = false
+            sendButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            return}
+        
+        sendButton.isEnabled = true
+        sendButton.backgroundColor = .blue
     }
 }
 
