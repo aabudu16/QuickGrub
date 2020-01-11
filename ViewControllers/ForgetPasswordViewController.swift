@@ -7,11 +7,12 @@
 //
 
 import UIKit
+import TextFieldEffects
 
 class ForgetPasswordViewController: UIViewController {
 
     //MARK: UI Objects
-    let topView:UIView = {
+    lazy var topView:UIView = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
      let view = UIView()
         view.backgroundColor = .blue
@@ -19,6 +20,7 @@ class ForgetPasswordViewController: UIViewController {
         return view
     }()
     
+
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
