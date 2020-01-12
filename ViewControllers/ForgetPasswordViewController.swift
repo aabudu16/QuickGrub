@@ -18,15 +18,20 @@ class ForgetPasswordViewController: UIViewController {
     
     //MARK: UI Objects
     lazy var topView:UIView = {
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
         let view = UIView()
         view.backgroundColor = #colorLiteral(red: 0.002074310789, green: 0.4873697162, blue: 0.7545115948, alpha: 1)
-        view.addGestureRecognizer(gesture)
         return view
     }()
     
     lazy var cancelIcon:UIImageView = {
-        let iv = UIImageView()
+         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
+        let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = iv.frame.height / 2
+        iv.layer.borderWidth = 2
+        iv.layer.borderColor = UIColor.white.cgColor
+        iv.clipsToBounds = true
+        iv.addGestureRecognizer(gesture)
         return iv
     }()
     lazy var mainCotainerView:UIView = {
