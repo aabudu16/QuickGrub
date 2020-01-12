@@ -134,8 +134,8 @@ class ForgetPasswordViewController: UIViewController {
            guard let keyboardFreme = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
            guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
            
-           self.mainContainerViewButtomConstraint.constant = -100 - (keyboardFreme.height - 250)
-           self.containerViewTopConstraint.constant = 280 - (keyboardFreme.height - 250)
+           self.mainContainerViewButtomConstraint.constant = -100 - (keyboardFreme.height - 150)
+           self.containerViewTopConstraint.constant = 280 - (keyboardFreme.height - 150)
            
            UIView.animate(withDuration: duration) {
                self.view.layoutIfNeeded()
