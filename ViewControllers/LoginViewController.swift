@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
     
     lazy var mainCotainerView:UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = .clear
         view.alpha = 1
         return view
     }()
@@ -195,7 +195,7 @@ class LoginViewController: UIViewController {
     }()
     //MARK: LifeCycle
     
-    override func viewDidLoad() {
+    override func viewDidLoad(){
         super.viewDidLoad()
         view.backgroundColor = .blue
         setLoginButton(enable: true)

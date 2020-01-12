@@ -27,7 +27,7 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var mainCotainerView:UIView = {
         let view = UIView()
-        view.backgroundColor = .green
+        view.backgroundColor = .clear
         view.alpha = 1
         return view
     }()
@@ -62,8 +62,9 @@ class ForgetPasswordViewController: UIViewController {
         label.layer.borderColor = UIColor.black.cgColor
         label.layer.borderWidth = 2
         
-        label.font = UIFont(name: "VAvenir-Light", size: 18)
-        label.text = "Reset your password?"
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir-Black", size: 25)
+        label.text = "Forgot password?"
         return label
     }()
     
@@ -72,7 +73,8 @@ class ForgetPasswordViewController: UIViewController {
         label.layer.borderColor = UIColor.black.cgColor
         label.layer.borderWidth = 2
         
-        label.font = UIFont(name: "Avenir-Black", size: 18)
+        label.textAlignment = .center
+        label.font = UIFont(name: "Avenir-Light", size: 15)
         label.numberOfLines = 0
         label.text = "We just need your registered email to send you password reset"
         return label
@@ -95,6 +97,7 @@ class ForgetPasswordViewController: UIViewController {
         configureMainContainerViewConstraints()
         setupContainerView()
         configurelockImageConstraints()
+        configureResetLabelConstraits()
         
     }
     
@@ -147,6 +150,12 @@ class ForgetPasswordViewController: UIViewController {
            imageViewTopConstraint = lockImage.topAnchor.constraint(equalTo: mainCotainerView.topAnchor)
            imageViewTopConstraint.isActive = true
        }
+    
+    private func configureResetLabelConstraits(){
+        containerView.addSubview(resetLabel)
+        resetLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resetLabel.topAnchor.constraint(equalTo: lockImage.bottomAnchor,constant: 3),resetLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor), resetLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor), resetLabel.heightAnchor.constraint(equalToConstant: 50)])
+    }
 }
 
 //MARK: Extension
