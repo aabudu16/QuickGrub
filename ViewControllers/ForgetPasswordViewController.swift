@@ -10,7 +10,12 @@ import UIKit
 import TextFieldEffects
 
 class ForgetPasswordViewController: UIViewController {
-
+    
+    //MARK: properties
+    private var containerViewButtomConstraint = NSLayoutConstraint()
+    private var containerViewTopConstraint = NSLayoutConstraint()
+    private var imageViewTopConstraint = NSLayoutConstraint()
+    
     //MARK: UI Objects
     lazy var topView:UIView = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
@@ -20,15 +25,65 @@ class ForgetPasswordViewController: UIViewController {
         return view
     }()
     
+    lazy var mainCotainerView:UIView = {
+           let view = UIView()
+           view.backgroundColor = .green
+           view.alpha = 1
+           return view
+       }()
+    
+    lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        CustomLayer.shared.createCustomlayer(layer: view.layer, cornerRadius: 25)
+        view.layer.borderWidth = 0
+        return view
+    }()
+    
+    lazy var lockImage:UIImageView = {
+        let image = UIImageView()
+        image.layer.borderColor = UIColor.black.cgColor
+        image.layer.borderWidth = 2
+        
+        image.image = UIImage(named: "lockIcon")
+        return image
+    }()
+    
     lazy var emailTextField:HoshiTextField = {
-        let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Email", borderActiveColor: .blue)
+        let tf = HoshiTextField(keyboardType: .emailAddress, placeholder: "Enter email", borderActiveColor: .blue)
         tf.addTarget(self, action: #selector(formValidation), for: .editingChanged)
         tf.delegate = self
         return tf
     }()
     
-    lazy var sendButton:UIButton = {
+    lazy var resetLabel:UILabel = {
+        let label = UILabel()
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 2
+        
+        label.font = UIFont(name: "VAvenir-Light", size: 18)
+        label.text = "Reset your password?"
+        return label
+    }()
+    
+    lazy var instructionLabel:UILabel = {
+        let label = UILabel()
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 2
+        
+      label.font = UIFont(name: "Avenir-Black", size: 18)
+        label.numberOfLines = 0
+        label.text = "We just need your registered email to send you password reset"
+        return label
+    }()
+    
+    lazy var resetButton:UIButton = {
        let button = UIButton()
+        CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
+        button.setTitle("RESET PASSWORD", for: .normal)
+        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.showsTouchWhenHighlighted = true
+        button.isEnabled = false
         return button
     }()
     
@@ -46,17 +101,35 @@ class ForgetPasswordViewController: UIViewController {
     
     @objc func formValidation(){
         guard emailTextField.hasText else {
-            sendButton.isEnabled = false
-            sendButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            resetButton.isEnabled = false
+            resetButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
             return}
         
-        sendButton.isEnabled = true
-        sendButton.backgroundColor = .blue
+        resetButton.isEnabled = true
+        resetButton.backgroundColor = .blue
+    }
+    
+     //MARK: Private constraints
+    private func configureMainContainerViewConstraints(){
+        view.addSubview(mainCotainerView)
+        mainCotainerView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate(
+            [mainCotainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  15),
+             mainCotainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -15)
+                
+        ])
+        
+        self.containerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
+        containerViewButtomConstraint.isActive = true
+        
+        self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 325)
+        containerViewTopConstraint.isActive = true
     }
 }
 
 //MARK: Extension
-extension ForgetPasswordViewController: UITextFieldDelegate{
+extension  ForgetPasswordViewController : UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true

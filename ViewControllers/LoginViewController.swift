@@ -62,7 +62,7 @@ class LoginViewController: UIViewController {
     
     lazy var mainCotainerView:UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
+        view.backgroundColor = .green
         view.alpha = 1
         return view
     }()
