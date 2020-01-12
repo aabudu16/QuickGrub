@@ -116,7 +116,7 @@ class ForgetPasswordViewController: UIViewController {
     
     //MARK: @objc func
     @objc func handleCancelView(){
-        print("view tapped")
+        self.dismiss(animated: true, completion: nil)
     }
     
     @objc func formValidation(){
