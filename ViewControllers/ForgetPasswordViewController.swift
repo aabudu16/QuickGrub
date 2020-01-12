@@ -19,18 +19,18 @@ class ForgetPasswordViewController: UIViewController {
     //MARK: UI Objects
     lazy var topView:UIView = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
-     let view = UIView()
+        let view = UIView()
         view.backgroundColor = .blue
         view.addGestureRecognizer(gesture)
         return view
     }()
     
     lazy var mainCotainerView:UIView = {
-           let view = UIView()
-           view.backgroundColor = .green
-           view.alpha = 1
-           return view
-       }()
+        let view = UIView()
+        view.backgroundColor = .green
+        view.alpha = 1
+        return view
+    }()
     
     lazy var containerView: UIView = {
         let view = UIView()
@@ -71,14 +71,14 @@ class ForgetPasswordViewController: UIViewController {
         label.layer.borderColor = UIColor.black.cgColor
         label.layer.borderWidth = 2
         
-      label.font = UIFont(name: "Avenir-Black", size: 18)
+        label.font = UIFont(name: "Avenir-Black", size: 18)
         label.numberOfLines = 0
         label.text = "We just need your registered email to send you password reset"
         return label
     }()
     
     lazy var resetButton:UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
         button.setTitle("RESET PASSWORD", for: .normal)
         button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
@@ -97,7 +97,7 @@ class ForgetPasswordViewController: UIViewController {
     
     //MARK: @objc func
     @objc func handleCancelView(){
-       print("view tapped")
+        print("view tapped")
     }
     
     @objc func formValidation(){
@@ -110,22 +110,28 @@ class ForgetPasswordViewController: UIViewController {
         resetButton.backgroundColor = .blue
     }
     
-     //MARK: Private constraints
+    //MARK: Private constraints
     private func configureMainContainerViewConstraints(){
         view.addSubview(mainCotainerView)
         mainCotainerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
             [mainCotainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  15),
-             mainCotainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -15)
-                
-        ])
+             mainCotainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -15)])
         
         self.containerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
         containerViewButtomConstraint.isActive = true
         
         self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 325)
         containerViewTopConstraint.isActive = true
+    }
+    
+    private func setupContainerView() {
+        mainCotainerView.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate(
+            [containerView.leadingAnchor.constraint(equalTo: mainCotainerView.leadingAnchor),
+             containerView.trailingAnchor.constraint(equalTo: mainCotainerView.trailingAnchor), containerView.bottomAnchor.constraint(equalTo: mainCotainerView.bottomAnchor), containerView.topAnchor.constraint(equalTo: mainCotainerView.topAnchor, constant: 75)])
     }
 }
 
@@ -138,7 +144,7 @@ extension  ForgetPasswordViewController : UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         emailTextField.placeholderColor = .blue
-       
+        
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
