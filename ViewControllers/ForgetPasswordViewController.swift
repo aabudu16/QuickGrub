@@ -59,9 +59,6 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var resetLabel:UILabel = {
         let label = UILabel()
-        label.layer.borderColor = UIColor.black.cgColor
-        label.layer.borderWidth = 2
-        
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Black", size: 25)
         label.text = "Forgot password?"
@@ -70,12 +67,10 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var instructionLabel:UILabel = {
         let label = UILabel()
-        label.layer.borderColor = UIColor.black.cgColor
-        label.layer.borderWidth = 2
-        
         label.textAlignment = .center
         label.font = UIFont(name: "Avenir-Light", size: 15)
         label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
         label.text = "We just need your registered email to send you password reset"
         return label
     }()
@@ -84,7 +79,8 @@ class ForgetPasswordViewController: UIViewController {
         let button = UIButton()
         CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
         button.setTitle("RESET PASSWORD", for: .normal)
-        button.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        button.layer.borderWidth = 0.5
+        button.backgroundColor = .blue
         button.showsTouchWhenHighlighted = true
         button.isEnabled = false
         return button
@@ -98,6 +94,8 @@ class ForgetPasswordViewController: UIViewController {
         setupContainerView()
         configurelockImageConstraints()
         configureResetLabelConstraits()
+        configureInstructionLabelConstraints()
+        configureResetButtonConstraints()
         
     }
     
@@ -155,6 +153,18 @@ class ForgetPasswordViewController: UIViewController {
         containerView.addSubview(resetLabel)
         resetLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([resetLabel.topAnchor.constraint(equalTo: lockImage.bottomAnchor,constant: 3),resetLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor), resetLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor), resetLabel.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureInstructionLabelConstraints(){
+        containerView.addSubview(instructionLabel)
+        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([instructionLabel.topAnchor.constraint(equalTo: resetLabel.bottomAnchor, constant: 0),instructionLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20), instructionLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20), instructionLabel.heightAnchor.constraint(equalToConstant: 50) ])
+    }
+    
+    private func configureResetButtonConstraints(){
+        containerView.addSubview(resetButton)
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([resetButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,constant: -25), resetButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10), resetButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), resetButton.heightAnchor.constraint(equalToConstant: 50)])
     }
 }
 
