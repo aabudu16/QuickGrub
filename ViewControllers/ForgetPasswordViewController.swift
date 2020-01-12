@@ -35,8 +35,7 @@ class ForgetPasswordViewController: UIViewController {
     lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
-        CustomLayer.shared.createCustomlayer(layer: view.layer, cornerRadius: 25)
-        view.layer.borderWidth = 0
+        CustomLayer.shared.createCustomlayer(layer: view.layer, cornerRadius: 25, borderWidth: 0)
         return view
     }()
     
@@ -77,9 +76,8 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var resetButton:UIButton = {
         let button = UIButton()
-        CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25)
+        CustomLayer.shared.createCustomlayer(layer: button.layer, cornerRadius: 25, borderWidth: 0.5)
         button.setTitle("RESET PASSWORD", for: .normal)
-        button.layer.borderWidth = 0.5
         button.backgroundColor = .blue
         button.showsTouchWhenHighlighted = true
         button.isEnabled = false
@@ -96,6 +94,7 @@ class ForgetPasswordViewController: UIViewController {
         configureResetLabelConstraits()
         configureInstructionLabelConstraints()
         configureResetButtonConstraints()
+        configureEmailTextFieldConstraints()
         
     }
     
@@ -165,6 +164,14 @@ class ForgetPasswordViewController: UIViewController {
         containerView.addSubview(resetButton)
         resetButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([resetButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,constant: -25), resetButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10), resetButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), resetButton.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureEmailTextFieldConstraints(){
+        containerView.addSubview(emailTextField)
+        emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([emailTextField.bottomAnchor.constraint(equalTo: resetButton.topAnchor,constant: -60), emailTextField.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+        emailTextField.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.72),
+        emailTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.13)])
     }
 }
 

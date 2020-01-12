@@ -88,9 +88,9 @@ extension UIColor {
 //MARK: layer extension
 struct CustomLayer{
     static let shared = CustomLayer()
-    func createCustomlayer(layer:CALayer, cornerRadius:CGFloat){
+    func createCustomlayer(layer:CALayer, cornerRadius:CGFloat, borderWidth:CGFloat){
         layer.cornerRadius = cornerRadius
-        layer.borderWidth = 2
+        layer.borderWidth = borderWidth
         layer.borderColor = UIColor.black.cgColor
         layer.masksToBounds = true
         layer.shadowColor = UIColor.black.cgColor
