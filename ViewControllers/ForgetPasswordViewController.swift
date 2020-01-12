@@ -25,6 +25,10 @@ class ForgetPasswordViewController: UIViewController {
         return view
     }()
     
+    lazy var cancelIcon:UIImageView = {
+        let iv = UIImageView()
+        return iv
+    }()
     lazy var mainCotainerView:UIView = {
         let view = UIView()
         view.backgroundColor = .clear
