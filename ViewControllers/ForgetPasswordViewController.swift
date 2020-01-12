@@ -25,15 +25,20 @@ class ForgetPasswordViewController: UIViewController {
     
     lazy var cancelIcon:UIImageView = {
          let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
-        let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+        let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 70, height: 70))
+        iv.image = UIImage(systemName: "xmark.circle.fill")
+        iv.tintColor = #colorLiteral(red: 0.002074310789, green: 0.4873697162, blue: 0.7545115948, alpha: 1)
         iv.contentMode = .scaleAspectFill
         iv.layer.cornerRadius = iv.frame.height / 2
-        iv.layer.borderWidth = 2
+        iv.layer.borderWidth = 5
+        iv.backgroundColor = .white
         iv.layer.borderColor = UIColor.white.cgColor
         iv.clipsToBounds = true
+        iv.isUserInteractionEnabled = true
         iv.addGestureRecognizer(gesture)
         return iv
     }()
+    
     lazy var mainCotainerView:UIView = {
         let view = UIView()
         view.backgroundColor = .clear
@@ -106,6 +111,7 @@ class ForgetPasswordViewController: UIViewController {
         configureEmailTextFieldConstraints()
         addKeyBoardHandlingObservers()
         configureTopViewConstraints()
+        configureCancelIconConstraints()
     }
     
     //MARK: @objc func
@@ -219,6 +225,12 @@ class ForgetPasswordViewController: UIViewController {
         view.addSubview(topView)
         topView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([topView.topAnchor.constraint(equalTo: view.topAnchor), topView.leadingAnchor.constraint(equalTo: view.leadingAnchor), topView.trailingAnchor.constraint(equalTo: view.trailingAnchor), topView.heightAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func configureCancelIconConstraints(){
+        view.addSubview(cancelIcon)
+        cancelIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([cancelIcon.centerXAnchor.constraint(equalTo: topView.centerXAnchor), cancelIcon.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(cancelIcon.frame.height / 2)), cancelIcon.heightAnchor.constraint(equalToConstant: 70), cancelIcon.widthAnchor.constraint(equalToConstant: 70)])
     }
 }
 
