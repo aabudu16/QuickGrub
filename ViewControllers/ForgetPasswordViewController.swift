@@ -41,12 +41,13 @@ class ForgetPasswordViewController: UIViewController {
     }()
     
     lazy var lockImage:UIImageView = {
-        let image = UIImageView()
-        image.layer.borderColor = UIColor.black.cgColor
-        image.layer.borderWidth = 2
-        
-        image.image = UIImage(named: "lockIcon")
-        return image
+        let iv = UIImageView(frame: CGRect(x: 0, y: 0, width: 150, height: 150))
+        iv.contentMode = .scaleAspectFill
+        iv.layer.cornerRadius = iv.layer.frame.height / 2
+        iv.backgroundColor = .white
+        iv.clipsToBounds = true
+        iv.image = UIImage(named: "lockIcon")
+        return iv
     }()
     
     lazy var emailTextField:HoshiTextField = {
@@ -92,6 +93,8 @@ class ForgetPasswordViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureMainContainerViewConstraints()
+        setupContainerView()
+        configurelockImageConstraints()
         
     }
     
@@ -122,7 +125,7 @@ class ForgetPasswordViewController: UIViewController {
         self.containerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
         containerViewButtomConstraint.isActive = true
         
-        self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 325)
+        self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 280)
         containerViewTopConstraint.isActive = true
     }
     
@@ -133,6 +136,17 @@ class ForgetPasswordViewController: UIViewController {
             [containerView.leadingAnchor.constraint(equalTo: mainCotainerView.leadingAnchor),
              containerView.trailingAnchor.constraint(equalTo: mainCotainerView.trailingAnchor), containerView.bottomAnchor.constraint(equalTo: mainCotainerView.bottomAnchor), containerView.topAnchor.constraint(equalTo: mainCotainerView.topAnchor, constant: 75)])
     }
+    
+    private func configurelockImageConstraints() {
+           mainCotainerView.addSubview(lockImage)
+           lockImage.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate(
+               [lockImage.widthAnchor.constraint(equalToConstant: 150), lockImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                lockImage.heightAnchor
+                   .constraint(equalToConstant: 150)])
+           imageViewTopConstraint = lockImage.topAnchor.constraint(equalTo: mainCotainerView.topAnchor)
+           imageViewTopConstraint.isActive = true
+       }
 }
 
 //MARK: Extension
