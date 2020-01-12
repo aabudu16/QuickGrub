@@ -20,7 +20,7 @@ class ForgetPasswordViewController: UIViewController {
     lazy var topView:UIView = {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(handleCancelView))
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = #colorLiteral(red: 0.002074310789, green: 0.4873697162, blue: 0.7545115948, alpha: 1)
         view.addGestureRecognizer(gesture)
         return view
     }()
@@ -96,6 +96,7 @@ class ForgetPasswordViewController: UIViewController {
         configureResetButtonConstraints()
         configureEmailTextFieldConstraints()
         addKeyBoardHandlingObservers()
+        configureTopViewConstraints()
     }
     
     //MARK: @objc func
@@ -203,6 +204,12 @@ class ForgetPasswordViewController: UIViewController {
         NSLayoutConstraint.activate([emailTextField.bottomAnchor.constraint(equalTo: resetButton.topAnchor,constant: -60), emailTextField.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
         emailTextField.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.72),
         emailTextField.heightAnchor.constraint(equalTo: containerView.heightAnchor, multiplier: 0.13)])
+    }
+    
+    private func configureTopViewConstraints(){
+        view.addSubview(topView)
+        topView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([topView.topAnchor.constraint(equalTo: view.topAnchor), topView.leadingAnchor.constraint(equalTo: view.leadingAnchor), topView.trailingAnchor.constraint(equalTo: view.trailingAnchor), topView.heightAnchor.constraint(equalToConstant: 50)])
     }
 }
 
