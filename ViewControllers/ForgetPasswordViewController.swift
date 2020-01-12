@@ -95,7 +95,7 @@ class ForgetPasswordViewController: UIViewController {
         configureInstructionLabelConstraints()
         configureResetButtonConstraints()
         configureEmailTextFieldConstraints()
-        
+        addKeyBoardHandlingObservers()
     }
     
     //MARK: @objc func
@@ -113,6 +113,37 @@ class ForgetPasswordViewController: UIViewController {
         resetButton.backgroundColor = .blue
     }
     
+    @objc func handleKeyBoardShowing(sender notification:Notification){
+           guard let infoDict = notification.userInfo else {return}
+           guard let keyboardFreme = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+           guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
+           
+           self.mainContainerViewButtomConstraint.constant = -100 - (keyboardFreme.height - 250)
+           self.containerViewTopConstraint.constant = 280 - (keyboardFreme.height - 250)
+           
+           UIView.animate(withDuration: duration) {
+               self.view.layoutIfNeeded()
+           }
+       }
+       
+       @objc func handleKeyBoardHiding(sender notification:Notification){
+           guard let infoDict = notification.userInfo else {return}
+           guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
+           
+           self.mainContainerViewButtomConstraint.constant = -100
+           self.containerViewTopConstraint.constant = 280
+           
+           UIView.animate(withDuration: duration) {
+               self.view.layoutIfNeeded()
+           }
+       }
+    
+    //MARK: Private function
+    private func addKeyBoardHandlingObservers(){
+           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
+    
     //MARK: Private constraints
     private func configureMainContainerViewConstraints(){
         view.addSubview(mainCotainerView)
@@ -122,8 +153,8 @@ class ForgetPasswordViewController: UIViewController {
             [mainCotainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant:  15),
              mainCotainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -15)])
         
-        self.containerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
-        containerViewButtomConstraint.isActive = true
+        self.mainContainerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
+        mainContainerViewButtomConstraint.isActive = true
         
         self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 280)
         containerViewTopConstraint.isActive = true
