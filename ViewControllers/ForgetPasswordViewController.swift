@@ -12,7 +12,7 @@ import TextFieldEffects
 class ForgetPasswordViewController: UIViewController {
     
     //MARK: properties
-    private var containerViewButtomConstraint = NSLayoutConstraint()
+    private var mainContainerViewButtomConstraint = NSLayoutConstraint()
     private var containerViewTopConstraint = NSLayoutConstraint()
     private var imageViewTopConstraint = NSLayoutConstraint()
     

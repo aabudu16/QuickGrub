@@ -17,7 +17,7 @@ class LoginViewController: UIViewController {
     //MARK: properties
     var userName:String!
     private var currentUser: Result<User, Error>!
-    private var containerViewButtomConstraint = NSLayoutConstraint()
+    private var mainContainerViewButtomConstraint = NSLayoutConstraint()
     private var containerViewTopConstraint = NSLayoutConstraint()
     private var imageViewTopConstraint = NSLayoutConstraint()
     
@@ -316,7 +316,7 @@ class LoginViewController: UIViewController {
         guard let keyboardFreme = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
         guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
         
-        self.containerViewButtomConstraint.constant = -100 - (keyboardFreme.height - 50)
+        self.mainContainerViewButtomConstraint.constant = -100 - (keyboardFreme.height - 50)
         self.containerViewTopConstraint.constant = 325 - (keyboardFreme.height - 50)
         
         UIView.animate(withDuration: duration) {
@@ -328,7 +328,7 @@ class LoginViewController: UIViewController {
         guard let infoDict = notification.userInfo else {return}
         guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
         
-        self.containerViewButtomConstraint.constant = -100
+        self.mainContainerViewButtomConstraint.constant = -100
         self.containerViewTopConstraint.constant = 325
         
         UIView.animate(withDuration: duration) {
@@ -726,8 +726,8 @@ class LoginViewController: UIViewController {
                 
         ])
         
-        self.containerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
-        containerViewButtomConstraint.isActive = true
+        self.mainContainerViewButtomConstraint = mainCotainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -100)
+        mainContainerViewButtomConstraint.isActive = true
         
         self.containerViewTopConstraint = mainCotainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: 325)
         containerViewTopConstraint.isActive = true
