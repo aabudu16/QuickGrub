@@ -17,6 +17,8 @@ class FoodImagesViewController: UIViewController {
         didSet{
             if userInfo?.isInformed == false {
                 configureDimViewConstraints()
+            }else{
+                collectionView.isUserInteractionEnabled = true
             }
         }
     }
