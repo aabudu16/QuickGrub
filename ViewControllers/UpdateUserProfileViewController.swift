@@ -117,9 +117,25 @@ class UpdateUserProfileViewController: UIViewController {
     
     lazy var logoutButton:UIButton = {
         let button = UIButton()
+        button.layer.borderColor = UIColor.black.cgColor
+       button.layer.borderWidth = 2
+        
+        button.tintColor = .black
         button.setImage(UIImage(named: "logout"), for: .normal)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         return button
+    }()
+    
+    lazy var logoutLabel:UILabel = {
+        let guesture = UITapGestureRecognizer(target: self, action: #selector(handleLogout))
+        let label = UILabel()
+        label.layer.borderColor = UIColor.black.cgColor
+        label.layer.borderWidth = 2
+        
+        label.text = "logout"
+        label.isUserInteractionEnabled = true
+        label.addGestureRecognizer(guesture)
+        return label
     }()
     
     //MARK: LifeCycle
@@ -142,6 +158,8 @@ class UpdateUserProfileViewController: UIViewController {
         setupUserNameTextField()
         setupUserEmailTextField()
         setImageURLString()
+        configureLogoutButtonConstraints()
+        configureLogoutLabelConstraints()
         
     }
     
@@ -361,8 +379,22 @@ class UpdateUserProfileViewController: UIViewController {
         NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor), activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor), activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor), activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
+    private func configureLogoutButtonConstraints(){
+        view.addSubview(logoutButton)
+        logoutButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5), logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100), logoutButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.09),
+        logoutButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.045)])
+    }
+    
+    private func  configureLogoutLabelConstraints(){
+        view.addSubview(logoutLabel)
+        logoutLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([logoutLabel.topAnchor.constraint(equalTo: logoutButton.topAnchor), logoutLabel.leadingAnchor.constraint(equalTo: logoutButton.trailingAnchor), logoutLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor), logoutLabel.heightAnchor.constraint(equalTo: logoutButton.heightAnchor)])
+    }
+    
 }
 
+//MARK:-- Extensions
 extension UpdateUserProfileViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
