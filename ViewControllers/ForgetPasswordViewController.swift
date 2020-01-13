@@ -95,6 +95,7 @@ class ForgetPasswordViewController: UIViewController {
         button.backgroundColor = .blue
         button.showsTouchWhenHighlighted = true
         button.isEnabled = false
+        button.addTarget(self, action: #selector(handleResetButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -117,6 +118,22 @@ class ForgetPasswordViewController: UIViewController {
     //MARK: @objc func
     @objc func handleCancelView(){
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func handleResetButtonPressed(){
+        guard let email = emailTextField.text, emailTextField.text != "" else {
+            self.showAlert(alertTitle: "Error", alertMessage: "Please enter a valid email address", actionTitle: "OK")
+            return
+        }
+        
+        FirebaseAuthService.manager.resetPassword(email: email) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "There seems to be a problem resetting your password. Please try again or contact customer service. Error: \(error)", actionTitle: "OK")
+            case .success(()):
+                self.showAlert(alertTitle: "Success", alertMessage: "A message has been sent to your email provided. Please follow instruction to reset your password", actionTitle: "OK")
+            }
+        }
     }
     
     @objc func formValidation(){
