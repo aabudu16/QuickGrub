@@ -56,6 +56,16 @@ class FirebaseAuthService {
         })
     }
     
+    func resetPassword(email:String, completion: @escaping (Result<(), Error>) -> ()){
+        auth.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                completion(.failure(error))
+            }else{
+                completion(.success(()))
+            }
+        }
+    }
+    
     func loginUser(email: String, password: String, completion: @escaping (Result<(), Error>) -> ()) {
         auth.signIn(withEmail: email, password: password) { (result, error) in
             if let user = result?.user {
