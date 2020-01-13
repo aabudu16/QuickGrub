@@ -15,7 +15,9 @@ import FirebaseAuth
 class FoodImagesViewController: UIViewController {
     var userInfo:UserProfile? {
         didSet{
-            
+            if userInfo?.isInformed == false {
+                configureDimViewConstraints()
+            }
         }
     }
     //MARK: -- CoreLocation Coordinate
@@ -177,8 +179,7 @@ class FoodImagesViewController: UIViewController {
         configureCollectionviewConstraints()
         
         
-       // getUserInfo()
-        configureDimViewConstraints()
+        getUserInfo()
         configureInstructionLabelViewConstraints()
         configureInstructionLabelConstraints()
         configureCheckMarkIndicatorViewConstraints()
@@ -215,7 +216,19 @@ class FoodImagesViewController: UIViewController {
     
     // MARK: Private function
     
-   
+    private func getUserInfo(){
+        guard let userID = FirebaseAuthService.manager.currentUser?.uid else {
+            return
+        }
+        FirestoreService.manager.getUser(userID: userID) { [weak self](result) in
+            switch result{
+            case .failure(let error):
+                print(error)
+            case .success(let userInfo):
+                self?.userInfo = userInfo
+            }
+        }
+    }
     
     private func popViewControllerAlert(){
         let alert = UIAlertController(title: "Sorry no results where found", message: "Increase your search distance in the filter and try again", preferredStyle: .alert)
