@@ -20,7 +20,7 @@ struct UserProfile {
         self.isInformed = false
     }
     
-    init?(from dict: [String: Any], id: String,  isInformed:Bool) {
+    init?(from dict: [String: Any], id: String) {
         guard let userName = dict["userName"] as? String,
             let email = dict["email"] as? String,
             let photoURL = dict["photoURL"] as? String,

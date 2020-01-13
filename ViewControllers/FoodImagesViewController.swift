@@ -11,8 +11,13 @@ import CoreLocation
 import FirebaseFirestore
 import FirebaseAuth
 
+
 class FoodImagesViewController: UIViewController {
-    
+    var userInfo:UserProfile? {
+        didSet{
+            
+        }
+    }
     //MARK: -- CoreLocation Coordinate
     let plus = UIImage(systemName: "plus")
     let checkmark = UIImage(systemName: "checkmark")
@@ -171,6 +176,8 @@ class FoodImagesViewController: UIViewController {
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
         
+        
+       // getUserInfo()
         configureDimViewConstraints()
         configureInstructionLabelViewConstraints()
         configureInstructionLabelConstraints()
@@ -207,6 +214,8 @@ class FoodImagesViewController: UIViewController {
     }
     
     // MARK: Private function
+    
+   
     
     private func popViewControllerAlert(){
         let alert = UIAlertController(title: "Sorry no results where found", message: "Increase your search distance in the filter and try again", preferredStyle: .alert)

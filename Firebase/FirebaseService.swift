@@ -93,12 +93,23 @@ class FirestoreService {
                 completion(.failure(error))
             } else {
                 let users = snapshot?.documents.compactMap({ (snapshot) -> UserProfile? in
-                    let isInformed = false
                     let userID = snapshot.documentID
-                    let user = UserProfile(from: snapshot.data(), id: userID, isInformed: isInformed)
+                    let user = UserProfile(from: snapshot.data(), id: userID)
                     return user
                 })
                 completion(.success(users ?? []))
+            }
+        }
+    }
+    
+    func getUser(userID:String, completion:@escaping (Result<UserProfile, Error>) -> ()){
+        db.collection(FireStoreCollections.users.rawValue).document(userID).getDocument { (snapshot, error) in
+            if let error = error{
+                completion(.failure(error))
+            }else {
+                let userdata = snapshot?.data()
+                let user = UserProfile(from: userdata!, id: userID)
+                completion(.success(user!))
             }
         }
     }
