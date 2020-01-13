@@ -109,6 +109,7 @@ class WelcomeViewController: UIViewController {
     
     lazy var welcomeLabel:UILabel = {
         let label = UILabel(textAlignment: .center, text: "Welcome")
+        label.font = UIFont(name: "HelveticaNeue-Bold", size: 18)
         return label
     }()
     
