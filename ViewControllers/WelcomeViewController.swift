@@ -125,13 +125,6 @@ class WelcomeViewController: UIViewController {
         return  button
     }()
     
-    lazy var logoutButton:UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "logoutIcon2"), for: .normal)
-        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
-        return button
-    }()
-    
     lazy var profileImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 1
@@ -229,18 +222,7 @@ class WelcomeViewController: UIViewController {
     @objc func handleFavoriteButtonPressed(){
         self.showAlert(alertTitle: "Sorry", alertMessage: "This favorite button  is not activate yet. Ayoola is currently working on this feature. Please be patient and enjoy all the wonderful things you can do with the category button above 🙂. ", actionTitle: "OK")
     }
-    
-    @objc func handleLogout(){
-        do{
-            try Auth.auth().signOut()
-            let loginVC = LoginViewController()
-            loginVC.modalPresentationStyle = .fullScreen
-            present(loginVC, animated: true, completion: nil)
-        }catch let error{
-            showAlert(with: "Error", and: "Problem logining out \(error)")
-        }
-    }
-    
+        
     @objc func handlePriceButtonPressed(sender:UIButton){
         buttonArray.forEach { (button) in
             switch button.tag{

@@ -13,7 +13,7 @@ import Kingfisher
 
 class UpdateUserProfileViewController: UIViewController {
     //MARK: UI Objects
-    // var isImageStoredInFireBase = false
+    
     var imageURL: URL?
     lazy var updateProfileLabel:UILabel = {
         let label = UILabel()
@@ -44,10 +44,10 @@ class UpdateUserProfileViewController: UIViewController {
         view.layer.borderColor = UIColor.white.cgColor
         return view
     }()
+    
     lazy var rightBarButton:UIBarButtonItem = {
         let settingsImage = UIImage(systemName: "gear")
         let button = UIBarButtonItem(image: settingsImage, style: .plain, target: self, action: #selector(handleSettingsButtonPressed(_:)))
-        
         button.tintColor = .black
         return button
     }()
@@ -113,6 +113,13 @@ class UpdateUserProfileViewController: UIViewController {
         av.style = .large
         av.hidesWhenStopped = true
         return av
+    }()
+    
+    lazy var logoutButton:UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "logout"), for: .normal)
+        button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
+        return button
     }()
     
     //MARK: LifeCycle
@@ -208,6 +215,19 @@ class UpdateUserProfileViewController: UIViewController {
         print("Image view tapped")
     }
     
+    @objc func handleLogout(){
+        FirebaseAuthService.manager.logoutUser { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "Seem to have problem logining out \(error)", actionTitle: "OK")
+            case .success(()):
+                let loginVC = LoginViewController()
+                loginVC.modalPresentationStyle = .fullScreen
+                self.present(loginVC, animated: true, completion: nil)
+            }
+        }
+      }
+    
     //MARK: Private function
 
     func showDismissAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
@@ -294,7 +314,7 @@ class UpdateUserProfileViewController: UIViewController {
         view.addSubview(updateButton)
         updateButton.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([updateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -35), updateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),updateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),updateButton.heightAnchor.constraint(equalToConstant: 45)])
+        NSLayoutConstraint.activate([updateButton.topAnchor.constraint(equalToSystemSpacingBelow: userEmailTextField.bottomAnchor, multiplier: 10), updateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),updateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),updateButton.heightAnchor.constraint(equalToConstant: 45)])
     }
     
     private func configureCamerabuttonConstraints(){
