@@ -18,6 +18,39 @@ class FavoriteViewController: UIViewController {
     }
     
     
+    
+    var userFavorites = [ UserFavorite](){
+        didSet{
+            for individualBusiness in userFavorites{
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: nil) { [weak self] (business) in
+                    DispatchQueue.main.async {
+                        if let business = business {
+                            self?.businessFullDetail.append(business)
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
+    
+    private func getFavorites(){
+        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
+            return
+        }
+        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "Seems to be a problem loading your favorites \(error)", actionTitle: "OK")
+            case .success(let favorites):
+                DispatchQueue.main.async {
+                    self.userFavorites = favorites
+                }
+            }
+        }
+    }
+    
+    
     enum Const {
         static let closeCellHeight: CGFloat = 179
         static let openCellHeight: CGFloat = 488
@@ -37,6 +70,7 @@ class FavoriteViewController: UIViewController {
         setDelegation()
         configureTableViewConstraints()
         setup()
+        getFavorites()
     }
     
     
@@ -79,11 +113,13 @@ class FavoriteViewController: UIViewController {
 extension FavoriteViewController: UITableViewDelegate{}
 extension FavoriteViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        <#code#>
+        return businessFullDetail.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        <#code#>
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: <#T##String#>) as? FoldingCell else {return UITableViewCell()}
+        
+        return cell
     }
     
     
