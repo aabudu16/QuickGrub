@@ -18,6 +18,7 @@ protocol CollectionViewCellDelegate: AnyObject {
 
 protocol FoldingCellDelegate: AnyObject {
     func navigateToDestination(tag: Int)
+    func handleFavorite(tag:Int)
 }
 
 protocol NavigateToRestaurantDetailVCDelegate: AnyObject {

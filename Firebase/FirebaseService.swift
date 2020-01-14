@@ -162,7 +162,6 @@ class FirestoreService {
                 completion(.success(favorite ?? []))
             }
         }
-        
     }
     
     private init () {}

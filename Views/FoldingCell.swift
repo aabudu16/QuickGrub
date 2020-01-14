@@ -119,6 +119,7 @@ open class FoldingCell: UITableViewCell {
         let heart = UIButton()
         heart.contentMode = .scaleToFill
         heart.setImage(UIImage(systemName: "heart")?.withTintColor(.white), for: .normal)
+        heart.addTarget(self, action: #selector(handleFavoriteButtonPressed), for: .touchUpInside)
         return heart
     }()
     
@@ -268,7 +269,7 @@ open class FoldingCell: UITableViewCell {
     }
     
     
-    
+    //MARK: -- @objc Function
     @objc func handleMoreButtonPressed(sender:UIButton){
         detailVCDelegate?.navigateToDetailedViewController(tag: sender.tag)
     }
@@ -279,6 +280,9 @@ open class FoldingCell: UITableViewCell {
         
     }
     
+    @objc func handleFavoriteButtonPressed(sender:UIButton){
+        delegate?.handleFavorite(tag: sender.tag)
+    }
     
     @objc open func commonInit() {
         configureDefaultState()

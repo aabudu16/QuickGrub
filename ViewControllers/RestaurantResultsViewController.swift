@@ -149,6 +149,7 @@ extension RestaurantResultsViewController:UITableViewDataSource{
         cell.navigateButtom.tag = indexPath.row
         cell.detailVCDelegate = self
         cell.moreDetailButton.tag = indexPath.row
+        cell.heartImage.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = userFoodImageSelection[indexPath.row]
         cell.configureBusinessData(business: businessInfo, distance: distance)
@@ -160,6 +161,12 @@ extension RestaurantResultsViewController:UITableViewDataSource{
 }
 
 extension RestaurantResultsViewController: FoldingCellDelegate{
+    func handleFavorite(tag: Int) {
+        let businessInfo = businessFullDetail[tag]
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        
+    }
+    
     func navigateToDestination(tag: Int) {
        let businessInfo = businessFullDetail[tag]
         guard let lat = businessInfo.coordinates?.latitude, let long =  businessInfo.coordinates?.longitude else {return}
