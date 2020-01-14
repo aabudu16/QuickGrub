@@ -54,9 +54,6 @@ class FirestoreService {
         if let email = email {
             updateFields["email"] = email
         }
-//        if let isInformed = isInformed{
-//            updateFields["isInformed"] = isInformed
-//        }
         db.collection(FireStoreCollections.users.rawValue).document(userId).updateData(updateFields) { (error) in
             if let error = error {
                 completion(.failure(error))
@@ -69,7 +66,6 @@ class FirestoreService {
     
     func updateCurrentUserIsInformedField(isInformed:Bool? = true, completion: @escaping (Result<(), Error>) -> ()){
         guard let userId = FirebaseAuthService.manager.currentUser?.uid else {
-            //MARK: TODO - handle can't get current user
             return
         }
         var updateFields = [String:Any]()
@@ -114,8 +110,8 @@ class FirestoreService {
     }
     
     //MARK: Posts
-    func createPost(post: Post, completion: @escaping (Result<(), Error>) -> ()) {
-        var fields = post.fieldsDict
+    func createFavorite(favorite: UserFavorite, completion: @escaping (Result<(), Error>) -> ()) {
+        var fields = favorite.fieldsDict
         fields["dateCreated"] = Date()
         db.collection(FireStoreCollections.favorite.rawValue).addDocument(data: fields) { (error) in
             if let error = error {
@@ -126,17 +122,17 @@ class FirestoreService {
         }
     }
     
-     func getAllPosts(sortingCriteria: SortingCriteria? = nil, completion: @escaping (Result<[Post], Error>) -> ()) {
+     func getAllFavorites(sortingCriteria: SortingCriteria? = nil, completion: @escaping (Result<[UserFavorite], Error>) -> ()) {
             let completionHandler: FIRQuerySnapshotBlock = {(snapshot, error) in
                 if let error = error {
                     completion(.failure(error))
                 } else {
-                    let posts = snapshot?.documents.compactMap({ (snapshot) -> Post? in
-                        let postID = snapshot.documentID
-                        let post = Post(from: snapshot.data(), id: postID)
-                        return post
+                    let favorites = snapshot?.documents.compactMap({ (snapshot) -> UserFavorite? in
+                        let favoriteID = snapshot.documentID
+                        let favorite = UserFavorite(from: snapshot.data(), id: favoriteID)
+                        return favorite
                     })
-                    completion(.success(posts ?? []))
+                    completion(.success(favorites ?? []))
                 }
             }
             
@@ -153,17 +149,17 @@ class FirestoreService {
         }
 
 
-    func getPosts(forUserID: String, completion: @escaping (Result<[Post], Error>) -> ()) {
+    func getFavorites(forUserID: String, completion: @escaping (Result<[UserFavorite], Error>) -> ()) {
         db.collection(FireStoreCollections.favorite.rawValue).whereField("creatorID", isEqualTo: forUserID).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
-                let posts = snapshot?.documents.compactMap({ (snapshot) -> Post? in
-                    let postID = snapshot.documentID
-                    let post = Post(from: snapshot.data(), id: postID)
-                    return post
+                let favorite = snapshot?.documents.compactMap({ (snapshot) -> UserFavorite? in
+                    let fovoriteID = snapshot.documentID
+                    let favorite = UserFavorite(from: snapshot.data(), id: fovoriteID)
+                    return favorite
                 })
-                completion(.success(posts ?? []))
+                completion(.success(favorite ?? []))
             }
         }
         
