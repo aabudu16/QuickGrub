@@ -12,6 +12,7 @@
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
 		8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */; };
+		8504D50F23CD367E002257A4 /* UserFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50E23CD367E002257A4 /* UserFavorite.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -82,7 +83,6 @@
 		85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5623902D9B00048FCB /* FirebaseStorageService.swift */; };
 		85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5723902D9B00048FCB /* FirebaseService.swift */; };
 		85F92A5E23902DD900048FCB /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5C23902DD900048FCB /* UserProfile.swift */; };
-		85F92A5F23902DD900048FCB /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A5D23902DD900048FCB /* Post.swift */; };
 		85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85F92A6023903F4100048FCB /* String+Extensions.swift */; };
 		C25704EA69820AD99E7D9B27 /* Pods_Quick_Grub2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */; };
 /* End PBXBuildFile section */
@@ -106,6 +106,7 @@
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
 		8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
+		8504D50E23CD367E002257A4 /* UserFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavorite.swift; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -181,7 +182,6 @@
 		85F92A5623902D9B00048FCB /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		85F92A5723902D9B00048FCB /* FirebaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseService.swift; sourceTree = "<group>"; };
 		85F92A5C23902DD900048FCB /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
-		85F92A5D23902DD900048FCB /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		85F92A6023903F4100048FCB /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C8E4CB845CA1560577CCB37F /* Pods-Quick-Grub2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.debug.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.debug.xcconfig"; sourceTree = "<group>"; };
@@ -413,8 +413,8 @@
 			children = (
 				85F92A5C23902DD900048FCB /* UserProfile.swift */,
 				854D6D5A23A43224001BD091 /* FilterModel.swift */,
+				8504D50E23CD367E002257A4 /* UserFavorite.swift */,
 				854D6D5C23A51B13001BD091 /* Enums.swift */,
-				85F92A5D23902DD900048FCB /* Post.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -641,6 +641,7 @@
 				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
 				85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */,
 				854D6D4623A28E76001BD091 /* CDYelpAutoCompleteResponse.swift in Sources */,
+				8504D50F23CD367E002257A4 /* UserFavorite.swift in Sources */,
 				854D6D5D23A51B13001BD091 /* Enums.swift in Sources */,
 				854D6D4B23A28E76001BD091 /* CDYelpAPIClient.swift in Sources */,
 				854D6D4323A28E76001BD091 /* CDYelpEventsResponse.swift in Sources */,
@@ -660,7 +661,6 @@
 				854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */,
 				854D6D4823A28E76001BD091 /* CDYelpEnums.swift in Sources */,
 				859A29F423BA5A70005F8173 /* Protocol.swift in Sources */,
-				85F92A5F23902DD900048FCB /* Post.swift in Sources */,
 				854D6D3F23A28E76001BD091 /* CDYelpBusiness.swift in Sources */,
 				854D6D5F23A5DF3D001BD091 /* GenericAlert.swift in Sources */,
 				858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */,

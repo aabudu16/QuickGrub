@@ -5,8 +5,7 @@ import FirebaseFirestore
 
 enum FireStoreCollections: String {
     case users
-    case posts
-    case comments
+    case favorite
 }
 
 enum SortingCriteria: String {
@@ -118,7 +117,7 @@ class FirestoreService {
     func createPost(post: Post, completion: @escaping (Result<(), Error>) -> ()) {
         var fields = post.fieldsDict
         fields["dateCreated"] = Date()
-        db.collection(FireStoreCollections.posts.rawValue).addDocument(data: fields) { (error) in
+        db.collection(FireStoreCollections.favorite.rawValue).addDocument(data: fields) { (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -142,7 +141,7 @@ class FirestoreService {
             }
             
             //type: Collection Reference
-            let collection = db.collection(FireStoreCollections.posts.rawValue)
+            let collection = db.collection(FireStoreCollections.favorite.rawValue)
             //If i want to sort, or even to filter my collection, it's going to work with an instance of a different type - FIRQuery
             //collection + sort/filter settings.getDocuments
             if let sortingCriteria = sortingCriteria {
@@ -155,7 +154,7 @@ class FirestoreService {
 
 
     func getPosts(forUserID: String, completion: @escaping (Result<[Post], Error>) -> ()) {
-        db.collection(FireStoreCollections.posts.rawValue).whereField("creatorID", isEqualTo: forUserID).getDocuments { (snapshot, error) in
+        db.collection(FireStoreCollections.favorite.rawValue).whereField("creatorID", isEqualTo: forUserID).getDocuments { (snapshot, error) in
             if let error = error {
                 completion(.failure(error))
             } else {
