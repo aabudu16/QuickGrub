@@ -160,17 +160,21 @@ class WelcomeViewController: UIViewController {
         return button
     }()
     
+    
+    //MARK:-- LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
         setupFilterView()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupProfileImage()
         setupWelcomeLabel()
+         navigationController?.isNavigationBarHidden = true
     }
+    
     //MARK: Objc functions
     
     @objc func handleMenuButtonPressed(){
@@ -276,7 +280,6 @@ class WelcomeViewController: UIViewController {
         configureRandomButtonnConstraints()
         configureLogoutButtonConstraints()
         configureProfileImageConstraint()
-        navigationController?.isNavigationBarHidden = true
     }
     
     private func setupFilterView(){

@@ -19,11 +19,12 @@ protocol CollectionViewCellDelegate: AnyObject {
 protocol FoldingCellDelegate: AnyObject {
     func navigateToDestination(tag: Int)
     func handleFavorite(tag:Int)
-}
-
-protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
     func navigateToDetailedViewController(tag: Int)
 }
+
+//protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
+//    func navigateToDetailedViewController(tag: Int)
+//}
 
 protocol YelpCustomerProfileDelegate:AnyObject{
     func viewCustomerProfile(tag:Int)

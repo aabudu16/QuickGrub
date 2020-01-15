@@ -65,6 +65,8 @@ class FavoriteViewController: UIViewController {
     
     var cellHeights: [CGFloat] = []
     
+    
+    //MARK:-- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
@@ -72,8 +74,15 @@ class FavoriteViewController: UIViewController {
         configureTableViewConstraints()
         setup()
         getFavorites()
+        let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+        self.title = "Favorite"
+    }
     
     private func setDelegation(){
         tableView.delegate = self
@@ -166,15 +175,29 @@ extension FavoriteViewController: UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.resturantCell.rawValue) as? FoldingCell else {return UITableViewCell()}
         
-    //    cell.delegate = self
+        cell.delegate = self
         cell.navigateButtom.tag = indexPath.row
-      //  cell.detailVCDelegate = self
         cell.moreDetailButton.tag = indexPath.row
         cell.heartImage.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = businessFullDetail[indexPath.row]
         cell.configureBusinessData(business: businessInfo, distance: distance)
+        cell.distanceLabel.isHidden = true
         return cell
+    }
+}
+
+extension FavoriteViewController: FoldingCellDelegate{
+    func navigateToDestination(tag: Int) {
+        <#code#>
+    }
+    
+    func handleFavorite(tag: Int) {
+        <#code#>
+    }
+    
+    func navigateToDetailedViewController(tag: Int) {
+        <#code#>
     }
     
     

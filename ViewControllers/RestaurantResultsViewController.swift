@@ -21,7 +21,7 @@ class RestaurantResultsViewController: UIViewController {
     var userFoodImageSelection = [ CDYelpBusiness](){
         didSet{
             for individualBusiness in userFoodImageSelection{
-                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: nil) { [weak self] (business) in
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: .english_unitedStates) { [weak self] (business) in
                     DispatchQueue.main.async {
                        if let business = business {
                         self?.businessFullDetail.append(business)
@@ -147,7 +147,6 @@ extension RestaurantResultsViewController:UITableViewDataSource{
         guard let cell = tableView.dequeueReusableCell(withIdentifier: ResturantCellIdentifier.resturantCell.rawValue, for: indexPath) as? FoldingCell else {return UITableViewCell()}
         cell.delegate = self
         cell.navigateButtom.tag = indexPath.row
-        cell.detailVCDelegate = self
         cell.moreDetailButton.tag = indexPath.row
         cell.heartImage.tag = indexPath.row
         let businessInfo = businessFullDetail[indexPath.row]
@@ -161,6 +160,14 @@ extension RestaurantResultsViewController:UITableViewDataSource{
 }
 
 extension RestaurantResultsViewController: FoldingCellDelegate{
+     func navigateToDetailedViewController(tag: Int) {
+           let businessInfo = businessFullDetail[tag]
+           
+           let restaurantDetailVC = RestaurantDetailViewController()
+           restaurantDetailVC.business = businessInfo
+           self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
+       }
+    
     func handleFavorite(tag: Int) {
         let businessInfo = businessFullDetail[tag]
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -189,14 +196,4 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
     }
 }
 
-extension RestaurantResultsViewController: NavigateToRestaurantDetailVCDelegate{
-    func navigateToDetailedViewController(tag: Int) {
-        let businessInfo = businessFullDetail[tag]
-        
-        let restaurantDetailVC = RestaurantDetailViewController()
-        restaurantDetailVC.business = businessInfo
-        self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
-    }
-    
-}
 
