@@ -173,15 +173,15 @@ open class FoldingCell: UITableViewCell {
         
         
         self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-        if (business.location?.displayAddress?.count)! > 1{
-            if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-            }
-        }else{
-            if let displayAddress = business.location?.displayAddress{
-            addressTextView.text = "\(displayAddress[0])"
-            }
-        }
+//        if (business.location?.displayAddress?.count)! > 1{
+//            if let displayAddress = business.location?.displayAddress{
+//                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+//            }
+//        }else{
+//            if let displayAddress = business.location?.displayAddress{
+//            addressTextView.text = "\(displayAddress[0])"
+//            }
+//        }
 
         resturantPhoneNumber.text = business.displayPhone
         distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"

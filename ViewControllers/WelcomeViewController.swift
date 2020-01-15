@@ -221,7 +221,8 @@ class WelcomeViewController: UIViewController {
     }
     
     @objc func handleFavoriteButtonPressed(){
-        self.showAlert(alertTitle: "Sorry", alertMessage: "This favorite button  is not activate yet. Ayoola is currently working on this feature. Please be patient and enjoy all the wonderful things you can do with the category button above 🙂. ", actionTitle: "OK")
+        let favoriteVC = FavoriteViewController()
+        navigationController?.pushViewController(favoriteVC, animated: true)
     }
         
     @objc func handlePriceButtonPressed(sender:UIButton){
