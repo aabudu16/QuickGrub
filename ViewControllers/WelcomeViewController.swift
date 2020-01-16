@@ -310,7 +310,7 @@ class WelcomeViewController: UIViewController {
     
     private func setupWelcomeLabel(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
-        welcomeLabel.text = "Welcome \(currentUser.displayName ?? "")"
+        welcomeLabel.text = "Welcome \(currentUser.displayName?.capitalized ?? "")"
     }
    private func addToStackViewButtons(array : [UIButton]) -> UIStackView {
         let sv = UIStackView(arrangedSubviews: array)

@@ -63,7 +63,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     
     public func configureCategoryCollectionViewCell(with category:CDYelpCategoryAlias){
         
-        categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ")
+        categoryLabel.text = category.rawValue.replacingOccurrences(of: "_", with: " ").capitalized
         self.backgroundColor = .white
         let image = UIImage(named: category.rawValue)
         categoryImage.image = image
