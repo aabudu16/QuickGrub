@@ -21,10 +21,10 @@ To create a new account, you can swipe on the SegmentedControl.
 
 ## CategoryViewController
 
-- choose what categories of food you would like to search (1 or more),
+- Choose what categories of food you would like to search (1 or more),
 or search by category name.
-- click on home button to return to welcome page. 
-- click on rest button to unselect categories. 
+- Click on home button to return to welcome page. 
+- Click on rest button to unselect categories. 
 
 ## FoodImagesViewController
 
@@ -33,20 +33,20 @@ then click next.
 
 ## RestaurantResultsViewController
 
-select an image to get resturant info.
-you can swipe to see more images.
-click on the naviagtion button to get directions or click on the ellipsis icon to get details about that venue.
+- Select an image to get resturant info.
+- You can swipe to see more images.
+- Click on the naviagtion button to get directions or click on the ellipsis icon to get details about that venue.
 
 ## RestaurantDetailViewController
 
-Users are presented with more information about the venue.
-you can swipe to see more images.
-You can click on the ABOUT button to navigate to Yelp using safari in app.
-click on the naviagtion button to get directions. 
-click on REVIEW button to present the reviewVC.  
-in the reviewVC, you can see reviews, click on read more to read full review and click on profile image to see Yelp user profile on yelp. 
-dismiss the reviewVC by clicking on the red topView. 
-Here you can share and save the resturant. 
+- Users are presented with more information about the venue.
+- You can swipe to see more images.
+- You can click on the ABOUT button to navigate to Yelp using safari in app.
+- Click on the naviagtion button to get directions. 
+- Click on REVIEW button to present the reviewVC.  
+- In the reviewVC, you can see reviews, click on read more to read full review and click on profile image to see Yelp user profile on yelp. 
+- Dismiss the reviewVC by clicking on the red topView. 
+- Here you can share and save the resturant. 
 
 ## FrameWorks
 1. Mapkit
