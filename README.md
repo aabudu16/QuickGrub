@@ -15,16 +15,16 @@ Upon launch of the app, you are presented with a login screen.
 To create a new account, you can swipe on the SegmentedControl.
 
 ## WelcomeViewController
-Users can update there profile information by clicking the profile image on the top left hand corner. 
-Users can filter there search parameters by clicking on the menu tab on the top right right corner. 
-users can choose between favorites or categories list.
+- Users can update there profile information by clicking the profile image on the top left hand corner. 
+- Users can filter there search parameters by clicking on the menu tab on the top right right corner. 
+- users can choose between favorites or categories list.
 
 ## CategoryViewController
 
-choose what categories of food you would like to search (1 or more),
+- choose what categories of food you would like to search (1 or more),
 or search by category name.
-click on home button to return to welcome page. 
-click on rest button to unselect categories. 
+- click on home button to return to welcome page. 
+- click on rest button to unselect categories. 
 
 ## FoodImagesViewController
 
