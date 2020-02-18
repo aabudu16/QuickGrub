@@ -564,6 +564,8 @@ class LoginViewController: UIViewController {
     }
     private func addKeyBoardHandlingObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     

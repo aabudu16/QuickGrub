@@ -484,6 +484,7 @@ open class FoldingCell: UITableViewCell {
             foregroundView.alpha = value ? 0 : 1
             containerView.alpha = value ? 1 : 0
         }
+        
     }
     
     @objc open func isAnimating() -> Bool {
