@@ -9,3 +9,21 @@
 import UIKit
 
 
+class QuickGrubOnBoarding: UIScrollView {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        configureScrollView()
+    }
+    
+    required init?(coder decoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func configureScrollView() {
+        isPagingEnabled = true
+        showsVerticalScrollIndicator = false
+        showsHorizontalScrollIndicator = false
+        isUserInteractionEnabled = true
+        isScrollEnabled = true
+    }
+}
