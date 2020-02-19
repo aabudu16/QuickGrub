@@ -39,3 +39,18 @@ protocol MoreYelpReviewDelegate:AnyObject{
     
 }
 
+extension SwiftyOnboardDataSource{
+    func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding,atIndex index: Int)->UIColor?{
+          return nil
+      }
+
+      func swiftyOnboardViewForBackground(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> UIView? {
+          return nil
+      }
+
+      func swiftyOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double) {}
+
+      func swiftyOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay? {
+          return QuickGrubOnboardOverlay()
+      }
+}
