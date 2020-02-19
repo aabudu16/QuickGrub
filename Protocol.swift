@@ -6,24 +6,18 @@
 //  Copyright © 2019 Mr Wonderful. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol CollectionViewCellDelegate: AnyObject {
     func addSelectedFood(tag: Int)
     func handleShortCut(tag: Int)
 }
 
-
-
 protocol FoldingCellDelegate: AnyObject {
     func navigateToDestination(tag: Int)
     func handleFavorite(tag:Int)
     func navigateToDetailedViewController(tag: Int)
 }
-
-//protocol NavigateToRestaurantDetailVCDelegate: AnyObject {
-//    func navigateToDetailedViewController(tag: Int)
-//}
 
 protocol YelpCustomerProfileDelegate:AnyObject{
     func viewCustomerProfile(tag:Int)
@@ -32,3 +26,16 @@ protocol YelpCustomerProfileDelegate:AnyObject{
 protocol MoreYelpReviewDelegate:AnyObject{
     func viewMoreYelpReviews(tag:Int)
 }
+
+
+ protocol SwiftyOnboardDataSource: AnyObject {
+    
+    func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
+    func swiftyOnboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
+    func swiftyOnboardViewForBackground(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> UIView?
+    func swiftyOnboardPageForIndex(_ quickGrubOnBoarding: QuickGrubOnBoarding, index: Int) -> QuickGrubOnBoardingPage?
+    func swiftyOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay?
+    func swiftyOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double)
+    
+}
+
