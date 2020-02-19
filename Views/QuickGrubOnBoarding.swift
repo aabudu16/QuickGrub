@@ -9,7 +9,18 @@
 import UIKit
 
 
-class QuickGrubOnBoarding: UIScrollView {
+class QuickGrubOnBoarding: UIView {
+    
+    lazy var containerView:UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.isPagingEnabled = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.isUserInteractionEnabled = true
+        scrollView.isScrollEnabled = true
+        return scrollView
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureScrollView()
@@ -20,10 +31,8 @@ class QuickGrubOnBoarding: UIScrollView {
     }
     
     func configureScrollView() {
-        isPagingEnabled = true
-        showsVerticalScrollIndicator = false
-        showsHorizontalScrollIndicator = false
-        isUserInteractionEnabled = true
-        isScrollEnabled = true
+        self.addSubview(containerView)
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: self.topAnchor), containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor), containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
 }
