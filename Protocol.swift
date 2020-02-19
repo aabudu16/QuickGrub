@@ -62,3 +62,15 @@ extension QuickGrubOnboardDataSource{
     func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, tapped index: Int)
     
 }
+
+extension QuickGrubOnboardDelegate {
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, currentPage index: Int){
+        
+    }
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, leftEdge position: Double){
+        
+    }
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, tapped index: Int){
+        
+    }
+}
