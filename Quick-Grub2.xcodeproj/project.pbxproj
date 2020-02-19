@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		28A34A5DE4D320AB320B8AD1 /* Pods_Quick_Grub2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */; };
 		85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */; };
+		85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */; };
 		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
@@ -105,6 +106,7 @@
 		5CAE2684FF0D32BEB155D833 /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoarding.swift; sourceTree = "<group>"; };
+		85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
+				85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
+				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
 				859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */,
 				854D6D4023A28E76001BD091 /* CDYelpTerm.swift in Sources */,
