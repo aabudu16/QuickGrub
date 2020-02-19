@@ -11,6 +11,7 @@
 		85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */; };
 		85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */; };
 		85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */; };
+		85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */; };
 		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
@@ -109,6 +110,7 @@
 		85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoarding.swift; sourceTree = "<group>"; };
 		85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnboardOverlay.swift; sourceTree = "<group>"; };
+		85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoardingPage.swift; sourceTree = "<group>"; };
 		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
@@ -382,6 +384,7 @@
 			children = (
 				858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */,
 				85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */,
+				85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */,
 				85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */,
 				858A98782384EF840051AF45 /* FoldingCell.swift */,
 				859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */,
@@ -674,6 +677,7 @@
 				854D6D4C23A28E76001BD091 /* CDYelpCoordinates.swift in Sources */,
 				854D6D4723A28E76001BD091 /* CDYelpReview.swift in Sources */,
 				854D6D3C23A28E76001BD091 /* String+CDYelpFusionKit.swift in Sources */,
+				85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */,
 				854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */,
 				854D6D4823A28E76001BD091 /* CDYelpEnums.swift in Sources */,
 				859A29F423BA5A70005F8173 /* Protocol.swift in Sources */,
