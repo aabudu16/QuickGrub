@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		28A34A5DE4D320AB320B8AD1 /* Pods_Quick_Grub2Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC4D4042D8C16CBCCD9CE47 /* Pods_Quick_Grub2Tests.framework */; };
+		85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */; };
 		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
@@ -103,6 +104,7 @@
 		22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2Tests.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2Tests/Pods-Quick-Grub2Tests.release.xcconfig"; sourceTree = "<group>"; };
 		5CAE2684FF0D32BEB155D833 /* Pods-Quick-Grub2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Quick-Grub2.release.xcconfig"; path = "Target Support Files/Pods-Quick-Grub2/Pods-Quick-Grub2.release.xcconfig"; sourceTree = "<group>"; };
 		80C44B0429CE73C6C3B3F016 /* Pods_Quick_Grub2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Quick_Grub2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoarding.swift; sourceTree = "<group>"; };
 		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 			isa = PBXGroup;
 			children = (
 				858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */,
+				85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */,
 				858A98782384EF840051AF45 /* FoldingCell.swift */,
 				859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */,
 				858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */,
@@ -656,6 +659,7 @@
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
 				8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
+				85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */,
 				854D6D5B23A43224001BD091 /* FilterModel.swift in Sources */,
 				8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */,
 				854D6D3B23A28E76001BD091 /* CDYelpReviewsResponse.swift in Sources */,
