@@ -9,22 +9,29 @@
 import UIKit
 
 class OnBoardingViewController: UIViewController {
-
+//MARK:-- Objects
+    lazy var onBoardingScrollView: QuickGrubOnBoarding = {
+        let scrollView = QuickGrubOnBoarding()
+        scrollView.backgroundColor = .blue
+        return scrollView
+    }()
+    
+    
+    //MARK:-- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(onBoardingScrollView)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       configureScrollViewConstraints()
     }
-    */
-
+    
+   //MARK: -- private func
+    
+    private func configureScrollViewConstraints(){
+        onBoardingScrollView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([onBoardingScrollView.topAnchor.constraint(equalTo: view.topAnchor), onBoardingScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor), onBoardingScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor) ,onBoardingScrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
 }
