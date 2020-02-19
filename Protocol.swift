@@ -28,7 +28,7 @@ protocol MoreYelpReviewDelegate:AnyObject{
 }
 
 
- protocol SwiftyOnboardDataSource: AnyObject {
+ protocol QuickGrubOnboardDataSource: AnyObject {
     
     func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
     func swiftyOnboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
@@ -39,7 +39,7 @@ protocol MoreYelpReviewDelegate:AnyObject{
     
 }
 
-extension SwiftyOnboardDataSource{
+extension QuickGrubOnboardDataSource{
     func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding,atIndex index: Int)->UIColor?{
           return nil
       }
@@ -53,4 +53,12 @@ extension SwiftyOnboardDataSource{
       func swiftyOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay? {
           return QuickGrubOnboardOverlay()
       }
+}
+
+ protocol QuickGrubOnboardDelegate: AnyObject {
+    
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, currentPage index: Int)
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, leftEdge position: Double)
+    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, tapped index: Int)
+    
 }
