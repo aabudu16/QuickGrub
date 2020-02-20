@@ -39,10 +39,6 @@ protocol MoreYelpReviewDelegate:AnyObject{
 }
 
 extension QuickGrubOnboardDataSource{
-    func quickGrubOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding,atIndex index: Int)->UIColor?{
-          return nil
-      }
-
       func quickGrubOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double) {}
 
       func quickGrubOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay? {
@@ -53,7 +49,6 @@ extension QuickGrubOnboardDataSource{
  protocol QuickGrubOnboardDelegate: AnyObject {
     
     func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, currentPage index: Int)
-    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, leftEdge position: Double)
     func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, tapped index: Int)
     
 }
@@ -62,9 +57,7 @@ extension QuickGrubOnboardDelegate {
     func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, currentPage index: Int){
         
     }
-    func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, leftEdge position: Double){
-        
-    }
+    
     func quickGrubOnBoarding(_ quickGrubOnBoarding: QuickGrubOnBoarding, tapped index: Int){
         
     }

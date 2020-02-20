@@ -9,9 +9,14 @@
 import UIKit
 
 
-class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
+class QuickGrubOnBoarding: UIView {
     
      //MARK: -- Properties 2
+    
+    //MARK: -- Creates computed property to hold current page index 12
+    var currentPage: Int {
+        return Int(calculateCurrentPosition())
+    }
     var pageCount = 0
     var onBoardOverlay: QuickGrubOnboardOverlay?
     
@@ -58,7 +63,14 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: -- 5
+    //MARK: -- Creates func to calculate current position of scrollview 11
+    private func calculateCurrentPosition() -> CGFloat {
+        let width = containerView.bounds.width
+        let contentOffSet = containerView.contentOffset.x
+        return contentOffSet / width
+    }
+    
+    //MARK: -- 5   now 13
     private func setScrollViewDelegate(){
         containerView.delegate = self
     }
@@ -72,12 +84,15 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
             // loop through the amount of count to populate the data for each page from the dataSource provided
             for index in 0..<pageCount{
                 if let eachView = dataSource.quickGrubOnboardPageForIndex(self, index: index) {
+                    if let color = dataSource.quickGrubOnboardBackgroundColorFor(self, atIndex: index){
+                        eachView.backgroundColor = color
                     // add to scroll view subview
                     containerView.addSubview(eachView)
                     // Create a frame to fit each view for there index by multiplying the frame by the amount of views it has
                     var viewFrame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                     viewFrame.origin.x = self.frame.width * CGFloat(index)
                     eachView.frame = viewFrame
+                }
                 }
             }
             // this resizes the container ScrollView to be able to scroll to all the pages added.. Although all the views are on the screen, we wont be able to scroll to see see them.
