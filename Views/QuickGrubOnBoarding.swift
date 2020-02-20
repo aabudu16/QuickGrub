@@ -38,10 +38,20 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
         setScrollViewDelegate()
     }
     
+    
+    //MARK:-- func to handle the pageControl events during tapped 10
+    @objc func handlePageControllerTapped(_ sender: UIPageControl) {
+        let pageIndex = sender.currentPage
+        // calls the go to page func to animate and present the appropriate view by internally incrementing and decrimenting index
+        goToPage(index: pageIndex, animated: true)
+        
+    }
+    
     //MARK:-- Used to layout the subview of the class 7
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpAllPages()
+        setUpOverlayView()
     }
     
     required init?(coder decoder: NSCoder) {
