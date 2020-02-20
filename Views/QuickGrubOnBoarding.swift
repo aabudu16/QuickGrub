@@ -38,6 +38,7 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
         setScrollViewDelegate()
     }
     
+    //MARK:-- Used to layout the subview of the class 7
     override func layoutSubviews() {
         super.layoutSubviews()
         setUpAllPages()
@@ -74,6 +75,18 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
         }
     }
     
+    //MARK: -- Set up the static ovelay page that doesnt move with the siderview
+    private func setUpOverlayView() {
+        if let dataSource = dataSource {
+            if let overlay = dataSource.quickGrubOnboardViewForOverlay(self){
+                overlay.numberOfPages(count: pageCount)
+                self.addSubview(overlay)
+                let overLayFrame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                overlay.frame = overLayFrame
+                onBoardOverlay = overlay
+            }
+        }
+    }
     //MARK: create Constraints for scrollview 3
     private func configureScrollView() {
         self.addSubview(containerView)
