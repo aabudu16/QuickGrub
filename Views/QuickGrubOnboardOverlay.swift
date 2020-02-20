@@ -40,6 +40,12 @@ class QuickGrubOnboardOverlay: UIView {
         return label
     }()
     
+    // function to set trhe amount of pages the controller is to indicate
+    func numberOfPages(count:Int){
+        pageControl.numberOfPages = count
+        }
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         pageControlConstraint()
