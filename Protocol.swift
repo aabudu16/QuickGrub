@@ -30,27 +30,22 @@ protocol MoreYelpReviewDelegate:AnyObject{
 
  protocol QuickGrubOnboardDataSource: AnyObject {
     
-    func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
-    func swiftyOnboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
-    func swiftyOnboardViewForBackground(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> UIView?
-    func swiftyOnboardPageForIndex(_ quickGrubOnBoarding: QuickGrubOnBoarding, index: Int) -> QuickGrubOnBoardingPage?
-    func swiftyOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay?
-    func swiftyOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double)
+    func onboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
+    func onboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
+    func onboardPageForIndex(_ quickGrubOnBoarding: QuickGrubOnBoarding, index: Int) -> QuickGrubOnBoardingPage?
+    func onboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay?
+    func onboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double)
     
 }
 
 extension QuickGrubOnboardDataSource{
-    func swiftyOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding,atIndex index: Int)->UIColor?{
+    func quickGrubOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding,atIndex index: Int)->UIColor?{
           return nil
       }
 
-      func swiftyOnboardViewForBackground(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> UIView? {
-          return nil
-      }
+      func quickGrubOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double) {}
 
-      func swiftyOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double) {}
-
-      func swiftyOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay? {
+      func quickGrubOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay? {
           return QuickGrubOnboardOverlay()
       }
 }
