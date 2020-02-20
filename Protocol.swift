@@ -30,11 +30,11 @@ protocol MoreYelpReviewDelegate:AnyObject{
 
  protocol QuickGrubOnboardDataSource: AnyObject {
     
-    func onboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
-    func onboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
-    func onboardPageForIndex(_ quickGrubOnBoarding: QuickGrubOnBoarding, index: Int) -> QuickGrubOnBoardingPage?
-    func onboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay?
-    func onboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double)
+    func quickGrubOnboardBackgroundColorFor(_ quickGrubOnBoarding: QuickGrubOnBoarding, atIndex index: Int) -> UIColor?
+    func quickGrubOnboardNumberOfPages(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> Int
+    func quickGrubOnboardPageForIndex(_ quickGrubOnBoarding: QuickGrubOnBoarding, index: Int) -> QuickGrubOnBoardingPage?
+    func quickGrubOnboardViewForOverlay(_ quickGrubOnBoarding: QuickGrubOnBoarding) -> QuickGrubOnboardOverlay?
+    func quickGrubOnboardOverlayForPosition(_ quickGrubOnBoarding: QuickGrubOnBoarding, overlay: QuickGrubOnboardOverlay, for position: Double)
     
 }
 
