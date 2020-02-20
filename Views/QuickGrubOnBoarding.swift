@@ -130,3 +130,24 @@ class QuickGrubOnBoarding: UIView {
         NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: self.topAnchor), containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor), containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])
     }
 }
+
+
+//MARK: Creates an extenstion on QuickGrubOnBoarding to handle Scrollview delgate 12
+extension QuickGrubOnBoarding: UIScrollViewDelegate{
+   //MARK: Creates an extenstion on QuickGrubOnBoarding to handle Scrollview delgate 13
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let currentPosition = calculateCurrentPosition()
+        onBoardOverlay?.currentPage(index: Int(currentPosition))
+        
+    // allows us to modify properies of the overlay view based on the index we are currently in
+        if let overlay = onBoardOverlay {
+            dataSource?.quickGrubOnboardOverlayForPosition(self, overlay: overlay, for: Double(currentPosition))
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentPosition = calculateCurrentPosition()
+        onBoardOverlay?.currentPage(index: Int(currentPosition))
+    }
+    
+}
