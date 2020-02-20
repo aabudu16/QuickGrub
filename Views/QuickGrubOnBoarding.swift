@@ -78,15 +78,26 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
     //MARK: -- Set up the static ovelay page that doesnt move with the siderview
     private func setUpOverlayView() {
         if let dataSource = dataSource {
-            if let overlay = dataSource.quickGrubOnboardViewForOverlay(self){
+            if let overlay = dataSource.quickGrubOnboardViewForOverlay(self) {
                 overlay.numberOfPages(count: pageCount)
                 self.addSubview(overlay)
                 let overLayFrame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
                 overlay.frame = overLayFrame
                 onBoardOverlay = overlay
+        
+                //MARK:-- add funtion to pagecontroller for when it gets tapped 8
+                onBoardOverlay?.pageControl.addTarget(self, action: #selector(handlePageControllerTapped), for: .allTouchEvents)
+                
             }
         }
     }
+    
+    // MARK: -- func to set the sliderView content offset to be the view based on the appropriate index 9
+    func goToPage(index: Int, animated:Bool) {
+        let index = CGFloat(index)
+        containerView.setContentOffset(CGPoint(x: index * self.frame.width, y: 0), animated: animated)
+    }
+    
     //MARK: create Constraints for scrollview 3
     private func configureScrollView() {
         self.addSubview(containerView)
