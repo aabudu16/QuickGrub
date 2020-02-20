@@ -11,6 +11,15 @@ import UIKit
 
 class QuickGrubOnBoarding: UIView {
     
+     //MARK: -- Properties
+    var pageCount = 0
+    var onBoardOverlay: QuickGrubOnboardOverlay?
+    var numberOfOnboardPages = [QuickGrubOnBoardingPage]()
+    
+    weak var dataSource: QuickGrubOnboardDataSource?
+    weak var delegate: QuickGrubOnboardDelegate?
+    
+    //MARK:-- Objects
     lazy var containerView:UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -21,6 +30,7 @@ class QuickGrubOnBoarding: UIView {
         return scrollView
     }()
     
+    //MARK: -- LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureScrollView()
@@ -30,7 +40,7 @@ class QuickGrubOnBoarding: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureScrollView() {
+    private func configureScrollView() {
         self.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: self.topAnchor), containerView.leadingAnchor.constraint(equalTo: self.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.trailingAnchor), containerView.bottomAnchor.constraint(equalTo: self.bottomAnchor)])

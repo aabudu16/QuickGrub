@@ -1,7 +1,7 @@
 import UIKit
 
 open class QuickGrubOnBoardingPage: UIView {
-    
+     //MARK: -- objects
     public var title: UILabel = {
         let label = UILabel()
         label.text = "Page Title"
@@ -39,7 +39,7 @@ open class QuickGrubOnBoardingPage: UIView {
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+     //MARK: -- private func
     private func imageViewConstraint() {
         self.addSubview(imageView)
         imageView.translatesAutoresizingMaskIntoConstraints = false

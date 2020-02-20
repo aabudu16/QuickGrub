@@ -1,7 +1,7 @@
 import UIKit
 
 class QuickGrubOnboardOverlay: UIView {
-    
+     //MARK: -- objects
     var pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.currentPage = 0
@@ -62,6 +62,7 @@ class QuickGrubOnboardOverlay: UIView {
         return false
     }
     
+    //MARK: -- Private func
     private func pageControlConstraint() {
         self.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
