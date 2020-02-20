@@ -11,15 +11,16 @@ import UIKit
 
 class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
     
-     //MARK: -- Properties
+     //MARK: -- Properties 2
     var pageCount = 0
     var onBoardOverlay: QuickGrubOnboardOverlay?
-    var numberOfOnboardPages = [QuickGrubOnBoardingPage]()
     
+    //MARK: -- Create instance of delegate and dataSource 4
     weak var dataSource: QuickGrubOnboardDataSource?
     weak var delegate: QuickGrubOnboardDelegate?
     
     //MARK:-- Objects
+    //MARK: -- Creates a Scrollview 2
     lazy var containerView:UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -37,14 +38,43 @@ class QuickGrubOnBoarding: UIView , UIScrollViewDelegate{
         setScrollViewDelegate()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setUpAllPages()
+    }
+    
     required init?(coder decoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: -- 5
     private func setScrollViewDelegate(){
         containerView.delegate = self
     }
     
+    //MARK: -- set up all pages of the onBoarding views 6
+    private func setUpAllPages() {
+        // un wrap the dataSource
+        if let dataSource = dataSource{
+            //get the count of pages from the dataSource when provided
+            pageCount = dataSource.quickGrubOnboardNumberOfPages(self)
+            // loop through the amount of count to populate the data for each page from the dataSource provided
+            for index in 0..<pageCount{
+                if let eachView = dataSource.quickGrubOnboardPageForIndex(self, index: index) {
+                    // add to scroll view subview
+                    containerView.addSubview(eachView)
+                    // Create a frame to fit each view for there index by multiplying the frame by the amount of views it has
+                    var viewFrame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
+                    viewFrame.origin.x = self.frame.width * CGFloat(index)
+                    eachView.frame = viewFrame
+                }
+            }
+            // this resizes the container ScrollView to be able to scroll to all the pages added.. Although all the views are on the screen, we wont be able to scroll to see see them.
+              containerView.contentSize = CGSize(width: self.frame.width * CGFloat(pageCount), height: self.frame.height)
+        }
+    }
+    
+    //MARK: create Constraints for scrollview 3
     private func configureScrollView() {
         self.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
