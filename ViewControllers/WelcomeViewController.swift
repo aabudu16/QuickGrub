@@ -175,13 +175,13 @@ class WelcomeViewController: UIViewController {
          navigationController?.isNavigationBarHidden = true
     }
     
-    //MARK: Objc functions
+    //MARK:-- Objc functions
     
     @objc func handleMenuButtonPressed(){
             filterMenuViewTopConstraints?.isActive = false
             newfilterMenuViewTopConstraints?.isActive = true
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.deemView.alpha = 1
+               // self.deemView.alpha = 1
                 self.view.layoutIfNeeded()
             }, completion: nil)
     }
@@ -552,6 +552,7 @@ class WelcomeViewController: UIViewController {
     }
 }
 
+//MARK: -- Extension
 extension WelcomeViewController: UIPickerViewDelegate, UIPickerViewDataSource{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1

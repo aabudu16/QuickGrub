@@ -63,6 +63,7 @@ class QuickGrubOnboardOverlay: UIView {
         super.init(coder: aDecoder)
     }
     
+    // this overide func is needed to enable any access to any view that is behind this view.. Since this view is static and is an overlay, access to anything behind it cant be accessed
     override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         for subview in subviews {
             if !subview.isHidden && subview.alpha > 0 && subview.isUserInteractionEnabled && subview.point(inside: convert(point, to: subview), with: event) {
