@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import MapKit
-import CoreLocation
 
 class RestaurantResultsViewController: UIViewController {
     
@@ -63,10 +61,10 @@ class RestaurantResultsViewController: UIViewController {
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-        if #available(iOS 10.0, *) {
+    //    if #available(iOS 10.0, *) {
             tableView.refreshControl = UIRefreshControl()
             tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
-        }
+      //  }
     }
     
     // MARK: Actions
@@ -153,46 +151,5 @@ extension RestaurantResultsViewController:UITableViewDataSource{
         cell.configureBusinessData(business: businessInfo, distance: distance)
 
         return cell
-    }
-    
-    
+    }  
 }
-
-extension RestaurantResultsViewController: FoldingCellDelegate{
-     func navigateToDetailedViewController(tag: Int) {
-           let businessInfo = businessFullDetail[tag]
-           
-           let restaurantDetailVC = RestaurantDetailViewController()
-           restaurantDetailVC.business = businessInfo
-           self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
-       }
-    
-    func handleFavorite(tag: Int) {
-        let businessInfo = businessFullDetail[tag]
-        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
-        
-        let myFavorite = UserFavorite(creatorID:  currentUser.uid, venueID: businessInfo.id!, name: businessInfo.name!)
-        
-        FirestoreService.manager.createFavorite(favorite: myFavorite) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
-            case .success(()):
-                self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
-            }
-        }
-    }
-    
-    func navigateToDestination(tag: Int) {
-       let businessInfo = businessFullDetail[tag]
-        guard let lat = businessInfo.coordinates?.latitude, let long =  businessInfo.coordinates?.longitude else {return}
-        
-                let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        
-                let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-        mapItem.name = businessInfo.name
-                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-    }
-}
-
-
