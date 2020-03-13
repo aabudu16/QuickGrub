@@ -187,16 +187,8 @@ open class FoldingCell: UITableViewCell {
         resturantName.text = business.name
         resturantNameLabel.text = business.name
         
-        switch business.isClosed{
-        case true:
-            openOrCloseLabel.text = "Close"
-            openOrCloseLabel.textColor = #colorLiteral(red: 0.8468823433, green: 0.1903522015, blue: 0.1447911263, alpha: 1)
-        case false:
-            openOrCloseLabel.text = "Open"
-            openOrCloseLabel.textColor = #colorLiteral(red: 0.0908299759, green: 0.5008277297, blue: 0.2181177139, alpha: 1)
-        default:
-            openOrCloseLabel.text = "NA"
-        }
+        openOrCloseLabel.text = business.isClosed == true ? "Close" : "Open"
+        openOrCloseLabel.textColor = business.isClosed == true ?  #colorLiteral(red: 0.8425863981, green: 0.1913244128, blue: 0.1395176649, alpha: 1) : #colorLiteral(red: 0.09106949717, green: 0.5007923841, blue: 0.2231527567, alpha: 1)
         
         if let photoArray = business.photos{
             
