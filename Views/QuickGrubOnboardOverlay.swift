@@ -76,7 +76,7 @@ class QuickGrubOnboardOverlay: UIView {
     private func pageControlConstraint() {
         self.addSubview(pageControl)
         pageControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([pageControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), pageControl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10), pageControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), pageControl.heightAnchor.constraint(equalToConstant: 20)])
+        NSLayoutConstraint.activate([pageControl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10), pageControl.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10), pageControl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20), pageControl.heightAnchor.constraint(equalToConstant: 20)])
     }
     
     private func continueButtonConstraint() {
@@ -88,7 +88,7 @@ class QuickGrubOnboardOverlay: UIView {
     private func skipButtonConstraint() {
         self.addSubview(skipButton)
         skipButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([skipButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10), skipButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 10), skipButton.heightAnchor.constraint(equalToConstant: 20), skipButton.widthAnchor.constraint(equalToConstant: 100)])
+        NSLayoutConstraint.activate([skipButton.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10), skipButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 30), skipButton.heightAnchor.constraint(equalToConstant: 20), skipButton.widthAnchor.constraint(equalToConstant: 100)])
     }
     
     private func prevLabelConstraint() {
