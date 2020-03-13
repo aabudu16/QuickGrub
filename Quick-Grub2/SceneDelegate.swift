@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         if FirebaseAuthService.manager.currentUser != nil {
-            window?.rootViewController = UINavigationController(rootViewController: WelcomeViewController())
+            window?.rootViewController = UINavigationController(rootViewController:WelcomeViewController())
         }else {
             window?.rootViewController = UINavigationController(rootViewController: LoginViewController())
         }
