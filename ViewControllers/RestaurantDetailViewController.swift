@@ -181,9 +181,15 @@ class RestaurantDetailViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
         setScrollViewDelegate()
         setupNavigationBarButtons()
         view.backgroundColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        populateImageScrollView()
         configureImageScrollViewConstraints()
         configurePageControlConstraints()
         configureLogoViewConstraints()
@@ -200,11 +206,6 @@ class RestaurantDetailViewController: UIViewController {
         configureReviewButtonConstraints()
         configureHoursOfOperationTextViewConstraints()
         configureNavigateButtomConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        populateImageScrollView()
     }
     
     //MARK:@Objc function
