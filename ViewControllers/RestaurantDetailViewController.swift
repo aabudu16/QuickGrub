@@ -19,57 +19,10 @@ class RestaurantDetailViewController: UIViewController {
     let image = UIImage(named: "FoodPlaceholder")
     var business:CDYelpBusiness!{
         didSet{
-            logoLabel.text = business.name
-            restaurantName.text = business.name
-            if (business.location?.displayAddress?.count)! > 1{
-                if let displayAddress = business.location?.displayAddress{
-                    addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-                }
-            }else{
-                if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0])"
-                }
-            }
-            
-            restaurantPhoneNumber.text = business.displayPhone
-            
+            // populate business data
+            populateBusinessData(business: business)
             // ratings images
-            switch business.rating{
-            case 0.0:
-                starRatings.image = UIImage(named: "stars_0")
-            case 1.0:
-                starRatings.image = UIImage(named: "stars_1")
-            case 1.5:
-                starRatings.image = UIImage(named: "stars_1half")
-            case 2.0:
-                starRatings.image = UIImage(named: "stars_2")
-            case 2.5:
-                starRatings.image = UIImage(named: "stars_2half")
-            case 3.0:
-                starRatings.image = UIImage(named: "stars_3")
-            case 3.5:
-                starRatings.image = UIImage(named: "stars_3half")
-            case 4.0:
-                starRatings.image = UIImage(named: "stars_4")
-            case 4.5:
-                starRatings.image = UIImage(named: "stars_4half")
-            case 5.0:
-                starRatings.image = UIImage(named: "stars_5")
-            default:
-                starRatings.image = UIImage(named: "stars_0")
-                
-            }
-            // review count
-            if let reviewCount = business.reviewCount{
-                reviewCountLabel.text = "\(reviewCount) Ratings"
-            }
-            
-            // hours of operation
-            if let hours = business.hours{
-                if let unWrappedHours = hours.first.flatMap({$0.open}){
-                    unWrappedHours.forEach({print($0.toJSON())})
-                }
-            }
+           addRatingStarImage()
         }
     }
     
@@ -293,6 +246,7 @@ class RestaurantDetailViewController: UIViewController {
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){
         print("Menu button pressed")
     }
+    
     @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
         guard let businessInfo = business else {return}
          guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -315,9 +269,8 @@ class RestaurantDetailViewController: UIViewController {
         let share = UIActivityViewController(activityItems: [businessURL], applicationActivities: nil)
         present(share, animated: true, completion: nil)
     }
+    
     //MARK:Private function
-    
-    
     private func populateImageScrollView(){
         if let photoArray = self.business.photos{
             for (index, photoString) in photoArray.enumerated(){
@@ -339,6 +292,63 @@ class RestaurantDetailViewController: UIViewController {
             }
         }
     }
+    
+    private func populateBusinessData(business: CDYelpBusiness){
+        
+        logoLabel.text = business.name
+        restaurantName.text = business.name
+        restaurantPhoneNumber.text = business.displayPhone
+        
+        if (business.location?.displayAddress?.count)! > 1{
+            if let displayAddress = business.location?.displayAddress{
+                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+            }
+        }else{
+            if let displayAddress = business.location?.displayAddress{
+            addressTextView.text = "\(displayAddress[0])"
+            }
+        }
+        
+        // review count
+        if let reviewCount = business.reviewCount{
+            reviewCountLabel.text = "\(reviewCount) Ratings"
+        }
+        
+        // hours of operation
+        if let hours = business.hours{
+            if let unWrappedHours = hours.first.flatMap({$0.open}){
+                unWrappedHours.forEach({print($0.toJSON())})
+            }
+        }
+    }
+    
+    private func addRatingStarImage(){
+        switch business.rating{
+        case 0.0:
+            starRatings.image = UIImage(named: "stars_0")
+        case 1.0:
+            starRatings.image = UIImage(named: "stars_1")
+        case 1.5:
+            starRatings.image = UIImage(named: "stars_1half")
+        case 2.0:
+            starRatings.image = UIImage(named: "stars_2")
+        case 2.5:
+            starRatings.image = UIImage(named: "stars_2half")
+        case 3.0:
+            starRatings.image = UIImage(named: "stars_3")
+        case 3.5:
+            starRatings.image = UIImage(named: "stars_3half")
+        case 4.0:
+            starRatings.image = UIImage(named: "stars_4")
+        case 4.5:
+            starRatings.image = UIImage(named: "stars_4half")
+        case 5.0:
+            starRatings.image = UIImage(named: "stars_5")
+        default:
+            starRatings.image = UIImage(named: "stars_0")
+        }
+    }
+    
     private func setScrollViewDelegate(){
         imageScrollView.delegate = self
     }
