@@ -145,10 +145,4 @@ extension QuickGrubOnBoarding: UIScrollViewDelegate{
             dataSource?.quickGrubOnboardOverlayForPosition(self, overlay: overlay, for: Double(currentPosition))
         }
     }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let currentPosition = calculateCurrentPosition()
-        onBoardOverlay?.currentPage(index: Int(currentPosition))
-    }
-    
 }
