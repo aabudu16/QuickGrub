@@ -19,6 +19,9 @@
 		8504D50F23CD367E002257A4 /* UserFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50E23CD367E002257A4 /* UserFavorite.swift */; };
 		8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D51023CE5377002257A4 /* FavoriteViewController.swift */; };
 		852C3828241BEC4800EDD0DD /* LoginViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */; };
+		852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */; };
+		852C382C241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */; };
+		852C382F241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -119,6 +122,9 @@
 		8504D50E23CD367E002257A4 /* UserFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavorite.swift; sourceTree = "<group>"; };
 		8504D51023CE5377002257A4 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
+		852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -228,6 +234,17 @@
 				22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		852C382D241BFD8A00EDD0DD /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A98422384319A0051AF45 /* LoginViewController.swift */,
+				852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */,
+				852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */,
+				852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */,
+			);
+			path = LoginVC;
 			sourceTree = "<group>";
 		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
@@ -345,9 +362,9 @@
 		858A9860238433160051AF45 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				858A98422384319A0051AF45 /* LoginViewController.swift */,
-				852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */,
+				852C382D241BFD8A00EDD0DD /* LoginVC */,
 				8504D51023CE5377002257A4 /* FavoriteViewController.swift */,
+				852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */,
 				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
 				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
 				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
@@ -620,12 +637,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */,
+				852C382F241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift in Sources */,
 				854D6D3A23A28E76001BD091 /* CDYelpCenter.swift in Sources */,
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
 				854D6D5023A28E76001BD091 /* CDYelpRegion.swift in Sources */,
 				859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */,
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
+				852C382C241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift in Sources */,
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
@@ -671,6 +690,7 @@
 				8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */,
 				8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
+				852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
 				8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
