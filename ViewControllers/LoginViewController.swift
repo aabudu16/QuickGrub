@@ -16,10 +16,10 @@ class LoginViewController: UIViewController {
     
     //MARK: properties
     var userName:String!
-    private var currentUser: Result<User, Error>!
-    private var mainContainerViewButtomConstraint = NSLayoutConstraint()
-    private var containerViewTopConstraint = NSLayoutConstraint()
-    private var imageViewTopConstraint = NSLayoutConstraint()
+     var currentUser: Result<User, Error>!
+     var mainContainerViewButtomConstraint = NSLayoutConstraint()
+     var containerViewTopConstraint = NSLayoutConstraint()
+     var imageViewTopConstraint = NSLayoutConstraint()
     
     var image = UIImage() {
         didSet {
