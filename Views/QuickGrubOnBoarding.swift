@@ -18,14 +18,14 @@ class QuickGrubOnBoarding: UIView {
         return Int(calculateCurrentPosition())
     }
     var pageCount = 0
-    var onBoardOverlay: QuickGrubOnboardOverlay?
+   weak var onBoardOverlay: QuickGrubOnboardOverlay?
     
     //MARK: -- Create instance of delegate and dataSource 4
     weak var dataSource: QuickGrubOnboardDataSource?
     weak var delegate: QuickGrubOnboardDelegate?
     
     //MARK:-- Objects
-    //MARK: -- Creates a Scrollview 2
+    //MARK: -- Creates a Scrollview 1
     lazy var containerView:UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.isPagingEnabled = true
@@ -33,14 +33,13 @@ class QuickGrubOnBoarding: UIView {
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.isUserInteractionEnabled = true
         scrollView.isScrollEnabled = true
+        scrollView.bounces = false
         return scrollView
     }()
     
     //MARK: -- LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configureScrollView()
-        setScrollViewDelegate()
     }
     
     
@@ -55,6 +54,8 @@ class QuickGrubOnBoarding: UIView {
     //MARK:-- Used to layout the subview of the class 7
     override func layoutSubviews() {
         super.layoutSubviews()
+        configureScrollView()
+        setScrollViewDelegate()
         setUpAllPages()
         setUpOverlayView()
     }

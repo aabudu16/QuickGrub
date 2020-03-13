@@ -2,7 +2,7 @@ import UIKit
 
 open class QuickGrubOnBoardingPage: UIView {
      //MARK: -- objects
-    public var title: UILabel = {
+     lazy var title: UILabel = {
         let label = UILabel()
         label.text = "Page Title"
         label.textAlignment = .center
@@ -12,7 +12,7 @@ open class QuickGrubOnBoardingPage: UIView {
         return label
     }()
     
-    public var subTitle: UILabel = {
+   lazy var subTitle: UILabel = {
         let label = UILabel()
         label.text = "Page Sub Title"
         label.textAlignment = .center
@@ -22,7 +22,7 @@ open class QuickGrubOnBoardingPage: UIView {
         return label
     }()
     
-    public var imageView: UIImageView = {
+    lazy var imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.backgroundColor = .gray

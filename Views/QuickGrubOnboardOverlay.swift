@@ -30,7 +30,6 @@ class QuickGrubOnboardOverlay: UIView {
     open var prevLabel: UILabel = {
         let label = UILabel()
         label.text = "Prev"
-        label.isHidden = true
         return label
     }()
     
