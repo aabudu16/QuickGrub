@@ -268,6 +268,17 @@
 			path = FavoriteVC;
 			sourceTree = "<group>";
 		};
+		852C383C241C43AB00EDD0DD /* RestaurantResultsVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
+				852C3836241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift */,
+				852C3838241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift */,
+				852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */,
+			);
+			path = RestaurantResultsVC;
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,10 +396,7 @@
 			children = (
 				852C382D241BFD8A00EDD0DD /* LoginVC */,
 				852C3835241C2FB400EDD0DD /* FavoriteVC */,
-				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
-				852C3836241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift */,
-				852C3838241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift */,
-				852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */,
+				852C383C241C43AB00EDD0DD /* RestaurantResultsVC */,
 				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
 				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
 				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
