@@ -254,14 +254,7 @@ class RestaurantDetailViewController: UIViewController {
          
         let myFavorite = UserFavorite(creatorID:  currentUser.uid, venueID: businessInfo.id!, name: businessInfo.name!)
          
-         FirestoreService.manager.createFavorite(favorite: myFavorite) { (result) in
-             switch result{
-             case .failure(let error):
-                 self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
-             case .success(()):
-                 self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
-             }
-         }
+        createFavorites(favorite: myFavorite)
     }
     
     @objc func handleShareButtonPressed(sender:UIBarButtonItem){
@@ -347,6 +340,17 @@ class RestaurantDetailViewController: UIViewController {
             starRatings.image = UIImage(named: "stars_5")
         default:
             starRatings.image = UIImage(named: "stars_0")
+        }
+    }
+    
+    private func createFavorites(favorite: UserFavorite){
+        FirestoreService.manager.createFavorite(favorite: favorite) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
+            case .success(()):
+                self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
+            }
         }
     }
     
