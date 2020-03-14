@@ -24,7 +24,6 @@ class FavoriteViewController: UIViewController {
                     DispatchQueue.main.async {
                         if let eachBusiness = business {
                             self?.businessFullDetail.append(eachBusiness)
-                            print(eachBusiness.location)
                         }
                     }
                 }

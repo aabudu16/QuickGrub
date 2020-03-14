@@ -427,8 +427,6 @@ class LoginViewController: UIViewController {
                         }
                         //stop activity indicator
                         self?.transparentView.isHidden = true
-                        print(self?.userName)
-                        print(self?.imageURL?.absoluteString)
                     case .failure(let error):
                         self?.showAlert(alertTitle:  "Error", alertMessage:  "It seem your image or user name was not save. Please input a valid  user name, check your image format and try again", actionTitle: "OK")
                         self?.transparentView.isHidden = true
