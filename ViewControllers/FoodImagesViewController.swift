@@ -181,7 +181,12 @@ class FoodImagesViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         locationManager.delegate = self
-        self.navigationItem.rightBarButtonItem = rightBarButton
+        addSubview()
+        addRightBarButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         checkLocationAuthorization()
         setupCollectionView()
         configureBackgroundImageViewConstraints()
@@ -193,10 +198,6 @@ class FoodImagesViewController: UIViewController {
         configureCheckMarkIndicatorConstraints()
         constraintsActivityIndicatorConstraints()
         configureContinueButtomConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.collectionView.reloadData()
     }
     // MARK: objc function
@@ -222,11 +223,14 @@ class FoodImagesViewController: UIViewController {
     }
     
     @objc func handleFilterButtonPressed(sender:UIButton){
-        
+        print("filter menu buttpon pressed")
     }
     
     // MARK: Private function
     
+    private func addRightBarButton(){
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
     
     private func getUserInfo(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else {
