@@ -6,4 +6,16 @@
 //  Copyright © 2020 Mr Wonderful. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension CustomerReviewsViewController:MoreYelpReviewDelegate{
+    func viewMoreYelpReviews(tag: Int) {
+        let fullReview = customerReviews[tag]
+        
+        guard let review = fullReview.url else {
+            self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(fullReview.user?.name ?? "the full review") link on YELP.", actionTitle: "OK")
+            return
+        }
+        self.showSafariVC(for: review)
+    }
+}
