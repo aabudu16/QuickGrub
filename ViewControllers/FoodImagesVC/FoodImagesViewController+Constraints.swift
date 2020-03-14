@@ -12,9 +12,8 @@ extension FoodImagesViewController {
     //MARK: constraints func
     
     func addSubview() {
-        view.addSubview(collectionView)
         view.addSubview(backgroundImageView)
-        view.addSubview(dimView)
+        view.addSubview(collectionView)
         instructionLabelView.addSubview(checkMarkIndicatorView)
         checkMarkIndicatorView.addSubview(checkMarkIndicator)
         dimView.addSubview(instructionLabelView)
@@ -36,6 +35,7 @@ extension FoodImagesViewController {
     }
     
     func configureDimViewConstraints(){
+        view.addSubview(dimView)
         dimView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([dimView.topAnchor.constraint(equalTo: view.topAnchor), dimView.leadingAnchor.constraint(equalTo: view.leadingAnchor), dimView.trailingAnchor.constraint(equalTo: view.trailingAnchor), dimView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
