@@ -39,6 +39,7 @@
 		852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */; };
 		852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */; };
 		852C3859241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */; };
+		852C385C241C7AA300EDD0DD /* LoginViewController+Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -159,6 +160,7 @@
 		852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
 		852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Objc.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				858A98422384319A0051AF45 /* LoginViewController.swift */,
+				852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */,
 				852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */,
 				852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */,
 				852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */,
@@ -765,6 +768,7 @@
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
 				852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */,
+				852C385C241C7AA300EDD0DD /* LoginViewController+Objc.swift in Sources */,
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
 				852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */,
 				852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */,
