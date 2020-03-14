@@ -295,34 +295,6 @@ extension FoodImagesViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
         let info = userCategorySelectedResults[indexPath.row]
-        
-        
-    }
-}
-
-extension FoodImagesViewController:UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userCategorySelectedResults.count
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
-        
-        cell.delegate = self
-        cell.addItemButton.tag = indexPath.item
-        cell.FoodTitleLabel.tag = indexPath.item
-        cell.createPulse()
-        let info = userCategorySelectedResults[indexPath.row]
-        
-        cell.configurefoodImagesCellData(yelpImages: info)
-        
-        activityIndicator.stopAnimating()
-        
-        if userFoodImageSelection.contains(info){
-            cell.itemIsSelected = true
-        }else {
-            cell.itemIsSelected = false
-        }
-        return cell
-    }    
+    }
 }
