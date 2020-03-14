@@ -143,7 +143,12 @@ class UpdateUserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureNavigationBar()
+        addSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
         configureUpdateProfileLabelConstraints()
@@ -161,7 +166,6 @@ class UpdateUserProfileViewController: UIViewController {
         setImageURLString()
         configureLogoutButtonConstraints()
         configureLogoutLabelConstraints()
-        
     }
     
     //MARK: @objc function
