@@ -8,4 +8,18 @@
 
 import UIKit
 
-
+//MARK: Extensions
+extension FoodImagesViewController: UICollectionViewDelegate{
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
+        let info = userCategorySelectedResults[indexPath.row]
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
+        let info = userCategorySelectedResults[indexPath.row]
+    
+    }
+}
