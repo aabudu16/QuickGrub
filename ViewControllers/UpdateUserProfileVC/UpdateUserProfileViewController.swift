@@ -188,23 +188,7 @@ class UpdateUserProfileViewController: UIViewController {
         guard let userName = userNameTextField.text else {return}
         guard let imageURL = imageURL else {return}
         activityIndicator.startAnimating()
-        FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
-                self.activityIndicator.stopAnimating()
-            case .success(()):
-                FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
-                    switch result{
-                    case .success(()):
-                        self.updateFireBaseEmail(email: email)
-                    case .failure(let error):
-                        print(error)
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
-            }
-        }
+        updateCurrentUser(userName: userName, email: email, imageURL: imageURL)
     }
     
     @objc func presentPHPhotoLibrary(sender:UITapGestureRecognizer){
@@ -247,6 +231,26 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     //MARK: Private function
+    
+    private func updateCurrentUser(userName:String, email:String, imageURL:URL ) {
+        FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+                self.activityIndicator.stopAnimating()
+            case .success(()):
+                FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
+                    switch result{
+                    case .success(()):
+                        self.updateFireBaseEmail(email: email)
+                    case .failure(let error):
+                        print(error)
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            }
+        }
+    }
     
     func showDismissAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
         let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
