@@ -112,18 +112,6 @@ extension CustomerReviewsViewController: UITableViewDataSource, UITableViewDeleg
     
 }
 
-extension CustomerReviewsViewController:YelpCustomerProfileDelegate{
-    func viewCustomerProfile(tag: Int) {
-        let profile = customerReviews[tag]
-        
-        guard let profileURL = profile.user?.profileUrl else {
-            self.showAlert(alertTitle: "Sorry", alertMessage: "Cant access \(profile.user?.name ?? "the profile") link on YELP.", actionTitle: "OK")
-            return
-        }
-        self.showSafariVC(for: profileURL)
-    }
-}
-
 extension CustomerReviewsViewController:MoreYelpReviewDelegate{
     func viewMoreYelpReviews(tag: Int) {
         let fullReview = customerReviews[tag]
