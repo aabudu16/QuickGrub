@@ -33,6 +33,8 @@
 		852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */; };
 		852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */; };
 		852C384B241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */; };
+		852C384E241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */; };
+		852C3851241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -147,6 +149,8 @@
 		852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+YelpCustomerProfileDelegate.swift"; sourceTree = "<group>"; };
 		852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+MoreYelpReviewDelegate.swift"; sourceTree = "<group>"; };
 		852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForgetPasswordViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnBoardingViewController+QuickGrubOnboardDataSource.swift"; sourceTree = "<group>"; };
+		852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+Constraints.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -329,6 +333,15 @@
 			path = ForgetPasswordVC;
 			sourceTree = "<group>";
 		};
+		852C384F241C6C1700EDD0DD /* OnBoardingVC */ = {
+			isa = PBXGroup;
+			children = (
+				85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */,
+				852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */,
+			);
+			path = OnBoardingVC;
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -452,9 +465,10 @@
 				852C3849241C5E7500EDD0DD /* CustomerReviewsVC */,
 				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
+				852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
-				85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */,
+				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -719,6 +733,7 @@
 			files = (
 				8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */,
 				852C382F241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift in Sources */,
+				852C3851241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift in Sources */,
 				854D6D3A23A28E76001BD091 /* CDYelpCenter.swift in Sources */,
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
@@ -787,6 +802,7 @@
 				852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */,
 				8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */,
 				854D6D3B23A28E76001BD091 /* CDYelpReviewsResponse.swift in Sources */,
+				852C384E241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift in Sources */,
 				852C383E241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift in Sources */,
 				854D6D4C23A28E76001BD091 /* CDYelpCoordinates.swift in Sources */,
 				854D6D4723A28E76001BD091 /* CDYelpReview.swift in Sources */,
