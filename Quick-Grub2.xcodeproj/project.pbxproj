@@ -230,7 +230,7 @@
 		859A29F723BB0D22005F8173 /* CellIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiers.swift; sourceTree = "<group>"; };
 		859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewTableViewCell.swift; sourceTree = "<group>"; };
 		859A2A0323BD7C49005F8173 /* checkMark2.gif */ = {isa = PBXFileReference; explicitFileType = image.gif; path = checkMark2.gif; sourceTree = "<group>"; };
-		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = ../Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		85F92A5623902D9B00048FCB /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -366,6 +366,19 @@
 			path = FoodImagesVC;
 			sourceTree = "<group>";
 		};
+		852C385D241C8A1F00EDD0DD /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				858A983E2384319A0051AF45 /* AppDelegate.swift */,
+				858A98402384319A0051AF45 /* SceneDelegate.swift */,
+				85F92A47239015C400048FCB /* Secrets.swift */,
+				858A98472384319C0051AF45 /* Assets.xcassets */,
+				858A988923885D180051AF45 /* GIF animation folder */,
+				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -457,12 +470,7 @@
 		858A983D2384319A0051AF45 /* Quick-Grub2 */ = {
 			isa = PBXGroup;
 			children = (
-				858A983E2384319A0051AF45 /* AppDelegate.swift */,
-				858A98402384319A0051AF45 /* SceneDelegate.swift */,
-				85F92A47239015C400048FCB /* Secrets.swift */,
-				858A98472384319C0051AF45 /* Assets.xcassets */,
-				858A988923885D180051AF45 /* GIF animation folder */,
-				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
+				852C385D241C8A1F00EDD0DD /* Supporting files */,
 				858A984C2384319C0051AF45 /* Info.plist */,
 				85F92A52239029AF00048FCB /* GoogleService-Info.plist */,
 			);
