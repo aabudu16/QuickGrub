@@ -31,6 +31,7 @@
 		852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */; };
 		852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */; };
 		852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */; };
+		852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -143,6 +144,7 @@
 		852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileViewController+Constraints.swift"; sourceTree = "<group>"; };
 		852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileVC+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+YelpCustomerProfileDelegate.swift"; sourceTree = "<group>"; };
+		852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+MoreYelpReviewDelegate.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -428,6 +430,7 @@
 				852C3844241C5C7500EDD0DD /* UpdateUserProfileVC */,
 				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
 				852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */,
+				852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */,
 				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
@@ -761,6 +764,7 @@
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
 				85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */,
 				854D6D5B23A43224001BD091 /* FilterModel.swift in Sources */,
+				852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */,
 				8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */,
 				854D6D3B23A28E76001BD091 /* CDYelpReviewsResponse.swift in Sources */,
 				852C383E241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift in Sources */,
