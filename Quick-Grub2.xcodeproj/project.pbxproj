@@ -36,6 +36,7 @@
 		852C384E241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */; };
 		852C3851241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */; };
 		852C3853241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */; };
+		852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -153,6 +154,7 @@
 		852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnBoardingViewController+QuickGrubOnboardDataSource.swift"; sourceTree = "<group>"; };
 		852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+Constraints.swift"; sourceTree = "<group>"; };
 		852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+CollectionViewCellDelegate.swift"; sourceTree = "<group>"; };
+		852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */,
 				852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */,
+				852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
 				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
@@ -747,6 +750,7 @@
 				852C3833241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift in Sources */,
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
+				852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */,
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
 				852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */,
 				852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */,
