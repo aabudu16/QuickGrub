@@ -10,8 +10,19 @@ import UIKit
 
 extension ForgetPasswordViewController {
     //MARK: Private constraints
-    func configureMainContainerViewConstraints(){
+    
+    func addSubviews() {
         view.addSubview(mainCotainerView)
+        mainCotainerView.addSubview(containerView)
+        mainCotainerView.addSubview(lockImage)
+        containerView.addSubview(resetLabel)
+        containerView.addSubview(resetButton)
+        containerView.addSubview(emailTextField)
+        view.addSubview(topView)
+        view.addSubview(cancelIcon)
+    }
+    
+    func configureMainContainerViewConstraints(){
         mainCotainerView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate(
@@ -26,7 +37,6 @@ extension ForgetPasswordViewController {
     }
     
     func setupContainerView() {
-        mainCotainerView.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [containerView.leadingAnchor.constraint(equalTo: mainCotainerView.leadingAnchor),
@@ -34,7 +44,6 @@ extension ForgetPasswordViewController {
     }
     
     func configurelockImageConstraints() {
-        mainCotainerView.addSubview(lockImage)
         lockImage.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate(
             [lockImage.widthAnchor.constraint(equalToConstant: 150), lockImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
@@ -45,7 +54,6 @@ extension ForgetPasswordViewController {
     }
     
     func configureResetLabelConstraits(){
-        containerView.addSubview(resetLabel)
         resetLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([resetLabel.topAnchor.constraint(equalTo: lockImage.bottomAnchor,constant: 3),resetLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor), resetLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor), resetLabel.heightAnchor.constraint(equalToConstant: 50)])
     }
@@ -57,13 +65,11 @@ extension ForgetPasswordViewController {
     }
     
     func configureResetButtonConstraints(){
-        containerView.addSubview(resetButton)
         resetButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([resetButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor,constant: -25), resetButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10), resetButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), resetButton.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     func configureEmailTextFieldConstraints(){
-        containerView.addSubview(emailTextField)
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([emailTextField.bottomAnchor.constraint(equalTo: resetButton.topAnchor,constant: -60), emailTextField.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
                                      emailTextField.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.72),
@@ -71,13 +77,11 @@ extension ForgetPasswordViewController {
     }
     
     func configureTopViewConstraints(){
-        view.addSubview(topView)
         topView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([topView.topAnchor.constraint(equalTo: view.topAnchor), topView.leadingAnchor.constraint(equalTo: view.leadingAnchor), topView.trailingAnchor.constraint(equalTo: view.trailingAnchor), topView.heightAnchor.constraint(equalToConstant: 50)])
     }
     
     func configureCancelIconConstraints(){
-        view.addSubview(cancelIcon)
         cancelIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([cancelIcon.centerXAnchor.constraint(equalTo: topView.centerXAnchor), cancelIcon.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(cancelIcon.frame.height / 2)), cancelIcon.heightAnchor.constraint(equalToConstant: 70), cancelIcon.widthAnchor.constraint(equalToConstant: 70)])
     }

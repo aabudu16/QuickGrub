@@ -103,7 +103,12 @@ class ForgetPasswordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        configureMainContainerViewConstraints()
+        addSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       configureMainContainerViewConstraints()
         setupContainerView()
         configurelockImageConstraints()
         configureResetLabelConstraits()
@@ -113,11 +118,6 @@ class ForgetPasswordViewController: UIViewController {
         addKeyBoardHandlingObservers()
         configureTopViewConstraints()
         configureCancelIconConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
     }
     
     //MARK: @objc func
