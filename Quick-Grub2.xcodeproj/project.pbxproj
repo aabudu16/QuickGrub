@@ -320,6 +320,15 @@
 			path = CustomerReviewsVC;
 			sourceTree = "<group>";
 		};
+		852C384C241C645100EDD0DD /* ForgetPasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
+				852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */,
+			);
+			path = ForgetPasswordVC;
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -441,8 +450,7 @@
 				852C383F241C517600EDD0DD /* RestaurantDetailVC */,
 				852C3844241C5C7500EDD0DD /* UpdateUserProfileVC */,
 				852C3849241C5E7500EDD0DD /* CustomerReviewsVC */,
-				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
-				852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */,
+				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,

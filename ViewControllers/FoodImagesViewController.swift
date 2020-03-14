@@ -170,17 +170,22 @@ class FoodImagesViewController: UIViewController {
         return button
     }()
     
+    lazy var rightBarButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleFilterButtonPressed(sender:)))
+        button.tintColor = .black
+        return button
+    }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         locationManager.delegate = self
+        self.navigationItem.rightBarButtonItem = rightBarButton
         checkLocationAuthorization()
         setupCollectionView()
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-        
-        
         getUserInfo()
         configureInstructionLabelViewConstraints()
         configureInstructionLabelConstraints()
@@ -216,7 +221,12 @@ class FoodImagesViewController: UIViewController {
         
     }
     
+    @objc func handleFilterButtonPressed(sender:UIButton){
+        
+    }
+    
     // MARK: Private function
+    
     
     private func getUserInfo(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else {
