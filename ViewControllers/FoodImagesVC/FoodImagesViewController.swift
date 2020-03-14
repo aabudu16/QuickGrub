@@ -25,7 +25,7 @@ class FoodImagesViewController: UIViewController {
     //MARK: -- CoreLocation Coordinate
     let plus = UIImage(systemName: "plus")
     let checkmark = UIImage(systemName: "checkmark")
-    private let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     var userFoodImageSelection = [CDYelpBusiness](){
         didSet{
@@ -170,17 +170,27 @@ class FoodImagesViewController: UIViewController {
         return button
     }()
     
+    lazy var rightBarButton:UIBarButtonItem = {
+        let button = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"), style: .plain, target: self, action: #selector(handleFilterButtonPressed(sender:)))
+        button.tintColor = .black
+        return button
+    }()
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         locationManager.delegate = self
+        addSubview()
+        addRightBarButton()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         checkLocationAuthorization()
         setupCollectionView()
         configureBackgroundImageViewConstraints()
         configureCollectionviewConstraints()
-        
-        
         getUserInfo()
         configureInstructionLabelViewConstraints()
         configureInstructionLabelConstraints()
@@ -188,10 +198,6 @@ class FoodImagesViewController: UIViewController {
         configureCheckMarkIndicatorConstraints()
         constraintsActivityIndicatorConstraints()
         configureContinueButtomConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         self.collectionView.reloadData()
     }
     // MARK: objc function
@@ -216,7 +222,15 @@ class FoodImagesViewController: UIViewController {
         
     }
     
+    @objc func handleFilterButtonPressed(sender:UIButton){
+        print("filter menu buttpon pressed")
+    }
+    
     // MARK: Private function
+    
+    private func addRightBarButton(){
+        self.navigationItem.rightBarButtonItem = rightBarButton
+    }
     
     private func getUserInfo(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else {
@@ -241,6 +255,7 @@ class FoodImagesViewController: UIViewController {
         alert.addAction(ok)
         present(alert, animated: true, completion: nil)
     }
+    
     private func checkLocationAuthorization(){
         let status = CLLocationManager.authorizationStatus()
         switch status{
@@ -267,163 +282,4 @@ class FoodImagesViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
-    
-    //MARK: Private constraints func
-    private func configureCollectionviewConstraints(){
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        
-        let pointEstimator = RelativeLayoutUtilityClass(referenceFrameSize: self.view.frame.size)
-        NSLayoutConstraint.activate([collectionView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: pointEstimator.relativeHeight(multiplier: 0.1754)), collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor), collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor), collectionView.heightAnchor.constraint(equalToConstant: pointEstimator.relativeHeight(multiplier: 0.6887))])
-    }
-    
-    private func configureBackgroundImageViewConstraints(){
-        view.addSubview(backgroundImageView)
-        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([backgroundImageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-    }
-    
-    private func configureDimViewConstraints(){
-        view.addSubview(dimView)
-        dimView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([dimView.topAnchor.constraint(equalTo: view.topAnchor), dimView.leadingAnchor.constraint(equalTo: view.leadingAnchor), dimView.trailingAnchor.constraint(equalTo: view.trailingAnchor), dimView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-    }
-    
-    private func configureCheckMarkIndicatorViewConstraints(){
-        self.instructionLabelView.addSubview(checkMarkIndicatorView)
-        checkMarkIndicatorView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([checkMarkIndicatorView.topAnchor.constraint(equalTo: instructionLabelView.topAnchor), checkMarkIndicatorView.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), checkMarkIndicatorView.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor), checkMarkIndicatorView.bottomAnchor.constraint(equalTo: instructionLabel.topAnchor)])
-    }
-    
-    private func configureCheckMarkIndicatorConstraints(){
-        self.checkMarkIndicatorView.addSubview(checkMarkIndicator)
-        checkMarkIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([checkMarkIndicator.topAnchor.constraint(equalTo: checkMarkIndicatorView.topAnchor, constant: -50), checkMarkIndicator.leadingAnchor.constraint(equalTo: checkMarkIndicatorView.leadingAnchor, constant: -50), checkMarkIndicator.trailingAnchor.constraint(equalTo: checkMarkIndicatorView.trailingAnchor, constant: 50) ,checkMarkIndicator.bottomAnchor.constraint(equalTo: checkMarkIndicatorView.bottomAnchor, constant: 50)])
-    }
-    
-    private func configureInstructionLabelViewConstraints(){
-        dimView.addSubview(instructionLabelView)
-        instructionLabelView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabelView.centerYAnchor.constraint(equalTo: dimView.centerYAnchor), instructionLabelView.centerXAnchor.constraint(equalTo: dimView.centerXAnchor), instructionLabelView.heightAnchor.constraint(equalToConstant: 300), instructionLabelView.widthAnchor.constraint(equalToConstant: 300)])
-    }
-    
-    private func configureInstructionLabelConstraints(){
-        self.instructionLabelView.addSubview(instructionLabel)
-        instructionLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([instructionLabel.leadingAnchor.constraint(equalTo: instructionLabelView.leadingAnchor), instructionLabel.trailingAnchor.constraint(equalTo: instructionLabelView.trailingAnchor) , instructionLabel.bottomAnchor.constraint(equalTo: instructionLabelView.bottomAnchor), instructionLabel.heightAnchor.constraint(equalToConstant: 200)])
-    }
-    
-    private func constraintsActivityIndicatorConstraints(){
-        self.view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor),activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor),activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor),activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-    }
-    
-    private func configureContinueButtomConstraints(){
-        view.addSubview(continueButtom)
-        continueButtom.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([continueButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20), continueButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20), continueButtom.heightAnchor.constraint(equalToConstant: 50), continueButtom.widthAnchor.constraint(equalTo: continueButtom.heightAnchor)])
-    }
-}
-
-//MARK: Extensions
-extension FoodImagesViewController: UICollectionViewDelegate{
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
-        let info = userCategorySelectedResults[indexPath.row]
-        
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? FoodImagesSellectionCollectionViewCell else {return}
-        let info = userCategorySelectedResults[indexPath.row]
-        
-        
-    }
-}
-
-extension FoodImagesViewController:UICollectionViewDataSource{
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userCategorySelectedResults.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FoodImageIdentifier.foodCell.rawValue, for: indexPath) as? FoodImagesSellectionCollectionViewCell else {return UICollectionViewCell()}
-        
-        cell.delegate = self
-        cell.addItemButton.tag = indexPath.item
-        cell.FoodTitleLabel.tag = indexPath.item
-        cell.createPulse()
-        let info = userCategorySelectedResults[indexPath.row]
-        
-        cell.configurefoodImagesCellData(yelpImages: info)
-        
-        activityIndicator.stopAnimating()
-        
-        if userFoodImageSelection.contains(info){
-            cell.itemIsSelected = true
-        }else {
-            cell.itemIsSelected = false
-        }
-        return cell
-    }
-    
-}
-
-extension FoodImagesViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(" new location \(locations)")
-        self.locations = locations
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Authorization status changed to \(status.rawValue)")
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        default:
-            break
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-}
-
-extension FoodImagesViewController: CollectionViewCellDelegate{
-    func handleShortCut(tag: Int) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
-        
-        cell.shortCutViewTopAnchor?.isActive = false
-        cell.newShortCutViewTopAnchor?.isActive = true
-        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
-            cell.shortCutView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
-            cell.layoutIfNeeded()
-        }, completion: nil)
-        
-    }
-    
-    func addSelectedFood(tag: Int) {
-        let info = userCategorySelectedResults[tag]
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
-        
-        if cell.itemIsSelected == false{
-            print(tag)
-            userFoodImageSelection.append(info)
-            print("Amount \(userFoodImageSelection.count)")
-            cell.itemIsSelected = true
-        }else{
-            print("Take care of deleting from array at that index")
-            cell.itemIsSelected = false
-            
-            
-        }
-        
-    }
-    
-    
 }

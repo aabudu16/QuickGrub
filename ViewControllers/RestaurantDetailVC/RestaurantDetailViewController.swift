@@ -19,57 +19,10 @@ class RestaurantDetailViewController: UIViewController {
     let image = UIImage(named: "FoodPlaceholder")
     var business:CDYelpBusiness!{
         didSet{
-            logoLabel.text = business.name
-            restaurantName.text = business.name
-            if (business.location?.displayAddress?.count)! > 1{
-                if let displayAddress = business.location?.displayAddress{
-                    addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-                }
-            }else{
-                if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0])"
-                }
-            }
-            
-            restaurantPhoneNumber.text = business.displayPhone
-            
+            // populate business data
+            populateBusinessData(business: business)
             // ratings images
-            switch business.rating{
-            case 0.0:
-                starRatings.image = UIImage(named: "stars_0")
-            case 1.0:
-                starRatings.image = UIImage(named: "stars_1")
-            case 1.5:
-                starRatings.image = UIImage(named: "stars_1half")
-            case 2.0:
-                starRatings.image = UIImage(named: "stars_2")
-            case 2.5:
-                starRatings.image = UIImage(named: "stars_2half")
-            case 3.0:
-                starRatings.image = UIImage(named: "stars_3")
-            case 3.5:
-                starRatings.image = UIImage(named: "stars_3half")
-            case 4.0:
-                starRatings.image = UIImage(named: "stars_4")
-            case 4.5:
-                starRatings.image = UIImage(named: "stars_4half")
-            case 5.0:
-                starRatings.image = UIImage(named: "stars_5")
-            default:
-                starRatings.image = UIImage(named: "stars_0")
-                
-            }
-            // review count
-            if let reviewCount = business.reviewCount{
-                reviewCountLabel.text = "\(reviewCount) Ratings"
-            }
-            
-            // hours of operation
-            if let hours = business.hours{
-                if let unWrappedHours = hours.first.flatMap({$0.open}){
-                    unWrappedHours.forEach({print($0.toJSON())})
-                }
-            }
+           addRatingStarImage()
         }
     }
     
@@ -228,9 +181,15 @@ class RestaurantDetailViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
         setScrollViewDelegate()
         setupNavigationBarButtons()
         view.backgroundColor = .white
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        populateImageScrollView()
         configureImageScrollViewConstraints()
         configurePageControlConstraints()
         configureLogoViewConstraints()
@@ -247,11 +206,6 @@ class RestaurantDetailViewController: UIViewController {
         configureReviewButtonConstraints()
         configureHoursOfOperationTextViewConstraints()
         configureNavigateButtomConstraints()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        populateImageScrollView()
     }
     
     //MARK:@Objc function
@@ -293,20 +247,14 @@ class RestaurantDetailViewController: UIViewController {
     @objc func handleBusinessMenuButtonPressed(sender:UIButton){
         print("Menu button pressed")
     }
+    
     @objc func handleFavoriteButtonPressed(sender:UIBarButtonItem){
         guard let businessInfo = business else {return}
          guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
          
         let myFavorite = UserFavorite(creatorID:  currentUser.uid, venueID: businessInfo.id!, name: businessInfo.name!)
          
-         FirestoreService.manager.createFavorite(favorite: myFavorite) { (result) in
-             switch result{
-             case .failure(let error):
-                 self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
-             case .success(()):
-                 self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
-             }
-         }
+        createFavorites(favorite: myFavorite)
     }
     
     @objc func handleShareButtonPressed(sender:UIBarButtonItem){
@@ -315,9 +263,8 @@ class RestaurantDetailViewController: UIViewController {
         let share = UIActivityViewController(activityItems: [businessURL], applicationActivities: nil)
         present(share, animated: true, completion: nil)
     }
+    
     //MARK:Private function
-    
-    
     private func populateImageScrollView(){
         if let photoArray = self.business.photos{
             for (index, photoString) in photoArray.enumerated(){
@@ -339,6 +286,74 @@ class RestaurantDetailViewController: UIViewController {
             }
         }
     }
+    
+    private func populateBusinessData(business: CDYelpBusiness){
+        
+        logoLabel.text = business.name
+        restaurantName.text = business.name
+        restaurantPhoneNumber.text = business.displayPhone
+        
+        if (business.location?.displayAddress?.count)! > 1{
+            if let displayAddress = business.location?.displayAddress{
+                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
+            }
+        }else{
+            if let displayAddress = business.location?.displayAddress{
+            addressTextView.text = "\(displayAddress[0])"
+            }
+        }
+        
+        // review count
+        if let reviewCount = business.reviewCount{
+            reviewCountLabel.text = "\(reviewCount) Ratings"
+        }
+        
+        // hours of operation
+        if let hours = business.hours{
+            if let unWrappedHours = hours.first.flatMap({$0.open}){
+                unWrappedHours.forEach({print($0.toJSON())})
+            }
+        }
+    }
+    
+    private func addRatingStarImage(){
+        switch business.rating{
+        case 0.0:
+            starRatings.image = UIImage(named: "stars_0")
+        case 1.0:
+            starRatings.image = UIImage(named: "stars_1")
+        case 1.5:
+            starRatings.image = UIImage(named: "stars_1half")
+        case 2.0:
+            starRatings.image = UIImage(named: "stars_2")
+        case 2.5:
+            starRatings.image = UIImage(named: "stars_2half")
+        case 3.0:
+            starRatings.image = UIImage(named: "stars_3")
+        case 3.5:
+            starRatings.image = UIImage(named: "stars_3half")
+        case 4.0:
+            starRatings.image = UIImage(named: "stars_4")
+        case 4.5:
+            starRatings.image = UIImage(named: "stars_4half")
+        case 5.0:
+            starRatings.image = UIImage(named: "stars_5")
+        default:
+            starRatings.image = UIImage(named: "stars_0")
+        }
+    }
+    
+    private func createFavorites(favorite: UserFavorite){
+        FirestoreService.manager.createFavorite(favorite: favorite) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
+            case .success(()):
+                self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
+            }
+        }
+    }
+    
     private func setScrollViewDelegate(){
         imageScrollView.delegate = self
     }
@@ -358,105 +373,6 @@ class RestaurantDetailViewController: UIViewController {
         hairLine.backgroundColor = .lightGray
         return hairLine
     }
-    
-    //MARK: - Private constraints functions
-    private func configureImageScrollViewConstraints(){
-        view.addSubview(imageScrollView)
-        imageScrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([imageScrollView.topAnchor.constraint(equalTo: view.topAnchor),imageScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),imageScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),imageScrollView.heightAnchor.constraint(equalToConstant: 300)])
-    }
-    
-    private func configurePageControlConstraints(){
-        view.addSubview(pageControl)
-        pageControl.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([pageControl.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: -5), pageControl.centerXAnchor.constraint(equalTo: imageScrollView.centerXAnchor), pageControl.heightAnchor.constraint(equalToConstant: 10), pageControl.widthAnchor.constraint(equalToConstant: 30)])
-    }
-    
-    private func configureLogoViewConstraints(){
-        view.addSubview(logoView)
-        logoView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoView.bottomAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant: (logoView.layer.frame.height / 2)), logoView.trailingAnchor.constraint(equalTo: imageScrollView.trailingAnchor, constant: -10), logoView.heightAnchor.constraint(equalToConstant: 60), logoView.widthAnchor.constraint(equalToConstant: 90)])
-    }
-    
-    private func configureLogoLabelConstraints(){
-        logoView.addSubview(logoLabel)
-        logoLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoLabel.topAnchor.constraint(equalTo: logoView.topAnchor, constant: 2),logoLabel.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: 10),logoLabel.trailingAnchor.constraint(equalTo: logoView.trailingAnchor, constant: -2),logoLabel.bottomAnchor.constraint(equalTo: logoView.bottomAnchor)])
-    }
-    
-    private func configureBadgeImageViewConstraints(){
-        view.addSubview(badgeImageView)
-        badgeImageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([badgeImageView.topAnchor.constraint(equalTo: logoView.topAnchor,constant: -20), badgeImageView.leadingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -20), badgeImageView.heightAnchor.constraint(equalToConstant: 45), badgeImageView.widthAnchor.constraint(equalTo: badgeImageView.heightAnchor)])
-        
-    }
-    
-    private func configureResturantNameConstraints(){
-        view.addSubview(restaurantName)
-        restaurantName.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([restaurantName.topAnchor.constraint(equalTo: imageScrollView.bottomAnchor, constant:  5), restaurantName.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), restaurantName.heightAnchor.constraint(equalToConstant: 50), restaurantName.trailingAnchor.constraint(equalTo: logoView.leadingAnchor, constant: -35)])
-    }
-    
-    private func configureAddressTextViewConstraints(){
-        view.addSubview(addressTextView)
-        addressTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([addressTextView.topAnchor.constraint(equalTo: restaurantName.bottomAnchor), addressTextView.leadingAnchor.constraint(equalTo: imageScrollView.leadingAnchor, constant: 5), addressTextView.heightAnchor.constraint(equalToConstant: 78), addressTextView.trailingAnchor.constraint(equalTo: restaurantName.trailingAnchor)])
-    }
-    
-    private func configureRestaurantPhoneNumberConstraints(){
-        view.addSubview(restaurantPhoneNumber)
-        restaurantPhoneNumber.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([restaurantPhoneNumber.topAnchor.constraint(equalTo: addressTextView.bottomAnchor,constant: 0), restaurantPhoneNumber.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), restaurantPhoneNumber.heightAnchor.constraint(equalToConstant: 40), restaurantPhoneNumber.widthAnchor.constraint(equalTo: addressTextView.widthAnchor)])
-    }
-    
-    private func configureFoodMenuButtonConstraints(){
-        view.addSubview(businessMenuButton)
-        businessMenuButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([businessMenuButton.topAnchor.constraint(equalTo: logoView.bottomAnchor,constant: 25), businessMenuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor,constant: -5), businessMenuButton.heightAnchor.constraint(equalToConstant: 80), businessMenuButton.widthAnchor.constraint(equalToConstant: 70)])
-    }
-    
-    private func configureStarRatingsLabelConstraints(){
-        view.addSubview(starRatings)
-        starRatings.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([starRatings.topAnchor.constraint(equalTo: restaurantPhoneNumber.bottomAnchor,constant: 0), starRatings.leadingAnchor.constraint(equalTo: restaurantPhoneNumber.leadingAnchor), starRatings.heightAnchor.constraint(equalToConstant: 30), starRatings.widthAnchor.constraint(equalToConstant: 100)])
-    }
-    
-    private func configureRatingsCountConstraints(){
-        view.addSubview(reviewCountLabel)
-        reviewCountLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([reviewCountLabel.topAnchor.constraint(equalTo: starRatings.topAnchor), reviewCountLabel.leadingAnchor.constraint(equalTo: starRatings.trailingAnchor,constant: 3), reviewCountLabel.trailingAnchor.constraint(equalTo: addressTextView.trailingAnchor), reviewCountLabel.heightAnchor.constraint(equalTo: starRatings.heightAnchor)])
-    }
-    
-    private func configureContainerViewConstraints(){
-        view.addSubview(containerView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([containerView.topAnchor.constraint(equalTo: starRatings.bottomAnchor), containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10), containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), containerView.heightAnchor.constraint(equalToConstant: 45)])
-    }
-    
-    private func configureAboutButtonConstraints(){
-        containerView.addSubview(aboutButton)
-        aboutButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([aboutButton.topAnchor.constraint(equalTo: containerView.topAnchor), aboutButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor), aboutButton.widthAnchor.constraint(equalTo: starRatings.widthAnchor), aboutButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)])
-    }
-    
-    private func configureReviewButtonConstraints(){
-        containerView.addSubview(reviewButton)
-        reviewButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([reviewButton.topAnchor.constraint(equalTo: containerView.topAnchor), reviewButton.leadingAnchor.constraint(equalTo: reviewCountLabel.leadingAnchor), reviewButton.heightAnchor.constraint(equalTo: aboutButton.heightAnchor), reviewButton.widthAnchor.constraint(equalTo: aboutButton.widthAnchor)])
-    }
-    
-    private func configureHoursOfOperationTextViewConstraints(){
-        view.addSubview(hoursOfOperationTextView)
-        hoursOfOperationTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([hoursOfOperationTextView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 2), hoursOfOperationTextView.leadingAnchor.constraint(equalTo: addressTextView.leadingAnchor), hoursOfOperationTextView.trailingAnchor.constraint(equalTo: reviewButton.trailingAnchor, constant: 30), hoursOfOperationTextView.heightAnchor.constraint(equalToConstant: 200)])
-    }
-    
-    private func configureNavigateButtomConstraints(){
-        view.addSubview(navigateButtom)
-        navigateButtom.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([navigateButtom.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant:  -30), navigateButtom.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), navigateButtom.heightAnchor.constraint(equalToConstant: 40), navigateButtom.widthAnchor.constraint(equalToConstant: 120)])
-    }
-    
 }
 
 extension RestaurantDetailViewController: UIScrollViewDelegate{

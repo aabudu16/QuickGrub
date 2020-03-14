@@ -18,6 +18,28 @@
 		8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */; };
 		8504D50F23CD367E002257A4 /* UserFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50E23CD367E002257A4 /* UserFavorite.swift */; };
 		8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D51023CE5377002257A4 /* FavoriteViewController.swift */; };
+		852C3828241BEC4800EDD0DD /* LoginViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */; };
+		852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */; };
+		852C382C241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */; };
+		852C382F241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */; };
+		852C3831241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3830241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift */; };
+		852C3833241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3832241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift */; };
+		852C3837241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3836241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift */; };
+		852C3839241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3838241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift */; };
+		852C383B241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */; };
+		852C383E241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C383D241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift */; };
+		852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */; };
+		852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */; };
+		852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */; };
+		852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */; };
+		852C384B241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */; };
+		852C384E241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */; };
+		852C3851241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */; };
+		852C3853241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */; };
+		852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */; };
+		852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */; };
+		852C3859241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */; };
+		852C385C241C7AA300EDD0DD /* LoginViewController+Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -117,6 +139,28 @@
 		8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
 		8504D50E23CD367E002257A4 /* UserFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavorite.swift; sourceTree = "<group>"; };
 		8504D51023CE5377002257A4 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
+		852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		852C3830241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteViewController+FoldingCellDelegate.swift"; sourceTree = "<group>"; };
+		852C3832241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		852C3836241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantResultsViewController+FoldingCellDelegate.swift"; sourceTree = "<group>"; };
+		852C3838241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantResultsViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantResultsViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		852C383D241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantDetailViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileVC+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
+		852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+YelpCustomerProfileDelegate.swift"; sourceTree = "<group>"; };
+		852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerReviewsViewController+MoreYelpReviewDelegate.swift"; sourceTree = "<group>"; };
+		852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ForgetPasswordViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OnBoardingViewController+QuickGrubOnboardDataSource.swift"; sourceTree = "<group>"; };
+		852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+CollectionViewCellDelegate.swift"; sourceTree = "<group>"; };
+		852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+CLLocationManagerDelegate.swift"; sourceTree = "<group>"; };
+		852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
+		852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
+		852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Objc.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -186,7 +230,7 @@
 		859A29F723BB0D22005F8173 /* CellIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellIdentifiers.swift; sourceTree = "<group>"; };
 		859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReviewTableViewCell.swift; sourceTree = "<group>"; };
 		859A2A0323BD7C49005F8173 /* checkMark2.gif */ = {isa = PBXFileReference; explicitFileType = image.gif; path = checkMark2.gif; sourceTree = "<group>"; };
-		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		85F92A47239015C400048FCB /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Secrets.swift; path = ../Secrets.swift; sourceTree = "<group>"; };
 		85F92A52239029AF00048FCB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		85F92A5523902D9B00048FCB /* FirebaseAuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		85F92A5623902D9B00048FCB /* FirebaseStorageService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
@@ -226,6 +270,113 @@
 				22B9CCC8647BBB0EB63C2310 /* Pods-Quick-Grub2Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		852C382D241BFD8A00EDD0DD /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A98422384319A0051AF45 /* LoginViewController.swift */,
+				852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */,
+				852C3827241BEC4800EDD0DD /* LoginViewController+Constraints.swift */,
+				852C3829241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift */,
+				852C382B241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift */,
+			);
+			path = LoginVC;
+			sourceTree = "<group>";
+		};
+		852C3835241C2FB400EDD0DD /* FavoriteVC */ = {
+			isa = PBXGroup;
+			children = (
+				8504D51023CE5377002257A4 /* FavoriteViewController.swift */,
+				852C382E241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift */,
+				852C3832241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift */,
+				852C3830241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift */,
+			);
+			path = FavoriteVC;
+			sourceTree = "<group>";
+		};
+		852C383C241C43AB00EDD0DD /* RestaurantResultsVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
+				852C3836241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift */,
+				852C3838241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift */,
+				852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */,
+			);
+			path = RestaurantResultsVC;
+			sourceTree = "<group>";
+		};
+		852C383F241C517600EDD0DD /* RestaurantDetailVC */ = {
+			isa = PBXGroup;
+			children = (
+				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
+				852C383D241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift */,
+			);
+			path = RestaurantDetailVC;
+			sourceTree = "<group>";
+		};
+		852C3844241C5C7500EDD0DD /* UpdateUserProfileVC */ = {
+			isa = PBXGroup;
+			children = (
+				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
+				852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */,
+				852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */,
+			);
+			path = UpdateUserProfileVC;
+			sourceTree = "<group>";
+		};
+		852C3849241C5E7500EDD0DD /* CustomerReviewsVC */ = {
+			isa = PBXGroup;
+			children = (
+				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
+				852C3845241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift */,
+				852C3847241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift */,
+			);
+			path = CustomerReviewsVC;
+			sourceTree = "<group>";
+		};
+		852C384C241C645100EDD0DD /* ForgetPasswordVC */ = {
+			isa = PBXGroup;
+			children = (
+				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
+				852C384A241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift */,
+			);
+			path = ForgetPasswordVC;
+			sourceTree = "<group>";
+		};
+		852C384F241C6C1700EDD0DD /* OnBoardingVC */ = {
+			isa = PBXGroup;
+			children = (
+				85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */,
+				852C384D241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift */,
+			);
+			path = OnBoardingVC;
+			sourceTree = "<group>";
+		};
+		852C385A241C75BF00EDD0DD /* FoodImagesVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
+				852C3850241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift */,
+				852C3852241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift */,
+				852C3854241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift */,
+				852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */,
+				852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */,
+			);
+			path = FoodImagesVC;
+			sourceTree = "<group>";
+		};
+		852C385D241C8A1F00EDD0DD /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				858A983E2384319A0051AF45 /* AppDelegate.swift */,
+				858A98402384319A0051AF45 /* SceneDelegate.swift */,
+				85F92A47239015C400048FCB /* Secrets.swift */,
+				858A98472384319C0051AF45 /* Assets.xcassets */,
+				858A988923885D180051AF45 /* GIF animation folder */,
+				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
@@ -319,12 +470,7 @@
 		858A983D2384319A0051AF45 /* Quick-Grub2 */ = {
 			isa = PBXGroup;
 			children = (
-				858A983E2384319A0051AF45 /* AppDelegate.swift */,
-				858A98402384319A0051AF45 /* SceneDelegate.swift */,
-				85F92A47239015C400048FCB /* Secrets.swift */,
-				858A98472384319C0051AF45 /* Assets.xcassets */,
-				858A988923885D180051AF45 /* GIF animation folder */,
-				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
+				852C385D241C8A1F00EDD0DD /* Supporting files */,
 				858A984C2384319C0051AF45 /* Info.plist */,
 				85F92A52239029AF00048FCB /* GoogleService-Info.plist */,
 			);
@@ -343,17 +489,17 @@
 		858A9860238433160051AF45 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				858A98422384319A0051AF45 /* LoginViewController.swift */,
-				8504D51023CE5377002257A4 /* FavoriteViewController.swift */,
-				858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */,
-				859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */,
-				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
-				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
-				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
-				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
+				852C382D241BFD8A00EDD0DD /* LoginVC */,
+				852C3835241C2FB400EDD0DD /* FavoriteVC */,
+				852C383C241C43AB00EDD0DD /* RestaurantResultsVC */,
+				852C383F241C517600EDD0DD /* RestaurantDetailVC */,
+				852C3844241C5C7500EDD0DD /* UpdateUserProfileVC */,
+				852C3849241C5E7500EDD0DD /* CustomerReviewsVC */,
+				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
+				852C385A241C75BF00EDD0DD /* FoodImagesVC */,
 				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
-				85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */,
+				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -617,21 +763,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */,
+				852C382F241BFE1F00EDD0DD /* FavoriteViewController+UITableViewDelegate.swift in Sources */,
+				852C3851241C6D1000EDD0DD /* FoodImagesViewController+Constraints.swift in Sources */,
 				854D6D3A23A28E76001BD091 /* CDYelpCenter.swift in Sources */,
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
 				854D6D5023A28E76001BD091 /* CDYelpRegion.swift in Sources */,
 				859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */,
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
+				852C382C241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift in Sources */,
+				852C3833241C028900EDD0DD /* FavoriteViewController+UITableViewDataSource.swift in Sources */,
 				859A29F623BB0C69005F8173 /* CustomerReviewsViewController.swift in Sources */,
 				854D6D5323A28E76001BD091 /* CDYelpLocation.swift in Sources */,
+				852C3855241C716800EDD0DD /* FoodImagesViewController+CLLocationManagerDelegate.swift in Sources */,
+				852C385C241C7AA300EDD0DD /* LoginViewController+Objc.swift in Sources */,
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
+				852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */,
+				852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */,
+				852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
 				859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */,
 				854D6D4023A28E76001BD091 /* CDYelpTerm.swift in Sources */,
+				852C383B241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift in Sources */,
 				854D6D4F23A28E76001BD091 /* CDYelpSearchResponse.swift in Sources */,
 				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
+				852C3828241BEC4800EDD0DD /* LoginViewController+Constraints.swift in Sources */,
+				852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */,
 				859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */,
+				852C3837241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift in Sources */,
 				854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */,
 				854D6D6123A66ED9001BD091 /* SSCheckMark.swift in Sources */,
 				854D6D5123A28E76001BD091 /* CDYelpConstants.swift in Sources */,
@@ -658,6 +817,7 @@
 				85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */,
 				85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */,
 				854D6D4623A28E76001BD091 /* CDYelpAutoCompleteResponse.swift in Sources */,
+				852C3853241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift in Sources */,
 				8504D50F23CD367E002257A4 /* UserFavorite.swift in Sources */,
 				854D6D5D23A51B13001BD091 /* Enums.swift in Sources */,
 				854D6D4B23A28E76001BD091 /* CDYelpAPIClient.swift in Sources */,
@@ -667,24 +827,32 @@
 				8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */,
 				8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
+				852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
+				852C384B241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift in Sources */,
 				8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
 				85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */,
 				854D6D5B23A43224001BD091 /* FilterModel.swift in Sources */,
+				852C3848241C5DE100EDD0DD /* CustomerReviewsViewController+MoreYelpReviewDelegate.swift in Sources */,
 				8564EB40239C0CC6009AE8B5 /* RelativeLayoutUtilityClass.swift in Sources */,
 				854D6D3B23A28E76001BD091 /* CDYelpReviewsResponse.swift in Sources */,
+				852C384E241C6BE800EDD0DD /* OnBoardingViewController+QuickGrubOnboardDataSource.swift in Sources */,
+				852C383E241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift in Sources */,
 				854D6D4C23A28E76001BD091 /* CDYelpCoordinates.swift in Sources */,
 				854D6D4723A28E76001BD091 /* CDYelpReview.swift in Sources */,
 				854D6D3C23A28E76001BD091 /* String+CDYelpFusionKit.swift in Sources */,
 				85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */,
 				854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */,
+				852C3839241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift in Sources */,
+				852C3831241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift in Sources */,
 				854D6D4823A28E76001BD091 /* CDYelpEnums.swift in Sources */,
 				859A29F423BA5A70005F8173 /* Protocol.swift in Sources */,
 				854D6D3F23A28E76001BD091 /* CDYelpBusiness.swift in Sources */,
 				854D6D5F23A5DF3D001BD091 /* GenericAlert.swift in Sources */,
 				858A98412384319A0051AF45 /* SceneDelegate.swift in Sources */,
 				85F92A5E23902DD900048FCB /* UserProfile.swift in Sources */,
+				852C3859241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift in Sources */,
 				854D6D4423A28E76001BD091 /* CDImage+CDYelpFusionKit.swift in Sources */,
 				854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */,
 				854D6D4D23A28E76001BD091 /* CDImage.swift in Sources */,

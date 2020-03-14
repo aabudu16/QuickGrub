@@ -89,10 +89,10 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var updateUserNameIcon:UIImageView = {
-       let image = UIImageView()
-       image.image = UIImage(systemName: "pencil")
-       image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
-       return image
+        let image = UIImageView()
+        image.image = UIImage(systemName: "pencil")
+        image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        return image
     }()
     
     lazy var userEmailTextField:HoshiTextField = {
@@ -102,7 +102,7 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var updateEmailIcon:UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(systemName: "pencil")
         image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
         return image
@@ -117,9 +117,6 @@ class UpdateUserProfileViewController: UIViewController {
     
     lazy var logoutButton:UIButton = {
         let button = UIButton()
-//        button.layer.borderColor = UIColor.black.cgColor
-//       button.layer.borderWidth = 2
-        
         button.tintColor = .black
         button.setImage(UIImage(named: "logout"), for: .normal)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
@@ -129,8 +126,6 @@ class UpdateUserProfileViewController: UIViewController {
     lazy var logoutLabel:UILabel = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(handleLogout))
         let label = UILabel()
-//        label.layer.borderColor = UIColor.black.cgColor
-//        label.layer.borderWidth = 2
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         label.text = "Logout"
@@ -143,6 +138,11 @@ class UpdateUserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        addSubviews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
@@ -161,7 +161,6 @@ class UpdateUserProfileViewController: UIViewController {
         setImageURLString()
         configureLogoutButtonConstraints()
         configureLogoutLabelConstraints()
-        
     }
     
     //MARK: @objc function
@@ -180,7 +179,7 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-
+        
         guard imageURL != nil else {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
             return}
@@ -189,23 +188,7 @@ class UpdateUserProfileViewController: UIViewController {
         guard let userName = userNameTextField.text else {return}
         guard let imageURL = imageURL else {return}
         activityIndicator.startAnimating()
-        FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
-                self.activityIndicator.stopAnimating()
-            case .success(()):
-                FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
-                    switch result{
-                    case .success(()):
-                        self.updateFireBaseEmail(email: email)
-                    case .failure(let error):
-                        print(error)
-                        self.activityIndicator.stopAnimating()
-                    }
-                }
-            }
-        }
+        updateCurrentUser(userName: userName, email: email, imageURL: imageURL)
     }
     
     @objc func presentPHPhotoLibrary(sender:UITapGestureRecognizer){
@@ -245,19 +228,39 @@ class UpdateUserProfileViewController: UIViewController {
                 self.present(loginVC, animated: true, completion: nil)
             }
         }
-      }
+    }
     
     //MARK: Private function
-
+    
+    private func updateCurrentUser(userName:String, email:String, imageURL:URL ) {
+        FirestoreService.manager.updateCurrentUser(userName: userName,photoURL: imageURL ,email: email) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "seems to be having a problem updating your pofile \(error)", actionTitle: "OK")
+                self.activityIndicator.stopAnimating()
+            case .success(()):
+                FirebaseAuthService.manager.updateUserFields(userName: userName, photoURL: imageURL) { (result) in
+                    switch result{
+                    case .success(()):
+                        self.updateFireBaseEmail(email: email)
+                    case .failure(let error):
+                        print(error)
+                        self.activityIndicator.stopAnimating()
+                    }
+                }
+            }
+        }
+    }
+    
     func showDismissAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
-           let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-           let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
-           }
-           
-           alert.addAction(alertAction1)
-           present(alert, animated: true, completion: nil)
-       }
+        }
+        
+        alert.addAction(alertAction1)
+        present(alert, animated: true, completion: nil)
+    }
     
     private func setImageURLString(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -285,9 +288,9 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     private func setupUserNameTextField(){
-           guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
-           userNameTextField.text = "\(currentUser.displayName ?? "")"
-       }
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        userNameTextField.text = "\(currentUser.displayName ?? "")"
+    }
     
     private func setupUserEmailTextField(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -310,89 +313,6 @@ class UpdateUserProfileViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
-    
-    private func configureTopViewConstraints(){
-        view.addSubview(topView)
-        topView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([topView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),topView.leadingAnchor.constraint(equalTo: view.leadingAnchor), topView.trailingAnchor.constraint(equalTo: view.trailingAnchor), topView.heightAnchor.constraint(equalToConstant: 140)])
-    }
-    
-    private func configureProfileImageConstraints(){
-        view.addSubview(profileImage)
-        profileImage.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([profileImage.centerXAnchor.constraint(equalTo: view.centerXAnchor), profileImage.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: -(profileImage.frame.height / 2)), profileImage.heightAnchor.constraint(equalToConstant: 120), profileImage.widthAnchor.constraint(equalToConstant: 120)])
-    }
-    
-    private func configureUpdateProfileLabelConstraints(){
-        topView.addSubview(updateProfileLabel)
-        updateProfileLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([updateProfileLabel.topAnchor.constraint(equalTo: topView.topAnchor,constant: 3),updateProfileLabel.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10), updateProfileLabel.heightAnchor.constraint(equalToConstant: 50), updateProfileLabel.widthAnchor.constraint(equalToConstant: 200)])
-    }
-    
-    private func configureUpdateButtonConstraints(){
-        view.addSubview(updateButton)
-        updateButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([updateButton.topAnchor.constraint(equalToSystemSpacingBelow: userEmailTextField.bottomAnchor, multiplier: 10), updateButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 25),updateButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -25),updateButton.heightAnchor.constraint(equalToConstant: 45)])
-    }
-    
-    private func configureCamerabuttonConstraints(){
-        view.addSubview(camerabutton)
-        camerabutton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([camerabutton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: -(camerabutton.frame.height / 2)), camerabutton.trailingAnchor.constraint(equalTo: profileImage.trailingAnchor), camerabutton.heightAnchor.constraint(equalToConstant:100),camerabutton.heightAnchor.constraint(equalToConstant: 100)])
-    }
-    
-    private func configureUserNameTextFieldConstraints(){
-        view.addSubview(userNameTextField)
-        userNameTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([userNameTextField.topAnchor.constraint(equalTo: camerabutton.bottomAnchor,constant: 3),userNameTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userNameTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
-                                     userNameTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
-    }
-    
-    private func configureUpdateUserNameIconConstraints(){
-        userNameTextField.addSubview(updateUserNameIcon)
-        updateUserNameIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([updateUserNameIcon.bottomAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: -10), updateUserNameIcon.trailingAnchor.constraint(equalTo: userNameTextField.trailingAnchor, constant: -2), updateUserNameIcon.heightAnchor.constraint(equalToConstant: 20), updateUserNameIcon.widthAnchor.constraint(equalToConstant: 20)])
-    }
-    
-    private func configureUserEmailTextFieldConstraints(){
-        view.addSubview(userEmailTextField)
-        userEmailTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([userEmailTextField.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 5),userEmailTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor) ,userEmailTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.72),
-                                     userEmailTextField.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.13)])
-    }
-    
-    private func configureUpdateEmailIconConstraints(){
-           userEmailTextField.addSubview(updateEmailIcon)
-           updateEmailIcon.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([updateEmailIcon.bottomAnchor.constraint(equalTo: userEmailTextField.bottomAnchor, constant: -5), updateEmailIcon.trailingAnchor.constraint(equalTo: userEmailTextField.trailingAnchor, constant: -2), updateEmailIcon.heightAnchor.constraint(equalToConstant: 20), updateEmailIcon.widthAnchor.constraint(equalToConstant: 20)])
-       }
-    
-    private func configureCancelButtonConstraints(){
-        topView.addSubview(cancelButton)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([cancelButton.topAnchor.constraint(equalTo: topView.topAnchor, constant:  5), cancelButton.trailingAnchor.constraint(equalTo: topView.trailingAnchor, constant:  -5), cancelButton.heightAnchor.constraint(equalToConstant: 50), cancelButton.widthAnchor.constraint(equalToConstant: 50)])
-    }
-    
-    private func configureActivityIndicatorConstraint(){
-        view.addSubview(activityIndicator)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([activityIndicator.topAnchor.constraint(equalTo: view.topAnchor), activityIndicator.leadingAnchor.constraint(equalTo: view.leadingAnchor), activityIndicator.trailingAnchor.constraint(equalTo: view.trailingAnchor), activityIndicator.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-    }
-    
-    private func configureLogoutButtonConstraints(){
-        view.addSubview(logoutButton)
-        logoutButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -5), logoutButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -80), logoutButton.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.09),
-        logoutButton.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.045)])
-    }
-    
-    private func  configureLogoutLabelConstraints(){
-        view.addSubview(logoutLabel)
-        logoutLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([logoutLabel.topAnchor.constraint(equalTo: logoutButton.topAnchor), logoutLabel.leadingAnchor.constraint(equalTo: logoutButton.trailingAnchor, constant: 2), logoutLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor), logoutLabel.heightAnchor.constraint(equalTo: logoutButton.heightAnchor)])
-    }
-    
 }
 
 //MARK:-- Extensions
@@ -400,37 +320,5 @@ extension UpdateUserProfileViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
-            self.showAlert(alertTitle: "Error", alertMessage: "Cant edit image", actionTitle: "OK")
-            return
-        }
-        profileImage.image = image
-        
-        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
-            return
-        }
-        
-                FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
-                    switch result{
-                    case .success(let url):
-                            (self?.imageURL = url)!
-                            self?.updateButton.isEnabled = true
-                            self?.updateButton.backgroundColor = .blue
-                    case .failure(let error):
-                        self?.showAlert(alertTitle: "Error", alertMessage: "Ran into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
-                    }
-                })
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        updateButton.isEnabled = true
-        updateButton.backgroundColor = .blue
-        picker.dismiss(animated: true, completion: nil)
     }
 }
