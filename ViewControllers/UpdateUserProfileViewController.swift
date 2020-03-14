@@ -89,10 +89,10 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var updateUserNameIcon:UIImageView = {
-       let image = UIImageView()
-       image.image = UIImage(systemName: "pencil")
-       image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
-       return image
+        let image = UIImageView()
+        image.image = UIImage(systemName: "pencil")
+        image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
+        return image
     }()
     
     lazy var userEmailTextField:HoshiTextField = {
@@ -102,7 +102,7 @@ class UpdateUserProfileViewController: UIViewController {
     }()
     
     lazy var updateEmailIcon:UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.image = UIImage(systemName: "pencil")
         image.tintColor = #colorLiteral(red: 0.01854561083, green: 0.8099911809, blue: 0.6765680909, alpha: 1)
         return image
@@ -117,9 +117,6 @@ class UpdateUserProfileViewController: UIViewController {
     
     lazy var logoutButton:UIButton = {
         let button = UIButton()
-//        button.layer.borderColor = UIColor.black.cgColor
-//       button.layer.borderWidth = 2
-        
         button.tintColor = .black
         button.setImage(UIImage(named: "logout"), for: .normal)
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
@@ -129,8 +126,6 @@ class UpdateUserProfileViewController: UIViewController {
     lazy var logoutLabel:UILabel = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(handleLogout))
         let label = UILabel()
-//        label.layer.borderColor = UIColor.black.cgColor
-//        label.layer.borderWidth = 2
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
         label.text = "Logout"
@@ -148,7 +143,7 @@ class UpdateUserProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-       configureNavigationBar()
+        configureNavigationBar()
         configureTopViewConstraints()
         configureProfileImageConstraints()
         configureUpdateProfileLabelConstraints()
@@ -184,7 +179,7 @@ class UpdateUserProfileViewController: UIViewController {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid user name", actionTitle: "OK")
             return
         }
-
+        
         guard imageURL != nil else {
             self.showAlert(alertTitle: "Caution", alertMessage: "Enter A valid Image", actionTitle: "OK")
             return}
@@ -249,19 +244,19 @@ class UpdateUserProfileViewController: UIViewController {
                 self.present(loginVC, animated: true, completion: nil)
             }
         }
-      }
+    }
     
     //MARK: Private function
-
+    
     func showDismissAlert (alertTitle: String?, alertMessage: String, actionTitle: String) {
-           let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
-           let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
+        let alert = UIAlertController(title: alertTitle, message: alertMessage, preferredStyle: .alert)
+        let alertAction1 = UIAlertAction(title: actionTitle, style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
-           }
-           
-           alert.addAction(alertAction1)
-           present(alert, animated: true, completion: nil)
-       }
+        }
+        
+        alert.addAction(alertAction1)
+        present(alert, animated: true, completion: nil)
+    }
     
     private func setImageURLString(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -289,9 +284,9 @@ class UpdateUserProfileViewController: UIViewController {
     }
     
     private func setupUserNameTextField(){
-           guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
-           userNameTextField.text = "\(currentUser.displayName ?? "")"
-       }
+        guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
+        userNameTextField.text = "\(currentUser.displayName ?? "")"
+    }
     
     private func setupUserEmailTextField(){
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
@@ -321,37 +316,5 @@ extension UpdateUserProfileViewController:UITextFieldDelegate{
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
-    }
-}
-
-extension UpdateUserProfileViewController:UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        guard let image = info[.editedImage] as? UIImage else {
-            self.showAlert(alertTitle: "Error", alertMessage: "Cant edit image", actionTitle: "OK")
-            return
-        }
-        profileImage.image = image
-        
-        guard let imageData = image.jpegData(compressionQuality: 0.7) else {
-            return
-        }
-        
-                FirebaseStorageService.manager.storeUserInputImage(image: imageData, completion: { [weak self] (result) in
-                    switch result{
-                    case .success(let url):
-                            (self?.imageURL = url)!
-                            self?.updateButton.isEnabled = true
-                            self?.updateButton.backgroundColor = .blue
-                    case .failure(let error):
-                        self?.showAlert(alertTitle: "Error", alertMessage: "Ran into issues saving your image to the database, please try again \(error)", actionTitle: "OK")
-                    }
-                })
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        updateButton.isEnabled = true
-        updateButton.backgroundColor = .blue
-        picker.dismiss(animated: true, completion: nil)
     }
 }
