@@ -25,7 +25,7 @@ class FoodImagesViewController: UIViewController {
     //MARK: -- CoreLocation Coordinate
     let plus = UIImage(systemName: "plus")
     let checkmark = UIImage(systemName: "checkmark")
-    private let locationManager = CLLocationManager()
+    let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
     var userFoodImageSelection = [CDYelpBusiness](){
         didSet{
@@ -324,26 +324,5 @@ extension FoodImagesViewController:UICollectionViewDataSource{
             cell.itemIsSelected = false
         }
         return cell
-    }
-    
-}
-
-extension FoodImagesViewController: CLLocationManagerDelegate{
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print(" new location \(locations)")
-        self.locations = locations
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        print("Authorization status changed to \(status.rawValue)")
-        switch status {
-        case .authorizedAlways, .authorizedWhenInUse:
-            locationManager.requestLocation()
-        default:
-            break
-        }
-    }
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
+    }    
 }
