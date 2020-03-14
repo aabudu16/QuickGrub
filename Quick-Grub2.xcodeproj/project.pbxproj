@@ -29,6 +29,7 @@
 		852C383B241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */; };
 		852C383E241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C383D241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift */; };
 		852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */; };
+		852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -139,6 +140,7 @@
 		852C383A241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantResultsViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
 		852C383D241C47E900EDD0DD /* RestaurantDetailViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestaurantDetailViewController+Constraints.swift"; sourceTree = "<group>"; };
 		852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileViewController+Constraints.swift"; sourceTree = "<group>"; };
+		852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UpdateUserProfileVC+UIImagePickerControllerDelegate.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -413,6 +415,7 @@
 				852C383F241C517600EDD0DD /* RestaurantDetailVC */,
 				8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */,
 				852C3840241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift */,
+				852C3842241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift */,
 				859A29F523BB0C69005F8173 /* CustomerReviewsViewController.swift */,
 				8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */,
 				858A987C2386D8820051AF45 /* FoodImagesViewController.swift */,
@@ -702,6 +705,7 @@
 				854D6D4F23A28E76001BD091 /* CDYelpSearchResponse.swift in Sources */,
 				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
 				852C3828241BEC4800EDD0DD /* LoginViewController+Constraints.swift in Sources */,
+				852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */,
 				859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */,
 				852C3837241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift in Sources */,
 				854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */,
