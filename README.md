@@ -48,16 +48,17 @@ then click next.
 - Dismiss the reviewVC by clicking on the red topView. 
 - Here you can share and save the resturant. 
 
-## FrameWorks
-1. Mapkit
-2. FireBase
-3. UIkit
-4. TextFieldEffects
-5. Photos
-6. Kingfisher
-7. CoreLocation
-8. AlamoFire
-9. Objective C
+## Technologies
+1. Swift 5 / Xcode 11.3
+2. Mapkit
+3. FireBase
+4. UIkit
+5. TextFieldEffects
+6. Photos
+7. Kingfisher
+8. CoreLocation
+9. AlamoFire
+10. Objective C
 
    
 ## Set Up
