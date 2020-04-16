@@ -65,7 +65,11 @@ then click next.
   - ```git clone https://github.com/aabudu16/QuickGrub.git```
 - Install CocoaPods in your terminal (relevant pods are already in the project Podfile):
   - ```pod install```
+  
 ## APIs
-
 Yelp API
+
+## Contributors
+[Ayoola Abudu](https://github.com/aabudu16)
+
 
