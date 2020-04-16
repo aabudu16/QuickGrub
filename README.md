@@ -51,11 +51,11 @@ then click next.
 ## Technologies
 1. Swift 5 / Xcode 11.3
 2. Mapkit
-3. FireBase
+3. FireBase (Backend Storage)
 4. UIkit
 5. TextFieldEffects
 6. Photos
-7. Kingfisher
+7. Kingfisher (image caching)
 8. CoreLocation
 9. AlamoFire
 10. Objective C
