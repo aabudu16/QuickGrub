@@ -59,6 +59,12 @@ then click next.
 8. AlamoFire
 9. Objective C
 
+   
+## Set Up
+- Clone the repo in your terminal:
+  - ```git clone https://github.com/aabudu16/QuickGrub.git```
+- Install CocoaPods in your terminal (relevant pods are already in the project Podfile):
+  - ```pod install```
 ## APIs
 
 Yelp API
