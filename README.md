@@ -8,7 +8,7 @@ all that adhere to the users preferences.
 ```
 
 ```
-## (Please run this project on an iPohne 11 pro max due to constraint issues)
+## (Please run this project on an iPhone 10 and higher)
 
 ## LoginViewController
 Upon launch of the app, you are presented with a login screen. 
