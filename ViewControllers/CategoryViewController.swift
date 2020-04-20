@@ -207,18 +207,18 @@ extension CategoryViewController: UICollectionViewDelegate{
         presentContainerView()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-//
-//        cell.layer.borderWidth = 1.5
-//        cell.layer.borderColor = UIColor.gray.cgColor
-//        cell.selectedView.checked = false
-//        if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
-//                   selectedCategories.remove(at: index)
-//               }
-//        print(selectedCategories)
-//        presentContainerView()
-//    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
+
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.selectedView.checked = false
+        if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
+                   selectedCategories.remove(at: index)
+               }
+        print(selectedCategories)
+        presentContainerView()
+    }
 }
 
 extension CategoryViewController: UICollectionViewDataSource{

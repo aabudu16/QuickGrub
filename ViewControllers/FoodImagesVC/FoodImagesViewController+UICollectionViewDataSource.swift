@@ -21,11 +21,8 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         cell.FoodTitleLabel.tag = indexPath.item
         cell.createPulse()
         let info = userCategorySelectedResults[indexPath.row]
-        
         cell.configurefoodImagesCellData(yelpImages: info)
-        
         activityIndicator.stopAnimating()
-        
         cell.itemIsSelected = userFoodImageSelection.contains(info) ? true : false
         return cell
     }
