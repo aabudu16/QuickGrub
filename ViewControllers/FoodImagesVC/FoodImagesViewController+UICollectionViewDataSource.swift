@@ -26,11 +26,7 @@ extension FoodImagesViewController:UICollectionViewDataSource{
         
         activityIndicator.stopAnimating()
         
-        if userFoodImageSelection.contains(info){
-            cell.itemIsSelected = true
-        }else {
-            cell.itemIsSelected = false
-        }
+        cell.itemIsSelected = userFoodImageSelection.contains(info) ? true : false
         return cell
     }
 }
