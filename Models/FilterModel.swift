@@ -18,10 +18,9 @@ struct FilterModel{
 }
 
 struct GenericParameter{
-  static let genericSettingParameter = FilterModel(sortBy: .bestMatch, price: [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: 20, distance: 2000, openNow: nil)
+  static let genericSettingParameter = FilterModel(sortBy: .bestMatch, price: [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: 20, distance: 200, openNow: true)
 }
 
-struct UserFullFilterModel {
-    let filterModel:FilterModel
+struct SelectedCategoriesModel {
     let categories:[CDYelpCategoryAlias]
 }
