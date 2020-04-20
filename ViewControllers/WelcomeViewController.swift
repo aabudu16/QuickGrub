@@ -226,7 +226,6 @@ class WelcomeViewController: UIViewController {
     @objc func handleCategoryPressed(){
         
         let categoryVC = CategoryViewController()
-        categoryVC.filterParameter = GenericParameter.genericSettingParameter
         let categoryVCWithNav =  UINavigationController(rootViewController: categoryVC)
         categoryVCWithNav.modalPresentationStyle = .fullScreen
         present(categoryVCWithNav, animated: true)

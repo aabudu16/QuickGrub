@@ -120,9 +120,8 @@ class CategoryViewController: UIViewController {
             self.showAlert(alertTitle: nil, alertMessage: "Please select at least one category", actionTitle: "OK")
             return
         }
-        guard let filterParameter = filterParameter else {return}
         
-        let userFilteredParameter = UserFullFilterModel(filterModel: filterParameter, categories: selectedCategories)
+        let userFilteredParameter = SelectedCategoriesModel(categories: selectedCategories)
         print(userFilteredParameter)
         let foodVC = FoodImagesViewController()
         foodVC.userFilteredParameter = userFilteredParameter
