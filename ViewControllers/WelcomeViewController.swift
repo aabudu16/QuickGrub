@@ -377,6 +377,13 @@ class WelcomeViewController: UIViewController {
     
     
     //MARK: Constriaints Function
+    
+    func backgroundImageViewConstraints(){
+        view.addSubview(backgroundImageView)
+        backgroundImageView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor), backgroundImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
+    }
+    
     private func configureWelcomeLabelConstraints(){
         view.addSubview(welcomeLabel)
         
