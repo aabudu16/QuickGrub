@@ -23,6 +23,7 @@ class RestaurantResultsViewController: UIViewController {
                     DispatchQueue.main.async {
                        if let business = business {
                         self?.businessFullDetail.append(business)
+
                         }
                     }
                 }

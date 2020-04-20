@@ -140,7 +140,7 @@ class FoodImagesViewController: UIViewController {
     
     lazy var backgroundImageView:UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "swipePageImage")
+        image.image = UIImage(named: "backgroundImage")
         return image
     }()
     
