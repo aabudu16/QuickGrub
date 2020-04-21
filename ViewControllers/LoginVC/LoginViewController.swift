@@ -40,6 +40,12 @@ class LoginViewController: UIViewController {
         return tv
     }()
     
+    lazy var backgroundImage:UIImageView = {
+      let image = UIImageView()
+        image.image = UIImage(named: "friends-having-pasta")
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
     
     lazy var gifActivityIndicator:UIImageView = {
         let gifImage = UIImageView()
@@ -350,6 +356,7 @@ class LoginViewController: UIViewController {
         configureRegisterButton()
         configureForgotButtonButton()
         configureGifAnimationConstraints()
+        backgroundImageConstraints()
     }
         
     private func setSceneDelegateInitialVC(with result: Result<User, Error>) {
