@@ -176,6 +176,7 @@ class WelcomeViewController: UIViewController {
         button.backgroundColor = .black
         button.alpha = 0.7
         button.layer.cornerRadius = 20
+        button.isUserInteractionEnabled = true
         return button
     }()
     
