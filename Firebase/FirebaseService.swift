@@ -164,5 +164,14 @@ class FirestoreService {
         }
     }
     
+//    func deleteFavorite(favorite: UserFavorite, completion: @escaping (Result<(), Error>) -> ()){
+//
+//        guard FirebaseAuthService.manager.currentUser != nil else {return}
+//
+//        db.collection(FireStoreCollections.favorite.rawValue).document(favorite.id).delete{
+//
+//        }
+//    }
+    
     private init () {}
 }

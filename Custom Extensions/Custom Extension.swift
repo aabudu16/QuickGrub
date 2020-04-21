@@ -34,7 +34,7 @@ extension UIButton{
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 25
         self.backgroundColor = .white
-        self.setBackgroundImage(image, for: .normal)
+        self.setImage(image, for: .normal)
         self.layer.borderColor = color
         
     }

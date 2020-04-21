@@ -182,4 +182,11 @@ extension LoginViewController {
            NSLayoutConstraint.activate([gifActivityIndicator.topAnchor.constraint(equalTo: transparentView.topAnchor), gifActivityIndicator.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor),gifActivityIndicator.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor), gifActivityIndicator.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor)])
            NSLayoutConstraint.activate([loadingLabel.leadingAnchor.constraint(equalTo: transparentView.leadingAnchor, constant: 3),loadingLabel.trailingAnchor.constraint(equalTo: transparentView.trailingAnchor), loadingLabel.bottomAnchor.constraint(equalTo: transparentView.bottomAnchor), loadingLabel.heightAnchor.constraint(equalToConstant: 30)])
        }
+    
+    func backgroundImageConstraints(){
+        view.addSubview(backgroundImage)
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([backgroundImage.topAnchor.constraint(equalTo: view.topAnchor), backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImage.bottomAnchor.constraint(equalTo: containerView.topAnchor)])
+    }
 }

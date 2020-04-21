@@ -10,11 +10,13 @@ import UIKit
 
 class CategoryViewController: UIViewController {
     
+    var containerViewTopConstraints:NSLayoutConstraint?
+    var newContainerViewTopConstraints:NSLayoutConstraint?
+    let containerHeight:CGFloat = 80
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
-    var filterParameter:FilterModel?
 
     var mode: Mode = .view {
         didSet{
@@ -118,9 +120,8 @@ class CategoryViewController: UIViewController {
             self.showAlert(alertTitle: nil, alertMessage: "Please select at least one category", actionTitle: "OK")
             return
         }
-        guard let filterParameter = filterParameter else {return}
         
-        let userFilteredParameter = UserFullFilterModel(filterModel: filterParameter, categories: selectedCategories)
+        let userFilteredParameter = SelectedCategoriesModel(categories: selectedCategories)
         print(userFilteredParameter)
         let foodVC = FoodImagesViewController()
         foodVC.userFilteredParameter = userFilteredParameter
@@ -131,12 +132,17 @@ class CategoryViewController: UIViewController {
     
     private func presentContainerView(){
         if selectedCategories.count > 0{
+            
+            NSLayoutConstraint.deactivate([containerViewTopConstraints!])
+            NSLayoutConstraint.activate([newContainerViewTopConstraints!])
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.containerView.frame = CGRect(x: 0, y: (self.view.frame.height - 80) + 20, width: self.view.frame.width, height: 80)
+                self.view.layoutIfNeeded()
             }, completion: nil)
         } else{
+            NSLayoutConstraint.activate([containerViewTopConstraints!])
+            NSLayoutConstraint.deactivate([newContainerViewTopConstraints!])
            UIView.animate(withDuration: 0.3, animations: {
-               self.containerView.frame = CGRect(x: 0, y: self.view.frame.height, width: self.view.frame.width, height: 80)
+               self.view.layoutIfNeeded()
            }, completion: { (_) in
               print("nothing")
            })
@@ -154,7 +160,13 @@ class CategoryViewController: UIViewController {
     private func configureContainerViewConstriant(){
         view.addSubview(containerView)
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),containerView.heightAnchor.constraint(equalToConstant: 80),containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor)])
+        NSLayoutConstraint.activate([ containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),containerView.heightAnchor.constraint(equalToConstant: containerHeight)])
+        
+        containerViewTopConstraints = containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
+        newContainerViewTopConstraints = containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(containerHeight) + 20)
+        NSLayoutConstraint.activate([containerViewTopConstraints!])
+        NSLayoutConstraint.deactivate([newContainerViewTopConstraints!])
+        
     }
     
     private func configureSearchBarConstaints(){
@@ -195,18 +207,18 @@ extension CategoryViewController: UICollectionViewDelegate{
         presentContainerView()
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-//       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-//
-//        cell.layer.borderWidth = 1.5
-//        cell.layer.borderColor = UIColor.gray.cgColor
-//        cell.selectedView.checked = false
-//        if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
-//                   selectedCategories.remove(at: index)
-//               }
-//        print(selectedCategories)
-//        presentContainerView()
-//    }
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
+
+        cell.layer.borderWidth = 1.5
+        cell.layer.borderColor = UIColor.gray.cgColor
+        cell.selectedView.checked = false
+        if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
+                   selectedCategories.remove(at: index)
+               }
+        print(selectedCategories)
+        presentContainerView()
+    }
 }
 
 extension CategoryViewController: UICollectionViewDataSource{
