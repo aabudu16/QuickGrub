@@ -148,8 +148,10 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var categoryButton:UIButton = {
-        let button = UIButton(image: UIImage(named: "category2")!, color: UIColor.black.cgColor)
+        let button = UIButton()
         button.backgroundColor = .black
+        button.alpha = 0.7
+        button.layer.cornerRadius = 20
         button.addTarget(self, action: #selector(handleCategoryPressed), for: .touchUpInside)
         return button
     }()
@@ -157,7 +159,7 @@ class WelcomeViewController: UIViewController {
     lazy var categoryLabel:UILabel = {
         let label = UILabel()
         label.text = "Category"
-        label.font = UIFont(name: "Avenir-Heavy", size: 45)
+        label.font = UIFont(name: "AcademyEngravedLetPlain", size: 55)
         label.textAlignment = .center
         label.backgroundColor = .clear
         label.textColor = .white
@@ -169,16 +171,18 @@ class WelcomeViewController: UIViewController {
     }()
     
     lazy var favoriteButton:UIButton = {
-        let button = UIButton(image: UIImage(named: "category2")!, color: UIColor.white.cgColor)
+        let button = UIButton()
         button.addTarget(self, action: #selector(handleFavoriteButtonPressed), for: .touchUpInside)
         button.backgroundColor = .black
+        button.alpha = 0.7
+        button.layer.cornerRadius = 20
         return button
     }()
     
     lazy var savedLabel:UILabel = {
         let label = UILabel()
         label.text = "Saved"
-        label.font = UIFont(name: "Avenir-Heavy", size: 40)
+        label.font = UIFont(name: "AcademyEngravedLetPlain", size: 55)
         label.textAlignment = .center
         label.backgroundColor = .clear
         label.textColor = .white

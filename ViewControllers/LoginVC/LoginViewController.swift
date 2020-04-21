@@ -40,6 +40,7 @@ class LoginViewController: UIViewController {
         return tv
     }()
     
+    
     lazy var gifActivityIndicator:UIImageView = {
         let gifImage = UIImageView()
         gifImage.contentMode = .scaleAspectFit
