@@ -187,6 +187,6 @@ extension LoginViewController {
         view.addSubview(backgroundImage)
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([backgroundImage.topAnchor.constraint(equalTo: view.topAnchor), backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImage.bottomAnchor.constraint(equalTo: containerView.topAnchor)])
+        NSLayoutConstraint.activate([backgroundImage.topAnchor.constraint(equalTo: view.topAnchor), backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor), backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor), backgroundImage.bottomAnchor.constraint(equalTo: bottomnView.topAnchor)])
     }
 }
