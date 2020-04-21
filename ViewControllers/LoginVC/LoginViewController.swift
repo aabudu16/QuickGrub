@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
     lazy var backgroundImage:UIImageView = {
       let image = UIImageView()
         image.image = UIImage(named: "friends-having-pasta")
-        image.contentMode = .scaleAspectFit
+        image.contentMode = .scaleAspectFill
         return image
     }()
     
@@ -339,6 +339,7 @@ class LoginViewController: UIViewController {
     //MARK: Private Methods
     private func configureAllConstrainsts(){
         configureBottomViewConstraints()
+        backgroundImageConstraints()
         configureMainContainerViewConstraints()
         setupContainerView()
         configureLogoImageView()
@@ -356,7 +357,6 @@ class LoginViewController: UIViewController {
         configureRegisterButton()
         configureForgotButtonButton()
         configureGifAnimationConstraints()
-        backgroundImageConstraints()
     }
         
     private func setSceneDelegateInitialVC(with result: Result<User, Error>) {
