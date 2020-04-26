@@ -191,7 +191,12 @@ class CategoryViewController: UIViewController {
     private func configureSearchBarConstaints(){
         view.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -(searchBar.frame.height)), searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), searchBar.heightAnchor.constraint(equalToConstant: 45)])
+        NSLayoutConstraint.activate([searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), searchBar.heightAnchor.constraint(equalToConstant: 45)])
+        
+        searchBarTopConstraints = searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -(searchBar.frame.height))
+        newSearchBarTopConstraints = searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
+        NSLayoutConstraint.activate([searchBarTopConstraints!])
+        NSLayoutConstraint.deactivate([newSearchBarTopConstraints!])
     }
     
     private func configureCollectionViewConstraint(){
