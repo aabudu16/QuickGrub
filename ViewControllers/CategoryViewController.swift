@@ -12,6 +12,8 @@ class CategoryViewController: UIViewController {
     
     var containerViewTopConstraints:NSLayoutConstraint?
     var newContainerViewTopConstraints:NSLayoutConstraint?
+    var searchBarTopConstraints:NSLayoutConstraint?
+    var newSearchBarTopConstraints:NSLayoutConstraint?
     let containerHeight:CGFloat = 80
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var selectedCategories = [CDYelpCategoryAlias]()
