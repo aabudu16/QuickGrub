@@ -96,6 +96,11 @@ class CategoryViewController: UIViewController {
         return button
     }()
     
+    lazy var searchIcon:UIImageView = {
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        image.image = UIImage(systemName: "search")
+        return image
+    }()
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
