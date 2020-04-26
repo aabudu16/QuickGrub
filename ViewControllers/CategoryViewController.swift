@@ -182,7 +182,6 @@ class CategoryViewController: UIViewController {
     
     private func configureSearchBarConstaints(){
         view.addSubview(searchBar)
-        
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor), searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), searchBar.heightAnchor.constraint(equalToConstant: 45)])
     }
@@ -196,9 +195,7 @@ class CategoryViewController: UIViewController {
 
     private func configureContinueButton(){
         containerView.addSubview(continueButton)
-        
         continueButton.translatesAutoresizingMaskIntoConstraints = false
-        
         NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 2), continueButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor), continueButton.widthAnchor.constraint(equalTo: continueButton.heightAnchor)])
     }
     
