@@ -97,9 +97,12 @@ class CategoryViewController: UIViewController {
     }()
     
     lazy var searchIcon:UIImageView = {
-        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
-        image.image = UIImage(systemName: "search")
+        let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        image.image = UIImage(systemName: "magnifyingglass.circle.fill")
         image.layer.cornerRadius = image.frame.height / 2
+        image.tintColor = .systemOrange
+        image.backgroundColor = .white
+        image.isUserInteractionEnabled = true
         return image
     }()
     
