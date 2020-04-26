@@ -102,6 +102,7 @@ class CategoryViewController: UIViewController {
         image.layer.cornerRadius = image.frame.height / 2
         return image
     }()
+    
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -195,6 +196,12 @@ class CategoryViewController: UIViewController {
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 2), continueButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor), continueButton.widthAnchor.constraint(equalTo: continueButton.heightAnchor)])
+    }
+    
+    private func configureSearchIconConstraints(){
+        view.addSubview(searchIcon)
+        searchIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100), searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 50), searchIcon.widthAnchor.constraint(equalToConstant: 50)])
     }
     
 }
