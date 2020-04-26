@@ -159,9 +159,7 @@ class CategoryViewController: UIViewController {
         guard let infoDict = notification.userInfo else {return}
         guard let keyboardFreme = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
         guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
-        
         self.searchIconBottomConstraints?.constant = -(keyboardFreme.height + 20)
-        
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
@@ -170,18 +168,16 @@ class CategoryViewController: UIViewController {
     @objc func handleKeyBoardHiding(sender notification:Notification){
         guard let infoDict = notification.userInfo else {return}
         guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
-        
         self.searchIconBottomConstraints?.constant = -80
-        
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
     }
+    
     //MARK: Private Methods
     
     private func presentContainerView(){
         if selectedCategories.count > 0{
-            
             NSLayoutConstraint.deactivate([containerViewTopConstraints!])
             NSLayoutConstraint.activate([newContainerViewTopConstraints!])
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
@@ -254,7 +250,7 @@ class CategoryViewController: UIViewController {
         view.addSubview(searchIcon)
         searchIcon.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
-        searchIconBottomConstraints = searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100)
+        searchIconBottomConstraints = searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -80)
         NSLayoutConstraint.activate([searchIconBottomConstraints!])
     }
 }
