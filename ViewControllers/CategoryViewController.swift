@@ -154,6 +154,29 @@ class CategoryViewController: UIViewController {
         navigationController?.pushViewController(foodVC, animated: true)
         print("continue button pressed")
     }
+    
+    @objc func handleKeyBoardShowing(sender notification:Notification){
+        guard let infoDict = notification.userInfo else {return}
+        guard let keyboardFreme = infoDict[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {return}
+        guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
+        
+        self.searchIconBottomConstraints?.constant = -(keyboardFreme.height + 20)
+        
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
+    
+    @objc func handleKeyBoardHiding(sender notification:Notification){
+        guard let infoDict = notification.userInfo else {return}
+        guard let duration = infoDict[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else {return}
+        
+        self.searchIconBottomConstraints?.constant = -80
+        
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+    }
     //MARK: Private Methods
     
     private func presentContainerView(){
@@ -182,10 +205,12 @@ class CategoryViewController: UIViewController {
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
-    //toggles the image of the buttons when clicked
-    private func toggleButton(button:UIButton, onImage:UIImage, offImage:UIImage) {
-        button.currentImage == offImage ? button.setImage(onImage, for: .normal) : button.setImage(offImage, for: .normal)
-    }
+    private func addKeyBoardHandlingObservers(){
+           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+           
+           
+           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+       }
     
     //MARK: Constriaints Function
     
