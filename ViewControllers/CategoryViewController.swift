@@ -121,6 +121,7 @@ class CategoryViewController: UIViewController {
         configureContainerViewConstriant()
         configureContinueButton()
         configureSearchIconConstraints()
+        addKeyBoardHandlingObservers()
     }
     
     //MARK: Objc Selector functions
@@ -133,7 +134,11 @@ class CategoryViewController: UIViewController {
     }
     
     @objc func presentSearchBar(sender:UITapGestureRecognizer) {
-        
+        NSLayoutConstraint.deactivate([searchBarTopConstraints!])
+        NSLayoutConstraint.activate([newSearchBarTopConstraints!])
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
     }
     
     @objc func handleContinueButtonPressed(sender:UIButton){
