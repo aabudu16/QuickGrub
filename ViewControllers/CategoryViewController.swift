@@ -99,6 +99,7 @@ class CategoryViewController: UIViewController {
     lazy var searchIcon:UIImageView = {
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
         image.image = UIImage(systemName: "search")
+        image.layer.cornerRadius = image.frame.height / 2
         return image
     }()
     //MARK: LifeCycle
