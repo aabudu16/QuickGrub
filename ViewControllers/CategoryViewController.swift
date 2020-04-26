@@ -14,6 +14,7 @@ class CategoryViewController: UIViewController {
     var newContainerViewTopConstraints:NSLayoutConstraint?
     var searchBarTopConstraints:NSLayoutConstraint?
     var newSearchBarTopConstraints:NSLayoutConstraint?
+    var searchIconBottomConstraints:NSLayoutConstraint?
     let containerHeight:CGFloat = 80
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var selectedCategories = [CDYelpCategoryAlias]()
@@ -107,6 +108,7 @@ class CategoryViewController: UIViewController {
         image.tintColor = .systemOrange
         image.backgroundColor = .white
         image.isUserInteractionEnabled = true
+        image.addGestureRecognizer(tapGestureRecognizer)
         return image
     }()
     
@@ -174,6 +176,12 @@ class CategoryViewController: UIViewController {
         self.navigationItem.leftBarButtonItem = leftBarButton
         self.navigationItem.rightBarButtonItem = rightBarButton
     }
+    
+    //toggles the image of the buttons when clicked
+    private func toggleButton(button:UIButton, onImage:UIImage, offImage:UIImage) {
+        button.currentImage == offImage ? button.setImage(onImage, for: .normal) : button.setImage(offImage, for: .normal)
+    }
+    
     //MARK: Constriaints Function
     
     private func configureContainerViewConstriant(){
@@ -215,9 +223,10 @@ class CategoryViewController: UIViewController {
     private func configureSearchIconConstraints(){
         view.addSubview(searchIcon)
         searchIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100), searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
+        NSLayoutConstraint.activate([searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
+        searchIconBottomConstraints = searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100)
+        NSLayoutConstraint.activate([searchIconBottomConstraints!])
     }
-    
 }
 
 //MARK: Extension
