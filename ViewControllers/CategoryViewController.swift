@@ -97,6 +97,8 @@ class CategoryViewController: UIViewController {
     }()
     
     lazy var searchIcon:UIImageView = {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(presentSearchBar(sender:)))
+        tapGestureRecognizer.numberOfTapsRequired = 1
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         image.image = UIImage(systemName: "magnifyingglass.circle.fill")
         image.layer.cornerRadius = image.frame.height / 2
@@ -124,6 +126,10 @@ class CategoryViewController: UIViewController {
     
     @objc func handleResetButtonPressed(_ sender:UIBarButtonItem){
         mode = mode == .view ? .select: .view
+    }
+    
+    @objc func presentSearchBar(sender:UITapGestureRecognizer) {
+        
     }
     
     @objc func handleContinueButtonPressed(sender:UIButton){
