@@ -114,6 +114,7 @@ class CategoryViewController: UIViewController {
         configureCollectionViewConstraint()
         configureContainerViewConstriant()
         configureContinueButton()
+        configureSearchIconConstraints()
     }
     
     //MARK: Objc Selector functions
@@ -204,7 +205,7 @@ class CategoryViewController: UIViewController {
     private func configureSearchIconConstraints(){
         view.addSubview(searchIcon)
         searchIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100), searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 50), searchIcon.widthAnchor.constraint(equalToConstant: 50)])
+        NSLayoutConstraint.activate([searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -100), searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
     }
     
 }
