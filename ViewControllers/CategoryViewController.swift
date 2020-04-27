@@ -136,7 +136,6 @@ class CategoryViewController: UIViewController {
     }
     
     @objc func handleResetButtonPressed(_ sender:UIBarButtonItem){
-        mode = mode == .view ? .select: .view
     }
     
     @objc func presentSearchBar(sender:UITapGestureRecognizer) {
