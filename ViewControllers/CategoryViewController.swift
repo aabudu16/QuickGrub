@@ -79,6 +79,11 @@ class CategoryViewController: UIViewController {
         label.font = UIFont(name: "AvenirNext-Bold", size: 50)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1
+        label.layer.shadowOpacity = 1
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        label.layer.masksToBounds = false
         return label
     }()
     
@@ -89,12 +94,6 @@ class CategoryViewController: UIViewController {
         button.backgroundColor = .white
         button.layer.cornerRadius = button.frame.height / 2
         button.addTarget(self, action: #selector(handleContinueButtonPressed(sender:)), for: .touchUpInside)
-        return button
-    }()
-    
-    lazy var rightBarButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleResetButtonPressed(_:)))
-        button.tintColor = .black
         return button
     }()
     
@@ -133,9 +132,6 @@ class CategoryViewController: UIViewController {
     //MARK: Objc Selector functions
     @objc func handleHomeButtomPressed(_ sender:UIBarButtonItem){
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func handleResetButtonPressed(_ sender:UIBarButtonItem){
     }
     
     @objc func presentSearchBar(sender:UITapGestureRecognizer) {
@@ -226,7 +222,6 @@ class CategoryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.topItem?.title = "Browse by cuisine"
         self.navigationItem.leftBarButtonItem = leftBarButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     private func addKeyBoardHandlingObservers(){
