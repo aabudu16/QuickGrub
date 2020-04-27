@@ -74,10 +74,11 @@ class CategoryViewController: UIViewController {
     }()
     
     lazy var continueButton:UIButton = {
-        let button = UIButton()
-        button.setBackgroundImage(UIImage(systemName: "arrow.right.square.fill"), for: .normal)
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
+        button.setBackgroundImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
         button.tintColor = .systemOrange
         button.backgroundColor = .white
+        button.layer.cornerRadius = button.frame.height / 2
         button.addTarget(self, action: #selector(handleContinueButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
