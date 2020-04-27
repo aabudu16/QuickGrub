@@ -9,7 +9,7 @@
 import UIKit
 
 class RestaurantResultsViewController: UIViewController {
-    
+    var userCurrentFavorites = [UserFavorite]()
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
            tableView.reloadData()
@@ -50,6 +50,7 @@ class RestaurantResultsViewController: UIViewController {
         setDelegation()
         configureTableViewConstraints()
         setup()
+        getFavorites()
     }
     
     private func setDelegation(){
@@ -66,6 +67,22 @@ class RestaurantResultsViewController: UIViewController {
             tableView.refreshControl = UIRefreshControl()
             tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
       //  }
+    }
+    
+    private func getFavorites(){
+        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
+            return
+        }
+        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
+            switch result{
+            case .failure(let error):
+                print(error)
+            case .success(let favorites):
+                DispatchQueue.main.async {
+                    self.userCurrentFavorites = favorites
+                }
+            }
+        }
     }
     
     // MARK: Actions
