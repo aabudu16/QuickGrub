@@ -60,6 +60,7 @@ class CategoryViewController: UIViewController {
         searchBar.searchBarStyle = UISearchBar.Style.prominent
         searchBar.placeholder = " Search..."
         searchBar.sizeToFit()
+        searchBar.alpha = 0
         searchBar.isTranslucent = false
         searchBar.delegate = self
         return searchBar
@@ -105,7 +106,7 @@ class CategoryViewController: UIViewController {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(presentSearchBar(sender:)))
         tapGestureRecognizer.numberOfTapsRequired = 1
         let image = UIImageView(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
-        image.image = UIImage(systemName: "magnifyingglass.circle.fill")
+        image.image = self.searchImage
         image.layer.cornerRadius = image.frame.height / 2
         image.tintColor = .systemOrange
         image.backgroundColor = .white
@@ -139,6 +140,8 @@ class CategoryViewController: UIViewController {
         NSLayoutConstraint.deactivate([searchBarTopConstraints!])
         NSLayoutConstraint.activate([newSearchBarTopConstraints!])
         UIView.animate(withDuration: 0.3) {
+            self.searchBar.alpha = 1
+            self.searchIcon.image = self.cancelImage
             self.view.layoutIfNeeded()
         }
     }
@@ -338,4 +341,3 @@ extension CategoryViewController:UISearchBarDelegate{
         searchCategoryString = searchBar.text
     }
 }
-
