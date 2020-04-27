@@ -20,17 +20,6 @@ class CategoryViewController: UIViewController {
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
-    
-    var mode: Mode = .view {
-        didSet{
-            switch mode {
-            case .view:
-                rightBarButton.title = "Reset"
-            case .select:
-                rightBarButton.title = "Select All"
-            }
-        }
-    }
     let containerHeight:CGFloat = 80
     let searchImage = UIImage(systemName: "magnifyingglass.circle.fill")!
     let cancelImage = UIImage(systemName: "xmark.circle.fill")!
