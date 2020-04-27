@@ -73,6 +73,15 @@ class CategoryViewController: UIViewController {
         return view
     }()
     
+    lazy var countLabel:UILabel = {
+        let label = UILabel()
+        label.textColor = .systemOrange
+        label.font = UIFont(name: "AvenirNext-Bold", size: 50)
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        return label
+    }()
+    
     lazy var continueButton:UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 45, height: 45))
         button.setBackgroundImage(UIImage(systemName: "arrow.right.circle.fill"), for: .normal)
