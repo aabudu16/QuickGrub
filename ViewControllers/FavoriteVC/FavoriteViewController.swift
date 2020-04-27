@@ -31,22 +31,6 @@ class FavoriteViewController: UIViewController {
         }
     }
     
-    private func getFavorites(){
-        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
-            return
-        }
-        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "Seems to be a problem loading your favorites \(error)", actionTitle: "OK")
-            case .success(let favorites):
-                DispatchQueue.main.async {
-                    self.userFavorites = favorites
-                }
-            }
-        }
-    }
-    
     enum Const {
         static let closeCellHeight: CGFloat = 179
         static let openCellHeight: CGFloat = 488
@@ -66,7 +50,6 @@ class FavoriteViewController: UIViewController {
         setDelegation()
         configureTableViewConstraints()
         setup()
-        getFavorites()
         let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
         UINavigationBar.appearance().titleTextAttributes = attributes
     }
