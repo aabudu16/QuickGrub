@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import CoreLocation
+import FirebaseAuth
 
 //MARK:-- Folding cell delegate
 extension RestaurantResultsViewController: FoldingCellDelegate{
