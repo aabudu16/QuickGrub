@@ -301,6 +301,8 @@ extension CategoryViewController: UICollectionViewDelegate{
         cell.selectedView.checked = true
         selectedCategories.append(searchCategoryResult[indexPath.row])
         print(selectedCategories)
+        countLabel.text = "\(selectedCategories.count)"
+        print(selectedCategories.count)
         presentContainerView()
     }
     
@@ -313,7 +315,8 @@ extension CategoryViewController: UICollectionViewDelegate{
         if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
             selectedCategories.remove(at: index)
         }
-        print(selectedCategories)
+        countLabel.text = "\(selectedCategories.count)"
+        print(selectedCategories.count)
         presentContainerView()
     }
 }
