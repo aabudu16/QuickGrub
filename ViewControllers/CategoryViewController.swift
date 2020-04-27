@@ -15,7 +15,6 @@ class CategoryViewController: UIViewController {
     var searchBarTopConstraints:NSLayoutConstraint?
     var newSearchBarTopConstraints:NSLayoutConstraint?
     var searchIconBottomConstraints:NSLayoutConstraint?
-    let containerHeight:CGFloat = 80
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
@@ -31,6 +30,9 @@ class CategoryViewController: UIViewController {
             }
         }
     }
+    let containerHeight:CGFloat = 80
+    let searchImage = UIImage(systemName: "magnifyingglass.circle.fill")!
+    let cancelImage = UIImage(systemName: "xmark.circle.fill")!
     
     var searchCategoryResult:[CDYelpCategoryAlias]{
         get{
