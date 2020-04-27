@@ -97,12 +97,6 @@ class CategoryViewController: UIViewController {
         return button
     }()
     
-    lazy var rightBarButton:UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Reset", style: .plain, target: self, action: #selector(handleResetButtonPressed(_:)))
-        button.tintColor = .black
-        return button
-    }()
-    
     lazy var leftBarButton:UIBarButtonItem = {
         let button = UIBarButtonItem(image: UIImage(systemName: "house"), style: .plain, target: self, action: #selector(handleHomeButtomPressed(_:)))
         button.tintColor = .black
@@ -138,9 +132,6 @@ class CategoryViewController: UIViewController {
     //MARK: Objc Selector functions
     @objc func handleHomeButtomPressed(_ sender:UIBarButtonItem){
         self.dismiss(animated: true, completion: nil)
-    }
-    
-    @objc func handleResetButtonPressed(_ sender:UIBarButtonItem){
     }
     
     @objc func presentSearchBar(sender:UITapGestureRecognizer) {
@@ -231,7 +222,6 @@ class CategoryViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.topItem?.title = "Browse by cuisine"
         self.navigationItem.leftBarButtonItem = leftBarButton
-        self.navigationItem.rightBarButtonItem = rightBarButton
     }
     
     private func addKeyBoardHandlingObservers(){
