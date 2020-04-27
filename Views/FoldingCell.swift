@@ -168,10 +168,8 @@ open class FoldingCell: UITableViewCell {
     
     public func configureBusinessData(business:CDYelpBusiness, distance:CDYelpBusiness){
         let image = UIImage(named: "FoodPlaceholder")
-        self.foodImageView.kf.indicatorType = .activity
-        
-        
-        self.foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
+        foodImageView.kf.indicatorType = .activity
+        foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         if (business.location?.displayAddress?.count)! > 1{
             if let displayAddress = business.location?.displayAddress{
                 addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
@@ -191,7 +189,6 @@ open class FoldingCell: UITableViewCell {
         openOrCloseLabel.textColor = business.isClosed == true ?  #colorLiteral(red: 0.8425863981, green: 0.1913244128, blue: 0.1395176649, alpha: 1) : #colorLiteral(red: 0.09106949717, green: 0.5007923841, blue: 0.2231527567, alpha: 1)
         
         if let photoArray = business.photos{
-            
             for (index, photoString) in photoArray.enumerated(){
                 pageControl.numberOfPages = photoArray.count
                 let imageView = UIImageView()
@@ -219,7 +216,6 @@ open class FoldingCell: UITableViewCell {
         durationsForExpandedState = durations
         durationsForCollapsedState = durations
     }
-    
     /**
      Folding animation types
      
