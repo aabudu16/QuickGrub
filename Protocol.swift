@@ -19,6 +19,12 @@ protocol FoldingCellDelegate: AnyObject {
     func navigateToDetailedViewController(tag: Int)
 }
 
+extension FoldingCellDelegate{
+    func handleFavorite(tag:Int) {
+        
+    }
+}
+
 protocol YelpCustomerProfileDelegate:AnyObject{
     func viewCustomerProfile(tag:Int)
 }
