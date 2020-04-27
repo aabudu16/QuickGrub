@@ -254,14 +254,14 @@ class CategoryViewController: UIViewController {
     private func configureCollectionViewConstraint(){
         view.addSubview(categoryCollectionView)
         categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
+        NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
     
     
     private func configureContinueButton(){
-        containerView.addSubview(continueButton)
+        view.addSubview(continueButton)
         continueButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: 2), continueButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor), continueButton.widthAnchor.constraint(equalTo: continueButton.heightAnchor)])
+        NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), continueButton.heightAnchor.constraint(equalToConstant: 45), continueButton.widthAnchor.constraint(equalToConstant: 45)])
     }
     
     private func configureSearchIconConstraints(){
