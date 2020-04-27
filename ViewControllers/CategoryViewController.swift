@@ -138,12 +138,11 @@ class CategoryViewController: UIViewController {
     }
     
     @objc func presentSearchBar(sender:UITapGestureRecognizer) {
-        NSLayoutConstraint.deactivate([searchBarTopConstraints!])
-        NSLayoutConstraint.activate([newSearchBarTopConstraints!])
-        UIView.animate(withDuration: 0.3) {
-            self.searchBar.alpha = 1
-            self.searchIcon.image = self.cancelImage
-            self.view.layoutIfNeeded()
+        switch currentState{
+        case .deselected:
+            presentSearchBar()
+        case .selected:
+            hideSearchBar()
         }
     }
     
