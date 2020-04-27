@@ -20,7 +20,7 @@ class CategoryViewController: UIViewController {
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
-
+    
     var mode: Mode = .view {
         didSet{
             switch mode {
@@ -46,7 +46,7 @@ class CategoryViewController: UIViewController {
             
             return yelpCategories.filter({$0.rawValue.lowercased() == searchCategoryString.lowercased()})
         }
-
+        
     }
     
     var searchCategoryString:String? = nil {
@@ -54,7 +54,7 @@ class CategoryViewController: UIViewController {
             self.categoryCollectionView.reloadData()
         }
     }
-
+    
     
     lazy var searchBar:UISearchBar = {
         let searchBar = UISearchBar()
@@ -181,6 +181,28 @@ class CategoryViewController: UIViewController {
     }
     
     //MARK: Private Methods
+    private func presentSearchBar(){
+        NSLayoutConstraint.deactivate([searchBarTopConstraints!])
+        NSLayoutConstraint.activate([newSearchBarTopConstraints!])
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.searchBar.alpha = 1
+            self?.searchIcon.image = self?.cancelImage
+            self?.currentState = .selected
+            self?.view.layoutIfNeeded()
+        }
+    }
+    
+    private func hideSearchBar(){
+        NSLayoutConstraint.deactivate([newSearchBarTopConstraints!])
+        NSLayoutConstraint.activate([searchBarTopConstraints!])
+        searchBar.resignFirstResponder()
+        UIView.animate(withDuration: 0.3) {[weak self] in
+            self?.searchBar.alpha = 0
+            self?.searchIcon.image = self?.searchImage
+            self?.currentState = .deselected
+            self?.view.layoutIfNeeded()
+        }
+    }
     
     private func presentContainerView(){
         if selectedCategories.count > 0{
@@ -192,11 +214,11 @@ class CategoryViewController: UIViewController {
         } else{
             NSLayoutConstraint.activate([containerViewTopConstraints!])
             NSLayoutConstraint.deactivate([newContainerViewTopConstraints!])
-           UIView.animate(withDuration: 0.3, animations: {
-               self.view.layoutIfNeeded()
-           }, completion: { (_) in
-              print("nothing")
-           })
+            UIView.animate(withDuration: 0.3, animations: {
+                self.view.layoutIfNeeded()
+            }, completion: { (_) in
+                print("nothing")
+            })
         }
     }
     
@@ -208,11 +230,11 @@ class CategoryViewController: UIViewController {
     }
     
     private func addKeyBoardHandlingObservers(){
-           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-           
-           
-           NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-       }
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     //MARK: Constriaints Function
     
@@ -245,7 +267,7 @@ class CategoryViewController: UIViewController {
         NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
     
-
+    
     private func configureContinueButton(){
         containerView.addSubview(continueButton)
         continueButton.translatesAutoresizingMaskIntoConstraints = false
@@ -266,7 +288,7 @@ extension CategoryViewController: UICollectionViewDelegate{
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-
+        
         cell.layer.borderWidth = 2.5
         cell.layer.borderColor = UIColor.darkGray.cgColor
         cell.selectedView.checked = true
@@ -276,14 +298,14 @@ extension CategoryViewController: UICollectionViewDelegate{
     }
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-       guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
-
+        guard let cell = collectionView.cellForItem(at: indexPath) as? CategoryCollectionViewCell else {return}
+        
         cell.layer.borderWidth = 1.5
         cell.layer.borderColor = UIColor.gray.cgColor
         cell.selectedView.checked = false
         if let index = selectedCategories.firstIndex(of:yelpCategories[indexPath.row]) {
-                   selectedCategories.remove(at: index)
-               }
+            selectedCategories.remove(at: index)
+        }
         print(selectedCategories)
         presentContainerView()
     }
@@ -302,12 +324,12 @@ extension CategoryViewController: UICollectionViewDataSource{
         
         if selectedCategories.contains(category){
             cell.layer.borderWidth = 2.5
-          cell.layer.borderColor = UIColor.darkGray.cgColor
-          cell.selectedView.checked = true
+            cell.layer.borderColor = UIColor.darkGray.cgColor
+            cell.selectedView.checked = true
         }else {
             cell.layer.borderWidth = 1.5
             cell.layer.borderColor = UIColor.gray.cgColor
-           cell.selectedView.checked = false
+            cell.selectedView.checked = false
         }
         return cell
     }
@@ -335,8 +357,8 @@ extension CategoryViewController:UISearchBarDelegate{
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-           searchBar.resignFirstResponder()
-       }
+        searchBar.resignFirstResponder()
+    }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchCategoryString = searchBar.text
