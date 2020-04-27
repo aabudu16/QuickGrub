@@ -69,7 +69,7 @@ class RestaurantResultsViewController: UIViewController {
       //  }
     }
     
-    private func getFavorites(){
+     func getFavorites(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
             return
         }

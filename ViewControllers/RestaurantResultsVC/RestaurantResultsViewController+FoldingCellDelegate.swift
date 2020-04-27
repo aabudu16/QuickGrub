@@ -30,6 +30,7 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
             print("Already favorited")
         }else {
             createFavorites(currentUser: currentUser, businessInfo: businessInfo, cell: cell)
+            getFavorites()
         }
     }
     
