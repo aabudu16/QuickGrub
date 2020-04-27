@@ -13,7 +13,7 @@ import FirebaseAuth
 
 //MARK:-- Folding cell delegate
 extension RestaurantResultsViewController: FoldingCellDelegate{
-
+    
     func navigateToDetailedViewController(tag: Int) {
         let businessInfo = businessFullDetail[tag]
         let restaurantDetailVC = RestaurantDetailViewController()
