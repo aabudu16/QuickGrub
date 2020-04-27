@@ -127,6 +127,7 @@ class CategoryViewController: UIViewController {
         configureContinueButton()
         configureSearchIconConstraints()
         addKeyBoardHandlingObservers()
+        configureCountLabelConstraints()
     }
     
     //MARK: Objc Selector functions
@@ -280,6 +281,12 @@ class CategoryViewController: UIViewController {
         NSLayoutConstraint.activate([searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
         searchIconBottomConstraints = searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -80)
         NSLayoutConstraint.activate([searchIconBottomConstraints!])
+    }
+    
+    private func configureCountLabelConstraints(){
+        containerView.addSubview(countLabel)
+        countLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([countLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5), countLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10), countLabel.heightAnchor.constraint(equalToConstant: 50), countLabel.widthAnchor.constraint(equalToConstant: 50)])
     }
 }
 
