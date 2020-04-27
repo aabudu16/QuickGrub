@@ -270,7 +270,7 @@ class CategoryViewController: UIViewController {
     
     
     private func configureContinueButton(){
-        view.addSubview(continueButton)
+        containerView.addSubview(continueButton)
         continueButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), continueButton.heightAnchor.constraint(equalToConstant: 45), continueButton.widthAnchor.constraint(equalToConstant: 45)])
     }
