@@ -16,6 +16,7 @@ class CategoryViewController: UIViewController {
     var newSearchBarTopConstraints:NSLayoutConstraint?
     var searchIconBottomConstraints:NSLayoutConstraint?
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
+    var currentState:CurrentState = .deselected
     var selectedCategories = [CDYelpCategoryAlias]()
     //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
