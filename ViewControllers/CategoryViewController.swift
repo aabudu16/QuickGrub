@@ -69,13 +69,15 @@ class CategoryViewController: UIViewController {
     
     lazy var containerView:UIView = {
         let view = UIView()
-        view.backgroundColor = .blue
+        view.backgroundColor = .clear
         return view
     }()
     
     lazy var continueButton:UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "icons8-chevron-left-30"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "arrow.right.square.fill"), for: .normal)
+        button.tintColor = .systemOrange
+        button.backgroundColor = .white
         button.addTarget(self, action: #selector(handleContinueButtonPressed(sender:)), for: .touchUpInside)
         return button
     }()
