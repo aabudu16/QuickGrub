@@ -133,6 +133,7 @@ extension LoginViewController {
             self.view.layoutIfNeeded()
         }
     }
+    
     //Write code to switch on segment
     @objc func handleSegmentControlChanged(_ sender: UISegmentedControl){
         switch sender.selectedSegmentIndex{
