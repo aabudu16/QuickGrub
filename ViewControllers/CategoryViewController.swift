@@ -79,6 +79,11 @@ class CategoryViewController: UIViewController {
         label.font = UIFont(name: "AvenirNext-Bold", size: 50)
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
+        label.layer.shadowColor = UIColor.black.cgColor
+        label.layer.shadowRadius = 1
+        label.layer.shadowOpacity = 1
+        label.layer.shadowOffset = CGSize(width: 1, height: 1)
+        label.layer.masksToBounds = false
         return label
     }()
     
