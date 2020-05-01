@@ -31,12 +31,6 @@ class RestaurantResultsViewController: UIViewController {
         }
     }
     
-    enum Const {
-        static let closeCellHeight: CGFloat = 179
-        static let openCellHeight: CGFloat = 488
-        static let rowsCount = 50
-    }
-    
     lazy var tableView:UITableView = {
         let tableview = UITableView()
         tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.resturantCell.rawValue)

@@ -1,6 +1,7 @@
 
 
 import Foundation
+import UIKit
 
 enum priceData:String{
     case oneDollar = "$"
@@ -22,4 +23,11 @@ enum Mode{
 enum CurrentState{
     case selected
     case deselected
+}
+
+
+enum Const {
+    static let closeCellHeight: CGFloat = 179
+    static let openCellHeight: CGFloat = 488
+    static let rowsCount = 50
 }
