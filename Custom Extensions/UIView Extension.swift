@@ -1,5 +1,5 @@
 //
-//  BlurView Extension.swift
+//  View Extension.swift
 //  Quick-Grub2
 //
 //  Created by Mr Wonderful on 1/4/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+// MARK: BlurView
 extension UIView {
     
     private struct AssociatedKeys {

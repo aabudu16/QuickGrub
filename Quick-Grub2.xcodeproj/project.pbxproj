@@ -536,7 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				858A9861238433A10051AF45 /* Custom Extension.swift */,
-				8504513C23C05C57006DB14A /* BlurView Extension.swift */,
+				8504513C23C05C57006DB14A /* UIView Extension.swift */,
 				85F92A6023903F4100048FCB /* String+Extensions.swift */,
 			);
 			path = "Custom Extensions";
@@ -853,7 +853,7 @@
 				854D6D3823A28E76001BD091 /* CDYelpError.swift in Sources */,
 				854D6D3923A28E76001BD091 /* URL+CDYelpFusionKit.swift in Sources */,
 				8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */,
-				8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */,
+				8504513D23C05C57006DB14A /* UIView Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
 				852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */,
 				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
