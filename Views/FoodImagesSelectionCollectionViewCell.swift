@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-class FoodImagesSellectionCollectionViewCell: UICollectionViewCell { 
+class FoodImagesSelectionCollectionViewCell: UICollectionViewCell { 
     weak var delegate: CollectionViewCellDelegate?
     var shortCutViewTopAnchor:NSLayoutConstraint?
     var newShortCutViewTopAnchor:NSLayoutConstraint?

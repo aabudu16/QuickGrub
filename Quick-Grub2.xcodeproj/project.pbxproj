@@ -99,7 +99,7 @@
 		858A98792384EF840051AF45 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98782384EF840051AF45 /* FoldingCell.swift */; };
 		858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */; };
 		858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987C2386D8820051AF45 /* FoodImagesViewController.swift */; };
-		858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */; };
+		858A987F2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */; };
 		858A988823885D0C0051AF45 /* scrollDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A988723885D0C0051AF45 /* scrollDownGif.gif */; };
 		859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29AB23A7D0A5005F8173 /* AppError.swift */; };
 		859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */; };
@@ -229,7 +229,7 @@
 		858A98782384EF840051AF45 /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResultsViewController.swift; sourceTree = "<group>"; };
 		858A987C2386D8820051AF45 /* FoodImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesViewController.swift; sourceTree = "<group>"; };
-		858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSellectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A988723885D0C0051AF45 /* scrollDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrollDownGif.gif; sourceTree = "<group>"; };
 		859A29AB23A7D0A5005F8173 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
@@ -377,9 +377,13 @@
 		852C385D241C8A1F00EDD0DD /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
 				858A983E2384319A0051AF45 /* AppDelegate.swift */,
 				858A98402384319A0051AF45 /* SceneDelegate.swift */,
 				85F92A47239015C400048FCB /* Secrets.swift */,
+				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
+				859A29F723BB0D22005F8173 /* CellIdentifiers.swift */,
+				859A29F323BA5A70005F8173 /* Protocol.swift */,
 				858A98472384319C0051AF45 /* Assets.xcassets */,
 				858A988923885D180051AF45 /* GIF animation folder */,
 				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
@@ -470,10 +474,6 @@
 			isa = PBXGroup;
 			children = (
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
-				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
-				859A29F323BA5A70005F8173 /* Protocol.swift */,
-				859A29F723BB0D22005F8173 /* CellIdentifiers.swift */,
-				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
 				854D6D1323A28E76001BD091 /* Yelp DataSource */,
 				85F92A5B23902DD800048FCB /* Models */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
@@ -563,7 +563,7 @@
 				854CA8D4245C632F00F1EEAA /* OnBoarding */,
 				854CA8D5245C64FC00F1EEAA /* FoldingCell */,
 				859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */,
-				858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */,
+				858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -825,7 +825,7 @@
 				854D6D6123A66ED9001BD091 /* SSCheckMark.swift in Sources */,
 				854D6D5123A28E76001BD091 /* CDYelpConstants.swift in Sources */,
 				854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */,
-				858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */,
+				858A987F2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift in Sources */,
 				854D6D4923A28E76001BD091 /* CDYelpCategoryResponse.swift in Sources */,
 				854D6D4223A28E76001BD091 /* CDYelpCategory.swift in Sources */,
 				854D6D5423A28E76001BD091 /* CDYelpUser.swift in Sources */,

@@ -80,7 +80,7 @@ class FoodImagesViewController: UIViewController {
         let spacingLayout = cv.collectionViewLayout as! UPCarouselFlowLayout
         spacingLayout.spacingMode = UPCarouselFlowLayoutSpacingMode.overlap(visibleOffset: 30)
         layout.scrollDirection = .vertical
-        cv.register(FoodImagesSellectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
+        cv.register(FoodImagesSelectionCollectionViewCell.self, forCellWithReuseIdentifier: FoodImageIdentifier.foodCell.rawValue)
         cv.backgroundColor = .clear
         cv.isUserInteractionEnabled = false
         return cv
