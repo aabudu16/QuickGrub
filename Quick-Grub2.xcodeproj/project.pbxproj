@@ -433,6 +433,18 @@
 			path = WelcomeVC;
 			sourceTree = "<group>";
 		};
+		854CA8E7245CBA3A00F1EEAA /* CategoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
+				854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */,
+				854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */,
+				854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */,
+				854CA8E5245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift */,
+			);
+			path = CategoryVC;
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -548,11 +560,7 @@
 				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
 				852C385A241C75BF00EDD0DD /* FoodImagesVC */,
 				854CA8DE245CB16700F1EEAA /* WelcomeVC */,
-				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
-				854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */,
-				854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */,
-				854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */,
-				854CA8E5245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift */,
+				854CA8E7245CBA3A00F1EEAA /* CategoryVC */,
 				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
