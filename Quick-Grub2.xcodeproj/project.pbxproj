@@ -12,7 +12,7 @@
 		85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */; };
 		85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */; };
 		85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */; };
-		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
+		8504513D23C05C57006DB14A /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* UIView Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
 		8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */; };
@@ -44,6 +44,7 @@
 		854CA8D3245C624B00F1EEAA /* RotationView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */; };
 		854CA8D7245C657D00F1EEAA /* FoldingCell+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */; };
 		854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */; };
+		854CA8DB245CA0F900F1EEAA /* FoldingCell+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -136,7 +137,7 @@
 		85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnboardOverlay.swift; sourceTree = "<group>"; };
 		85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoardingPage.swift; sourceTree = "<group>"; };
-		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
+		8504513C23C05C57006DB14A /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
 		8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +169,7 @@
 		854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RotationView+Extension.swift"; sourceTree = "<group>"; };
 		854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Constraints.swift"; sourceTree = "<group>"; };
 		854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Extension.swift"; sourceTree = "<group>"; };
+		854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Animations.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			children = (
 				858A98782384EF840051AF45 /* FoldingCell.swift */,
 				854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */,
+				854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */,
 				854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */,
 				854CA8D0245C60E300F1EEAA /* RotationView.swift */,
 				854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */,
@@ -871,6 +874,7 @@
 				854D6D4723A28E76001BD091 /* CDYelpReview.swift in Sources */,
 				854D6D3C23A28E76001BD091 /* String+CDYelpFusionKit.swift in Sources */,
 				85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */,
+				854CA8DB245CA0F900F1EEAA /* FoldingCell+Animations.swift in Sources */,
 				854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */,
 				852C3839241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift in Sources */,
 				852C3831241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift in Sources */,
