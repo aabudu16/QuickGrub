@@ -208,14 +208,14 @@ class CategoryViewController: UIViewController {
         if selectedCategories.count > 0{
             NSLayoutConstraint.deactivate([containerViewTopConstraints!])
             NSLayoutConstraint.activate([newContainerViewTopConstraints!])
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-                self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {[weak self] in
+                self?.view.layoutIfNeeded()
             }, completion: nil)
         } else{
             NSLayoutConstraint.activate([containerViewTopConstraints!])
             NSLayoutConstraint.deactivate([newContainerViewTopConstraints!])
-            UIView.animate(withDuration: 0.3, animations: {
-                self.view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.3, animations: {[weak self] in
+                self?.view.layoutIfNeeded()
             }, completion: { (_) in
                 print("nothing")
             })
