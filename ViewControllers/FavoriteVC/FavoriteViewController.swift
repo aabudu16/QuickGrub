@@ -65,8 +65,7 @@ class FavoriteViewController: UIViewController {
         configureInformationLabelConstraints()
         setup()
         getFavorites()
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
-        UINavigationBar.appearance().titleTextAttributes = attributes
+        navigationFont()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,6 +80,10 @@ class FavoriteViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    private func navigationFont(){
+       let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
+        UINavigationBar.appearance().titleTextAttributes = attributes
+    }
     
     private func getFavorites(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
