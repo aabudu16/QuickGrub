@@ -59,13 +59,13 @@ class RestaurantResultsViewController: UIViewController {
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-    //    if #available(iOS 10.0, *) {
-            tableView.refreshControl = UIRefreshControl()
-            tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
-      //  }
+        //    if #available(iOS 10.0, *) {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
+        //  }
     }
     
-     func getFavorites(){
+    func getFavorites(){
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
             return
         }

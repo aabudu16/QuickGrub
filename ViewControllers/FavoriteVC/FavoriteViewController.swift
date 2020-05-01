@@ -106,7 +106,7 @@ class FavoriteViewController: UIViewController {
             self?.tableView.reloadData()
         })
     }
- 
+    
     func configureTableViewConstraints(){
         self.view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false

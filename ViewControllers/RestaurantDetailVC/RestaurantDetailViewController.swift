@@ -293,15 +293,13 @@ class RestaurantDetailViewController: UIViewController {
         restaurantName.text = business.name
         restaurantPhoneNumber.text = business.displayPhone
         
-        if (business.location?.displayAddress?.count)! > 1{
-            if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-            }
-        }else{
-            if let displayAddress = business.location?.displayAddress{
-            addressTextView.text = "\(displayAddress[0])"
-            }
-        }
+        if let businessAddress = business.location?.displayAddress {
+                   if businessAddress.count > 1 {
+                       addressTextView.text = "\(businessAddress[0]) \(businessAddress[1])"
+                   } else {
+                       addressTextView.text = "\(businessAddress.first ?? "")"
+                   }
+               }
         
         // review count
         if let reviewCount = business.reviewCount{

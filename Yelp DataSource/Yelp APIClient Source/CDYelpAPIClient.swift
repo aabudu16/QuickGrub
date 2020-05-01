@@ -42,7 +42,7 @@ public class CDYelpAPIClient {
     public init(apiKey: String!) {
         assert((apiKey != nil && apiKey.count > 0), "An apiKey is required to query the Yelp Fusion API.")
         self.apiKey = apiKey
-        super.init()
+       // super.init()
     }
 
     // MARK: - Authentication Methods
