@@ -170,13 +170,12 @@ open class FoldingCell: UITableViewCell {
         let image = UIImage(named: "FoodPlaceholder")
         foodImageView.kf.indicatorType = .activity
         foodImageView.kf.setImage(with: business.imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-        if (business.location?.displayAddress?.count)! > 1{
-            if let displayAddress = business.location?.displayAddress{
-                addressTextView.text = "\(displayAddress[0]) \(displayAddress[1])"
-            }
-        }else{
-            if let displayAddress = business.location?.displayAddress{
-            addressTextView.text = "\(displayAddress[0])"
+        
+        if let businessAddress = business.location?.displayAddress {
+            if businessAddress.count > 1 {
+                addressTextView.text = "\(businessAddress[0]) \(businessAddress[1])"
+            } else {
+                addressTextView.text = "\(businessAddress.first ?? "")"
             }
         }
 
