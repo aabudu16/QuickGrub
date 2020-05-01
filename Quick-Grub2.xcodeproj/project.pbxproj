@@ -48,6 +48,7 @@
 		854CA8DD245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */; };
 		854CA8E0245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */; };
 		854CA8E2245CB4F000F1EEAA /* CategoryViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */; };
+		854CA8E4245CB64100F1EEAA /* CategoryViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -176,6 +177,7 @@
 		854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeViewController+Constraints.swift"; sourceTree = "<group>"; };
 		854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Constraints.swift"; sourceTree = "<group>"; };
 		854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Delegate.swift"; sourceTree = "<group>"; };
+		854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+DataSource.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -547,6 +549,7 @@
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
 				854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */,
 				854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */,
+				854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */,
 				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
@@ -852,6 +855,7 @@
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */,
+				854CA8E4245CB64100F1EEAA /* CategoryViewController+DataSource.swift in Sources */,
 				859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */,
 				85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */,
 				854D6D4123A28E76001BD091 /* CDYelpCategoriesResponse.swift in Sources */,
