@@ -12,7 +12,7 @@
 		85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */; };
 		85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */; };
 		85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */; };
-		8504513D23C05C57006DB14A /* UIView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* UIView Extension.swift */; };
+		8504513D23C05C57006DB14A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* UIView+Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
 		8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */; };
@@ -90,7 +90,7 @@
 		858A98482384319C0051AF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858A98472384319C0051AF45 /* Assets.xcassets */; };
 		858A984B2384319C0051AF45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A98492384319C0051AF45 /* LaunchScreen.storyboard */; };
 		858A98562384319D0051AF45 /* Quick_Grub2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */; };
-		858A9862238433A10051AF45 /* Custom Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* Custom Extension.swift */; };
+		858A9862238433A10051AF45 /* Custom+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* Custom+Extension.swift */; };
 		858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986C23843B680051AF45 /* WelcomeViewController.swift */; };
 		858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986E23843BA80051AF45 /* CategoryViewController.swift */; };
 		858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */; };
@@ -137,7 +137,7 @@
 		85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnboardOverlay.swift; sourceTree = "<group>"; };
 		85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoardingPage.swift; sourceTree = "<group>"; };
-		8504513C23C05C57006DB14A /* UIView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView Extension.swift"; sourceTree = "<group>"; };
+		8504513C23C05C57006DB14A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
 		8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 		858A98512384319D0051AF45 /* Quick-Grub2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick-Grub2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_Grub2Tests.swift; sourceTree = "<group>"; };
 		858A98572384319D0051AF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		858A9861238433A10051AF45 /* Custom Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Extension.swift"; sourceTree = "<group>"; };
+		858A9861238433A10051AF45 /* Custom+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom+Extension.swift"; sourceTree = "<group>"; };
 		858A986C23843B680051AF45 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		858A986E23843BA80051AF45 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
@@ -538,8 +538,8 @@
 		858A9869238435F90051AF45 /* Custom Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				858A9861238433A10051AF45 /* Custom Extension.swift */,
-				8504513C23C05C57006DB14A /* UIView Extension.swift */,
+				858A9861238433A10051AF45 /* Custom+Extension.swift */,
+				8504513C23C05C57006DB14A /* UIView+Extension.swift */,
 				85F92A6023903F4100048FCB /* String+Extensions.swift */,
 			);
 			path = "Custom Extensions";
@@ -856,10 +856,10 @@
 				854D6D3823A28E76001BD091 /* CDYelpError.swift in Sources */,
 				854D6D3923A28E76001BD091 /* URL+CDYelpFusionKit.swift in Sources */,
 				8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */,
-				8504513D23C05C57006DB14A /* UIView Extension.swift in Sources */,
+				8504513D23C05C57006DB14A /* UIView+Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
 				852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */,
-				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
+				858A9862238433A10051AF45 /* Custom+Extension.swift in Sources */,
 				852C384B241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift in Sources */,
 				8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
