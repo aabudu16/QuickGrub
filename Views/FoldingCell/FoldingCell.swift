@@ -596,17 +596,6 @@ open class FoldingCell: UITableViewCell {
         }
     }
 }
-//MARK:-- extensions
-extension FoldingCell: UIScrollViewDelegate{
-    public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let page = scrollView.contentOffset.x / scrollView.frame.size.width
-        pageControl.currentPage = Int(page)
-    }
-}
-
-extension FoldingCell: MKMapViewDelegate{
-    // Do something here with maps
-}
 
 // MARK: UIView + extension
 private extension UIView {
