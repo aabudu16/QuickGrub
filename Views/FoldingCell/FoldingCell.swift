@@ -178,7 +178,7 @@ open class FoldingCell: UITableViewCell {
                 addressTextView.text = "\(businessAddress.first ?? "")"
             }
         }
-
+        
         resturantPhoneNumber.text = business.displayPhone
         distanceLabel.text = "📍 \(Int(distance.distance ?? 0.0)) mi"
         resturantName.text = business.name
@@ -301,11 +301,9 @@ open class FoldingCell: UITableViewCell {
     }
     
     private func createAnimationItemView() -> [RotatedView] {
-        
         var items = [RotatedView]()
         items.append(foregroundView)
         var rotatedViews = [RotatedView]()
-        
         animationView?.subviews
             .lazy
             .compactMap({ $0 as? RotatedView })
@@ -597,7 +595,7 @@ open class FoldingCell: UITableViewCell {
             })
         }
     }
-    
+}
 //MARK:-- extensions
 extension FoldingCell: UIScrollViewDelegate{
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
