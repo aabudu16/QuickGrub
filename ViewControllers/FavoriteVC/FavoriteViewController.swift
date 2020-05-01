@@ -10,9 +10,12 @@ import UIKit
 import MapKit
 
 class FavoriteViewController: UIViewController {
+    //MARK:-- Properties
     var cellHeights: [CGFloat] = []
     let deadlineTime = DispatchTime.now() + .seconds(1)
     let group = DispatchGroup()
+    
+    //MARK:-- Computed Properties
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
             DispatchQueue.main.async {
@@ -35,22 +38,6 @@ class FavoriteViewController: UIViewController {
                             self?.showAlert(alertTitle: "Ohh oh", alertMessage: "Seem you caught an error \(error)", actionTitle: "OK")
                         }
                     }
-                }
-            }
-        }
-    }
-    
-    private func getFavorites(){
-        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
-            return
-        }
-        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
-            switch result{
-            case .failure(let error):
-                self.showAlert(alertTitle: "Error", alertMessage: "Seems to be a problem loading your favorites \(error)", actionTitle: "OK")
-            case .success(let favorites):
-                DispatchQueue.main.async {
-                    self.userFavorites = favorites
                 }
             }
         }
@@ -80,11 +67,29 @@ class FavoriteViewController: UIViewController {
         self.title = "Favorite"
     }
     
+    //MARK:-- Private func
     private func setDelegation(){
         tableView.delegate = self
         tableView.dataSource = self
     }
-    // MARK: Helpers
+    
+    
+    private func getFavorites(){
+        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
+            return
+        }
+        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
+            switch result{
+            case .failure(let error):
+                self.showAlert(alertTitle: "Error", alertMessage: "Seems to be a problem loading your favorites \(error)", actionTitle: "OK")
+            case .success(let favorites):
+                DispatchQueue.main.async {
+                    self.userFavorites = favorites
+                }
+            }
+        }
+    }
+    
     private func setup() {
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
         tableView.estimatedRowHeight = Const.closeCellHeight
