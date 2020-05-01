@@ -10,25 +10,79 @@ import UIKit
 import MapKit
 
 class FavoriteViewController: UIViewController {
+    //MARK:-- Properties
     var cellHeights: [CGFloat] = []
+    let deadlineTime = DispatchTime.now() + .seconds(1)
+    let group = DispatchGroup()
+    let information = "You have nothing saved"
+    
+    //MARK:-- Computed Properties
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
- 
+    
     var userFavorites = [ UserFavorite](){
         didSet{
             for individualBusiness in userFavorites{
-                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.venueID, locale: nil) { [weak self] (business) in
-                    DispatchQueue.main.async {
-                        if let eachBusiness = business {
-                            self?.businessFullDetail.append(eachBusiness)
+                group.enter()
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.venueID, locale: .english_unitedKingdom) { [weak self] (result) in
+                    DispatchQueue.global(qos: .default).async {
+                        switch result {
+                        case .success(let business):
+                            self?.businessFullDetail.append(business)
+                            self?.group.leave()
+                        case .failure(let error):
+                            self?.showAlert(alertTitle: "Ohh oh", alertMessage: "Seem you caught an error \(error)", actionTitle: "OK")
                         }
                     }
                 }
             }
         }
+    }
+    
+    lazy var tableView:UITableView = {
+        let tableview = UITableView()
+        tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.resturantCell.rawValue)
+        return tableview
+    }()
+    
+       lazy var informationLabel:UILabel = {
+       let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .black)
+        label.numberOfLines = 0
+        return label
+    }()
+    
+    //MARK:-- LifeCycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        setDelegation()
+        configureTableViewConstraints()
+        configureInformationLabelConstraints()
+        setup()
+        getFavorites()
+        navigationFont()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+        self.title = "Favorite"
+    }
+    
+    //MARK:-- Private func
+    private func setDelegation(){
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+    
+    private func navigationFont(){
+       let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
+        UINavigationBar.appearance().titleTextAttributes = attributes
     }
     
     private func getFavorites(){
@@ -47,41 +101,6 @@ class FavoriteViewController: UIViewController {
         }
     }
     
-    enum Const {
-        static let closeCellHeight: CGFloat = 179
-        static let openCellHeight: CGFloat = 488
-        static let rowsCount = 50
-    }
-    
-    lazy var tableView:UITableView = {
-        let tableview = UITableView()
-        tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.resturantCell.rawValue)
-        return tableview
-    }()
-    
-    //MARK:-- LifeCycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = .white
-        setDelegation()
-        configureTableViewConstraints()
-        setup()
-        getFavorites()
-        let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
-        UINavigationBar.appearance().titleTextAttributes = attributes
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.isNavigationBarHidden = false
-        self.title = "Favorite"
-    }
-    
-    private func setDelegation(){
-        tableView.delegate = self
-        tableView.dataSource = self
-    }
-    // MARK: Helpers
     private func setup() {
         cellHeights = Array(repeating: Const.closeCellHeight, count: Const.rowsCount)
         tableView.estimatedRowHeight = Const.closeCellHeight
@@ -95,7 +114,6 @@ class FavoriteViewController: UIViewController {
     
     // MARK: Actions
     @objc func refreshHandler() {
-        let deadlineTime = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: { [weak self] in
             if #available(iOS 10.0, *) {
                 self?.tableView.refreshControl?.endRefreshing()
@@ -103,11 +121,17 @@ class FavoriteViewController: UIViewController {
             self?.tableView.reloadData()
         })
     }
- 
-    func configureTableViewConstraints(){
-        self.view.addSubview(tableView)
+    
+   private func configureTableViewConstraints(){
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor), tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
         
+    }
+    
+    private func configureInformationLabelConstraints(){
+        view.addSubview(informationLabel)
+        informationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([informationLabel.topAnchor.constraint(equalTo: view.topAnchor), informationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor), informationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor), informationLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
 }

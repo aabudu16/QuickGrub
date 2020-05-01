@@ -21,6 +21,16 @@ extension UILabel{
     }
 }
 
+extension UILabel{
+    public convenience init(textAlignment:NSTextAlignment, text:String?, fontName:String, fontSize:CGFloat, color:UIColor){
+        self.init()
+        self.textColor = .black
+        self.text = text
+        self.textAlignment = textAlignment
+        self.font = UIFont(name:fontName, size: fontSize)
+        self.textColor = color
+    }
+}
 //MARK: UIButton extension
 extension UIButton{
     convenience init(alpha:CGFloat, contentMode: UIView.ContentMode){
@@ -117,7 +127,7 @@ struct CustomLayer{
 
 extension UIView{
     func addGradientLayer(firstColor:CGColor, secondColor:CGColor){
-      let gradientLayer = CAGradientLayer()
+        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [firstColor, secondColor]
         gradientLayer.locations = [0,1]
         gradientLayer.frame = bounds

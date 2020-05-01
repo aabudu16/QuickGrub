@@ -1,5 +1,5 @@
 //
-//  BlurView Extension.swift
+//  View Extension.swift
 //  Quick-Grub2
 //
 //  Created by Mr Wonderful on 1/4/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+// MARK: BlurView
 extension UIView {
     
     private struct AssociatedKeys {
@@ -149,5 +149,22 @@ extension UIView {
                 constant: 0
             )
         )
+    }
+}
+
+// MARK: UIView + extension
+ extension UIView {
+    
+    func takeSnapshot(_ frame: CGRect) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(frame.size, false, 0)
+        
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        context.translateBy(x: frame.origin.x * -1, y: frame.origin.y * -1)
+        
+        layer.render(in: context)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image
     }
 }

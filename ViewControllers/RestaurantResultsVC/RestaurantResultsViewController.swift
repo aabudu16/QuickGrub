@@ -9,32 +9,28 @@
 import UIKit
 
 class RestaurantResultsViewController: UIViewController {
-    
+    var userCurrentFavorites = [UserFavorite]()
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
-           tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
     var userFoodImageSelection = [ CDYelpBusiness](){
         didSet{
             for individualBusiness in userFoodImageSelection{
-                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: .english_unitedStates) { [weak self] (business) in
-                    DispatchQueue.main.async {
-                       if let business = business {
-                        self?.businessFullDetail.append(business)
-
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: .english_unitedStates) { [weak self] (result) in
+                    DispatchQueue.global(qos: .default).async {
+                        switch result {
+                        case .success(let business):
+                            self?.businessFullDetail.append(business)
+                        case .failure(let error):
+                            self?.showAlert(alertTitle: "Ohh oh", alertMessage: "Seem you caught an error \(error)", actionTitle: "OK")
                         }
                     }
                 }
             }
         }
-    }
-    
-    enum Const {
-        static let closeCellHeight: CGFloat = 179
-        static let openCellHeight: CGFloat = 488
-        static let rowsCount = 50
     }
     
     lazy var tableView:UITableView = {
@@ -50,6 +46,7 @@ class RestaurantResultsViewController: UIViewController {
         setDelegation()
         configureTableViewConstraints()
         setup()
+        getFavorites()
     }
     
     private func setDelegation(){
@@ -62,10 +59,26 @@ class RestaurantResultsViewController: UIViewController {
         tableView.estimatedRowHeight = Const.closeCellHeight
         tableView.rowHeight = UITableView.automaticDimension
         tableView.backgroundColor = UIColor(patternImage: #imageLiteral(resourceName: "background"))
-    //    if #available(iOS 10.0, *) {
-            tableView.refreshControl = UIRefreshControl()
-            tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
-      //  }
+        //    if #available(iOS 10.0, *) {
+        tableView.refreshControl = UIRefreshControl()
+        tableView.refreshControl?.addTarget(self, action: #selector(refreshHandler), for: .valueChanged)
+        //  }
+    }
+    
+    func getFavorites(){
+        guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
+            return
+        }
+        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
+            switch result{
+            case .failure(let error):
+                print(error)
+            case .success(let favorites):
+                DispatchQueue.main.async {
+                    self.userCurrentFavorites = favorites
+                }
+            }
+        }
     }
     
     // MARK: Actions

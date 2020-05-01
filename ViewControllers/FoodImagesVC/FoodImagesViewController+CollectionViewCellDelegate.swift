@@ -10,7 +10,7 @@ import UIKit
 
 extension FoodImagesViewController: CollectionViewCellDelegate{
     func handleShortCut(tag: Int) {
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSelectionCollectionViewCell else {return}
         
         cell.shortCutViewTopAnchor?.isActive = false
         cell.newShortCutViewTopAnchor?.isActive = true
@@ -22,7 +22,7 @@ extension FoodImagesViewController: CollectionViewCellDelegate{
     
     func addSelectedFood(tag: Int) {
         let info = userCategorySelectedResults[tag]
-        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSellectionCollectionViewCell else {return}
+        guard let cell = collectionView.cellForItem(at: IndexPath(row: tag, section: 0)) as? FoodImagesSelectionCollectionViewCell else {return}
         
         if cell.itemIsSelected == false{
             print(tag)

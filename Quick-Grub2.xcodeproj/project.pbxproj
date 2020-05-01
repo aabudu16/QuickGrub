@@ -12,7 +12,7 @@
 		85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */; };
 		85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */; };
 		85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */; };
-		8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* BlurView Extension.swift */; };
+		8504513D23C05C57006DB14A /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504513C23C05C57006DB14A /* UIView+Extension.swift */; };
 		8504514123C2C6F6006DB14A /* UpdateUserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */; };
 		8504514523C77E68006DB14A /* checkMarkAnimate.gif in Resources */ = {isa = PBXBuildFile; fileRef = 8504514423C77E66006DB14A /* checkMarkAnimate.gif */; };
 		8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */; };
@@ -40,6 +40,16 @@
 		852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */; };
 		852C3859241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */; };
 		852C385C241C7AA300EDD0DD /* LoginViewController+Objc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */; };
+		854CA8D1245C60E300F1EEAA /* RotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D0245C60E300F1EEAA /* RotationView.swift */; };
+		854CA8D3245C624B00F1EEAA /* RotationView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */; };
+		854CA8D7245C657D00F1EEAA /* FoldingCell+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */; };
+		854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */; };
+		854CA8DB245CA0F900F1EEAA /* FoldingCell+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */; };
+		854CA8DD245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */; };
+		854CA8E0245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */; };
+		854CA8E2245CB4F000F1EEAA /* CategoryViewController+Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */; };
+		854CA8E4245CB64100F1EEAA /* CategoryViewController+DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */; };
+		854CA8E6245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8E5245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -85,7 +95,7 @@
 		858A98482384319C0051AF45 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 858A98472384319C0051AF45 /* Assets.xcassets */; };
 		858A984B2384319C0051AF45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 858A98492384319C0051AF45 /* LaunchScreen.storyboard */; };
 		858A98562384319D0051AF45 /* Quick_Grub2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */; };
-		858A9862238433A10051AF45 /* Custom Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* Custom Extension.swift */; };
+		858A9862238433A10051AF45 /* Custom+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A9861238433A10051AF45 /* Custom+Extension.swift */; };
 		858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986C23843B680051AF45 /* WelcomeViewController.swift */; };
 		858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A986E23843BA80051AF45 /* CategoryViewController.swift */; };
 		858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */; };
@@ -94,7 +104,7 @@
 		858A98792384EF840051AF45 /* FoldingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A98782384EF840051AF45 /* FoldingCell.swift */; };
 		858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */; };
 		858A987D2386D8820051AF45 /* FoodImagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987C2386D8820051AF45 /* FoodImagesViewController.swift */; };
-		858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */; };
+		858A987F2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */; };
 		858A988823885D0C0051AF45 /* scrollDownGif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 858A988723885D0C0051AF45 /* scrollDownGif.gif */; };
 		859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29AB23A7D0A5005F8173 /* AppError.swift */; };
 		859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */; };
@@ -132,7 +142,7 @@
 		85021EDF23FD8A2700F8AD7B /* OnBoardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingViewController.swift; sourceTree = "<group>"; };
 		85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnboardOverlay.swift; sourceTree = "<group>"; };
 		85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGrubOnBoardingPage.swift; sourceTree = "<group>"; };
-		8504513C23C05C57006DB14A /* BlurView Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BlurView Extension.swift"; sourceTree = "<group>"; };
+		8504513C23C05C57006DB14A /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		8504514023C2C6F5006DB14A /* UpdateUserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateUserProfileViewController.swift; sourceTree = "<group>"; };
 		8504514423C77E66006DB14A /* checkMarkAnimate.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = checkMarkAnimate.gif; sourceTree = "<group>"; };
 		8504D50C23CA4D5C002257A4 /* ForgetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +170,16 @@
 		852C3856241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDataSource.swift"; sourceTree = "<group>"; };
 		852C3858241C757200EDD0DD /* FoodImagesViewController+UICollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoodImagesViewController+UICollectionViewDelegate.swift"; sourceTree = "<group>"; };
 		852C385B241C7AA300EDD0DD /* LoginViewController+Objc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginViewController+Objc.swift"; sourceTree = "<group>"; };
+		854CA8D0245C60E300F1EEAA /* RotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationView.swift; sourceTree = "<group>"; };
+		854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RotationView+Extension.swift"; sourceTree = "<group>"; };
+		854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Constraints.swift"; sourceTree = "<group>"; };
+		854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Extension.swift"; sourceTree = "<group>"; };
+		854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Animations.swift"; sourceTree = "<group>"; };
+		854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeViewController+Constraints.swift"; sourceTree = "<group>"; };
+		854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Constraints.swift"; sourceTree = "<group>"; };
+		854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Delegate.swift"; sourceTree = "<group>"; };
+		854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+DataSource.swift"; sourceTree = "<group>"; };
+		854CA8E5245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+UISearchBarDelegate.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -210,7 +230,7 @@
 		858A98512384319D0051AF45 /* Quick-Grub2Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Quick-Grub2Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		858A98552384319D0051AF45 /* Quick_Grub2Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Quick_Grub2Tests.swift; sourceTree = "<group>"; };
 		858A98572384319D0051AF45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		858A9861238433A10051AF45 /* Custom Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom Extension.swift"; sourceTree = "<group>"; };
+		858A9861238433A10051AF45 /* Custom+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Custom+Extension.swift"; sourceTree = "<group>"; };
 		858A986C23843B680051AF45 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		858A986E23843BA80051AF45 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		858A987023844A6C0051AF45 /* CustomActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomActivityIndicator.swift; sourceTree = "<group>"; };
@@ -219,7 +239,7 @@
 		858A98782384EF840051AF45 /* FoldingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoldingCell.swift; sourceTree = "<group>"; };
 		858A987A2384FCC40051AF45 /* RestaurantResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantResultsViewController.swift; sourceTree = "<group>"; };
 		858A987C2386D8820051AF45 /* FoodImagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesViewController.swift; sourceTree = "<group>"; };
-		858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSellectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodImagesSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
 		858A988723885D0C0051AF45 /* scrollDownGif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrollDownGif.gif; sourceTree = "<group>"; };
 		859A29AB23A7D0A5005F8173 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		859A29F123B7ADDA005F8173 /* RestaurantDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetailViewController.swift; sourceTree = "<group>"; };
@@ -367,14 +387,62 @@
 		852C385D241C8A1F00EDD0DD /* Supporting files */ = {
 			isa = PBXGroup;
 			children = (
+				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
 				858A983E2384319A0051AF45 /* AppDelegate.swift */,
 				858A98402384319A0051AF45 /* SceneDelegate.swift */,
 				85F92A47239015C400048FCB /* Secrets.swift */,
+				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
+				859A29F723BB0D22005F8173 /* CellIdentifiers.swift */,
+				859A29F323BA5A70005F8173 /* Protocol.swift */,
 				858A98472384319C0051AF45 /* Assets.xcassets */,
 				858A988923885D180051AF45 /* GIF animation folder */,
 				858A98492384319C0051AF45 /* LaunchScreen.storyboard */,
 			);
 			path = "Supporting files";
+			sourceTree = "<group>";
+		};
+		854CA8D4245C632F00F1EEAA /* OnBoarding */ = {
+			isa = PBXGroup;
+			children = (
+				85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */,
+				85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */,
+				85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */,
+			);
+			path = OnBoarding;
+			sourceTree = "<group>";
+		};
+		854CA8D5245C64FC00F1EEAA /* FoldingCell */ = {
+			isa = PBXGroup;
+			children = (
+				858A98782384EF840051AF45 /* FoldingCell.swift */,
+				854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */,
+				854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */,
+				854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */,
+				854CA8D0245C60E300F1EEAA /* RotationView.swift */,
+				854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */,
+			);
+			path = FoldingCell;
+			sourceTree = "<group>";
+		};
+		854CA8DE245CB16700F1EEAA /* WelcomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
+				854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */,
+			);
+			path = WelcomeVC;
+			sourceTree = "<group>";
+		};
+		854CA8E7245CBA3A00F1EEAA /* CategoryVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
+				854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */,
+				854CA8E1245CB4F000F1EEAA /* CategoryViewController+Delegate.swift */,
+				854CA8E3245CB64100F1EEAA /* CategoryViewController+DataSource.swift */,
+				854CA8E5245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift */,
+			);
+			path = CategoryVC;
 			sourceTree = "<group>";
 		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
@@ -437,10 +505,6 @@
 			isa = PBXGroup;
 			children = (
 				858A983D2384319A0051AF45 /* Quick-Grub2 */,
-				854D6D5523A28F59001BD091 /* CDYelpFusionKitManager.swift */,
-				859A29F323BA5A70005F8173 /* Protocol.swift */,
-				859A29F723BB0D22005F8173 /* CellIdentifiers.swift */,
-				854D6D5E23A5DF3C001BD091 /* GenericAlert.swift */,
 				854D6D1323A28E76001BD091 /* Yelp DataSource */,
 				85F92A5B23902DD800048FCB /* Models */,
 				858A9869238435F90051AF45 /* Custom Extensions */,
@@ -495,8 +559,8 @@
 				852C3849241C5E7500EDD0DD /* CustomerReviewsVC */,
 				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
 				852C385A241C75BF00EDD0DD /* FoodImagesVC */,
-				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
-				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
+				854CA8DE245CB16700F1EEAA /* WelcomeVC */,
+				854CA8E7245CBA3A00F1EEAA /* CategoryVC */,
 				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
@@ -505,8 +569,8 @@
 		858A9869238435F90051AF45 /* Custom Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				858A9861238433A10051AF45 /* Custom Extension.swift */,
-				8504513C23C05C57006DB14A /* BlurView Extension.swift */,
+				858A9861238433A10051AF45 /* Custom+Extension.swift */,
+				8504513C23C05C57006DB14A /* UIView+Extension.swift */,
 				85F92A6023903F4100048FCB /* String+Extensions.swift */,
 			);
 			path = "Custom Extensions";
@@ -527,12 +591,10 @@
 			isa = PBXGroup;
 			children = (
 				858A9875238486420051AF45 /* CategoryCollectionViewCell.swift */,
-				85021EDD23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift */,
-				85021EE323FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift */,
-				85021EE123FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift */,
-				858A98782384EF840051AF45 /* FoldingCell.swift */,
 				859A29F923BB1501005F8173 /* CustomerReviewTableViewCell.swift */,
-				858A987E2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift */,
+				858A987E2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift */,
+				854CA8D4245C632F00F1EEAA /* OnBoarding */,
+				854CA8D5245C64FC00F1EEAA /* FoldingCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -766,6 +828,7 @@
 				854D6D5623A28F5A001BD091 /* CDYelpFusionKitManager.swift in Sources */,
 				858A9876238486420051AF45 /* CategoryCollectionViewCell.swift in Sources */,
 				854D6D5023A28E76001BD091 /* CDYelpRegion.swift in Sources */,
+				854CA8DD245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift in Sources */,
 				859A29AC23A7D0A5005F8173 /* AppError.swift in Sources */,
 				85F92A5923902D9B00048FCB /* FirebaseStorageService.swift in Sources */,
 				852C382C241BFC0500EDD0DD /* LoginViewController+UITextFieldDelegate.swift in Sources */,
@@ -777,28 +840,33 @@
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
 				852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */,
 				852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */,
+				854CA8E0245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift in Sources */,
 				852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
 				859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */,
 				854D6D4023A28E76001BD091 /* CDYelpTerm.swift in Sources */,
+				854CA8E2245CB4F000F1EEAA /* CategoryViewController+Delegate.swift in Sources */,
 				852C383B241C431F00EDD0DD /* RestaurantResultsViewController+UITableViewDataSource.swift in Sources */,
 				854D6D4F23A28E76001BD091 /* CDYelpSearchResponse.swift in Sources */,
+				854CA8D3245C624B00F1EEAA /* RotationView+Extension.swift in Sources */,
 				858A986F23843BA80051AF45 /* CategoryViewController.swift in Sources */,
 				852C3828241BEC4800EDD0DD /* LoginViewController+Constraints.swift in Sources */,
 				852C3843241C58A100EDD0DD /* UpdateUserProfileVC+UIImagePickerControllerDelegate.swift in Sources */,
 				859A29F823BB0D22005F8173 /* CellIdentifiers.swift in Sources */,
 				852C3837241C3C1B00EDD0DD /* RestaurantResultsViewController+FoldingCellDelegate.swift in Sources */,
+				854CA8D7245C657D00F1EEAA /* FoldingCell+Constraints.swift in Sources */,
 				854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */,
 				854D6D6123A66ED9001BD091 /* SSCheckMark.swift in Sources */,
 				854D6D5123A28E76001BD091 /* CDYelpConstants.swift in Sources */,
 				854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */,
-				858A987F2386D9660051AF45 /* FoodImagesSellectionCollectionViewCell.swift in Sources */,
+				858A987F2386D9660051AF45 /* FoodImagesSelectionCollectionViewCell.swift in Sources */,
 				854D6D4923A28E76001BD091 /* CDYelpCategoryResponse.swift in Sources */,
 				854D6D4223A28E76001BD091 /* CDYelpCategory.swift in Sources */,
 				854D6D5423A28E76001BD091 /* CDYelpUser.swift in Sources */,
 				858A986D23843B680051AF45 /* WelcomeViewController.swift in Sources */,
 				858A98432384319A0051AF45 /* LoginViewController.swift in Sources */,
 				858A987B2384FCC40051AF45 /* RestaurantResultsViewController.swift in Sources */,
+				854CA8E4245CB64100F1EEAA /* CategoryViewController+DataSource.swift in Sources */,
 				859A29F223B7ADDA005F8173 /* RestaurantDetailViewController.swift in Sources */,
 				85F92A5823902D9B00048FCB /* FirebaseAuthService.swift in Sources */,
 				854D6D4123A28E76001BD091 /* CDYelpCategoriesResponse.swift in Sources */,
@@ -811,6 +879,8 @@
 				858A98792384EF840051AF45 /* FoldingCell.swift in Sources */,
 				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
 				85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */,
+				854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */,
+				854CA8D1245C60E300F1EEAA /* RotationView.swift in Sources */,
 				85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */,
 				854D6D4623A28E76001BD091 /* CDYelpAutoCompleteResponse.swift in Sources */,
 				852C3853241C704100EDD0DD /* FoodImagesViewController+CollectionViewCellDelegate.swift in Sources */,
@@ -821,11 +891,12 @@
 				854D6D3823A28E76001BD091 /* CDYelpError.swift in Sources */,
 				854D6D3923A28E76001BD091 /* URL+CDYelpFusionKit.swift in Sources */,
 				8504D51123CE5377002257A4 /* FavoriteViewController.swift in Sources */,
-				8504513D23C05C57006DB14A /* BlurView Extension.swift in Sources */,
+				8504513D23C05C57006DB14A /* UIView+Extension.swift in Sources */,
 				8564EB3D239BF95D009AE8B5 /* UPCarouselFlowLayout.swift in Sources */,
 				852C382A241BFB1D00EDD0DD /* LoginViewController+UIImagePickerControllerDelegate.swift in Sources */,
-				858A9862238433A10051AF45 /* Custom Extension.swift in Sources */,
+				858A9862238433A10051AF45 /* Custom+Extension.swift in Sources */,
 				852C384B241C5EF700EDD0DD /* ForgetPasswordViewController+Constraints.swift in Sources */,
+				854CA8E6245CB6FD00F1EEAA /* CategoryViewController+UISearchBarDelegate.swift in Sources */,
 				8504D50D23CA4D5C002257A4 /* ForgetPasswordViewController.swift in Sources */,
 				85F92A48239015C400048FCB /* Secrets.swift in Sources */,
 				85021EDE23FD7C3200F8AD7B /* QuickGrubOnBoarding.swift in Sources */,
@@ -839,6 +910,7 @@
 				854D6D4723A28E76001BD091 /* CDYelpReview.swift in Sources */,
 				854D6D3C23A28E76001BD091 /* String+CDYelpFusionKit.swift in Sources */,
 				85021EE423FDD27A00F8AD7B /* QuickGrubOnBoardingPage.swift in Sources */,
+				854CA8DB245CA0F900F1EEAA /* FoldingCell+Animations.swift in Sources */,
 				854D6D5223A28E76001BD091 /* CDYelpRouter.swift in Sources */,
 				852C3839241C414100EDD0DD /* RestaurantResultsViewController+UITableViewDelegate.swift in Sources */,
 				852C3831241C014900EDD0DD /* FavoriteViewController+FoldingCellDelegate.swift in Sources */,
