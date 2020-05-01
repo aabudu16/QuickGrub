@@ -12,7 +12,7 @@ import UIKit
 
 open class RotatedView: UIView {
     
-    private enum Const {
+     enum Const {
         static let rotationX = "rotation.x"
         static let transformRotationX = "transform.rotation.x"
     }
