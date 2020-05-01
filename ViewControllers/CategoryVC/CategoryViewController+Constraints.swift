@@ -14,8 +14,8 @@ extension CategoryViewController {
         view.addSubview(containerView)
         view.addSubview(searchBar)
         view.addSubview(categoryCollectionView)
-        containerView.addSubview(continueButton)
-        containerView.addSubview(countLabel)
+        view.addSubview(continueButton)
+        view.addSubview(countLabel)
         view.addSubview(searchIcon)
     }
     
