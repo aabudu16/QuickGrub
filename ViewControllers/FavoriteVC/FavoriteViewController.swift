@@ -114,7 +114,6 @@ class FavoriteViewController: UIViewController {
     
     // MARK: Actions
     @objc func refreshHandler() {
-        let deadlineTime = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: deadlineTime, execute: { [weak self] in
             if #available(iOS 10.0, *) {
                 self?.tableView.refreshControl?.endRefreshing()

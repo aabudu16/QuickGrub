@@ -164,9 +164,9 @@ class FirestoreService {
         }
     }
     
-    private func deleteFavorite(favorite: UserFavorite , completion: @escaping (Result<(), Error>) -> ()) {
+     func deleteFavorite(businessID: String , completion: @escaping (Result<(), Error>) -> ()) {
          guard FirebaseAuthService.manager.currentUser != nil else {return}
-        db.collection(FireStoreCollections.favorite.rawValue).document(favorite.id).delete() { err in
+        db.collection(FireStoreCollections.favorite.rawValue).document(businessID).delete() { err in
             if let err = err {
                 completion(.failure(err))
             } else {
