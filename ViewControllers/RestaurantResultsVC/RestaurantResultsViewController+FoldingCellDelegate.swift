@@ -27,7 +27,22 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
         
         if userCurrentFavorites.contains(where: {$0.venueID == businessInfo.id}) {
-            print("Already favorited")
+            
+            print("Already added")
+            
+            
+//            
+//            FirestoreService.manager.deleteFavorite(businessID: businessInfo.id!) { (result) in
+//                switch result {
+//                case .failure(let error):
+//                    print(error)
+//                case .success(()):
+//                    print("deleted")
+//                }
+//            }
+//            
+//            getFavorites()
+            
         }else {
             createFavorites(currentUser: currentUser, businessInfo: businessInfo, cell: cell)
             getFavorites()

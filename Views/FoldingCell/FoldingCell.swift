@@ -244,9 +244,7 @@ open class FoldingCell: UITableViewCell {
     }
     
     @objc private func getDirections(sender:UIButton) {
-        
         delegate?.navigateToDestination(tag: sender.tag)
-        
     }
     
     @objc func handleFavoriteButtonPressed(sender:UIButton){
@@ -314,13 +312,11 @@ open class FoldingCell: UITableViewCell {
                     rotatedViews.append(backView)
                 }
         }
-        
         items.append(contentsOf: rotatedViews)
         return items
     }
     
     func configureAnimationItems(_ animationType: AnimationType) {
-        
         if animationType == .open {
             animationView?.subviews
                 .lazy
@@ -448,7 +444,6 @@ open class FoldingCell: UITableViewCell {
     }
     
     fileprivate func removeImageItemsFromAnimationView() {
-        
         guard let animationView = self.animationView else {
             return
         }
@@ -471,7 +466,6 @@ open class FoldingCell: UITableViewCell {
             foregroundView.alpha = value ? 0 : 1
             containerView.alpha = value ? 1 : 0
         }
-        
     }
     
     @objc open func isAnimating() -> Bool {
