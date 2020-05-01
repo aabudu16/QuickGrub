@@ -14,7 +14,7 @@ class FavoriteViewController: UIViewController {
     var cellHeights: [CGFloat] = []
     let deadlineTime = DispatchTime.now() + .seconds(1)
     let group = DispatchGroup()
-     let information = "You have nothing saved"
+    let information = "You have nothing saved"
     
     //MARK:-- Computed Properties
     var businessFullDetail = [CDYelpBusiness](){
@@ -62,6 +62,7 @@ class FavoriteViewController: UIViewController {
         view.backgroundColor = .white
         setDelegation()
         configureTableViewConstraints()
+        configureInformationLabelConstraints()
         setup()
         getFavorites()
         let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
@@ -119,10 +120,16 @@ class FavoriteViewController: UIViewController {
         })
     }
     
-    func configureTableViewConstraints(){
-        self.view.addSubview(tableView)
+   private func configureTableViewConstraints(){
+        view.addSubview(tableView)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([tableView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor), tableView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),tableView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), tableView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor)])
         
+    }
+    
+    private func configureInformationLabelConstraints(){
+        view.addSubview(informationLabel)
+        informationLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([informationLabel.topAnchor.constraint(equalTo: view.topAnchor), informationLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor), informationLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor), informationLabel.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
     }
 }
