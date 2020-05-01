@@ -24,7 +24,6 @@ class CategoryViewController: UIViewController {
     let cancelImage = UIImage(systemName: "xmark.circle.fill")!
     
     var searchCategoryResult:[CDYelpCategoryAlias]{
-        get{
             guard let searchCategoryString = searchCategoryString else {
                 return yelpCategories
             }
@@ -33,8 +32,6 @@ class CategoryViewController: UIViewController {
             }
             
             return yelpCategories.filter({$0.rawValue.lowercased() == searchCategoryString.lowercased()})
-        }
-        
     }
     
     var searchCategoryString:String? = nil {
@@ -233,7 +230,6 @@ class CategoryViewController: UIViewController {
     
     private func addKeyBoardHandlingObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardShowing(sender:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
