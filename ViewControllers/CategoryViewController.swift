@@ -9,7 +9,7 @@
 import UIKit
 
 class CategoryViewController: UIViewController {
-    
+    //MARK:-- Properties
     var containerViewTopConstraints:NSLayoutConstraint?
     var newContainerViewTopConstraints:NSLayoutConstraint?
     var searchBarTopConstraints:NSLayoutConstraint?
@@ -18,7 +18,6 @@ class CategoryViewController: UIViewController {
     var yelpCategories = CDYelpCategoryAlias.yelpCategory
     var currentState:CurrentState = .deselected
     var selectedCategories = [CDYelpCategoryAlias]()
-    //MARK: properties
     var layout = UICollectionViewFlowLayout.init()
     let containerHeight:CGFloat = 80
     let searchImage = UIImage(systemName: "magnifyingglass.circle.fill")!
@@ -44,7 +43,7 @@ class CategoryViewController: UIViewController {
         }
     }
     
-    
+    //MARK: UI Objects
     lazy var searchBar:UISearchBar = {
         let searchBar = UISearchBar()
         searchBar.searchBarStyle = UISearchBar.Style.prominent
@@ -56,7 +55,6 @@ class CategoryViewController: UIViewController {
         return searchBar
     }()
     
-    //MARK: UI Objects
     lazy var categoryCollectionView:UICollectionView = {
         let collectionView = UICollectionView(frame: UIScreen.main.bounds, collectionViewLayout: layout)
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: Identifiers.categoryCell.rawValue)
@@ -248,25 +246,5 @@ extension CategoryViewController: UICollectionViewDelegateFlowLayout{
         layout.minimumInteritemSpacing = 5
         let virticalCellCGSize = CGSize(width: (collectionView.frame.size.width - 20) / 2, height: collectionView.frame.size.height / 4)
         return virticalCellCGSize
-    }
-}
-
-extension CategoryViewController:UISearchBarDelegate{
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.showsCancelButton = true
-        return true
-    }
-    
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.showsCancelButton = false
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchCategoryString = searchBar.text
     }
 }
