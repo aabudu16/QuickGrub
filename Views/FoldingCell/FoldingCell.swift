@@ -445,14 +445,6 @@ open class FoldingCell: UITableViewCell {
         animationItemViews = createAnimationItemView()
     }
     
-    fileprivate func removeImageItemsFromAnimationView() {
-        guard let animationView = self.animationView else {
-            return
-        }
-        
-        animationView.subviews.forEach({ $0.removeFromSuperview() })
-    }
-    
     // MARK: public
     
     /// Unfold cell.
