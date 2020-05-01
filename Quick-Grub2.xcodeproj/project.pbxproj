@@ -46,6 +46,7 @@
 		854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */; };
 		854CA8DB245CA0F900F1EEAA /* FoldingCell+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */; };
 		854CA8DD245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */; };
+		854CA8E0245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -172,6 +173,7 @@
 		854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Extension.swift"; sourceTree = "<group>"; };
 		854CA8DA245CA0F900F1EEAA /* FoldingCell+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Animations.swift"; sourceTree = "<group>"; };
 		854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WelcomeViewController+Constraints.swift"; sourceTree = "<group>"; };
+		854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CategoryViewController+Constraints.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -416,6 +418,15 @@
 			path = FoldingCell;
 			sourceTree = "<group>";
 		};
+		854CA8DE245CB16700F1EEAA /* WelcomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
+				854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */,
+			);
+			path = WelcomeVC;
+			sourceTree = "<group>";
+		};
 		854D6D1323A28E76001BD091 /* Yelp DataSource */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,9 +541,9 @@
 				852C3849241C5E7500EDD0DD /* CustomerReviewsVC */,
 				852C384C241C645100EDD0DD /* ForgetPasswordVC */,
 				852C385A241C75BF00EDD0DD /* FoodImagesVC */,
-				858A986C23843B680051AF45 /* WelcomeViewController.swift */,
-				854CA8DC245CACCC00F1EEAA /* WelcomeViewController+Constraints.swift */,
+				854CA8DE245CB16700F1EEAA /* WelcomeVC */,
 				858A986E23843BA80051AF45 /* CategoryViewController.swift */,
+				854CA8DF245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift */,
 				852C384F241C6C1700EDD0DD /* OnBoardingVC */,
 			);
 			path = ViewControllers;
@@ -812,6 +823,7 @@
 				85021EE023FD8A2700F8AD7B /* OnBoardingViewController.swift in Sources */,
 				852C3846241C5CF900EDD0DD /* CustomerReviewsViewController+YelpCustomerProfileDelegate.swift in Sources */,
 				852C3857241C736400EDD0DD /* FoodImagesViewController+UICollectionViewDataSource.swift in Sources */,
+				854CA8E0245CB1FC00F1EEAA /* CategoryViewController+Constraints.swift in Sources */,
 				852C3841241C51E200EDD0DD /* UpdateUserProfileViewController+Constraints.swift in Sources */,
 				85F92A5A23902D9B00048FCB /* FirebaseService.swift in Sources */,
 				859A29FA23BB1501005F8173 /* CustomerReviewTableViewCell.swift in Sources */,
