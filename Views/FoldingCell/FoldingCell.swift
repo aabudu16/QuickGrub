@@ -19,7 +19,9 @@ open class FoldingCell: UITableViewCell {
     var containerViewTop:NSLayoutConstraint!
     var animationView: UIView?
     var animationItemViews: [RotatedView]?
-    @objc open var isUnfolded = false
+    var isUnfolded = false
+    var durationsForExpandedState: [TimeInterval] = []
+    var durationsForCollapsedState: [TimeInterval] = []
     
     //  the number of folding elements. Default 2
     @IBInspectable open var itemCount: NSInteger = 4
