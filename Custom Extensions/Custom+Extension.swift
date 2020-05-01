@@ -21,6 +21,16 @@ extension UILabel{
     }
 }
 
+extension UILabel{
+    public convenience init(textAlignment:NSTextAlignment, text:String?, fontName:String, fontSize:CGFloat, color:UIColor){
+        self.init()
+        self.textColor = .black
+        self.text = text
+        self.textAlignment = textAlignment
+        self.font = UIFont(name:fontName, size: fontSize)
+        self.textColor = color
+    }
+}
 //MARK: UIButton extension
 extension UIButton{
     convenience init(alpha:CGFloat, contentMode: UIView.ContentMode){
