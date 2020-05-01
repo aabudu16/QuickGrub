@@ -9,8 +9,7 @@
 import Alamofire
 import AlamofireObjectMapper
 
-public class CDYelpAPIClient: NSObject {
-
+public class CDYelpAPIClient {
     private let apiKey: String!
     private lazy var manager: Alamofire.SessionManager = {
         if let apiKey = self.apiKey,
@@ -232,7 +231,7 @@ public class CDYelpAPIClient: NSObject {
     ///
     public func fetchBusiness(forId id: String!,
                               locale: CDYelpLocale?,
-                              completion: @escaping (CDYelpBusiness?) -> Void) {
+                              completion: @escaping (Result<CDYelpBusiness>) -> Void){
         assert((id != nil && id.count > 0), "A business id is required to query the Yelp Fusion API business endpoint.")
 
         if self.isAuthenticated() == true {
@@ -243,10 +242,10 @@ public class CDYelpAPIClient: NSObject {
 
                 switch response.result {
                 case .success(let business):
-                    completion(business)
+                    completion(.success(business))
                 case .failure(let error):
                     print("fetchBusiness(byId) failure: ", error.localizedDescription)
-                    completion(nil)
+                    completion(.failure(error))
                 }
             }
         }

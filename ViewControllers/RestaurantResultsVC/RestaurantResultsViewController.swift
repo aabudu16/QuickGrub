@@ -12,18 +12,20 @@ class RestaurantResultsViewController: UIViewController {
     var userCurrentFavorites = [UserFavorite]()
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
-           tableView.reloadData()
+            tableView.reloadData()
         }
     }
     
     var userFoodImageSelection = [ CDYelpBusiness](){
         didSet{
             for individualBusiness in userFoodImageSelection{
-                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: .english_unitedStates) { [weak self] (business) in
-                    DispatchQueue.main.async {
-                       if let business = business {
-                        self?.businessFullDetail.append(business)
-
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.id, locale: .english_unitedStates) { [weak self] (result) in
+                    DispatchQueue.global(qos: .default).async {
+                        switch result {
+                        case .success(let business):
+                            self?.businessFullDetail.append(business)
+                        case .failure(let error):
+                            self?.showAlert(alertTitle: "Ohh oh", alertMessage: "Seem you caught an error \(error)", actionTitle: "OK")
                         }
                     }
                 }

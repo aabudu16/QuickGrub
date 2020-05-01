@@ -11,19 +11,28 @@ import MapKit
 
 class FavoriteViewController: UIViewController {
     var cellHeights: [CGFloat] = []
+    let deadlineTime = DispatchTime.now() + .seconds(1)
+    let group = DispatchGroup()
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
- 
+    
     var userFavorites = [ UserFavorite](){
         didSet{
             for individualBusiness in userFavorites{
-                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.venueID, locale: nil) { [weak self] (business) in
-                    DispatchQueue.main.async {
-                        if let eachBusiness = business {
-                            self?.businessFullDetail.append(eachBusiness)
+                group.enter()
+                CDYelpFusionKitManager.shared.apiClient.fetchBusiness(forId: individualBusiness.venueID, locale: .english_unitedKingdom) { [weak self] (result) in
+                    DispatchQueue.global(qos: .default).async {
+                        switch result {
+                        case .success(let business):
+                            self?.businessFullDetail.append(business)
+                            self?.group.leave()
+                        case .failure(let error):
+                            self?.showAlert(alertTitle: "Ohh oh", alertMessage: "Seem you caught an error \(error)", actionTitle: "OK")
                         }
                     }
                 }
