@@ -230,58 +230,6 @@ class CategoryViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyBoardHiding(sender:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
-    
-    //MARK: Constriaints Function
-    
-    private func configureContainerViewConstriant(){
-        view.addSubview(containerView)
-        containerView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([ containerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), containerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),containerView.heightAnchor.constraint(equalToConstant: containerHeight)])
-        
-        containerViewTopConstraints = containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor)
-        newContainerViewTopConstraints = containerView.topAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -(containerHeight) + 20)
-        NSLayoutConstraint.activate([containerViewTopConstraints!])
-        NSLayoutConstraint.deactivate([newContainerViewTopConstraints!])
-        
-    }
-    
-    private func configureSearchBarConstaints(){
-        view.addSubview(searchBar)
-        searchBar.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([searchBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), searchBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), searchBar.heightAnchor.constraint(equalToConstant: 45)])
-        
-        searchBarTopConstraints = searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: -(searchBar.frame.height))
-        newSearchBarTopConstraints = searchBar.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0)
-        NSLayoutConstraint.activate([searchBarTopConstraints!])
-        NSLayoutConstraint.deactivate([newSearchBarTopConstraints!])
-    }
-    
-    private func configureCollectionViewConstraint(){
-        view.addSubview(categoryCollectionView)
-        categoryCollectionView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([categoryCollectionView.topAnchor.constraint(equalTo: self.searchBar.bottomAnchor), categoryCollectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor), categoryCollectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor), categoryCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)])
-    }
-    
-    
-    private func configureContinueButton(){
-        containerView.addSubview(continueButton)
-        continueButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([continueButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0), continueButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -10), continueButton.heightAnchor.constraint(equalToConstant: 45), continueButton.widthAnchor.constraint(equalToConstant: 45)])
-    }
-    
-    private func configureSearchIconConstraints(){
-        view.addSubview(searchIcon)
-        searchIcon.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([searchIcon.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10), searchIcon.heightAnchor.constraint(equalToConstant: 45), searchIcon.widthAnchor.constraint(equalToConstant: 45)])
-        searchIconBottomConstraints = searchIcon.bottomAnchor.constraint(equalTo: containerView.topAnchor, constant: -80)
-        NSLayoutConstraint.activate([searchIconBottomConstraints!])
-    }
-    
-    private func configureCountLabelConstraints(){
-        containerView.addSubview(countLabel)
-        countLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([countLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5), countLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10), countLabel.heightAnchor.constraint(equalToConstant: 50), countLabel.widthAnchor.constraint(equalToConstant: 50)])
-    }
 }
 
 //MARK: Extension
