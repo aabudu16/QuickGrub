@@ -119,14 +119,14 @@ class CategoryViewController: UIViewController {
     //MARK: LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addSubviews()
         configureNavigationBar()
-        configureSearchBarConstaints()
-        configureCollectionViewConstraint()
-        configureContainerViewConstriant()
-        configureContinueButton()
-        configureSearchIconConstraints()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        addConstraints()
         addKeyBoardHandlingObservers()
-        configureCountLabelConstraints()
     }
     
     //MARK: Objc Selector functions
@@ -177,6 +177,15 @@ class CategoryViewController: UIViewController {
     }
     
     //MARK: Private Methods
+    private func addConstraints(){
+        configureSearchBarConstaints()
+        configureCollectionViewConstraint()
+        configureContainerViewConstriant()
+        configureContinueButton()
+        configureSearchIconConstraints()
+        configureCountLabelConstraints()
+    }
+    
     private func presentSearchBar(){
         NSLayoutConstraint.deactivate([searchBarTopConstraints!])
         NSLayoutConstraint.activate([newSearchBarTopConstraints!])
