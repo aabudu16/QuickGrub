@@ -187,24 +187,7 @@ open class FoldingCell: UITableViewCell {
         openOrCloseLabel.text = business.isClosed == true ? "Close" : "Open"
         openOrCloseLabel.textColor = business.isClosed == true ?  #colorLiteral(red: 0.8425863981, green: 0.1913244128, blue: 0.1395176649, alpha: 1) : #colorLiteral(red: 0.09106949717, green: 0.5007923841, blue: 0.2231527567, alpha: 1)
         
-        if let photoArray = business.photos{
-            for (index, photoString) in photoArray.enumerated(){
-                pageControl.numberOfPages = photoArray.count
-                let imageView = UIImageView()
-                imageView.contentMode = .scaleAspectFill
-                let imageUrl = URL(string: photoString)
-                DispatchQueue.main.async {
-                    imageView.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
-                    imageView.setNeedsDisplay()
-                    let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
-                    imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
-                    
-                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
-                    self.imageScrollView.addSubview(imageView)
-                }
-                
-            }
-        }
+        addImageToScrollView(business: business, placeHolderImage: image!)
         //MARK: - Adds annotation to mapview
         let annotation = MKPointAnnotation()
         annotation.coordinate = CLLocationCoordinate2D(latitude: business.coordinates?.latitude ?? 40.6782, longitude: business.coordinates?.longitude ?? -73.9442)
@@ -279,9 +262,28 @@ open class FoldingCell: UITableViewCell {
     }
     
     // MARK: configure
+    private func addImageToScrollView(business:CDYelpBusiness, placeHolderImage:UIImage){
+        if let photoArray = business.photos{
+            for (index, photoString) in photoArray.enumerated(){
+                pageControl.numberOfPages = photoArray.count
+                let imageView = UIImageView()
+                imageView.contentMode = .scaleAspectFill
+                let imageUrl = URL(string: photoString)
+                DispatchQueue.main.async {
+                    imageView.kf.setImage(with: imageUrl, placeholder: placeHolderImage, options: [.transition(.fade(0.2))])
+                    imageView.setNeedsDisplay()
+                    let xPosition:CGFloat = self.containerView.frame.width * CGFloat(index)
+                    imageView.frame = CGRect(x: xPosition, y: 0, width: self.imageScrollView.frame.width, height: self.imageScrollView.frame.height)
+                    
+                    self.imageScrollView.contentSize.width = self.imageScrollView.frame.width * CGFloat(index + 1)
+                    self.imageScrollView.addSubview(imageView)
+                }
+                
+            }
+        }
+    }
     
     private func configureDefaultState() {
-        
         guard let foregroundViewTop = self.foregroundViewTop,
             let containerViewTop = self.containerViewTop else {return}
         

@@ -31,7 +31,7 @@ extension FoldingCell {
         containerViewTop.isActive = true
     }
     
-    private func configureResturantImageConstraint(){
+     func configureResturantImageConstraint(){
         self.foregroundView.addSubview(foodImageView)
         foodImageView.translatesAutoresizingMaskIntoConstraints = false
         
