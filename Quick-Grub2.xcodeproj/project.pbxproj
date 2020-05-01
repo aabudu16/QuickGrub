@@ -43,6 +43,7 @@
 		854CA8D1245C60E300F1EEAA /* RotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D0245C60E300F1EEAA /* RotationView.swift */; };
 		854CA8D3245C624B00F1EEAA /* RotationView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */; };
 		854CA8D7245C657D00F1EEAA /* FoldingCell+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */; };
+		854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */; };
 		854D6D3523A28E76001BD091 /* CDColor+CDYelpFusionKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */; };
 		854D6D3623A28E76001BD091 /* CDYelpHour.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1523A28E76001BD091 /* CDYelpHour.swift */; };
 		854D6D3723A28E76001BD091 /* CDYelpEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854D6D1623A28E76001BD091 /* CDYelpEvent.swift */; };
@@ -166,6 +167,7 @@
 		854CA8D0245C60E300F1EEAA /* RotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RotationView.swift; sourceTree = "<group>"; };
 		854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RotationView+Extension.swift"; sourceTree = "<group>"; };
 		854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Constraints.swift"; sourceTree = "<group>"; };
+		854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FoldingCell+Extension.swift"; sourceTree = "<group>"; };
 		854D6D1423A28E76001BD091 /* CDColor+CDYelpFusionKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CDColor+CDYelpFusionKit.swift"; sourceTree = "<group>"; };
 		854D6D1523A28E76001BD091 /* CDYelpHour.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpHour.swift; sourceTree = "<group>"; };
 		854D6D1623A28E76001BD091 /* CDYelpEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDYelpEvent.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 			children = (
 				858A98782384EF840051AF45 /* FoldingCell.swift */,
 				854CA8D6245C657D00F1EEAA /* FoldingCell+Constraints.swift */,
+				854CA8D8245C8CB800F1EEAA /* FoldingCell+Extension.swift */,
 				854CA8D0245C60E300F1EEAA /* RotationView.swift */,
 				854CA8D2245C624B00F1EEAA /* RotationView+Extension.swift */,
 			);
@@ -838,6 +841,7 @@
 				858A98792384EF840051AF45 /* FoldingCell.swift in Sources */,
 				858A987123844A6C0051AF45 /* CustomActivityIndicator.swift in Sources */,
 				85F92A6123903F4100048FCB /* String+Extensions.swift in Sources */,
+				854CA8D9245C8CB800F1EEAA /* FoldingCell+Extension.swift in Sources */,
 				854CA8D1245C60E300F1EEAA /* RotationView.swift in Sources */,
 				85021EE223FDAFA300F8AD7B /* QuickGrubOnboardOverlay.swift in Sources */,
 				854D6D4623A28E76001BD091 /* CDYelpAutoCompleteResponse.swift in Sources */,
