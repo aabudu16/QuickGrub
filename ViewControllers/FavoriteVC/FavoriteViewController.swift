@@ -14,6 +14,7 @@ class FavoriteViewController: UIViewController {
     var cellHeights: [CGFloat] = []
     let deadlineTime = DispatchTime.now() + .seconds(1)
     let group = DispatchGroup()
+     let information = "You have nothing saved"
     
     //MARK:-- Computed Properties
     var businessFullDetail = [CDYelpBusiness](){
@@ -47,6 +48,12 @@ class FavoriteViewController: UIViewController {
         let tableview = UITableView()
         tableview.register(FoldingCell.self, forCellReuseIdentifier: ResturantCellIdentifier.resturantCell.rawValue)
         return tableview
+    }()
+    
+       lazy var informationLabel:UILabel = {
+       let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .black)
+        label.numberOfLines = 0
+        return label
     }()
     
     //MARK:-- LifeCycle

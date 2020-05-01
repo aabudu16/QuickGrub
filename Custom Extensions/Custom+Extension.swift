@@ -127,7 +127,7 @@ struct CustomLayer{
 
 extension UIView{
     func addGradientLayer(firstColor:CGColor, secondColor:CGColor){
-      let gradientLayer = CAGradientLayer()
+        let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [firstColor, secondColor]
         gradientLayer.locations = [0,1]
         gradientLayer.frame = bounds
