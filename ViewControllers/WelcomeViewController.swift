@@ -10,103 +10,7 @@ import UIKit
 import FirebaseAuth
 
 class WelcomeViewController: UIViewController {
-    
-//    var filterMenuViewTopConstraints:NSLayoutConstraint?
-//    var newfilterMenuViewTopConstraints:NSLayoutConstraint?
-//    let CDYelpBusinessSortType:Array = ["best match", "rating", "review count", "distance"]
-//    let isOpenArray = ["Open", "Close", "Both"]
-//    var pickerViewPick:CDYelpBusinessSortType?
-//    var priceTiers:[CDYelpPriceTier]?
-//    var filterParameter:FilterModel?
-//    var openNow:Bool?
-    
-    //MARK: UI Objects
-//    let filterMenuHeight:CGFloat = 400
-//
-//    var distanceLabel:UILabel!
-//    var limitLabel:UILabel!
-//    var buttonArray = [UIButton]()
-//    var stackView:UIStackView!
-//    lazy var filterMenuView:UIView = {
-//        let view = UIView()
-//        view.backgroundColor = .white
-//        return view
-//    }()
-//
-//    lazy var filterLabel:UILabel = {
-//        let label = UILabel()
-//        label.text = "Filter"
-//        label.textAlignment = .left
-//        label.font = UIFont(name: "HelveticaNeue-Bold", size: 28)
-//        return label
-//    }()
-//
-//    lazy var pickerView:UIPickerView = {
-//        let picker = UIPickerView()
-//        picker.delegate = self
-//        picker.dataSource = self
-//        return picker
-//    }()
-//
-//    lazy var segmentController:UISegmentedControl = {
-//        let segment = UISegmentedControl(items: isOpenArray)
-//        segment.selectedSegmentIndex = 2
-//        segment.selectedSegmentTintColor = #colorLiteral(red: 0.1316526234, green: 0, blue: 1, alpha: 1)
-//        segment.addTarget(self, action: #selector(handleSegmentControllerValueChanged), for: .valueChanged)
-//        return segment
-//    }()
-//
-//    lazy var limitSliderView:UISlider = {
-//        let limitSlider = UISlider()
-//        limitSlider.minimumValue = 1
-//        limitSlider.maximumValue = 50
-//        limitSlider.tintColor = UIColor.blue
-//        limitSlider.value = 20
-//        limitSlider.addTarget(self, action: #selector(handleLimitSliderValueChange(sender:)), for: .valueChanged)
-//        return limitSlider
-//    }()
-//
-//    lazy var distanceRangeSliderView:UISlider = {
-//        let limitSlider = UISlider()
-//        limitSlider.minimumValue = 200
-//        limitSlider.maximumValue = 40000
-//        limitSlider.tintColor = UIColor.blue
-//        limitSlider.value = 2000
-//        limitSlider.addTarget(self, action: #selector(handleDistanceRangeSliderValueChange(sender:)), for: .valueChanged)
-//        return limitSlider
-//    }()
-//
-//    lazy var resetFilterButton:UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Reset", for: .normal)
-//        button.titleLabel?.font =  UIFont(name: "HelveticaNeue", size: 15)
-//        button.setTitleColor(.blue, for: .normal)
-//        button.layer.cornerRadius = 5
-//        button.backgroundColor = .white
-//        return button
-//    }()
-//
-//    lazy var updateFilterButton:UIButton = {
-//        let button = UIButton()
-//        button.setTitle("Update", for: .normal)
-//        button.titleLabel?.font =  UIFont(name: "HelveticaNeue-Bold", size: 18)
-//        button.setTitleColor(.white, for: .normal)
-//        button.layer.cornerRadius = 5
-//        button.backgroundColor = .blue
-//        button.addTarget(self, action: #selector(handleUpdateButtonPressed), for: .touchUpInside)
-//        return button
-//    }()
-//
-//    lazy var deemView:UIView = {
-//        let deemView = UIView()
-//        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(dismissDeemView))
-//        tapGuesture.numberOfTapsRequired = 1
-//        deemView.backgroundColor = UIColor(white: 0, alpha: 0.6)
-//        deemView.alpha = 0
-//        deemView.addGestureRecognizer(tapGuesture)
-//        return deemView
-//    }()
-    
+    //MARK:-- Properties
     lazy var backgroundImageView:UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "backgroundImage")
@@ -125,15 +29,7 @@ class WelcomeViewController: UIViewController {
         label.textColor = .white
         return label
     }()
-//    lazy var menuButton:UIButton = {
-//        let button = UIButton()
-//        let filterImage = UIImage(named: "menu")
-//        button.setImage(filterImage, for: .normal)
-//        button.addTarget(self, action:  #selector(handleMenuButtonPressed), for: .touchUpInside)
-//        button.contentMode = .scaleToFill
-//        return  button
-//    }()
-    
+
     lazy var profileImage:UIImageView = {
         let guesture = UITapGestureRecognizer(target: self, action: #selector(presentUpdateProfileVC(sender:)))
         guesture.numberOfTapsRequired = 1
@@ -196,38 +92,18 @@ class WelcomeViewController: UIViewController {
     //MARK:-- LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-       // setupFilterView()
+        addSubviews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupView()
         setupProfileImage()
         setupWelcomeLabel()
         hideNavigationBar()
     }
     
     //MARK:-- Objc functions
-//
-//    @objc func handleMenuButtonPressed(){
-//        filterMenuViewTopConstraints?.isActive = false
-//        newfilterMenuViewTopConstraints?.isActive = true
-//        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.80, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-//            self.deemView.alpha = 1
-//            self.view.layoutIfNeeded()
-//        }, completion: nil)
-//    }
-//
-//    @objc func dismissDeemView(){
-//
-//        filterMenuViewTopConstraints?.isActive = true
-//        newfilterMenuViewTopConstraints?.isActive = false
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.deemView.alpha = 0
-//            self.view.layoutIfNeeded()
-//        }, completion: nil)
-//    }
-    
     @objc func handleCategoryPressed(){
         
         let categoryVC = CategoryViewController()
@@ -235,15 +111,6 @@ class WelcomeViewController: UIViewController {
         categoryVCWithNav.modalPresentationStyle = .fullScreen
         present(categoryVCWithNav, animated: true)
     }
-    
-//    @objc func handleDistanceRangeSliderValueChange(sender:UISlider){
-//        print(Int(sender.value))
-//        distanceLabel.text = "Distance \(Int(sender.value)) mile range"
-//    }
-//
-//    @objc func handleLimitSliderValueChange(sender:UISlider){
-//        limitLabel.text = "Limit \(Int(sender.value))"
-//    }
     
     @objc func presentUpdateProfileVC(sender:UITapGestureRecognizer){
         let updateProfileVC = UpdateUserProfileViewController()
@@ -255,47 +122,7 @@ class WelcomeViewController: UIViewController {
         let favoriteVC = FavoriteViewController()
         navigationController?.pushViewController(favoriteVC, animated: true)
     }
-    
-//    @objc func handlePriceButtonPressed(sender:UIButton){
-//        buttonArray.forEach { (button) in
-//            switch button.tag{
-//            case 0:
-//                priceTiers?.append(.oneDollarSign)
-//            case 1:
-//                priceTiers?.append(.twoDollarSigns)
-//            case 2:
-//                priceTiers?.append(.threeDollarSigns)
-//            case 3:
-//                priceTiers?.append(.fourDollarSigns)
-//            default:
-//                return
-//            }
-//        }
-//    }
-//
-//    @objc func handleSegmentControllerValueChanged(sender:UISegmentedControl){
-//        switch sender.selectedSegmentIndex{
-//        case 0:
-//            openNow = true
-//        case 1:
-//            openNow = false
-//        case 2:
-//            openNow = nil
-//        default:
-//            return
-//        }
-//    }
-//
-//    @objc func handleUpdateButtonPressed(){
-//        filterParameter = FilterModel(sortBy: pickerViewPick ?? nil , price: priceTiers ?? [.oneDollarSign, .twoDollarSigns, .threeDollarSigns, .fourDollarSigns], limit: Int(limitSliderView.value), distance: Int(distanceRangeSliderView.value), openNow: openNow ?? nil)
-//
-//        filterMenuViewTopConstraints?.isActive = true
-//        newfilterMenuViewTopConstraints?.isActive = false
-//        UIView.animate(withDuration: 0.3, animations: {
-//            self.deemView.alpha = 0
-//            self.view.layoutIfNeeded()
-//        }, completion: nil)
-//    }
+
     //MARK: Private Methods
     
     private func setupView(){
@@ -305,30 +132,9 @@ class WelcomeViewController: UIViewController {
         configureCategoryButtonConstraints()
         configureCategoryLabelConstraints()
         configureRandomButtonnConstraints()
-       // configureMenuButtonConstraints()
         configureProfileImageConstraint()
         savedLabelConstriants()
     }
-    
-//    private func setupFilterView(){
-//        configueDeemViewConstraints()
-//        configureFilterMenuHeightConstraint()
-//        configureFilterLabelConstraints()
-//        configureUpdateFilterButton()
-//        configurePickerViewConstraints()
-//        configureResetFilterButton()
-//        configureSortByLabelConstraints()
-//        firstLineSeporatorConstraint()
-//        configurePriceButtonStackView()
-//        configurePriceLabelConstraints()
-//        secondLineSeporatorConstraint()
-//        configureSegmentControllerConstraints()
-//        thirdLineSeporatorConstraint()
-//        configurelimitSliderViewConstraints()
-//        configureLimitLabelConstraints()
-//        configureDistanceRangeSliderViewConstraints()
-//        configureDistanceLabelConstraints()
-//    }
     
     private func hideNavigationBar(){
         navigationController?.isNavigationBarHidden = true
@@ -350,13 +156,6 @@ class WelcomeViewController: UIViewController {
         sv.axis = .horizontal
         return sv
     }
-//    private func createButtonView() -> UIButton{
-//        let button = UIButton()
-//        button.layer.cornerRadius = 4
-//        button.backgroundColor = .lightGray
-//        button.addTarget(self, action: #selector(handlePriceButtonPressed), for: .touchUpInside)
-//        return button
-//    }
     
     private func createUILableView(name:String, textAlignment: NSTextAlignment) -> UILabel {
         let label = UILabel()
