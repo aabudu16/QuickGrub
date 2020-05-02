@@ -20,6 +20,7 @@ extension FavoriteViewController: UITableViewDataSource{
         cell.navigateButtom.tag = indexPath.row
         cell.moreDetailButton.tag = indexPath.row
         cell.heartImage.tag = indexPath.row
+        cell.heartImage.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         let businessInfo = businessFullDetail[indexPath.row]
         let distance = businessFullDetail[indexPath.row]
         cell.configureBusinessData(business: businessInfo, distance: distance)

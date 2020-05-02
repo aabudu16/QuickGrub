@@ -45,8 +45,7 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
 //            getFavorites()
             
         }else {
-            createFavorites(currentUser: currentUser, businessInfo: businessInfo)
-            cell.heartImage.setImage(UIImage(systemName: "heart.fill")?.withTintColor(.white), for: .normal)
+            createFavorites(currentUser: currentUser, businessInfo: businessInfo, cell: cell)
         }
         }else {
             print("5 is the max")
@@ -54,7 +53,7 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
         getFavorites()
     }
     
-    private func createFavorites(currentUser:User, businessInfo: CDYelpBusiness){
+    private func createFavorites(currentUser:User, businessInfo: CDYelpBusiness, cell:FoldingCell){
         let myFavorite = UserFavorite(creatorID:  currentUser.uid, venueID: businessInfo.id!, name: businessInfo.name!)
         FirestoreService.manager.createFavorite(favorite: myFavorite) { (result) in
             switch result{
@@ -62,6 +61,7 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
                 self.showAlert(alertTitle: "Error", alertMessage: "Seems to have a problem adding this item to your favorites. please try again \(error)", actionTitle: "OK")
             case .success(()):
                 self.showAlert(alertTitle: "Success", alertMessage: "Added to your favorites", actionTitle: "OK")
+                cell.heartImage.setImage(UIImage(systemName: "heart.fill")?.withTintColor(.white), for: .normal)
             }
         }
     }
