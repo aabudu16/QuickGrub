@@ -10,6 +10,7 @@ import UIKit
 
 class RestaurantResultsViewController: UIViewController {
     var userCurrentFavorites = [UserFavorite]()
+    var currentCount:Int = 0
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
             tableView.reloadData()

@@ -25,7 +25,7 @@ extension RestaurantResultsViewController: FoldingCellDelegate{
         let businessInfo = businessFullDetail[tag]
         guard let cell = tableView.cellForRow(at: IndexPath(row: tag, section: 0)) as? FoldingCell else {return}
         guard let currentUser = FirebaseAuthService.manager.currentUser else {return}
-        
+        if currentCount < 5{
         if userCurrentFavorites.contains(where: {$0.venueID == businessInfo.id}) {
             
             print("Already added")
