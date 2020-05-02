@@ -17,6 +17,13 @@ class RestaurantDetailViewController: UIViewController {
     
     //MARK: - UIObjects
     let image = UIImage(named: "FoodPlaceholder")
+    
+    var SetFavoriteButton:Bool = false {
+        didSet{
+            SetFavoriteButton == true ? setupNavigationBarButtton2() : setupNavigationBarButtons()
+        }
+    }
+    
     var business:CDYelpBusiness!{
         didSet{
             // populate business data
@@ -183,7 +190,6 @@ class RestaurantDetailViewController: UIViewController {
         super.viewDidLoad()
         addSubviews()
         setScrollViewDelegate()
-        setupNavigationBarButtons()
         view.backgroundColor = .white
     }
     
@@ -264,6 +270,9 @@ class RestaurantDetailViewController: UIViewController {
         present(share, animated: true, completion: nil)
     }
     
+    @objc func handleDeletingFavorite(sender:UIBarButtonItem) {
+        print("delete")
+    }
     //MARK:Private function
     private func populateImageScrollView(){
         if let photoArray = self.business.photos{
@@ -365,6 +374,16 @@ class RestaurantDetailViewController: UIViewController {
         navigationItem.rightBarButtonItems = [favorite, share]
         
     }
+    
+    private func setupNavigationBarButtton2(){
+           let favorite = UIBarButtonItem(image: UIImage(systemName: "bookmark.fill"), style: .plain, target: self, action: #selector(handleDeletingFavorite(sender:)))
+           let share = UIBarButtonItem(image: UIImage(systemName: "square.and.arrow.up"), style: .plain, target: self, action: #selector(handleShareButtonPressed(sender:)))
+           
+           favorite.tintColor = .black
+           share.tintColor = .black
+           navigationItem.rightBarButtonItems = [favorite, share]
+           
+       }
     
     private func createHairLineView()-> UIView{
         let hairLine = UIView()
