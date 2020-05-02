@@ -27,7 +27,7 @@ class FoodImagesViewController: UIViewController {
     let checkmark = UIImage(systemName: "checkmark")
     let locationManager = CLLocationManager()
     private var currentCoordinate: CLLocationCoordinate2D?
-     var userFilteredParameter: SelectedCategoriesModel!
+     var userSelectedCategories: SelectedCategoriesModel!
     var userFoodImageSelection = [CDYelpBusiness](){
         didSet{
             if userFoodImageSelection.count > 0 {
@@ -56,7 +56,7 @@ class FoodImagesViewController: UIViewController {
             
             if let userLocation = locationManager.location?.coordinate{
                 let filter = GenericParameter.genericSettingParameter
-                let categories = userFilteredParameter.categories
+                let categories = userSelectedCategories.categories
                 
                 CDYelpFusionKitManager.shared.apiClient.searchBusinesses(byTerm: nil, location: nil, latitude: userLocation.latitude, longitude: userLocation.longitude, radius: filter.distance, categories: categories, locale: .english_unitedStates, limit: filter.limit, offset: 0, sortBy: filter.sortBy, priceTiers: filter.price , openNow: filter.openNow, openAt: nil, attributes: nil) {[weak self] (response) in
                     guard let response = response, let businesses = response.businesses, businesses.count > 0  else {

@@ -20,6 +20,7 @@ class FavoriteViewController: UIViewController {
     var businessFullDetail = [CDYelpBusiness](){
         didSet {
             DispatchQueue.main.async {
+                self.hideInformationLabel()
                 self.tableView.reloadData()
             }
         }
@@ -51,7 +52,7 @@ class FavoriteViewController: UIViewController {
     }()
     
        lazy var informationLabel:UILabel = {
-       let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .black)
+        let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .lightGray)
         label.numberOfLines = 0
         return label
     }()
@@ -80,9 +81,14 @@ class FavoriteViewController: UIViewController {
         tableView.dataSource = self
     }
     
+    
     private func navigationFont(){
        let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
         UINavigationBar.appearance().titleTextAttributes = attributes
+    }
+    
+    private func hideInformationLabel() {
+         informationLabel.isHidden = userFavorites.count > 0 ? true : false
     }
     
     private func getFavorites(){

@@ -144,10 +144,10 @@ class CategoryViewController: UIViewController {
             return
         }
         
-        let userFilteredParameter = SelectedCategoriesModel(categories: selectedCategories)
-        print(userFilteredParameter)
+        let userSelectedCategories = SelectedCategoriesModel(categories: selectedCategories)
+        print(userSelectedCategories)
         let foodVC = FoodImagesViewController()
-        foodVC.userFilteredParameter = userFilteredParameter
+        foodVC.userSelectedCategories = userSelectedCategories
         navigationController?.pushViewController(foodVC, animated: true)
         print("continue button pressed")
     }

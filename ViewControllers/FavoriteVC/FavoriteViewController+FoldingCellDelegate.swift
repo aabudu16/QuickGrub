@@ -26,6 +26,7 @@ extension FavoriteViewController: FoldingCellDelegate{
         let businessInfo = businessFullDetail[tag]
         
         let restaurantDetailVC = RestaurantDetailViewController()
+        restaurantDetailVC.SetFavoriteButton = true
         restaurantDetailVC.business = businessInfo
         self.navigationController?.pushViewController(restaurantDetailVC, animated: true)
 
