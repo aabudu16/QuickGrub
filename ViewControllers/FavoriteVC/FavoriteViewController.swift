@@ -52,7 +52,7 @@ class FavoriteViewController: UIViewController {
     }()
     
        lazy var informationLabel:UILabel = {
-       let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .black)
+        let label = UILabel(textAlignment: .center, text: information, fontName: "Avenir-Heavy", fontSize: 25, color: .lightGray)
         label.numberOfLines = 0
         return label
     }()
@@ -80,6 +80,7 @@ class FavoriteViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
     }
+    
     
     private func navigationFont(){
        let attributes = [NSAttributedString.Key.font: UIFont(name: "TimesNewRomanPS-ItalicMT", size: 25)!]
