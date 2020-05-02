@@ -69,13 +69,14 @@ class RestaurantResultsViewController: UIViewController {
         guard let userID = FirebaseAuthService.manager.currentUser?.uid else{
             return
         }
-        FirestoreService.manager.getFavorites(forUserID: userID) { (result) in
+        FirestoreService.manager.getFavorites(forUserID: userID) {[weak self] (result) in
             switch result{
             case .failure(let error):
                 print(error)
             case .success(let favorites):
                 DispatchQueue.main.async {
-                    self.userCurrentFavorites = favorites
+                    self?.userCurrentFavorites = favorites
+                    self!.currentCount = favorites.count
                 }
             }
         }
